@@ -1,0 +1,13 @@
+<div class="resize-layout absolute" [class]="'dirction'+direction" (mousemove)="mousemove($event)" (mouseup)="mouseup($event)" (mouseleave)="mouseup($event)">
+  <div class="resize-layout-first absolute" [style.width]="ratioStyle()[0]">
+    <div appHost>
+
+    </div>
+    <div class="resize-layout-delimiter right" (mousedown)="resizeStart($event)"></div>
+  </div>
+  <div class="resize-layout-second absolute"  [style.width]="ratioStyle()[1]" [style.left]="ratioStyle()[0]">
+      <div appDisplayWiewHost>
+      </div>
+      <div class="resize-layout-delimiter left" (mousedown)="resizeStart($event)"></div>
+  </div>
+</div>

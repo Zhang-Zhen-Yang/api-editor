@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody{\n\tpadding:0;\n\tbackground-color:#aaa;\n}", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody{\n\tpadding:0;\n\tbackground-color:#aaa;\n}\n.absolute{\n\tposition: absolute;\n}\n.relative{\n\tposition: relative;\n}\n.fixed{\n\tposition: fixed;\n}", ""]);
 
 // exports
 

@@ -1,0 +1,47 @@
+:host{
+	position: absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+}
+.resize-layout{
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+}
+.resize-layout-divider{
+	width:10px;
+	height:10px;
+	background-color:red;
+}
+.resize-layout-first{
+	width:50%;
+	height:100%;
+	left:0;
+	top:0;
+	background-color:pink;
+}
+.resize-layout-second{
+	width:50%;
+	height:100%;
+	left:50%;
+	top:0;
+	background-color: royalblue;
+}
+.resize-layout-delimiter{
+	position: absolute;
+	width:5px;
+	height:100%;
+	right:0px;
+	top:0;
+	/*background-color:orange;*/
+}
+.resize-layout-delimiter.left{
+	left:0;
+	/*background-color: red;*/
+}
+.resize-layout-delimiter:hover{
+	cursor: e-resize;
+}

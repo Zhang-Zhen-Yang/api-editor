@@ -3,3 +3,12 @@ body{
 	padding:0;
 	background-color:#aaa;
 }
+.absolute{
+	position: absolute;
+}
+.relative{
+	position: relative;
+}
+.fixed{
+	position: fixed;
+}
