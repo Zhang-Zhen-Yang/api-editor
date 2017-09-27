@@ -13,6 +13,8 @@ import { HostDirective } from './component/resize-layout/host.directive';
 import { TestComponent } from './component/test/test.component';
 import { DisplaySpaceComponent } from './component/display-space/display-space.component';
 import { DisplayWiewHostDirective } from './component/resize-layout/display-wiew-host.directive';
+import { ResourceManagerComponent } from './component/resource-manager/resource-manager.component';
+import { WorkSpaceComponent } from './component/work-space/work-space.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,16 @@ import { DisplayWiewHostDirective } from './component/resize-layout/display-wiew
     HostDirective,
     TestComponent,
     DisplaySpaceComponent,
-    DisplayWiewHostDirective
+    DisplayWiewHostDirective,
+    ResourceManagerComponent,
+    WorkSpaceComponent
   ],
   entryComponents:[
     TestComponent,
     CodeSpaceComponent,
-    DisplaySpaceComponent
+    DisplaySpaceComponent,
+    ResourceManagerComponent,
+    WorkSpaceComponent
   ],
   imports: [
     BrowserModule,

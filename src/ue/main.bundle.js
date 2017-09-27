@@ -87,12 +87,16 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__ = __webpack_require__("../../../../../src/app/component/test/test.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__component_display_space_display_space_component__ = __webpack_require__("../../../../../src/app/component/display-space/display-space.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_display_wiew_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/display-wiew-host.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__ = __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__ = __webpack_require__("../../../../../src/app/component/work-space/work-space.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -123,12 +127,16 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__component_resize_layout_host_directive__["a" /* HostDirective */],
             __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__["a" /* TestComponent */],
             __WEBPACK_IMPORTED_MODULE_11__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_display_wiew_host_directive__["a" /* DisplayWiewHostDirective */]
+            __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_display_wiew_host_directive__["a" /* DisplayWiewHostDirective */],
+            __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__["a" /* WorkSpaceComponent */]
         ],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__["a" /* TestComponent */],
             __WEBPACK_IMPORTED_MODULE_5__component_code_space_code_space_component__["a" /* CodeSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */]
+            __WEBPACK_IMPORTED_MODULE_11__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__["a" /* WorkSpaceComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -360,7 +368,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/layout/layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div id=\"layout-top\" class=\"absolute\">\n    <div id=\"layout-left-bar\"  class=\"absolute\">\n      <app-left-bar></app-left-bar>\n    </div>\n    <div id=\"layout-right\"  class=\"absolute\">\n      <!--<app-code-space></app-code-space>-->\n      <app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>\n    </div>\n  </div>\n  <div id=\"layout-bottom\"  class=\"absolute\">\n    <app-bottom-bar></app-bottom-bar>\n  </div>\n\n\n\n\n\n\n\n"
+module.exports = "\n  <div id=\"layout-top\" class=\"absolute\">\n    <div id=\"layout-left-bar\"  class=\"absolute\">\n      <app-left-bar></app-left-bar>\n    </div>\n    <div id=\"layout-right\"  class=\"absolute\">\n      <!--<app-code-space></app-code-space>-->\n      <app-resize-layout [components]=\"resourcemanger\" [ratio]=\"[{value:250},{value:0.5}]\" [delivery_type]=\"'firstFixed'\"></app-resize-layout>\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\n    </div>\n  </div>\n  <div id=\"layout-bottom\"  class=\"absolute\">\n    <app-bottom-bar></app-bottom-bar>\n  </div>\n\n\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -370,8 +378,8 @@ module.exports = "\n  <div id=\"layout-top\" class=\"absolute\">\n    <div id=\"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LayoutComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__ = __webpack_require__("../../../../../src/app/component/code-space/code-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__display_space_display_space_component__ = __webpack_require__("../../../../../src/app/component/display-space/display-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resource_manager_resource_manager_component__ = __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__work_space_work_space_component__ = __webpack_require__("../../../../../src/app/component/work-space/work-space.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -385,15 +393,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * @Author: zhangzhenyang
  * @Date: 2017-09-27 10:59:25
  * @Last Modified by: zhangzhenyang
- * @Last Modified time: 2017-09-27 14:44:47
+ * @Last Modified time: 2017-09-27 17:24:37
  */
 //布局
 
 
 
+/*import { CodeSpaceComponent } from '../code-space/code-space.component'
+import { DisplaySpaceComponent } from '../display-space/display-space.component'*/
 var LayoutComponent = (function () {
+    //components:Array<any> = [ CodeSpaceComponent , DisplaySpaceComponent ]
     function LayoutComponent() {
-        this.components = [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__display_space_display_space_component__["a" /* DisplaySpaceComponent */]];
+        this.resourcemanger = [__WEBPACK_IMPORTED_MODULE_1__resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */], __WEBPACK_IMPORTED_MODULE_2__work_space_work_space_component__["a" /* WorkSpaceComponent */]];
     }
     LayoutComponent.prototype.ngOnInit = function () {
     };
@@ -713,6 +724,75 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/component/resource-manager/resource-manager.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".resource-manager{\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n\tbackground-color:#efefef;\r\n\toverflow:auto;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/resource-manager/resource-manager.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n  <p>\n    resource-manager works!\n  </p>\n  <div *ngFor=\"let i of repeatArray\">\n    kdfjakdkkdfkkdfk\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/resource-manager/resource-manager.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResourceManagerComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/*
+ * @Author: zhangzhenyang
+ * @Date: 2017-09-27 17:29:00
+ * @Last Modified by: zhangzhenyang
+ * @Last Modified time: 2017-09-27 17:56:32
+ */
+//资源管理器
+
+var ResourceManagerComponent = (function () {
+    function ResourceManagerComponent() {
+        this.repeatArray = new Array(200);
+    }
+    ResourceManagerComponent.prototype.ngOnInit = function () {
+    };
+    return ResourceManagerComponent;
+}());
+ResourceManagerComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-resource-manager',
+        template: __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ResourceManagerComponent);
+
+//# sourceMappingURL=resource-manager.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/component/test/test.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -771,6 +851,72 @@ TestComponent = __decorate([
 ], TestComponent);
 
 //# sourceMappingURL=test.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/work-space/work-space.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/work-space/work-space.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/work-space/work-space.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkSpaceComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__ = __webpack_require__("../../../../../src/app/component/code-space/code-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__display_space_display_space_component__ = __webpack_require__("../../../../../src/app/component/display-space/display-space.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var WorkSpaceComponent = (function () {
+    function WorkSpaceComponent() {
+        this.components = [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__display_space_display_space_component__["a" /* DisplaySpaceComponent */]];
+    }
+    WorkSpaceComponent.prototype.ngOnInit = function () {
+    };
+    return WorkSpaceComponent;
+}());
+WorkSpaceComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-work-space',
+        template: __webpack_require__("../../../../../src/app/component/work-space/work-space.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/work-space/work-space.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], WorkSpaceComponent);
+
+//# sourceMappingURL=work-space.component.js.map
 
 /***/ }),
 

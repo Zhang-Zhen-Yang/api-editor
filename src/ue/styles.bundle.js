@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody{\n\tpadding:0;\n\tbackground-color:#aaa;\n}\n.absolute{\n\tposition: absolute;\n}\n.relative{\n\tposition: relative;\n}\n.fixed{\n\tposition: fixed;\n}", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody{\n\tpadding:0;\n\tbackground-color:#aaa;\n}\n.absolute{\n\tposition: absolute;\n}\n.relative{\n\tposition: relative;\n}\n.fixed{\n\tposition: fixed;\n}\n.scrollbar-override::-webkit-scrollbar {\n\twidth: 13px;\n\theight: 10px;\n\toverflow: hidden;\n\ttransition:all 3s linear;\n}\n.scrollbar-override::-webkit-scrollbar-thumb{\n\ttransition:all 3s linear;\n}\n.scrollbar-override:hover::-webkit-scrollbar-thumb:hover{\n\tbackground-color: #bbb;\n\ttransition:all 3s linear;\n}\n.scrollbar-override:hover::-webkit-scrollbar-thumb{\n\tbackground-color: #ccc;\n\ttransition:all 3s linear;\n}", ""]);
 
 // exports
 

@@ -12,3 +12,20 @@ body{
 .fixed{
 	position: fixed;
 }
+.scrollbar-override::-webkit-scrollbar {
+	width: 13px;
+	height: 10px;
+	overflow: hidden;
+	transition:all 3s linear;
+}
+.scrollbar-override::-webkit-scrollbar-thumb{
+	transition:all 3s linear;
+}
+.scrollbar-override:hover::-webkit-scrollbar-thumb:hover{
+	background-color: #bbb;
+	transition:all 3s linear;
+}
+.scrollbar-override:hover::-webkit-scrollbar-thumb{
+	background-color: #ccc;
+	transition:all 3s linear;
+}
