@@ -1,0 +1,14 @@
+<div>
+  <div class="tree-item">
+    <div class="tree-item-indent">{{ dirName }}</div>
+  </div> 
+  <div class="tree-sub-dir">
+    <div *ngFor="let file of child">    
+      <!--目录-->
+      <tree-dir *ngIf="file.type=='dir'" [dirName]="file.name" [child]="file.child" (fileSelect)="select($event)"></tree-dir>
+      <!--文件-->
+      <tree-file *ngIf="file.type=='file'" [fileName]="file.name" (fileSelect)="select($event)"></tree-file>
+    </div>
+  </div>
+  
+</div>

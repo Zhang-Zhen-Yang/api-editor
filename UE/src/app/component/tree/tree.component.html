@@ -1,0 +1,11 @@
+<div>
+  <div class="tree-item">{{ apiService.projectDir }}</div>
+  <div style="padding-left:1em;">
+    <div *ngFor="let file of files">
+      <!--目录-->
+      <tree-dir *ngIf="file.type=='dir'" [dirName]="file.name" [child]="file.child" (fileSelect)="select($event)"></tree-dir>
+      <!--文件-->
+      <tree-file *ngIf="file.type=='file'" [fileName]="file.name"></tree-file>
+    </div>
+  </div>  
+</div>

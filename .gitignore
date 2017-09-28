@@ -5,8 +5,12 @@
 /tmp
 /out-tsc
 
+#electron output
+/OutApp
+
 # dependencies
 /node_modules
+/app/UE/node_modules
 
 # IDEs and editors
 /.idea

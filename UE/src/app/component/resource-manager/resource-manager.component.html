@@ -1,8 +1,12 @@
 <div class="resource-manager absolute scrollbar-override">
+  <div class="resource-manager-title">资源管理器</div>
   <p>
     resource-manager works!
   </p>
-  <div *ngFor="let i of repeatArray">
-    kdfjakdkkdfkkdfk
-  </div>
+  <app-tree ></app-tree>
+  <button 
+    *ngIf="!apiService.projectDir"
+    class="resource-manager-open-directory-btn pointer" 
+    (click)="openDirectory()">打开文件夹</button>
+
 </div>

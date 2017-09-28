@@ -2,10 +2,12 @@
   "name": "api-editor",
   "version": "1.0.0",
   "description": "旺店宝api编辑器",
-  "main": "main.js",
+  "main": "./app/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "packager": "electron-packager ./app api-editor --all --out ./OutApp --version 1.4.3 --overwrite --icon=./app/src/img/lapin.ico",
+    "packageWin": "electron-packager ./app api-editor --platform=win32 --arch=x64  --out ./OutApp --overwrite --icon=./app/src/img/lapin.ico"
   },
   "repository": {
     "type": "git",

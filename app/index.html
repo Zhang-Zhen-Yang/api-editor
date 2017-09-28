@@ -9,6 +9,18 @@
   </head>
   <body>
     <app-root></app-root>
+    <script>
+      console.log('my script');
+      let { desktopCapturer, ipcRenderer, remote, webFrame } = require('electron');
+      window.desktopCapturer = desktopCapturer;
+      window.ipcRenderer = ipcRenderer;
+      window.remote = remote;
+      window.webFrame = webFrame;
+
+      window.glob = require('glob');
+      window.path = require('path');
+      window.fs = require('fs');
+    </script>
     <script type="text/javascript" src="src/ue/inline.bundle.js"></script>
     <script type="text/javascript" src="src/ue/polyfills.bundle.js">
     </script><script type="text/javascript" src="src/ue/styles.bundle.js">

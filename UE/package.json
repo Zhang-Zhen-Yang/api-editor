@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "watch": "ng build -watch -op ../src/ue/"
+    "watch": "ng build -watch -op ../app/src/ue/"
   },
   "private": true,
   "dependencies": {

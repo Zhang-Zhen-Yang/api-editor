@@ -2,7 +2,14 @@
 body{
 	padding:0;
 	background-color:#aaa;
+	font-family: 微软雅黑;
+	font-size:14px;
+	color:#2C3E50;
 }
+body div{
+	box-sizing: border-box;
+}
+
 .absolute{
 	position: absolute;
 }
@@ -11,6 +18,9 @@ body{
 }
 .fixed{
 	position: fixed;
+}
+.pointer{
+	cursor:pointer;
 }
 .scrollbar-override::-webkit-scrollbar {
 	width: 13px;
@@ -28,4 +38,21 @@ body{
 .scrollbar-override:hover::-webkit-scrollbar-thumb{
 	background-color: #ccc;
 	transition:all 3s linear;
+}
+.tree-item{	
+	font-size:13px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color:#8D8D8D;
+	user-select: none;
+	cursor:pointer;
+	line-height:1.7em;
+}
+.tree-sub-dir{
+	padding-left:1em;
+}
+.tree-item:hover{
+	/*background-color:#ECF0F1*/
+	background-color:#aaa;
 }

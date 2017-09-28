@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div id=\"root\" style=\"text-align:center\">\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  </webview>-->\n  <app-layout></app-layout>  \n</div>\n\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div id=\"root\">\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  </webview>-->\n  <app-layout></app-layout>  \n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -89,12 +89,20 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_display_wiew_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/display-wiew-host.directive.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__ = __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__ = __webpack_require__("../../../../../src/app/component/work-space/work-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__component_tree_tree_component__ = __webpack_require__("../../../../../src/app/component/tree/tree.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_dir_tree_dir_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-dir/tree-dir.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_file_tree_file_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -129,7 +137,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */],
             __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_display_wiew_host_directive__["a" /* DisplayWiewHostDirective */],
             __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__["a" /* WorkSpaceComponent */]
+            __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__["a" /* WorkSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__component_tree_tree_component__["a" /* TreeComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_dir_tree_dir_component__["a" /* TreeDirComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_file_tree_file_component__["a" /* TreeFileComponent */]
         ],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__["a" /* TestComponent */],
@@ -142,7 +153,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */]
         ],
-        providers: [],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_15__service_api_service__["a" /* ApiService */]
+        ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]],
         schemas: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* NO_ERRORS_SCHEMA */]]
     })
@@ -160,7 +173,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#bottom-bar{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\tbottom:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\tbackground-color:#5ADBD5;\r\n\tcolor:white;\r\n}", ""]);
+exports.push([module.i, "#bottom-bar{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\tbottom:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\tbackground-color:#1ABC9C;\r\n\tcolor:white;\r\n}", ""]);
 
 // exports
 
@@ -732,7 +745,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".resource-manager{\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n\tbackground-color:#efefef;\r\n\toverflow:auto;\r\n}", ""]);
+exports.push([module.i, ".resource-manager{\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n\tbackground-color:#efefef;\r\n\toverflow:auto;\r\n}\r\n.resource-manager-title{\r\n\ttext-align: left;\r\n\ttext-indent: 2em;\r\n\tfont-size:12px;\r\n\tline-height: 3em;\r\n}\r\n.resource-manager-open-directory-btn{\r\n\tdisplay: block;\r\n\tmargin:0 auto;\r\n\tbackground-color:#1ABC9C;\r\n\tcolor:white;\r\n\toutline:none;\r\n\tborder:none;\r\n\twidth:calc(100% - 40px);\r\n\tline-height: 1.7em;\r\n\tfont-size:14px;\r\n\tfont-family: 微软雅黑;\r\n}\r\n.resource-manager-open-directory-btn:hover{\r\n\tbackground-color: #16A085;\r\n}", ""]);
 
 // exports
 
@@ -745,7 +758,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/resource-manager/resource-manager.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n  <p>\n    resource-manager works!\n  </p>\n  <div *ngFor=\"let i of repeatArray\">\n    kdfjakdkkdfkkdfk\n  </div>\n</div>\n"
+module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n  <div class=\"resource-manager-title\">资源管理器</div>\n  <p>\n    resource-manager works!\n  </p>\n  <app-tree ></app-tree>\n  <button \n    *ngIf=\"!apiService.projectDir\"\n    class=\"resource-manager-open-directory-btn pointer\" \n    (click)=\"openDirectory()\">打开文件夹</button>\n\n</div>\n"
 
 /***/ }),
 
@@ -755,6 +768,7 @@ module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResourceManagerComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -768,15 +782,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * @Author: zhangzhenyang
  * @Date: 2017-09-27 17:29:00
  * @Last Modified by: zhangzhenyang
- * @Last Modified time: 2017-09-27 17:56:32
+ * @Last Modified time: 2017-09-28 11:22:48
  */
 //资源管理器
 
+
 var ResourceManagerComponent = (function () {
-    function ResourceManagerComponent() {
-        this.repeatArray = new Array(200);
+    function ResourceManagerComponent(apiService) {
+        this.apiService = apiService;
+        this.repeatArray = new Array(20);
     }
     ResourceManagerComponent.prototype.ngOnInit = function () {
+    };
+    /**
+     * 打开文件夹
+     */
+    ResourceManagerComponent.prototype.openDirectory = function () {
+        this.apiService.openFile(function (filePaths) {
+            console.log(filePaths);
+        });
     };
     return ResourceManagerComponent;
 }());
@@ -786,9 +810,10 @@ ResourceManagerComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], ResourceManagerComponent);
 
+var _a;
 //# sourceMappingURL=resource-manager.component.js.map
 
 /***/ }),
@@ -851,6 +876,236 @@ TestComponent = __decorate([
 ], TestComponent);
 
 //# sourceMappingURL=test.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <div class=\"tree-item\">\n    <div class=\"tree-item-indent\">{{ dirName }}</div>\n  </div> \n  <div class=\"tree-sub-dir\">\n    <div *ngFor=\"let file of child\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\" [dirName]=\"file.name\" [child]=\"file.child\" (fileSelect)=\"select($event)\"></tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" [fileName]=\"file.name\" (fileSelect)=\"select($event)\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreeDirComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var TreeDirComponent = (function () {
+    function TreeDirComponent() {
+        this.fileSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+    }
+    TreeDirComponent.prototype.ngOnInit = function () {
+    };
+    TreeDirComponent.prototype.select = function (e) {
+        var emitArray = e;
+        emitArray.unshift(this.dirName);
+        this.fileSelect.emit(emitArray);
+        alert('current-dir:' + this.dirName + ';total' + emitArray);
+    };
+    return TreeDirComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], TreeDirComponent.prototype, "dirName", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], TreeDirComponent.prototype, "child", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
+    __metadata("design:type", Object)
+], TreeDirComponent.prototype, "fileSelect", void 0);
+TreeDirComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'tree-dir',
+        template: __webpack_require__("../../../../../src/app/component/tree/tree-dir/tree-dir.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/tree/tree-dir/tree-dir.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], TreeDirComponent);
+
+//# sourceMappingURL=tree-dir.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\">\n  <div class=\"tree-item-indent\">{{fileName}}</div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreeFileComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var TreeFileComponent = (function () {
+    function TreeFileComponent() {
+        this.fileSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+    }
+    TreeFileComponent.prototype.ngOnInit = function () {
+    };
+    TreeFileComponent.prototype.clickFile = function () {
+        var fileName = this.fileName;
+        this.fileSelect.emit([fileName]);
+    };
+    TreeFileComponent.prototype.select = function (e) {
+        var emitArray = e;
+        e.unshift(this.fileName);
+        this.fileSelect.emit(emitArray);
+    };
+    return TreeFileComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], TreeFileComponent.prototype, "fileName", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
+    __metadata("design:type", Object)
+], TreeFileComponent.prototype, "fileSelect", void 0);
+TreeFileComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'tree-file',
+        template: __webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], TreeFileComponent);
+
+//# sourceMappingURL=tree-file.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\n  <div style=\"padding-left:1em;\">\n    <div *ngFor=\"let file of files\">\n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\" [dirName]=\"file.name\" [child]=\"file.child\" (fileSelect)=\"select($event)\"></tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" [fileName]=\"file.name\"></tree-file>\n    </div>\n  </div>  \n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/tree/tree.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreeComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TreeComponent = (function () {
+    function TreeComponent(apiService) {
+        this.apiService = apiService;
+        this.files = [];
+        this.files = apiService.files;
+    }
+    TreeComponent.prototype.ngOnInit = function () {
+    };
+    TreeComponent.prototype.select = function (e) {
+        var emitArray = e;
+        alert('tree:' + e);
+    };
+    return TreeComponent;
+}());
+TreeComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-tree',
+        template: __webpack_require__("../../../../../src/app/component/tree/tree.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/tree/tree.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
+], TreeComponent);
+
+var _a;
+//# sourceMappingURL=tree.component.js.map
 
 /***/ }),
 
@@ -917,6 +1172,100 @@ WorkSpaceComponent = __decorate([
 ], WorkSpaceComponent);
 
 //# sourceMappingURL=work-space.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/service/api.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var path = window['path'], glob = window['glob'], fs = window['fs'];
+var ApiService = (function () {
+    function ApiService() {
+        this.projectDir = null;
+        this.files = ['ddddd'];
+    }
+    /**
+     * 打开目录
+     * @param callback
+     */
+    ApiService.prototype.openFile = function (callback) {
+        var _this = this;
+        window['remote'].dialog.showOpenDialog({
+            title: '请选择文件',
+            properties: ['openFile', 'openDirectory', 'multiSelections']
+        }, function (filePaths) {
+            callback(filePaths);
+            //this.getCurrentDirFiles(filePaths[0],result);
+            _this.projectDir = filePaths[0];
+            _this.readDir(filePaths[0], _this.files);
+            console.log(_this.files);
+            setTimeout(function () {
+                console.log(_this.files);
+            }, 2000);
+        });
+    };
+    ApiService.prototype.getCurrentDirFiles = function (filePath, result) {
+        glob(path.join(filePath, '*'), function (er, files) {
+            if (er) {
+                throw er;
+            }
+            console.log(files);
+        });
+    };
+    ApiService.prototype.readDir = function (filePath, fileList) {
+        var _this = this;
+        fs.readdir(filePath, function (er, files) {
+            if (er) {
+                console.error(er);
+                return;
+            }
+            files.forEach(function (file) {
+                fs.stat(path.join(filePath, file), function (er, stat) {
+                    if (er) {
+                        console.error(er);
+                        return;
+                    }
+                    if (stat.isFile()) {
+                        fileList.push({
+                            type: 'file',
+                            name: file
+                        });
+                    }
+                    if (stat.isDirectory()) {
+                        var child = [];
+                        fileList.push({
+                            type: 'dir',
+                            name: file,
+                            child: child
+                        });
+                        _this.readDir(path.join(filePath, file), child);
+                    }
+                });
+                //console.log(file);
+            });
+        });
+    };
+    return ApiService;
+}());
+ApiService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [])
+], ApiService);
+
+//# sourceMappingURL=api.service.js.map
 
 /***/ }),
 

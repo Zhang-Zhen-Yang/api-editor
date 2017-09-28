@@ -15,6 +15,10 @@ import { DisplaySpaceComponent } from './component/display-space/display-space.c
 import { DisplayWiewHostDirective } from './component/resize-layout/display-wiew-host.directive';
 import { ResourceManagerComponent } from './component/resource-manager/resource-manager.component';
 import { WorkSpaceComponent } from './component/work-space/work-space.component';
+import { ApiService } from './service/api.service';
+import { TreeComponent } from './component/tree/tree.component';
+import { TreeDirComponent } from './component/tree/tree-dir/tree-dir.component';
+import { TreeFileComponent } from './component/tree/tree-file/tree-file.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import { WorkSpaceComponent } from './component/work-space/work-space.component'
     DisplaySpaceComponent,
     DisplayWiewHostDirective,
     ResourceManagerComponent,
-    WorkSpaceComponent
+    WorkSpaceComponent,
+    TreeComponent,
+    TreeDirComponent,
+    TreeFileComponent
   ],
   entryComponents:[
     TestComponent,
@@ -42,7 +49,9 @@ import { WorkSpaceComponent } from './component/work-space/work-space.component'
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    ApiService
+  ],
   bootstrap: [AppComponent],
   schemas:[NO_ERRORS_SCHEMA]
 })

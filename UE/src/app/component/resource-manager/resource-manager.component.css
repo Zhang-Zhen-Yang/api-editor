@@ -6,3 +6,24 @@
 	background-color:#efefef;
 	overflow:auto;
 }
+.resource-manager-title{
+	text-align: left;
+	text-indent: 2em;
+	font-size:12px;
+	line-height: 3em;
+}
+.resource-manager-open-directory-btn{
+	display: block;
+	margin:0 auto;
+	background-color:#1ABC9C;
+	color:white;
+	outline:none;
+	border:none;
+	width:calc(100% - 40px);
+	line-height: 1.7em;
+	font-size:14px;
+	font-family: 微软雅黑;
+}
+.resource-manager-open-directory-btn:hover{
+	background-color: #16A085;
+}
