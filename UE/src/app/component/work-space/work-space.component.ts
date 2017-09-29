@@ -9,7 +9,9 @@ import { DisplaySpaceComponent } from '../display-space/display-space.component'
 })
 export class WorkSpaceComponent implements OnInit {
   components:Array<any> = [ CodeSpaceComponent , DisplaySpaceComponent ]
-  constructor() { }
+  constructor() { 
+
+  }
 
   ngOnInit() {
   }

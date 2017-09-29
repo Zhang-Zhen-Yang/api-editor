@@ -338,7 +338,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/display-space/display-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<webview class=\"display-webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/displayWebview.html\">\n  \n</webview>\n"
+module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src\">\n\t<webview #webview class=\"display-webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/displayWebview.html\">\n\t</webview>\t\n</div>\n\t\n\n\n"
 
 /***/ }),
 
@@ -348,6 +348,7 @@ module.exports = "<webview class=\"display-webview\" style=\"position:absolute;d
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisplaySpaceComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -358,22 +359,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var DisplaySpaceComponent = (function () {
-    function DisplaySpaceComponent() {
+    function DisplaySpaceComponent(apiService) {
+        this.apiService = apiService;
     }
+    /*src(){
+      return this.apiService.dispayArea[1].url;
+    }*/
     DisplaySpaceComponent.prototype.ngOnInit = function () {
+    };
+    DisplaySpaceComponent.prototype.ngAfterViewInit = function () {
+        console.log(this.webview);
+    };
+    DisplaySpaceComponent.prototype.ngAfterContentChecked = function () {
+        //this.webview.nativeElement.loadURL('https://www.bilibili.com/');   
     };
     return DisplaySpaceComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('webview'),
+    __metadata("design:type", Object)
+], DisplaySpaceComponent.prototype, "webview", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], DisplaySpaceComponent.prototype, "src", void 0);
 DisplaySpaceComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-display-space',
         template: __webpack_require__("../../../../../src/app/component/display-space/display-space.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/component/display-space/display-space.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/component/display-space/display-space.component.css")],
+        changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectionStrategy */].Default
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], DisplaySpaceComponent);
 
+var _a;
 //# sourceMappingURL=display-space.component.js.map
 
 /***/ }),
@@ -660,7 +682,9 @@ var ResizeLayoutComponent = (function () {
         this.host.viewContainerRef.createComponent(componentFactory);
         var componentFactory1 = this.componentFactoryResolver.resolveComponentFactory(this.components[1]);
         this.displayHost.viewContainerRef.clear();
-        this.displayHost.viewContainerRef.createComponent(componentFactory1);
+        var componentRef = this.displayHost.viewContainerRef.createComponent(componentFactory1);
+        componentRef.instance.src = 'aaaaaaa';
+        alert(typeof this.components[1]);
         /*setTimeout(()=>{
           for(let i in this.elememtRef){
             console.log(i,this.elememtRef[i]);
@@ -1118,7 +1142,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\n  <div>\n    <div *ngFor=\"let file of files;let i = index;\">\n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\" \n        [dirName]=\"file.name\" \n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"1\" \n        [paths]=\"[]\" \n        [index]=\"i\" \n        [pathsIndexs]=\"[]\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" [fileName]=\"file.name\" [indent]=\"1\"></tree-file>\n    </div>\n  </div>  \n</div>\n"
+module.exports = "<div>\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\n  <div>\n    <div *ngFor=\"let file of files;let i = index;\">\n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\" \n        [dirName]=\"file.name\" \n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"1\" \n        [paths]=\"[]\" \n        [index]=\"i\" \n        [pathsIndexs]=\"[]\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" [fileName]=\"file.name\" [indent]=\"1\" (fileSelect)=\"select($event)\" ></tree-file>\n    </div>\n  </div>  \n</div>\n"
 
 /***/ }),
 
@@ -1151,6 +1175,7 @@ var TreeComponent = (function () {
     TreeComponent.prototype.select = function (e) {
         var emitArray = e;
         alert('tree:' + e);
+        this.apiService.readFile(e);
     };
     return TreeComponent;
 }());
@@ -2173,8 +2198,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var path = window['path'], glob = window['glob'], fs = window['fs'];
 var ApiService = (function () {
     function ApiService() {
+        /**
+         * 工作目录
+         */
         this.projectDir = null;
+        /**
+         * 目录下的所有目录，文件
+         */
         this.files = [];
+        this.dispayArea = [{
+                open: true,
+                active: true,
+                type: 'code',
+                url: 'src/vs/index.html'
+            }, {
+                open: false,
+                active: false,
+                type: 'display',
+                url: 'src/displayWebview.html'
+            }];
     }
     /**
      * 打开目录
@@ -2258,6 +2300,13 @@ var ApiService = (function () {
         });
         //alert(JSON.stringify(paths));
         paths['expanded'] = !paths['expanded'];
+    };
+    /**
+     * 读取文件
+     */
+    ApiService.prototype.readFile = function (filePath) {
+        var fullPath = path.join.apply(null, [this.projectDir].concat(filePath));
+        alert('打开文件' + fullPath);
     };
     return ApiService;
 }());

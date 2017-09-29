@@ -14,7 +14,7 @@
         [pathsIndexs]="[]">
       </tree-dir>
       <!--文件-->
-      <tree-file *ngIf="file.type=='file'" [fileName]="file.name" [indent]="1"></tree-file>
+      <tree-file *ngIf="file.type=='file'" [fileName]="file.name" [indent]="1" (fileSelect)="select($event)" ></tree-file>
     </div>
   </div>  
 </div>

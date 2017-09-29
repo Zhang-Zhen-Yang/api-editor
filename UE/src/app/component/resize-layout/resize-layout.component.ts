@@ -53,7 +53,9 @@ export class ResizeLayoutComponent implements OnInit,AfterViewInit {
 
     let componentFactory1 = this.componentFactoryResolver.resolveComponentFactory(this.components[1]);
     this.displayHost.viewContainerRef.clear();
-    this.displayHost.viewContainerRef.createComponent(componentFactory1);
+    let componentRef  = this.displayHost.viewContainerRef.createComponent(componentFactory1);
+    componentRef.instance.src = 'aaaaaaa';
+    alert(typeof this.components[1]);
     /*setTimeout(()=>{
       for(let i in this.elememtRef){
         console.log(i,this.elememtRef[i]);

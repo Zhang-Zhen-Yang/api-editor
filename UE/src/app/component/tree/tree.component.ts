@@ -17,6 +17,7 @@ export class TreeComponent implements OnInit {
   select(e){
     let emitArray = e;
     alert('tree:'+e);
+    this.apiService.readFile(e);
   }
 
 }

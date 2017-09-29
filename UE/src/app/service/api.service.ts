@@ -5,8 +5,28 @@ let path = window['path'],
 @Injectable()
 export class ApiService {  
   constructor() { }
-  projectDir = null
+
+  /**
+   * 工作目录
+   */
+  projectDir = null;
+
+  /**
+   * 目录下的所有目录，文件
+   */
   files:Array<any> = [];
+
+  dispayArea=[{
+    open:true,
+    active:true,
+    type:'code',
+    url:'src/vs/index.html'
+  },{
+    open:false,
+    active:false,
+    type:'display',
+    url:'src/displayWebview.html'
+  }]
   /**
    * 打开目录
    * @param callback 
@@ -75,6 +95,7 @@ export class ApiService {
       })
     })
   }
+
   /**
    * 展开收缩目录
    * @param pathIndex 
@@ -91,6 +112,14 @@ export class ApiService {
     })
     //alert(JSON.stringify(paths));
     paths['expanded'] = !paths['expanded'];
+  }
+
+  /**
+   * 读取文件
+   */
+  readFile(filePath){
+    let fullPath = path.join.apply(null,[this.projectDir].concat(filePath));
+    alert('打开文件'+fullPath);
   }
 
 }
