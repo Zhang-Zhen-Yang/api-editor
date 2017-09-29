@@ -18,7 +18,9 @@ import { WorkSpaceComponent } from './component/work-space/work-space.component'
 import { ApiService } from './service/api.service';
 import { TreeComponent } from './component/tree/tree.component';
 import { TreeDirComponent } from './component/tree/tree-dir/tree-dir.component';
-import { TreeFileComponent } from './component/tree/tree-file/tree-file.component'
+import { TreeFileComponent } from './component/tree/tree-file/tree-file.component';
+import { FileIconPipe } from './pipe/file-icon.pipe';
+import { FolderIconPipe } from './pipe/folder-icon.pipe'
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { TreeFileComponent } from './component/tree/tree-file/tree-file.componen
     WorkSpaceComponent,
     TreeComponent,
     TreeDirComponent,
-    TreeFileComponent
+    TreeFileComponent,
+    FileIconPipe,
+    FolderIconPipe
   ],
   entryComponents:[
     TestComponent,

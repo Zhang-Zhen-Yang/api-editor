@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TreeFileComponent implements OnInit {
   @Input() fileName
+  @Input() indent:number
   @Output() fileSelect = new EventEmitter();
   constructor() { }
 

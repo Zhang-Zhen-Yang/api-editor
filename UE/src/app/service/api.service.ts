@@ -6,7 +6,7 @@ let path = window['path'],
 export class ApiService {  
   constructor() { }
   projectDir = null
-  files:Array<any> = ['ddddd'];
+  files:Array<any> = [];
   /**
    * 打开目录
    * @param callback 
@@ -50,17 +50,22 @@ export class ApiService {
             console.error(er);
             return;
           }
+          console.log(stat);
+          //如果是文件
           if(stat.isFile()){
             fileList.push({
               type:'file',
-              name:file
+              name:file,
+              opened:false
             })
           }
+          //如果是目录
           if(stat.isDirectory()){
             let child = [];
             fileList.push({
               type:'dir',
               name:file,
+              expanded:false,
               child:child
             })
             _this.readDir(path.join(filePath,file),child);
@@ -69,6 +74,23 @@ export class ApiService {
         //console.log(file);
       })
     })
+  }
+  /**
+   * 展开收缩目录
+   * @param pathIndex 
+   */
+  togglePath(pathIndex:Array<number>){
+
+    let paths = this.files;
+    pathIndex.forEach((pathIndex,index)=>{
+      if(index==0){
+        paths = paths[pathIndex];
+      }else{
+        paths = paths['child'][pathIndex];
+      }      
+    })
+    //alert(JSON.stringify(paths));
+    paths['expanded'] = !paths['expanded'];
   }
 
 }

@@ -49,10 +49,27 @@ body div{
 	cursor:pointer;
 	line-height:1.7em;
 }
+.tree-item-indent{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 .tree-sub-dir{
-	padding-left:1em;
+	/*padding-left:1em;*/
 }
 .tree-item:hover{
 	/*background-color:#ECF0F1*/
 	background-color:#aaa;
 }
+
+.tree-icon{
+	width:16px;
+	height:16px;
+	vertical-align:middle;
+	margin-right:3px;
+	transform: translateY(-2px);
+}
+.tree-icon.file-type{
+	margin-left:17px;
+}
+

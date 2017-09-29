@@ -1,3 +1,6 @@
-<div class="tree-item" (click)="clickFile()">
-  <div class="tree-item-indent">{{fileName}}</div>
+<div class="tree-item" (click)="clickFile()">  
+  <div class="tree-item-indent" [style.textIndent]="indent+'em'">
+    <!--<div class="expanded-space"></div>-->
+    <img [ngClass]="['tree-icon','file-type']" [src]="fileName|fileIcon:expanded" alt="">{{fileName}}
+  </div>
 </div>
