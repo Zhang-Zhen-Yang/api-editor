@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable} from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject'
 let path = window['path'],
     glob = window['glob'],
     fs = window['fs'];
@@ -20,13 +22,16 @@ export class ApiService {
     open:true,
     active:true,
     type:'code',
-    url:'src/vs/index.html'
+    url:'https://www.bilibili.com/'
   },{
     open:false,
     active:false,
     type:'display',
     url:'src/displayWebview.html'
   }]
+
+  firstSpace = new Subject();
+
   /**
    * 打开目录
    * @param callback 
@@ -57,6 +62,11 @@ export class ApiService {
     })
   }
 
+  /**
+   * 读取目录
+   * @param filePath 
+   * @param fileList 
+   */
   readDir(filePath,fileList){
     let _this = this;
     fs.readdir(filePath,function(er,files){
@@ -70,7 +80,7 @@ export class ApiService {
             console.error(er);
             return;
           }
-          console.log(stat);
+          //console.log(stat);
           //如果是文件
           if(stat.isFile()){
             fileList.push({
@@ -119,7 +129,25 @@ export class ApiService {
    */
   readFile(filePath){
     let fullPath = path.join.apply(null,[this.projectDir].concat(filePath));
-    alert('打开文件'+fullPath);
+    //alert('打开文件'+fullPath);
+
+    let imageExt:Array<string> = ['.jpg','.jpeg','.png','.gif','.tiff'],
+        mediaExt:Array<string> = ['.mp4','.mp3']
+    let action = 'openFile';
+    imageExt.forEach((item)=>{
+      if(fullPath.toLowerCase().endsWith(item)){
+        action = 'openImage';
+      }
+    })
+    mediaExt.forEach((item)=>{
+      if(fullPath.toLowerCase().endsWith(item)){
+        action = 'openMedia';
+      }
+    })
+    this.firstSpace.next({
+      action:action,
+      path:fullPath
+    });
   }
 
 }

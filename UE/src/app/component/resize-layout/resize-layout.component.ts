@@ -5,7 +5,7 @@
  * @Last Modified time: 2017-09-27 17:11:51
  */
 //调整左右上下占比 组件
-import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, ComponentFactoryResolver,ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit,AfterContentInit, Input, Output, EventEmitter, ViewChild, ComponentFactoryResolver,ElementRef } from '@angular/core';
 import { HostDirective } from './host.directive'
 import { DisplayWiewHostDirective } from './display-wiew-host.directive'
 
@@ -19,7 +19,7 @@ enum resizeDirection{
   templateUrl: './resize-layout.component.html',
   styleUrls: ['./resize-layout.component.css']
 })
-export class ResizeLayoutComponent implements OnInit,AfterViewInit {
+export class ResizeLayoutComponent implements OnInit,AfterViewInit,AfterContentInit  {
   @ViewChild(HostDirective) host;
   @ViewChild(DisplayWiewHostDirective) displayHost;
 
@@ -44,9 +44,10 @@ export class ResizeLayoutComponent implements OnInit,AfterViewInit {
   ngOnInit() {
     this.ratios = JSON.parse(JSON.stringify(this.ratio));
   }
- 
   ngAfterViewInit(){
-    
+
+  }
+  ngAfterContentInit(){    
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.components[0]);
     this.host.viewContainerRef.clear();
     this.host.viewContainerRef.createComponent(componentFactory);
@@ -54,13 +55,8 @@ export class ResizeLayoutComponent implements OnInit,AfterViewInit {
     let componentFactory1 = this.componentFactoryResolver.resolveComponentFactory(this.components[1]);
     this.displayHost.viewContainerRef.clear();
     let componentRef  = this.displayHost.viewContainerRef.createComponent(componentFactory1);
-    componentRef.instance.src = 'aaaaaaa';
-    alert(typeof this.components[1]);
-    /*setTimeout(()=>{
-      for(let i in this.elememtRef){
-        console.log(i,this.elememtRef[i]);
-      };
-    },2000)*/
+    //componentRef.instance.src = 'aaaaaaa';
+    //salert(typeof this.components[1]);   
     
   }
 

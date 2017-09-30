@@ -162,8 +162,8 @@ AppModule = __decorate([
         ],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__["a" /* TestComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__component_code_space_code_space_component__["a" /* CodeSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */],
+            /*CodeSpaceComponent,
+            DisplaySpaceComponent,*/
             __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
             __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__["a" /* WorkSpaceComponent */]
         ],
@@ -265,7 +265,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/code-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  \n</webview>\n"
+module.exports = "<webview #webview style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  \n</webview>\n"
 
 /***/ }),
 
@@ -275,6 +275,7 @@ module.exports = "<webview id=\"webview\" style=\"position:absolute;display:flex
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CodeSpaceComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -285,13 +286,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CodeSpaceComponent = (function () {
-    function CodeSpaceComponent() {
+    function CodeSpaceComponent(apiService) {
+        this.apiService = apiService;
     }
     CodeSpaceComponent.prototype.ngOnInit = function () {
     };
     CodeSpaceComponent.prototype.ngAfterViewInit = function () {
-        var webView = document.getElementById('webview');
+        var _this = this;
+        this.apiService.firstSpace.subscribe(function (e) {
+            var path = e['path'].replace(/\\/g, '/');
+            switch (e['action']) {
+                case 'openFile':
+                    break;
+                case 'openImage':
+                    _this.webview.nativeElement.executeJavaScript('openImage("' + path + '")');
+                    break;
+                case 'openMedia':
+                    _this.webview.nativeElement.executeJavaScript('openMedia("' + path + '")');
+                    break;
+                default:
+                    break;
+            }
+            console.log(e);
+        });
         //webViewContent = webView['getWebContents']();
         //webViewContent.style.height = '500px';
         /*alert('afterInit');
@@ -304,15 +323,20 @@ var CodeSpaceComponent = (function () {
     };
     return CodeSpaceComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('webview'),
+    __metadata("design:type", Object)
+], CodeSpaceComponent.prototype, "webview", void 0);
 CodeSpaceComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-code-space',
         template: __webpack_require__("../../../../../src/app/component/code-space/code-space.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/code-space/code-space.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], CodeSpaceComponent);
 
+var _a;
 //# sourceMappingURL=code-space.component.js.map
 
 /***/ }),
@@ -338,7 +362,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/display-space/display-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src\">\n\t<webview #webview class=\"display-webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/displayWebview.html\">\n\t</webview>\t\n</div>\n\t\n\n\n"
+module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src()\">\n\t<webview #webview \n\t\tclass=\"display-webview\" \n\t\tstyle=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\"\n\t\tsrc=\"src/displayWebview.html\"\n\t\t>\n\t</webview>\n\t<!-- src=\"src/displayWebview.html\" -->\n</div>\n\t\n\n\n"
 
 /***/ }),
 
@@ -363,17 +387,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DisplaySpaceComponent = (function () {
     function DisplaySpaceComponent(apiService) {
         this.apiService = apiService;
+        this.domReady = false;
     }
-    /*src(){
-      return this.apiService.dispayArea[1].url;
-    }*/
+    DisplaySpaceComponent.prototype.src = function () {
+        var url = this.apiService.dispayArea[1].url;
+        if (this.domReady) {
+            if (this.webview.nativeElement.get) {
+            }
+            this.webview.nativeElement.loadURL(url);
+        }
+        return url;
+    };
     DisplaySpaceComponent.prototype.ngOnInit = function () {
     };
     DisplaySpaceComponent.prototype.ngAfterViewInit = function () {
         console.log(this.webview);
     };
     DisplaySpaceComponent.prototype.ngAfterContentChecked = function () {
-        //this.webview.nativeElement.loadURL('https://www.bilibili.com/');   
+        //this.webview.nativeElement.loadURL('https://www.bilibili.com/');
+    };
+    DisplaySpaceComponent.prototype.ngAfterContentInit = function () {
+        //this.webview.nativeElement.loadURL('http://www.acfun.cn/');
     };
     return DisplaySpaceComponent;
 }());
@@ -381,10 +415,6 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('webview'),
     __metadata("design:type", Object)
 ], DisplaySpaceComponent.prototype, "webview", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
-    __metadata("design:type", Object)
-], DisplaySpaceComponent.prototype, "src", void 0);
 DisplaySpaceComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-display-space',
@@ -677,19 +707,16 @@ var ResizeLayoutComponent = (function () {
         this.ratios = JSON.parse(JSON.stringify(this.ratio));
     };
     ResizeLayoutComponent.prototype.ngAfterViewInit = function () {
+    };
+    ResizeLayoutComponent.prototype.ngAfterContentInit = function () {
         var componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.components[0]);
         this.host.viewContainerRef.clear();
         this.host.viewContainerRef.createComponent(componentFactory);
         var componentFactory1 = this.componentFactoryResolver.resolveComponentFactory(this.components[1]);
         this.displayHost.viewContainerRef.clear();
         var componentRef = this.displayHost.viewContainerRef.createComponent(componentFactory1);
-        componentRef.instance.src = 'aaaaaaa';
-        alert(typeof this.components[1]);
-        /*setTimeout(()=>{
-          for(let i in this.elememtRef){
-            console.log(i,this.elememtRef[i]);
-          };
-        },2000)*/
+        //componentRef.instance.src = 'aaaaaaa';
+        //salert(typeof this.components[1]);   
     };
     ResizeLayoutComponent.prototype.ratioStyle = function () {
         if (this.ratios && this.delivery_type) {
@@ -975,7 +1002,7 @@ var TreeDirComponent = (function () {
         var emitArray = e;
         emitArray.unshift(this.dirName);
         this.fileSelect.emit(emitArray);
-        alert('current-dir:' + this.dirName + ';total' + emitArray);
+        //alert('current-dir:'+this.dirName+';total'+emitArray);
     };
     //展开 收缩目录
     TreeDirComponent.prototype.toggleExpand = function ($event) {
@@ -1174,7 +1201,7 @@ var TreeComponent = (function () {
     };
     TreeComponent.prototype.select = function (e) {
         var emitArray = e;
-        alert('tree:' + e);
+        //alert('tree:'+e);
         this.apiService.readFile(e);
     };
     return TreeComponent;
@@ -1250,7 +1277,8 @@ WorkSpaceComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-work-space',
         template: __webpack_require__("../../../../../src/app/component/work-space/work-space.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/component/work-space/work-space.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/component/work-space/work-space.component.css")],
+        entryComponents: [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__display_space_display_space_component__["a" /* DisplaySpaceComponent */]]
     }),
     __metadata("design:paramtypes", [])
 ], WorkSpaceComponent);
@@ -2185,6 +2213,8 @@ var extensions = {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2194,6 +2224,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 var path = window['path'], glob = window['glob'], fs = window['fs'];
 var ApiService = (function () {
@@ -2210,13 +2241,14 @@ var ApiService = (function () {
                 open: true,
                 active: true,
                 type: 'code',
-                url: 'src/vs/index.html'
+                url: 'https://www.bilibili.com/'
             }, {
                 open: false,
                 active: false,
                 type: 'display',
                 url: 'src/displayWebview.html'
             }];
+        this.firstSpace = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
     }
     /**
      * 打开目录
@@ -2246,6 +2278,11 @@ var ApiService = (function () {
             console.log(files);
         });
     };
+    /**
+     * 读取目录
+     * @param filePath
+     * @param fileList
+     */
     ApiService.prototype.readDir = function (filePath, fileList) {
         var _this = this;
         fs.readdir(filePath, function (er, files) {
@@ -2259,7 +2296,7 @@ var ApiService = (function () {
                         console.error(er);
                         return;
                     }
-                    console.log(stat);
+                    //console.log(stat);
                     //如果是文件
                     if (stat.isFile()) {
                         fileList.push({
@@ -2306,7 +2343,23 @@ var ApiService = (function () {
      */
     ApiService.prototype.readFile = function (filePath) {
         var fullPath = path.join.apply(null, [this.projectDir].concat(filePath));
-        alert('打开文件' + fullPath);
+        //alert('打开文件'+fullPath);
+        var imageExt = ['.jpg', '.jpeg', '.png', '.gif', '.tiff'], mediaExt = ['.mp4', '.mp3'];
+        var action = 'openFile';
+        imageExt.forEach(function (item) {
+            if (fullPath.toLowerCase().endsWith(item)) {
+                action = 'openImage';
+            }
+        });
+        mediaExt.forEach(function (item) {
+            if (fullPath.toLowerCase().endsWith(item)) {
+                action = 'openMedia';
+            }
+        });
+        this.firstSpace.next({
+            action: action,
+            path: fullPath
+        });
     };
     return ApiService;
 }());

@@ -44,8 +44,8 @@ import { FolderIconPipe } from './pipe/folder-icon.pipe'
   ],
   entryComponents:[
     TestComponent,
-    CodeSpaceComponent,
-    DisplaySpaceComponent,
+    /*CodeSpaceComponent,
+    DisplaySpaceComponent,*/
     ResourceManagerComponent,
     WorkSpaceComponent
   ],

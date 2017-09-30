@@ -23,7 +23,7 @@ export class TreeDirComponent implements OnInit {
     let emitArray = e;
     emitArray.unshift(this.dirName);
     this.fileSelect.emit(emitArray);
-    alert('current-dir:'+this.dirName+';total'+emitArray);
+    //alert('current-dir:'+this.dirName+';total'+emitArray);
   }
   //展开 收缩目录
   toggleExpand($event){

@@ -11,13 +11,53 @@
 		padding:0;
 		overflow-y: hidden;
 		overflow-x: hidden;
+		background-color:#ffffff;
 	}
+	#image-wrap{
+		padding: 10px 10px 0;
+		background-image: linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6),linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6);
+		background-position: 0 0,8px 8px;
+    	background-size: 16px 16px;
+	}
+	#image-wrap,#media-wrap{
+		position:absolute;
+		left: 0;
+		top:0;
+		width:100%;
+		height:100%;
+		overflow: auto;
+		box-sizing: border-box;
+	}
+	/*.scrollbar-override::-webkit-scrollbar {
+		width: 13px;
+		height: 10px;
+		overflow: hidden;
+		transition:all 3s linear;
+	}
+	.scrollbar-override::-webkit-scrollbar-thumb{
+		transition:all 3s linear;
+	}
+	.scrollbar-override:hover::-webkit-scrollbar-thumb:hover{
+		background-color: #bbb;
+		transition:all 3s linear;
+	}
+	.scrollbar-override:hover::-webkit-scrollbar-thumb{
+		background-color: #ccc;
+		transition:all 3s linear;
+	}*/
 	
 </style>
 <body>
 	<div id="container" style="position:absolute;width:100%;height:100%;left:0;top:0;background-color:yellow;">
 
 	</div>
+	<div id="image-wrap" class="scrollbar-override" style="display:none">
+		<img id="image" src="" alt="" >
+	</div>
+	<div id="media-wrap" class="scrollbar-override" style="display:none">
+		<video id="media" src="" controls></video>
+	</div>
+	
 	<script src="loader.js"></script>
 	<script>
 var code=`package AbstractFactoryPattern;
@@ -86,7 +126,42 @@ class ShapeFactory{
 		}
 	},false)
 
-	
+
+	var domNode = {
+		container:document.getElementById('container'),
+
+		image:document.getElementById('image'),
+		imageWrap:document.getElementById('image-wrap'),
+
+		media:document.getElementById('media'),
+		mediaWrap:document.getElementById('media-wrap'),
+	}
+
+
+
+
+	var apple = 'banana';
+	function test(value){
+		alert(value);
+		return 'testresult';
+	}
+
+	function openImage(path){
+		//alert('path:path:'+path);
+		domNode.image.src = path;
+
+		domNode.imageWrap.style.display = 'block';
+		domNode.container.style.display = 'none';
+		domNode.mediaWrap.style.display = 'none';
+	}
+
+	function openMedia(path){
+		domNode.media.src = path;
+		domNode.mediaWrap.style.display = 'block';
+		domNode.container.style.display = 'none';
+		domNode.imageWrap.style.display = 'none';
+	}
+
 
 	
 	</script>
