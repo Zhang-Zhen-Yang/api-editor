@@ -6,6 +6,7 @@ import { ApiService } from '../../../service/api.service'
   styleUrls: ['./tree-dir.component.css']
 })
 export class TreeDirComponent implements OnInit {
+  @Input() title;
   @Input() dirName;
   @Input() expanded:boolean;
   @Input() child:Array<any>;

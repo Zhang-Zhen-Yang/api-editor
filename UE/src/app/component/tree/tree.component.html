@@ -4,6 +4,7 @@
     <div *ngFor="let file of files;let i = index;">
       <!--目录-->
       <tree-dir *ngIf="file.type=='dir'" 
+        [title]="file.fullPath"
         [dirName]="file.name" 
         [expanded]="file.expanded"
         [child]="file.child" 
@@ -14,7 +15,12 @@
         [pathsIndexs]="[]">
       </tree-dir>
       <!--文件-->
-      <tree-file *ngIf="file.type=='file'" [fileName]="file.name" [indent]="1" (fileSelect)="select($event)" ></tree-file>
+      <tree-file 
+        *ngIf="file.type=='file'" 
+        [fileName]="file.name"
+        [title]="file.fullPath"
+        [indent]="1" 
+        (fileSelect)="select($event)" ></tree-file>
     </div>
   </div>  
 </div>

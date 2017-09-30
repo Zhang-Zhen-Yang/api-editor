@@ -19,7 +19,7 @@
 		background-position: 0 0,8px 8px;
     	background-size: 16px 16px;
 	}
-	#image-wrap,#media-wrap{
+	#image-wrap,#media-wrap,#container,#pdf-wrap{
 		position:absolute;
 		left: 0;
 		top:0;
@@ -27,6 +27,9 @@
 		height:100%;
 		overflow: auto;
 		box-sizing: border-box;
+	}
+	#container{
+		overflow: hidden;
 	}
 	/*.scrollbar-override::-webkit-scrollbar {
 		width: 13px;
@@ -48,7 +51,7 @@
 	
 </style>
 <body>
-	<div id="container" style="position:absolute;width:100%;height:100%;left:0;top:0;background-color:yellow;">
+	<div id="container">
 
 	</div>
 	<div id="image-wrap" class="scrollbar-override" style="display:none">
@@ -57,7 +60,9 @@
 	<div id="media-wrap" class="scrollbar-override" style="display:none">
 		<video id="media" src="" controls></video>
 	</div>
-	
+	<div id="pdf-wrap" style="display:none;">
+		<embed src="" id="pdf" type="application/pdf" width="100%" height="100%" internalinstanceid="8">
+	</div>
 	<script src="loader.js"></script>
 	<script>
 var code=`package AbstractFactoryPattern;
@@ -70,32 +75,7 @@ public interface Shape {
 }
 
 
-class Rectangle implements Shape {
 
-	@Override
-	public void draw() {
-		System.out.println("Inside Rectangle::draw() method.");
-	}
-}
-
-class Circle implements Shape{
-	@Override
-	public void draw (){
-		System.out.println("draw cirlce");
-	}
-}
-
-class ShapeFactory{
-
-	public Shape getShape(String type){
-		switch (type){
-			case "Rectange":return new Rectangle();
-			case "Circle":return new Circle();
-
-		}
-		return null;
-	}
-}
 `;
 	
 	require.config({ paths: { 'vs': './' }});
@@ -109,61 +89,79 @@ class ShapeFactory{
 		});
 
 		console.debug(monaco);
-		var getValueButton = document.getElementById('getValue');
+		/*var getValueButton = document.getElementById('getValue');
 		getValueButton.addEventListener('click',function(){
 			var code = editor.getValue();
 			console.debug(editor.constructor.prototype);
-		},false)
+		},false)*/
 		
 		//自适应宽度		
 		
 
 	});
 
+	//监听布局尺寸的改变
 	window.addEventListener('resize',function(){
-		if (editor){
+		if (editor&&domNode.container.style.display!='none'){
 			editor.layout();
 		}
 	},false)
 
-
+	//dom节点
 	var domNode = {
 		container:document.getElementById('container'),
 
 		image:document.getElementById('image'),
 		imageWrap:document.getElementById('image-wrap'),
 
+		pdf:document.getElementById('pdf'),
+		pdfWrap:document.getElementById('pdf-wrap'),
+
 		media:document.getElementById('media'),
 		mediaWrap:document.getElementById('media-wrap'),
 	}
 
-
-
-
-	var apple = 'banana';
-	function test(value){
-		alert(value);
-		return 'testresult';
-	}
-
+	//打开图片
 	function openImage(path){
 		//alert('path:path:'+path);
 		domNode.image.src = path;
-
 		domNode.imageWrap.style.display = 'block';
 		domNode.container.style.display = 'none';
 		domNode.mediaWrap.style.display = 'none';
+		domNode.pdfWrap.style.display = 'none';
 	}
 
+	//打开多媒体文件
 	function openMedia(path){
 		domNode.media.src = path;
 		domNode.mediaWrap.style.display = 'block';
 		domNode.container.style.display = 'none';
 		domNode.imageWrap.style.display = 'none';
+		domNode.pdfWrap.style.display = 'none';
 	}
 
-
+	//
+	function openPdf(path){
+		domNode.pdf.src = path;
+		domNode.mediaWrap.style.display = 'none';
+		domNode.container.style.display = 'none';
+		domNode.imageWrap.style.display = 'none';
+		domNode.pdfWrap.style.display = 'block';
+	}
 	
+	//打开文本件
+	function openFile(str,delimiter){
+		domNode.mediaWrap.style.display = 'none';
+		domNode.container.style.display = 'block';
+		domNode.imageWrap.style.display = 'none';
+		domNode.pdfWrap.style.display = 'none';
+		try{
+			editor.setValue(decodeURI(str));
+			editor.layout();
+		}catch(e){
+			console.log(e);
+		}
+	}	
 	</script>
 </body>
 </html>

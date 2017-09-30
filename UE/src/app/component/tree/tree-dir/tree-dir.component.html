@@ -1,13 +1,14 @@
 <div>
   <div class="tree-item" (click)="toggleExpand($event)">
-    <div class="tree-item-indent" [style.textIndent]="indent+'em'">
+    <div class="tree-item-indent" [style.textIndent]="indent+'em'" title="{{ title }}">
       <div [ngClass]="[expanded?'expanded':'noexpanded']"></div><img [ngClass]="['tree-icon']" [src]="dirName|folderIcon:expanded" alt="">{{ dirName }}
     </div>
   </div> 
   <div class="tree-sub-dir" *ngIf="expanded">
     <div *ngFor="let file of child;let i = index;">    
       <!--目录-->
-      <tree-dir *ngIf="file.type=='dir'" 
+      <tree-dir *ngIf="file.type=='dir'"
+        [title]="file.fullPath"
         [dirName]="file.name"
         [expanded]="file.expanded"
         [child]="file.child" 
@@ -18,7 +19,11 @@
         [pathsIndexs]="nextPathIndexs()">
       </tree-dir>
       <!--文件-->
-      <tree-file *ngIf="file.type=='file'" [fileName]="file.name" (fileSelect)="select($event)" [indent]="indent+1"></tree-file>
+      <tree-file *ngIf="file.type=='file'" 
+        [title]="file.fullPath"
+        [fileName]="file.name" 
+        (fileSelect)="select($event)" 
+        [indent]="indent+1"></tree-file>
     </div>
   </div>
   

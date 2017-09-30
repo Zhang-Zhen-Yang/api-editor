@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div id=\"root\">\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  </webview>-->\n  <app-layout></app-layout>  \n</div>\n\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div id=\"root\" (click)=\"click($event)\">\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  </webview>-->\n  <app-layout></app-layout>  \n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -44,6 +44,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -54,8 +55,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(apiService) {
+        this.apiService = apiService;
         this.title = 'app';
         /*if(!String.prototype.endsWith){
           String.prototype.endsWith = function(val):boolean{
@@ -66,6 +69,42 @@ var AppComponent = (function () {
           }
         }*/
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.apiService.initProjectDir();
+        //注册键盘事件
+        document.addEventListener('keydown', function (e) {
+            switch (e.key) {
+                //保存
+                case 's':
+                    if (e.ctrlKey)
+                        console.log('保存');
+                    break;
+                //打开文件
+                case 'o':
+                    if (e.ctrlKey)
+                        console.log('打开文件');
+                    break;
+                default:
+                    break;
+            }
+            console.log(e);
+        });
+        document.addEventListener('dragover', function (e) {
+            e.preventDefault();
+        });
+        //注册投放事件
+        document.addEventListener('drop', function (e) {
+            e.preventDefault();
+            //e.stopPropagation();
+            console.log(e);
+        }, false);
+    };
+    AppComponent.prototype.keydown = function (e) {
+        console.log(e);
+    };
+    AppComponent.prototype.click = function (e) {
+        console.log('click');
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -74,9 +113,10 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], AppComponent);
 
+var _a;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -298,18 +338,32 @@ var CodeSpaceComponent = (function () {
         this.apiService.firstSpace.subscribe(function (e) {
             var path = e['path'].replace(/\\/g, '/');
             switch (e['action']) {
+                //打开文本文件
                 case 'openFile':
+                    var delimiter = Date.now() + Math.random(), execStr = encodeURI(e['str']);
+                    try {
+                        _this.webview.nativeElement.executeJavaScript('openFile("' + execStr + '")');
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
                     break;
+                //打开图片
                 case 'openImage':
                     _this.webview.nativeElement.executeJavaScript('openImage("' + path + '")');
                     break;
+                //打开图片
+                case 'openPdf':
+                    _this.webview.nativeElement.executeJavaScript('openPdf("' + path + '")');
+                    break;
+                //打开mp4,打开mp3
                 case 'openMedia':
                     _this.webview.nativeElement.executeJavaScript('openMedia("' + path + '")');
                     break;
                 default:
                     break;
             }
-            console.log(e);
+            //console.log(e);
         });
         //webViewContent = webView['getWebContents']();
         //webViewContent.style.height = '500px';
@@ -969,7 +1023,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\" \n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" [fileName]=\"file.name\" (fileSelect)=\"select($event)\" [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
+module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\"\n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" \n        [title]=\"file.fullPath\"\n        [fileName]=\"file.name\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
 
 /***/ }),
 
@@ -1019,6 +1073,10 @@ var TreeDirComponent = (function () {
     };
     return TreeDirComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], TreeDirComponent.prototype, "title", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Object)
@@ -1086,7 +1144,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\">  \n  <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\">  \n  <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1123,6 +1181,10 @@ var TreeFileComponent = (function () {
     };
     return TreeFileComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], TreeFileComponent.prototype, "title", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Object)
@@ -1169,7 +1231,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\n  <div>\n    <div *ngFor=\"let file of files;let i = index;\">\n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\" \n        [dirName]=\"file.name\" \n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"1\" \n        [paths]=\"[]\" \n        [index]=\"i\" \n        [pathsIndexs]=\"[]\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" [fileName]=\"file.name\" [indent]=\"1\" (fileSelect)=\"select($event)\" ></tree-file>\n    </div>\n  </div>  \n</div>\n"
+module.exports = "<div>\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\n  <div>\n    <div *ngFor=\"let file of files;let i = index;\">\n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\" \n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\" \n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"1\" \n        [paths]=\"[]\" \n        [index]=\"i\" \n        [pathsIndexs]=\"[]\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file \n        *ngIf=\"file.type=='file'\" \n        [fileName]=\"file.name\"\n        [title]=\"file.fullPath\"\n        [indent]=\"1\" \n        (fileSelect)=\"select($event)\" ></tree-file>\n    </div>\n  </div>  \n</div>\n"
 
 /***/ }),
 
@@ -2251,23 +2313,40 @@ var ApiService = (function () {
         this.firstSpace = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
     }
     /**
+     * 打开软件时自动加载工作目录
+     */
+    ApiService.prototype.initProjectDir = function () {
+        var _this = this, dir = localStorage.getItem('projectDir');
+        if (dir) {
+            fs.stat(dir, function (er, stat) {
+                if (er) {
+                    console.error(er);
+                    return;
+                }
+                if (stat.isDirectory()) {
+                    _this.projectDir = dir;
+                    _this.readDir(dir, _this.files);
+                }
+            });
+        }
+    };
+    /**
      * 打开目录
      * @param callback
      */
     ApiService.prototype.openFile = function (callback) {
         var _this = this;
         window['remote'].dialog.showOpenDialog({
-            title: '请选择文件',
-            properties: ['openFile', 'openDirectory', 'multiSelections']
+            title: '请选择文件目录',
+            properties: ['openDirectory', 'multiSelections']
         }, function (filePaths) {
             callback(filePaths);
             //this.getCurrentDirFiles(filePaths[0],result);
             _this.projectDir = filePaths[0];
             _this.readDir(filePaths[0], _this.files);
-            console.log(_this.files);
-            setTimeout(function () {
-                console.log(_this.files);
-            }, 2000);
+            localStorage.setItem('projectDir', filePaths[0]);
+            /*let homePath = window['remote'].app.getPath('userData');
+            console.log('userData ',homePath);*/
         });
     };
     ApiService.prototype.getCurrentDirFiles = function (filePath, result) {
@@ -2291,7 +2370,8 @@ var ApiService = (function () {
                 return;
             }
             files.forEach(function (file) {
-                fs.stat(path.join(filePath, file), function (er, stat) {
+                var fullPath = path.join(filePath, file);
+                fs.stat(fullPath, function (er, stat) {
                     if (er) {
                         console.error(er);
                         return;
@@ -2300,6 +2380,7 @@ var ApiService = (function () {
                     //如果是文件
                     if (stat.isFile()) {
                         fileList.push({
+                            fullPath: fullPath,
                             type: 'file',
                             name: file,
                             opened: false
@@ -2309,6 +2390,7 @@ var ApiService = (function () {
                     if (stat.isDirectory()) {
                         var child = [];
                         fileList.push({
+                            fullPath: fullPath,
                             type: 'dir',
                             name: file,
                             expanded: false,
@@ -2342,13 +2424,17 @@ var ApiService = (function () {
      * 读取文件
      */
     ApiService.prototype.readFile = function (filePath) {
-        var fullPath = path.join.apply(null, [this.projectDir].concat(filePath));
+        var _this = this, fullPath = path.join.apply(null, [this.projectDir].concat(filePath));
         //alert('打开文件'+fullPath);
-        var imageExt = ['.jpg', '.jpeg', '.png', '.gif', '.tiff'], mediaExt = ['.mp4', '.mp3'];
-        var action = 'openFile';
+        var imageExt = ['.jpg', '.jpeg', '.png', '.gif', '.tiff', 'ico', '.svg'], mediaExt = ['.mp4', '.mp3'], pdfExt = ['.pdf'], action = 'openFile';
         imageExt.forEach(function (item) {
             if (fullPath.toLowerCase().endsWith(item)) {
                 action = 'openImage';
+            }
+        });
+        pdfExt.forEach(function (item) {
+            if (fullPath.toLowerCase().endsWith(item)) {
+                action = 'openPdf';
             }
         });
         mediaExt.forEach(function (item) {
@@ -2356,10 +2442,35 @@ var ApiService = (function () {
                 action = 'openMedia';
             }
         });
-        this.firstSpace.next({
-            action: action,
-            path: fullPath
-        });
+        if (action == 'openFile') {
+            fs.stat(fullPath, function (er, stat) {
+                if (er) {
+                    console.error(er);
+                    return;
+                }
+                if (stat.isFile()) {
+                    if (stat.size > 1 << 22) {
+                    }
+                    else {
+                        fs.readFile(fullPath, 'utf8', function (err, str) {
+                            _this.firstSpace.next({
+                                str: str,
+                                action: action,
+                                path: fullPath
+                            });
+                        });
+                    }
+                }
+                else {
+                }
+            });
+        }
+        else {
+            this.firstSpace.next({
+                action: action,
+                path: fullPath
+            });
+        }
     };
     return ApiService;
 }());
