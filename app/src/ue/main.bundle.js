@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div id=\"root\" (click)=\"click($event)\">\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  </webview>-->\n  <app-layout></app-layout>  \n</div>\n\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div id=\"root\" (click)=\"click($event)\">\r\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\r\n  </webview>-->\r\n  <app-layout></app-layout>  \r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -70,6 +70,7 @@ var AppComponent = (function () {
         }*/
     }
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.apiService.initProjectDir();
         //注册键盘事件
         document.addEventListener('keydown', function (e) {
@@ -89,15 +90,27 @@ var AppComponent = (function () {
             }
             console.log(e);
         });
-        document.addEventListener('dragover', function (e) {
+        var holder = document.getElementById('root');
+        holder.ondragover = function () {
+            return false;
+        };
+        holder.ondragleave = holder.ondragend = function () {
+            return false;
+        };
+        holder.ondrop = function (e) {
             e.preventDefault();
-        });
-        //注册投放事件
-        document.addEventListener('drop', function (e) {
-            e.preventDefault();
-            //e.stopPropagation();
+            var firstFile = '';
+            for (var f in e.dataTransfer.files) {
+                if (e.dataTransfer.files[f].path) {
+                    firstFile = e.dataTransfer.files[f].path;
+                }
+            }
+            if (firstFile) {
+                _this.apiService.dropDir(firstFile);
+            }
             console.log(e);
-        }, false);
+            return false;
+        };
     };
     AppComponent.prototype.keydown = function (e) {
         console.log(e);
@@ -244,7 +257,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/bottom-bar/bottom-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"bottom-bar\">\n  bottom-bar works!\n</div>\n"
+module.exports = "<div id=\"bottom-bar\">\r\n  bottom-bar works!\r\n</div>\r\n"
 
 /***/ }),
 
@@ -305,7 +318,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/code-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<webview #webview style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  \n</webview>\n"
+module.exports = "<webview #webview style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\r\n  \r\n</webview>\r\n"
 
 /***/ }),
 
@@ -416,7 +429,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/display-space/display-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src()\">\n\t<webview #webview \n\t\tclass=\"display-webview\" \n\t\tstyle=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\"\n\t\tsrc=\"src/displayWebview.html\"\n\t\t>\n\t</webview>\n\t<!-- src=\"src/displayWebview.html\" -->\n</div>\n\t\n\n\n"
+module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src()\">\r\n\t<webview #webview \r\n\t\tclass=\"display-webview\" \r\n\t\tstyle=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\"\r\n\t\tsrc=\"src/displayWebview.html\"\r\n\t\t>\r\n\t</webview>\r\n\t<!-- src=\"src/displayWebview.html\" -->\r\n</div>\r\n\t\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -505,7 +518,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/layout/layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div id=\"layout-top\" class=\"absolute\">\n    <div id=\"layout-left-bar\"  class=\"absolute\">\n      <app-left-bar></app-left-bar>\n    </div>\n    <div id=\"layout-right\"  class=\"absolute\">\n      <!--<app-code-space></app-code-space>-->\n      <app-resize-layout [components]=\"resourcemanger\" [ratio]=\"[{value:250},{value:0.5}]\" [delivery_type]=\"'firstFixed'\"></app-resize-layout>\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\n    </div>\n  </div>\n  <div id=\"layout-bottom\"  class=\"absolute\">\n    <app-bottom-bar></app-bottom-bar>\n  </div>\n\n\n\n\n\n\n\n"
+module.exports = "\r\n  <div id=\"layout-top\" class=\"absolute\">\r\n    <div id=\"layout-left-bar\"  class=\"absolute\">\r\n      <app-left-bar></app-left-bar>\r\n    </div>\r\n    <div id=\"layout-right\"  class=\"absolute\">\r\n      <!--<app-code-space></app-code-space>-->\r\n      <app-resize-layout [components]=\"resourcemanger\" [ratio]=\"[{value:250},{value:0.5}]\" [delivery_type]=\"'firstFixed'\"></app-resize-layout>\r\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\r\n    </div>\r\n  </div>\r\n  <div id=\"layout-bottom\"  class=\"absolute\">\r\n    <app-bottom-bar></app-bottom-bar>\r\n  </div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -581,7 +594,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/left-bar/left-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"left-bar\">\n  left-bar works!\n</div>\n\n"
+module.exports = "<div id=\"left-bar\">\r\n  left-bar works!\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -710,7 +723,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/resize-layout/resize-layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"resize-layout absolute\" [class]=\"'dirction'+direction\" (mousemove)=\"mousemove($event)\" (mouseup)=\"mouseup($event)\" (mouseleave)=\"mouseup($event)\">\n  <div class=\"resize-layout-first absolute\" [style.width]=\"ratioStyle()[0]\">\n    <div appHost>\n\n    </div>\n    <div class=\"resize-layout-delimiter right\" (mousedown)=\"resizeStart($event)\"></div>\n  </div>\n  <div class=\"resize-layout-second absolute\"  [style.width]=\"ratioStyle()[1]\" [style.left]=\"ratioStyle()[0]\">\n      <div appDisplayWiewHost>\n      </div>\n      <div class=\"resize-layout-delimiter left\" (mousedown)=\"resizeStart($event)\"></div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"resize-layout absolute\" [class]=\"'dirction'+direction\" (mousemove)=\"mousemove($event)\" (mouseup)=\"mouseup($event)\" (mouseleave)=\"mouseup($event)\">\r\n  <div class=\"resize-layout-first absolute\" [style.width]=\"ratioStyle()[0]\">\r\n    <div appHost>\r\n\r\n    </div>\r\n    <div class=\"resize-layout-delimiter right\" (mousedown)=\"resizeStart($event)\"></div>\r\n  </div>\r\n  <div class=\"resize-layout-second absolute\"  [style.width]=\"ratioStyle()[1]\" [style.left]=\"ratioStyle()[0]\">\r\n      <div appDisplayWiewHost>\r\n      </div>\r\n      <div class=\"resize-layout-delimiter left\" (mousedown)=\"resizeStart($event)\"></div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -881,7 +894,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/resource-manager/resource-manager.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n  <div class=\"resource-manager-title\">资源管理器</div>\n  <p>\n    resource-manager works!\n  </p>\n  <app-tree ></app-tree>\n  <button \n    *ngIf=\"!apiService.projectDir\"\n    class=\"resource-manager-open-directory-btn pointer\" \n    (click)=\"openDirectory()\">打开文件夹</button>\n\n</div>\n"
+module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\r\n  <div class=\"resource-manager-title\">资源管理器</div>\r\n  <p>\r\n    resource-manager works!\r\n  </p>\r\n  <app-tree ></app-tree>\r\n  <button \r\n    *ngIf=\"!apiService.projectDir\"\r\n    class=\"resource-manager-open-directory-btn pointer\" \r\n    (click)=\"openDirectory()\">打开文件夹</button>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -962,7 +975,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/test/test.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  test works!\n  dfadfsadf dafsg afdg adsfg afsdg afsdgsadfg a\n</p>\n"
+module.exports = "<p>\r\n  test works!\r\n  dfadfsadf dafsg afdg adsfg afsdg afsdgsadfg a\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1023,7 +1036,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\"\n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" \n        [title]=\"file.fullPath\"\n        [fileName]=\"file.name\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
+module.exports = "<div>\r\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\r\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\r\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\r\n    </div>\r\n  </div> \r\n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\r\n    <div *ngFor=\"let file of child;let i = index;\">    \r\n      <!--目录-->\r\n      <tree-dir *ngIf=\"file.type=='dir'\"\r\n        [title]=\"file.fullPath\"\r\n        [dirName]=\"file.name\"\r\n        [expanded]=\"file.expanded\"\r\n        [child]=\"file.child\" \r\n        (fileSelect)=\"select($event)\" \r\n        [indent]=\"indent+1\" \r\n        [paths]=\"nextPath()\"\r\n        [index]=\"i\"\r\n        [pathsIndexs]=\"nextPathIndexs()\">\r\n      </tree-dir>\r\n      <!--文件-->\r\n      <tree-file *ngIf=\"file.type=='file'\" \r\n        [title]=\"file.fullPath\"\r\n        [fileName]=\"file.name\" \r\n        (fileSelect)=\"select($event)\" \r\n        [indent]=\"indent+1\"></tree-file>\r\n    </div>\r\n  </div>\r\n  \r\n</div>\r\n"
 
 /***/ }),
 
@@ -1144,7 +1157,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\">  \n  <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\">  \r\n  <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\r\n    <!--<div class=\"expanded-space\"></div>-->\r\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1231,7 +1244,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\n  <div>\n    <div *ngFor=\"let file of files;let i = index;\">\n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\" \n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\" \n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"1\" \n        [paths]=\"[]\" \n        [index]=\"i\" \n        [pathsIndexs]=\"[]\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file \n        *ngIf=\"file.type=='file'\" \n        [fileName]=\"file.name\"\n        [title]=\"file.fullPath\"\n        [indent]=\"1\" \n        (fileSelect)=\"select($event)\" ></tree-file>\n    </div>\n  </div>  \n</div>\n"
+module.exports = "<div>\r\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\r\n  <div>\r\n    <div *ngFor=\"let file of apiService.files;let i = index;\">\r\n      <!--目录-->\r\n      <tree-dir *ngIf=\"file.type=='dir'\" \r\n        [title]=\"file.fullPath\"\r\n        [dirName]=\"file.name\" \r\n        [expanded]=\"file.expanded\"\r\n        [child]=\"file.child\" \r\n        (fileSelect)=\"select($event)\" \r\n        [indent]=\"1\" \r\n        [paths]=\"[]\" \r\n        [index]=\"i\" \r\n        [pathsIndexs]=\"[]\">\r\n      </tree-dir>\r\n      <!--文件-->\r\n      <tree-file \r\n        *ngIf=\"file.type=='file'\" \r\n        [fileName]=\"file.name\"\r\n        [title]=\"file.fullPath\"\r\n        [indent]=\"1\" \r\n        (fileSelect)=\"select($event)\" ></tree-file>\r\n    </div>\r\n  </div>  \r\n</div>\r\n"
 
 /***/ }),
 
@@ -2471,6 +2484,21 @@ var ApiService = (function () {
                 path: fullPath
             });
         }
+    };
+    ApiService.prototype.dropDir = function (name) {
+        var _this = this;
+        fs.stat(name, function (er, stat) {
+            if (er) {
+                console.error(er);
+                return;
+            }
+            if (stat.isDirectory()) {
+                _this.projectDir = name;
+                localStorage.setItem('projectDir', name);
+                _this.files = [];
+                _this.readDir(name, _this.files);
+            }
+        });
     };
     return ApiService;
 }());

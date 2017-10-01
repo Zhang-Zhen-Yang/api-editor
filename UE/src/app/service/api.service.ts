@@ -203,8 +203,23 @@ export class ApiService {
         path:fullPath
       });
     }
-
     
+  }
+
+  dropDir(name){
+    fs.stat(name,(er,stat)=>{
+      if(er){
+        console.error(er);
+        return;
+      }
+      if(stat.isDirectory()){
+        this.projectDir = name;
+        localStorage.setItem('projectDir',name);
+        this.files=[];
+        this.readDir(name,this.files);
+      }
+      
+    })
   }
 
 }

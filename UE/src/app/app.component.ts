@@ -36,22 +36,28 @@ export class AppComponent implements OnInit{
       }
       console.log(e);
     })
-
-    document.addEventListener('dragover',function(e){
-      e.preventDefault();
-    })
-    //注册投放事件
-    document.addEventListener('drop',function(e){
-      e.preventDefault();
-      //e.stopPropagation();
-      console.log(e);
-      for(let i in e.dataTransfer.files){
-        e.dataTransfer.files[i]
+    const holder = document.getElementById('root')
+    holder.ondragover = () => {
+      return false;
+    }
+    holder.ondragleave = holder.ondragend = () => {
+      return false;
+    }
+    holder.ondrop = (e) => {
+      e.preventDefault()
+      let firstFile = ''
+      for (let f in e.dataTransfer.files) {
+        if((e.dataTransfer.files[f] as any).path){
+          firstFile = (e.dataTransfer.files[f] as any).path
+        }
       }
-        
-      });
-    },false)
-
+      if(firstFile){
+        this.apiService.dropDir(firstFile);
+      }
+      console.log(e);
+      return false;
+    }
+  
   }
   keydown(e){
     console.log(e);

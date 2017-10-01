@@ -1,7 +1,7 @@
 <div>
   <div class="tree-item">{{ apiService.projectDir }}</div>
   <div>
-    <div *ngFor="let file of files;let i = index;">
+    <div *ngFor="let file of apiService.files;let i = index;">
       <!--目录-->
       <tree-dir *ngIf="file.type=='dir'" 
         [title]="file.fullPath"
