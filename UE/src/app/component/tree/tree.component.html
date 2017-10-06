@@ -8,7 +8,8 @@
         [dirName]="file.name" 
         [expanded]="file.expanded"
         [child]="file.child" 
-        (fileSelect)="select($event)" 
+        (fileSelect)="select($event)"
+        (dblFileSelect)="dblSelect($event)"
         [indent]="1" 
         [paths]="[]" 
         [index]="i" 
@@ -20,6 +21,7 @@
         [fileName]="file.name"
         [title]="file.fullPath"
         [indent]="1" 
+        (dblFileSelect)="dblSelect($event)"
         (fileSelect)="select($event)" ></tree-file>
     </div>
   </div>  

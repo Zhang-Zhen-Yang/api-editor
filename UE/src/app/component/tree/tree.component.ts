@@ -18,6 +18,17 @@ export class TreeComponent implements OnInit {
     let emitArray = e;
     //alert('tree:'+e);
     this.apiService.readFile(e);
+    this.apiService.openTabSubject.next({
+      type:'s',
+      filePath:e
+    });
+  }
+  dblSelect(e){
+    this.apiService.openTabSubject.next({
+      type:'d',
+      filePath:e
+    });
+    //this.apiService.readFile(e);
   }
 
 }

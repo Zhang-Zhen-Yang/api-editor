@@ -1,0 +1,44 @@
+:host{
+	padding:0;
+	background-color:white;
+	display: inline-block;
+	padding-right:1px;
+	user-select: none;
+}
+.file-tab{
+	display: inline-block;
+	height:100%;
+	background-color: #E7E7E7;
+	max-width:225px;
+	line-height: 35px;
+	color:#aaa;
+	font-size:13px;
+	padding:0 26px 10px 26px;
+	position: relative;
+	margin:0;
+}
+.file-tab.active{
+	background-color:#fff;
+}
+.file-tab .file-icon{
+	width:16px;
+	height:16px;
+	position: absolute;
+	left:8px;
+	top:3px;
+}
+/*关闭文件*/
+.file-tab .dismiss{
+	display: none;
+	position: absolute;
+	right:8px;
+	top:12px;
+	font-size:16px;
+	color:#333;
+	width:13px;
+	height:13px;
+	background: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>") 50% no-repeat;
+}
+.file-tab:hover .dismiss{
+	display: block;
+}

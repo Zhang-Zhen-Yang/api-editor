@@ -108,6 +108,19 @@ public interface Shape {
 		
 
 	});
+	
+	document.body.ondragover = () => {
+      return false;
+    }
+    document.body.ondragleave = document.body.ondragend = () => {
+      return false;
+    }
+    document.body.ondrop = (e) => {
+      e.preventDefault()
+	  //return false;
+	  alert('drop code');
+	}
+	
 
 	//监听布局尺寸的改变
 	window.addEventListener('resize',function(){
@@ -173,7 +186,12 @@ public interface Shape {
 		}catch(e){
 			console.log(e);
 		}
-	}	
+	}
+
+	//
+	function getCode(){
+		return editor.getValue();
+	}
 	</script>
 </body>
 </html>

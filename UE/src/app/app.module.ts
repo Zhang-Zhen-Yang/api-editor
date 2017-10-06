@@ -20,7 +20,10 @@ import { TreeComponent } from './component/tree/tree.component';
 import { TreeDirComponent } from './component/tree/tree-dir/tree-dir.component';
 import { TreeFileComponent } from './component/tree/tree-file/tree-file.component';
 import { FileIconPipe } from './pipe/file-icon.pipe';
-import { FolderIconPipe } from './pipe/folder-icon.pipe'
+import { FolderIconPipe } from './pipe/folder-icon.pipe';
+import { FileTabComponent } from './component/code-space/file-tab/file-tab.component';
+import { MonacoSpaceComponent } from './component/monaco-space/monaco-space.component';
+import { ImageSpaceComponent } from './component/image-space/image-space.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { FolderIconPipe } from './pipe/folder-icon.pipe'
     TreeDirComponent,
     TreeFileComponent,
     FileIconPipe,
-    FolderIconPipe
+    FolderIconPipe,
+    FileTabComponent,
+    MonacoSpaceComponent,
+    ImageSpaceComponent
   ],
   entryComponents:[
     TestComponent,

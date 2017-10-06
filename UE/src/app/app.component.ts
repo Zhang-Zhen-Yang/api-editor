@@ -21,11 +21,17 @@ export class AppComponent implements OnInit{
     this.apiService.initProjectDir();
 
     //注册键盘事件
-    document.addEventListener('keydown',function(e){
+    document.addEventListener('keydown',(e)=>{
       switch(e.key){
         //保存
         case 's':
-          if(e.ctrlKey) console.log('保存');
+          if(e.ctrlKey){
+            console.log(e);
+            if(this.apiService.openedFileType == 'file'){
+              this.apiService.saveFile();
+            }
+            
+          }
         break;
         //打开文件
         case 'o':
@@ -34,9 +40,10 @@ export class AppComponent implements OnInit{
         default :
           break;
       }
-      console.log(e);
+      
     })
-    const holder = document.getElementById('root')
+
+    const holder = document;
     holder.ondragover = () => {
       return false;
     }
@@ -57,6 +64,9 @@ export class AppComponent implements OnInit{
       console.log(e);
       return false;
     }
+
+
+
   
   }
   keydown(e){

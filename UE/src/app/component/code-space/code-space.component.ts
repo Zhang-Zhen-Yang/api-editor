@@ -1,18 +1,22 @@
-import { Component,ViewChild, OnInit,AfterViewInit } from '@angular/core';
+import { Component,ViewChild, OnInit,AfterViewInit,AfterContentChecked,AfterContentInit } from '@angular/core';
 import { ApiService } from '../../service/api.service'
 @Component({
   selector: 'app-code-space',
   templateUrl: './code-space.component.html',
   styleUrls: ['./code-space.component.css']
 })
-export class CodeSpaceComponent implements OnInit,AfterViewInit {
+export class CodeSpaceComponent implements OnInit,AfterViewInit,AfterContentChecked,AfterContentInit {
   @ViewChild('webview') webview;
-  constructor(public apiService:ApiService) { }
-
+  
+  constructor(public apiService:ApiService) {
+      
+  }
   ngOnInit() {
   }
   ngAfterViewInit(){
-    this.apiService.firstSpace.subscribe((e)=>{
+    //this.apiService.openedFileWebview = this.webview.nativeElement;
+    //订阅
+    /*this.apiService.firstSpace.subscribe((e)=>{
       let path = e['path'].replace(/\\/g,'/');
       switch(e['action']){
         //打开文本文件
@@ -41,17 +45,22 @@ export class CodeSpaceComponent implements OnInit,AfterViewInit {
           break;
       }
       //console.log(e);
-    })
-    //webViewContent = webView['getWebContents']();
-    //webViewContent.style.height = '500px';
-    /*alert('afterInit');
-    setTimeout(()=>{
-      alert('123');
-      let title = webView['getTitle']();
-      webView['executeJavaScript']('editor.layout();');
-      alert(title);
-    },5000)*/
+    })*/
+    
+  }
 
+  ngAfterContentChecked(){
+    //console.log('ngAfterContentChecked');
+  }
+  ngAfterContentInit(){
+  }
+
+  dismiss(index){
+    alert('dismiss'+index);
+  }
+  selectFile(i){
+    this.apiService.workSpaceActive[0] = i;
+    //alert('select'+i);
   }
 
 }

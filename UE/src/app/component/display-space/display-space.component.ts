@@ -25,7 +25,8 @@ export class DisplaySpaceComponent implements OnInit,AfterViewInit,AfterContentC
   }
   ngAfterViewInit(){
     console.log(this.webview);
-     
+   
+
   }
   ngAfterContentChecked(){
      //this.webview.nativeElement.loadURL('https://www.bilibili.com/');

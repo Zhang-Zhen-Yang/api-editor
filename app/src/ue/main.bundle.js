@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div id=\"root\" (click)=\"click($event)\">\r\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\r\n  </webview>-->\r\n  <app-layout></app-layout>  \r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div id=\"root\" (click)=\"click($event)\">\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  </webview>-->\n  <app-layout></app-layout>  \n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -77,8 +77,12 @@ var AppComponent = (function () {
             switch (e.key) {
                 //保存
                 case 's':
-                    if (e.ctrlKey)
-                        console.log('保存');
+                    if (e.ctrlKey) {
+                        console.log(e);
+                        if (_this.apiService.openedFileType == 'file') {
+                            _this.apiService.saveFile();
+                        }
+                    }
                     break;
                 //打开文件
                 case 'o':
@@ -88,9 +92,8 @@ var AppComponent = (function () {
                 default:
                     break;
             }
-            console.log(e);
         });
-        var holder = document.getElementById('root');
+        var holder = document;
         holder.ondragover = function () {
             return false;
         };
@@ -160,12 +163,18 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_file_tree_file_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pipe_file_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/file-icon.pipe.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pipe_folder_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/folder-icon.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__component_code_space_file_tab_file_tab_component__ = __webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_monaco_space_monaco_space_component__ = __webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_image_space_image_space_component__ = __webpack_require__("../../../../../src/app/component/image-space/image-space.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -211,7 +220,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_dir_tree_dir_component__["a" /* TreeDirComponent */],
             __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_file_tree_file_component__["a" /* TreeFileComponent */],
             __WEBPACK_IMPORTED_MODULE_19__pipe_file_icon_pipe__["a" /* FileIconPipe */],
-            __WEBPACK_IMPORTED_MODULE_20__pipe_folder_icon_pipe__["a" /* FolderIconPipe */]
+            __WEBPACK_IMPORTED_MODULE_20__pipe_folder_icon_pipe__["a" /* FolderIconPipe */],
+            __WEBPACK_IMPORTED_MODULE_21__component_code_space_file_tab_file_tab_component__["a" /* FileTabComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__component_monaco_space_monaco_space_component__["a" /* MonacoSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__component_image_space_image_space_component__["a" /* ImageSpaceComponent */]
         ],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__["a" /* TestComponent */],
@@ -257,7 +269,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/bottom-bar/bottom-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"bottom-bar\">\r\n  bottom-bar works!\r\n</div>\r\n"
+module.exports = "<div id=\"bottom-bar\">\n  bottom-bar works!\n</div>\n"
 
 /***/ }),
 
@@ -305,7 +317,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ":host{\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n}\r\n.file-tab-wrap{\r\n\t/*background-color: red;*/\r\n\twidth:100%;\r\n\theight:35px;\r\n\tleft:0;\r\n\ttop:0;\r\n\twhite-space: nowrap;\r\n\toverflow-y:hidden;\r\n\toverflow-x: auto;\r\n}\r\n.file-tab-wrap::-webkit-scrollbar{\r\n\twidth: 5px;\r\n\theight:5px;\r\n}\r\n.webview-wrap{\r\n\twidth:100%;\r\n\theight:calc(100% - 35px);\r\n\tleft:0;\r\n\ttop:35px;\r\n}\r\n.code-space{\r\n\twidth:100%;\r\n\theight:100%;\r\n}", ""]);
 
 // exports
 
@@ -318,7 +330,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/code-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<webview #webview style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\r\n  \r\n</webview>\r\n"
+module.exports = "<div class=\"code-space absolute\" style=\"\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[0].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='file'&&apiService.workSpaceActive[0]==i\" [value]=\"file.value\"></app-monaco-space>\n\t\t\t<app-image-space *ngIf=\"file.type=='image'&&apiService.workSpaceActive[0]==i\" [src]=\"file.src\"></app-image-space>\n\t\t</ng-container>\n\t\t\n\t</div>\n\t\n</div>\n\n"
 
 /***/ }),
 
@@ -347,46 +359,50 @@ var CodeSpaceComponent = (function () {
     CodeSpaceComponent.prototype.ngOnInit = function () {
     };
     CodeSpaceComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        this.apiService.firstSpace.subscribe(function (e) {
-            var path = e['path'].replace(/\\/g, '/');
-            switch (e['action']) {
-                //打开文本文件
-                case 'openFile':
-                    var delimiter = Date.now() + Math.random(), execStr = encodeURI(e['str']);
-                    try {
-                        _this.webview.nativeElement.executeJavaScript('openFile("' + execStr + '")');
-                    }
-                    catch (e) {
-                        console.log(e);
-                    }
-                    break;
-                //打开图片
-                case 'openImage':
-                    _this.webview.nativeElement.executeJavaScript('openImage("' + path + '")');
-                    break;
-                //打开图片
-                case 'openPdf':
-                    _this.webview.nativeElement.executeJavaScript('openPdf("' + path + '")');
-                    break;
-                //打开mp4,打开mp3
-                case 'openMedia':
-                    _this.webview.nativeElement.executeJavaScript('openMedia("' + path + '")');
-                    break;
-                default:
-                    break;
-            }
-            //console.log(e);
-        });
-        //webViewContent = webView['getWebContents']();
-        //webViewContent.style.height = '500px';
-        /*alert('afterInit');
-        setTimeout(()=>{
-          alert('123');
-          let title = webView['getTitle']();
-          webView['executeJavaScript']('editor.layout();');
-          alert(title);
-        },5000)*/
+        //this.apiService.openedFileWebview = this.webview.nativeElement;
+        //订阅
+        /*this.apiService.firstSpace.subscribe((e)=>{
+          let path = e['path'].replace(/\\/g,'/');
+          switch(e['action']){
+            //打开文本文件
+            case 'openFile':
+              let delimiter = Date.now()+Math.random(),
+                execStr = encodeURI(e['str']);
+              try{
+                this.webview.nativeElement.executeJavaScript('openFile("'+execStr+'")');
+              }catch(e){
+                console.log(e);
+              }
+              break;
+            //打开图片
+            case 'openImage':
+              this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
+              break;
+            //打开图片
+            case 'openPdf':
+              this.webview.nativeElement.executeJavaScript('openPdf("'+path+'")');
+            break;
+            //打开mp4,打开mp3
+            case 'openMedia':
+              this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
+            break;
+            default :
+              break;
+          }
+          //console.log(e);
+        })*/
+    };
+    CodeSpaceComponent.prototype.ngAfterContentChecked = function () {
+        //console.log('ngAfterContentChecked');
+    };
+    CodeSpaceComponent.prototype.ngAfterContentInit = function () {
+    };
+    CodeSpaceComponent.prototype.dismiss = function (index) {
+        alert('dismiss' + index);
+    };
+    CodeSpaceComponent.prototype.selectFile = function (i) {
+        this.apiService.workSpaceActive[0] = i;
+        //alert('select'+i);
     };
     return CodeSpaceComponent;
 }());
@@ -405,6 +421,92 @@ CodeSpaceComponent = __decorate([
 
 var _a;
 //# sourceMappingURL=code-space.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/code-space/file-tab/file-tab.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ":host{\r\n\tpadding:0;\r\n\tbackground-color:white;\r\n\tdisplay: inline-block;\r\n\tpadding-right:1px;\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n}\r\n.file-tab{\r\n\tdisplay: inline-block;\r\n\theight:100%;\r\n\tbackground-color: #E7E7E7;\r\n\tmax-width:225px;\r\n\tline-height: 35px;\r\n\tcolor:#aaa;\r\n\tfont-size:13px;\r\n\tpadding:0 26px 10px 26px;\r\n\tposition: relative;\r\n\tmargin:0;\r\n}\r\n.file-tab.active{\r\n\tbackground-color:#fff;\r\n}\r\n.file-tab .file-icon{\r\n\twidth:16px;\r\n\theight:16px;\r\n\tposition: absolute;\r\n\tleft:8px;\r\n\ttop:3px;\r\n}\r\n/*关闭文件*/\r\n.file-tab .dismiss{\r\n\tdisplay: none;\r\n\tposition: absolute;\r\n\tright:8px;\r\n\ttop:12px;\r\n\tfont-size:16px;\r\n\tcolor:#333;\r\n\twidth:13px;\r\n\theight:13px;\r\n\tbackground: url(\"data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>\") 50% no-repeat;\r\n}\r\n.file-tab:hover .dismiss{\r\n\tdisplay: block;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/code-space/file-tab/file-tab.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\">\n  <b class=\"file-icon\">\n      <img [src]=\"'apple.css'|folderIcon:expanded\" alt=\"\">\n  </b>\n  fileName \n  <b class=\"dismiss\" (click)=\"dismiss($event)\"></b>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/code-space/file-tab/file-tab.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FileTabComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var FileTabComponent = (function () {
+    function FileTabComponent() {
+        this.dismissClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.selectFile = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+    }
+    FileTabComponent.prototype.ngOnInit = function () {
+    };
+    /**
+     * 关闭文件
+     * @param e
+     */
+    FileTabComponent.prototype.dismiss = function (e) {
+        e.stopPropagation();
+        this.dismissClick.emit();
+    };
+    FileTabComponent.prototype.setFileActive = function () {
+        this.selectFile.emit();
+    };
+    return FileTabComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Boolean)
+], FileTabComponent.prototype, "active", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])('dismiss'),
+    __metadata("design:type", Object)
+], FileTabComponent.prototype, "dismissClick", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
+    __metadata("design:type", Object)
+], FileTabComponent.prototype, "selectFile", void 0);
+FileTabComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-file-tab',
+        template: __webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], FileTabComponent);
+
+//# sourceMappingURL=file-tab.component.js.map
 
 /***/ }),
 
@@ -429,7 +531,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/display-space/display-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src()\">\r\n\t<webview #webview \r\n\t\tclass=\"display-webview\" \r\n\t\tstyle=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\"\r\n\t\tsrc=\"src/displayWebview.html\"\r\n\t\t>\r\n\t</webview>\r\n\t<!-- src=\"src/displayWebview.html\" -->\r\n</div>\r\n\t\r\n\r\n\r\n"
+module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src()\">\n\t<webview #webview \n\t\tclass=\"display-webview\" \n\t\tstyle=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\"\n\t\tsrc=\"src/displayWebview.html\"\n\t\t>\n\t</webview>\n\t<!-- src=\"src/displayWebview.html\" -->\n</div>\n\t\n\n\n"
 
 /***/ }),
 
@@ -497,6 +599,71 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/component/image-space/image-space.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".image-wrap{\r\n\tposition:absolute;\r\n\tleft: 0;\r\n\ttop:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\toverflow: auto;\r\n\tbox-sizing: border-box;\r\n\r\n\tpadding: 10px 10px 0;\r\n\tbackground-image: linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6),linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6);\r\n\tbackground-position: 0 0,8px 8px;\r\n\tbackground-size: 16px 16px;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/image-space/image-space.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"image-wrap scrollbar-override\">\n  <img [src]=\"src\" alt=\"\" >\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/image-space/image-space.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageSpaceComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ImageSpaceComponent = (function () {
+    function ImageSpaceComponent() {
+    }
+    ImageSpaceComponent.prototype.ngOnInit = function () {
+    };
+    return ImageSpaceComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], ImageSpaceComponent.prototype, "src", void 0);
+ImageSpaceComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-image-space',
+        template: __webpack_require__("../../../../../src/app/component/image-space/image-space.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/image-space/image-space.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ImageSpaceComponent);
+
+//# sourceMappingURL=image-space.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/component/layout/layout.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -518,7 +685,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/layout/layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n  <div id=\"layout-top\" class=\"absolute\">\r\n    <div id=\"layout-left-bar\"  class=\"absolute\">\r\n      <app-left-bar></app-left-bar>\r\n    </div>\r\n    <div id=\"layout-right\"  class=\"absolute\">\r\n      <!--<app-code-space></app-code-space>-->\r\n      <app-resize-layout [components]=\"resourcemanger\" [ratio]=\"[{value:250},{value:0.5}]\" [delivery_type]=\"'firstFixed'\"></app-resize-layout>\r\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\r\n    </div>\r\n  </div>\r\n  <div id=\"layout-bottom\"  class=\"absolute\">\r\n    <app-bottom-bar></app-bottom-bar>\r\n  </div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+module.exports = "\n  <div id=\"layout-top\" class=\"absolute\">\n    <div id=\"layout-left-bar\"  class=\"absolute\">\n      <app-left-bar></app-left-bar>\n    </div>\n    <div id=\"layout-right\"  class=\"absolute\">\n      <!--<app-code-space></app-code-space>-->\n      <app-resize-layout [components]=\"resourcemanger\" [ratio]=\"[{value:250},{value:0.5}]\" [delivery_type]=\"'firstFixed'\"></app-resize-layout>\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\n    </div>\n  </div>\n  <div id=\"layout-bottom\"  class=\"absolute\">\n    <app-bottom-bar></app-bottom-bar>\n  </div>\n\n\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -594,7 +761,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/left-bar/left-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"left-bar\">\r\n  left-bar works!\r\n</div>\r\n\r\n"
+module.exports = "<div id=\"left-bar\">\n  left-bar works!\n</div>\n\n"
 
 /***/ }),
 
@@ -631,6 +798,89 @@ LeftBarComponent = __decorate([
 ], LeftBarComponent);
 
 //# sourceMappingURL=left-bar.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/monaco-space/monaco-space.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".monaco-space{\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/monaco-space/monaco-space.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div #code class=\"monaco-space absolute\">\n\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/monaco-space/monaco-space.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MonacoSpaceComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MonacoSpaceComponent = (function () {
+    function MonacoSpaceComponent() {
+    }
+    MonacoSpaceComponent.prototype.set = function (val) {
+        console.log(val);
+    };
+    MonacoSpaceComponent.prototype.ngOnInit = function () {
+    };
+    MonacoSpaceComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        window['loader']().then(function (monaco) {
+            var editor = monaco.editor.create(_this.codeSpace.nativeElement, {
+                value: _this.value,
+                language: 'javascript',
+                //theme: 'vs-dark',
+                automaticLayout: true
+            });
+        });
+    };
+    return MonacoSpaceComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('code'),
+    __metadata("design:type", Object)
+], MonacoSpaceComponent.prototype, "codeSpace", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], MonacoSpaceComponent.prototype, "value", void 0);
+MonacoSpaceComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-monaco-space',
+        template: __webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], MonacoSpaceComponent);
+
+//# sourceMappingURL=monaco-space.component.js.map
 
 /***/ }),
 
@@ -723,7 +973,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/resize-layout/resize-layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"resize-layout absolute\" [class]=\"'dirction'+direction\" (mousemove)=\"mousemove($event)\" (mouseup)=\"mouseup($event)\" (mouseleave)=\"mouseup($event)\">\r\n  <div class=\"resize-layout-first absolute\" [style.width]=\"ratioStyle()[0]\">\r\n    <div appHost>\r\n\r\n    </div>\r\n    <div class=\"resize-layout-delimiter right\" (mousedown)=\"resizeStart($event)\"></div>\r\n  </div>\r\n  <div class=\"resize-layout-second absolute\"  [style.width]=\"ratioStyle()[1]\" [style.left]=\"ratioStyle()[0]\">\r\n      <div appDisplayWiewHost>\r\n      </div>\r\n      <div class=\"resize-layout-delimiter left\" (mousedown)=\"resizeStart($event)\"></div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"resize-layout absolute\" [class]=\"'dirction'+direction\" (mousemove)=\"mousemove($event)\" (mouseup)=\"mouseup($event)\" (mouseleave)=\"mouseup($event)\">\n  <div class=\"resize-layout-first absolute\" [style.width]=\"ratioStyle()[0]\">\n    <div appHost>\n\n    </div>\n    <div class=\"resize-layout-delimiter right\" (mousedown)=\"resizeStart($event)\"></div>\n  </div>\n  <div class=\"resize-layout-second absolute\"  [style.width]=\"ratioStyle()[1]\" [style.left]=\"ratioStyle()[0]\">\n      <div appDisplayWiewHost>\n      </div>\n      <div class=\"resize-layout-delimiter left\" (mousedown)=\"resizeStart($event)\"></div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -894,7 +1144,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/resource-manager/resource-manager.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\r\n  <div class=\"resource-manager-title\">资源管理器</div>\r\n  <p>\r\n    resource-manager works!\r\n  </p>\r\n  <app-tree ></app-tree>\r\n  <button \r\n    *ngIf=\"!apiService.projectDir\"\r\n    class=\"resource-manager-open-directory-btn pointer\" \r\n    (click)=\"openDirectory()\">打开文件夹</button>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n  <div class=\"resource-manager-title\">资源管理器</div>\n  <p>\n    resource-manager works!\n  </p>\n  <app-tree ></app-tree>\n  <button \n    *ngIf=\"!apiService.projectDir\"\n    class=\"resource-manager-open-directory-btn pointer\" \n    (click)=\"openDirectory()\">打开文件夹</button>\n\n</div>\n"
 
 /***/ }),
 
@@ -975,7 +1225,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/test/test.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  test works!\r\n  dfadfsadf dafsg afdg adsfg afsdg afsdgsadfg a\r\n</p>\r\n"
+module.exports = "<p>\n  test works!\n  dfadfsadf dafsg afdg adsfg afsdg afsdgsadfg a\n</p>\n"
 
 /***/ }),
 
@@ -1036,7 +1286,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\r\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\r\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\r\n    </div>\r\n  </div> \r\n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\r\n    <div *ngFor=\"let file of child;let i = index;\">    \r\n      <!--目录-->\r\n      <tree-dir *ngIf=\"file.type=='dir'\"\r\n        [title]=\"file.fullPath\"\r\n        [dirName]=\"file.name\"\r\n        [expanded]=\"file.expanded\"\r\n        [child]=\"file.child\" \r\n        (fileSelect)=\"select($event)\" \r\n        [indent]=\"indent+1\" \r\n        [paths]=\"nextPath()\"\r\n        [index]=\"i\"\r\n        [pathsIndexs]=\"nextPathIndexs()\">\r\n      </tree-dir>\r\n      <!--文件-->\r\n      <tree-file *ngIf=\"file.type=='file'\" \r\n        [title]=\"file.fullPath\"\r\n        [fileName]=\"file.name\" \r\n        (fileSelect)=\"select($event)\" \r\n        [indent]=\"indent+1\"></tree-file>\r\n    </div>\r\n  </div>\r\n  \r\n</div>\r\n"
+module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\"\n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"\n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" \n        [title]=\"file.fullPath\"\n        [fileName]=\"file.name\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
 
 /***/ }),
 
@@ -1157,7 +1407,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\">  \r\n  <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\r\n    <!--<div class=\"expanded-space\"></div>-->\r\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1179,18 +1429,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var TreeFileComponent = (function () {
     function TreeFileComponent() {
+        this.dblFileSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
         this.fileSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
     }
     TreeFileComponent.prototype.ngOnInit = function () {
     };
+    /**
+     * 单击选择文件
+     */
     TreeFileComponent.prototype.clickFile = function () {
+        console.log('click');
         var fileName = this.fileName;
         this.fileSelect.emit([fileName]);
+    };
+    /**
+     * 双击选择文件
+     */
+    TreeFileComponent.prototype.dblclickFile = function () {
+        console.log('dbl');
+        var fileName = this.fileName;
+        this.dblFileSelect.emit([fileName]);
     };
     TreeFileComponent.prototype.select = function (e) {
         var emitArray = e;
         e.unshift(this.fileName);
         this.fileSelect.emit(emitArray);
+    };
+    TreeFileComponent.prototype.dblSelect = function (e) {
+        var emitArray = e;
+        e.unshift(this.fileName);
+        this.dblFileSelect.emit(emitArray);
     };
     return TreeFileComponent;
 }());
@@ -1206,6 +1474,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Number)
 ], TreeFileComponent.prototype, "indent", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
+    __metadata("design:type", Object)
+], TreeFileComponent.prototype, "dblFileSelect", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
     __metadata("design:type", Object)
@@ -1244,7 +1516,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\r\n  <div>\r\n    <div *ngFor=\"let file of apiService.files;let i = index;\">\r\n      <!--目录-->\r\n      <tree-dir *ngIf=\"file.type=='dir'\" \r\n        [title]=\"file.fullPath\"\r\n        [dirName]=\"file.name\" \r\n        [expanded]=\"file.expanded\"\r\n        [child]=\"file.child\" \r\n        (fileSelect)=\"select($event)\" \r\n        [indent]=\"1\" \r\n        [paths]=\"[]\" \r\n        [index]=\"i\" \r\n        [pathsIndexs]=\"[]\">\r\n      </tree-dir>\r\n      <!--文件-->\r\n      <tree-file \r\n        *ngIf=\"file.type=='file'\" \r\n        [fileName]=\"file.name\"\r\n        [title]=\"file.fullPath\"\r\n        [indent]=\"1\" \r\n        (fileSelect)=\"select($event)\" ></tree-file>\r\n    </div>\r\n  </div>  \r\n</div>\r\n"
+module.exports = "<div>\r\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\r\n  <div>\r\n    <div *ngFor=\"let file of apiService.files;let i = index;\">\r\n      <!--目录-->\r\n      <tree-dir *ngIf=\"file.type=='dir'\" \r\n        [title]=\"file.fullPath\"\r\n        [dirName]=\"file.name\" \r\n        [expanded]=\"file.expanded\"\r\n        [child]=\"file.child\" \r\n        (fileSelect)=\"select($event)\"\r\n        (dblFileSelect)=\"dblSelect($event)\"\r\n        [indent]=\"1\" \r\n        [paths]=\"[]\" \r\n        [index]=\"i\" \r\n        [pathsIndexs]=\"[]\">\r\n      </tree-dir>\r\n      <!--文件-->\r\n      <tree-file \r\n        *ngIf=\"file.type=='file'\" \r\n        [fileName]=\"file.name\"\r\n        [title]=\"file.fullPath\"\r\n        [indent]=\"1\" \r\n        (dblFileSelect)=\"dblSelect($event)\"\r\n        (fileSelect)=\"select($event)\" ></tree-file>\r\n    </div>\r\n  </div>  \r\n</div>\r\n"
 
 /***/ }),
 
@@ -1278,6 +1550,17 @@ var TreeComponent = (function () {
         var emitArray = e;
         //alert('tree:'+e);
         this.apiService.readFile(e);
+        this.apiService.openTabSubject.next({
+            type: 's',
+            filePath: e
+        });
+    };
+    TreeComponent.prototype.dblSelect = function (e) {
+        this.apiService.openTabSubject.next({
+            type: 'd',
+            filePath: e
+        });
+        //this.apiService.readFile(e);
     };
     return TreeComponent;
 }());
@@ -2290,6 +2573,8 @@ var extensions = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__ = __webpack_require__("../../../../rxjs/add/operator/debounceTime.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2299,6 +2584,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 var path = window['path'], glob = window['glob'], fs = window['fs'];
@@ -2312,6 +2598,35 @@ var ApiService = (function () {
          * 目录下的所有目录，文件
          */
         this.files = [];
+        this.workSpaceActive = [0, 1];
+        this.workSpace = [
+            {
+                open: true,
+                files: [
+                    {
+                        active: true,
+                        type: 'file',
+                        value: 'let a = apple;',
+                        path: ['aa', 'bb.js']
+                    },
+                    {
+                        active: false,
+                        value: 'class fruit {}',
+                        type: 'file',
+                        path: ['cc', 'dd.html']
+                    },
+                    {
+                        active: false,
+                        type: 'image',
+                        src: 'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
+                    }
+                ]
+            },
+            {
+                open: true
+            }
+        ];
+        this.workSapckRatios = [0.5, 0.5];
         this.dispayArea = [{
                 open: true,
                 active: true,
@@ -2323,7 +2638,14 @@ var ApiService = (function () {
                 type: 'display',
                 url: 'src/displayWebview.html'
             }];
+        this.openedFile = null;
+        this.openedFileType = null;
+        this.openedFileWebview = null;
         this.firstSpace = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
+        this.openTabSubject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
+        this.openTabSubject.debounceTime(200).subscribe(function (e) {
+            console.log(e);
+        });
     }
     /**
      * 打开软件时自动加载工作目录
@@ -2437,22 +2759,28 @@ var ApiService = (function () {
      * 读取文件
      */
     ApiService.prototype.readFile = function (filePath) {
-        var _this = this, fullPath = path.join.apply(null, [this.projectDir].concat(filePath));
+        var _this = this;
+        var fullPath = path.join.apply(null, [this.projectDir].concat(filePath));
+        this.openedFile = fullPath;
         //alert('打开文件'+fullPath);
         var imageExt = ['.jpg', '.jpeg', '.png', '.gif', '.tiff', 'ico', '.svg'], mediaExt = ['.mp4', '.mp3'], pdfExt = ['.pdf'], action = 'openFile';
+        this.openedFileType = 'file';
         imageExt.forEach(function (item) {
             if (fullPath.toLowerCase().endsWith(item)) {
                 action = 'openImage';
+                _this.openedFileType = 'image';
             }
         });
         pdfExt.forEach(function (item) {
             if (fullPath.toLowerCase().endsWith(item)) {
                 action = 'openPdf';
+                _this.openedFileType = 'pdf';
             }
         });
         mediaExt.forEach(function (item) {
             if (fullPath.toLowerCase().endsWith(item)) {
                 action = 'openMedia';
+                _this.openedFileType = 'media';
             }
         });
         if (action == 'openFile') {
@@ -2485,6 +2813,10 @@ var ApiService = (function () {
             });
         }
     };
+    /**
+     * 目录投放
+     * @param name
+     */
     ApiService.prototype.dropDir = function (name) {
         var _this = this;
         fs.stat(name, function (er, stat) {
@@ -2499,6 +2831,22 @@ var ApiService = (function () {
                 _this.readDir(name, _this.files);
             }
         });
+    };
+    /**
+     * 保存文件
+     */
+    ApiService.prototype.saveFile = function () {
+        var _this = this;
+        if (this.openedFileWebview) {
+            console.log('ddd');
+            this.openedFileWebview.executeJavaScript('getCode()', function (str) {
+                var file = _this.openedFile;
+                fs.writeFile(file, str, 'utf8', function () {
+                    alert('保存成功');
+                });
+            });
+        }
+        alert('保存文件');
     };
     return ApiService;
 }());

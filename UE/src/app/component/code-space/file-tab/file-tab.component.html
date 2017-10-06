@@ -1,0 +1,7 @@
+<div class="file-tab pointer" (click)="setFileActive()" [class.active]="active">
+  <b class="file-icon">
+      <img [src]="'apple.css'|folderIcon:expanded" alt="">
+  </b>
+  fileName 
+  <b class="dismiss" (click)="dismiss($event)"></b>
+</div>

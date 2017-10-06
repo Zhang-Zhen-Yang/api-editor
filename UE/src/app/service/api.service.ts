@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject'
+import 'rxjs/add/operator/debounceTime'
 let path = window['path'],
     glob = window['glob'],
     fs = window['fs'];
 @Injectable()
 export class ApiService {  
-  constructor() { }
+  constructor() {
+    this.openTabSubject.debounceTime(200).subscribe((e)=>{
+      console.log(e);
+    })
+   }
 
   /**
    * 工作目录
@@ -27,8 +32,7 @@ export class ApiService {
         if(stat.isDirectory()){
           _this.projectDir = dir;     
           _this.readDir(dir,_this.files);
-        }
-        
+        }        
       })
       
     }
@@ -38,6 +42,39 @@ export class ApiService {
    * 目录下的所有目录，文件
    */
   files:Array<any> = [];
+
+  workSpaceActive = [0,1]
+  workSpace:Array<any> = [
+    {
+      open:true,
+      files:[
+        {
+          active:true,
+          type:'file',
+          value:'let a = apple;',
+          path:['aa','bb.js']
+        },
+        {
+          active:false,
+          value:'class fruit {}',
+          type:'file',
+          path:['cc','dd.html']
+        },
+        {
+          active:false,
+          type:'image',
+          src:'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
+        } 
+       
+      ]
+    },
+    {
+      open:true
+
+    }
+  ]
+
+  workSapckRatios = [0.5,0.5]
 
   dispayArea=[{
     open:true,
@@ -50,8 +87,12 @@ export class ApiService {
     type:'display',
     url:'src/displayWebview.html'
   }]
+  openedFile = null;
+  openedFileType = null;
+  openedFileWebview = null;
 
   firstSpace = new Subject();
+  openTabSubject = new Subject();
 
   /**
    * 打开目录
@@ -152,31 +193,36 @@ export class ApiService {
    * 读取文件
    */
   readFile(filePath){
-    let _this=this,fullPath = path.join.apply(null,[this.projectDir].concat(filePath));
+    let fullPath = path.join.apply(null,[this.projectDir].concat(filePath));
+    this.openedFile = fullPath;
     //alert('打开文件'+fullPath);
 
     let imageExt:Array<string> = ['.jpg','.jpeg','.png','.gif','.tiff','ico','.svg'],
         mediaExt:Array<string> = ['.mp4','.mp3'],
         pdfExt:Array<string>=['.pdf'],
         action = 'openFile';
+        this.openedFileType = 'file';
     imageExt.forEach((item)=>{
       if(fullPath.toLowerCase().endsWith(item)){
         action = 'openImage';
+        this.openedFileType = 'image';
       }
     })
     pdfExt.forEach((item)=>{
       if(fullPath.toLowerCase().endsWith(item)){
         action = 'openPdf';
+        this.openedFileType = 'pdf';
       }
     })
     mediaExt.forEach((item)=>{
       if(fullPath.toLowerCase().endsWith(item)){
         action = 'openMedia';
+        this.openedFileType = 'media';
       }
     })
 
     if(action == 'openFile'){
-      fs.stat(fullPath,function(er,stat){
+      fs.stat(fullPath,(er,stat)=>{
         if(er){
           console.error(er);
           return;
@@ -185,8 +231,8 @@ export class ApiService {
           if(stat.size > 1<<22){
 
           }else{
-            fs.readFile(fullPath,'utf8',function(err,str){
-              _this.firstSpace.next({
+            fs.readFile(fullPath,'utf8',(err,str)=>{
+              this.firstSpace.next({
                 str:str,
                 action:action,
                 path:fullPath
@@ -206,6 +252,10 @@ export class ApiService {
     
   }
 
+  /**
+   * 目录投放
+   * @param name 
+   */
   dropDir(name){
     fs.stat(name,(er,stat)=>{
       if(er){
@@ -220,6 +270,23 @@ export class ApiService {
       }
       
     })
+  }
+
+  /**
+   * 保存文件
+   */
+  saveFile(){
+    if(this.openedFileWebview){
+      console.log('ddd');
+      this.openedFileWebview.executeJavaScript('getCode()',(str)=>{
+        let file = this.openedFile;
+        fs.writeFile(file,str,'utf8',()=>{
+          alert('保存成功');
+        })
+
+      });
+    }
+    alert('保存文件');
   }
 
 }
