@@ -14,19 +14,23 @@ export class TreeComponent implements OnInit {
 
   ngOnInit() {
   }
+
   select(e){
-    let emitArray = e;
-    //alert('tree:'+e);
-    this.apiService.readFile(e);
-    this.apiService.openTabSubject.next({
+    //this.apiService.readFile(e);
+    console.log('s');
+    this.apiService.observables.fileClick.next({
       type:'s',
-      filePath:e
+      filePath:e,
+      timeStemp:Date.now()
     });
   }
+
   dblSelect(e){
-    this.apiService.openTabSubject.next({
+    console.log('d');
+    this.apiService.observables.fileClick.next({
       type:'d',
-      filePath:e
+      filePath:e,
+      timeStemp:Date.now()
     });
     //this.apiService.readFile(e);
   }

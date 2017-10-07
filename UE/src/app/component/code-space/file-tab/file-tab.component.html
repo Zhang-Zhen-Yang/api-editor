@@ -1,7 +1,7 @@
-<div class="file-tab pointer" (click)="setFileActive()" [class.active]="active">
+<div class="file-tab pointer" (click)="setFileActive()" [class.active]="active" title="{{ fileName }}">
   <b class="file-icon">
-      <img [src]="'apple.css'|folderIcon:expanded" alt="">
+      <img [src]="fileName|fileIcon:expanded" alt="">
   </b>
-  fileName 
-  <b class="dismiss" (click)="dismiss($event)"></b>
+  {{ fileName }}
+  <b class="dismiss" (click)="dismiss($event)" title="关闭"></b>
 </div>

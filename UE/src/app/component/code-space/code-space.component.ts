@@ -5,15 +5,15 @@ import { ApiService } from '../../service/api.service'
   templateUrl: './code-space.component.html',
   styleUrls: ['./code-space.component.css']
 })
-export class CodeSpaceComponent implements OnInit,AfterViewInit,AfterContentChecked,AfterContentInit {
-  @ViewChild('webview') webview;
-  
+export class CodeSpaceComponent implements OnInit {
+  //@ViewChild('webview') webview;
+  index:number = 0
   constructor(public apiService:ApiService) {
       
   }
   ngOnInit() {
   }
-  ngAfterViewInit(){
+  //ngAfterViewInit(){
     //this.apiService.openedFileWebview = this.webview.nativeElement;
     //订阅
     /*this.apiService.firstSpace.subscribe((e)=>{
@@ -47,20 +47,24 @@ export class CodeSpaceComponent implements OnInit,AfterViewInit,AfterContentChec
       //console.log(e);
     })*/
     
-  }
+  //}
 
-  ngAfterContentChecked(){
+  /*ngAfterContentChecked(){
     //console.log('ngAfterContentChecked');
   }
   ngAfterContentInit(){
-  }
+  }*/
 
   dismiss(index){
     alert('dismiss'+index);
   }
   selectFile(i){
-    this.apiService.workSpaceActive[0] = i;
-    //alert('select'+i);
+    this.apiService.setActiveFile(this.index,i);
+  }
+
+  setSpaceIndex(){
+    this.apiService.setActiveSpaceIndex(this.index);
+    console.log(this.index);
   }
 
 }

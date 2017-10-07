@@ -1,0 +1,27 @@
+:host{
+	user-select: none;
+}
+.file-tab-wrap{
+	/*background-color: red;*/
+	width:100%;
+	height:35px;
+	left:0;
+	top:0;
+	white-space: nowrap;
+	overflow-y:hidden;
+	overflow-x: auto;
+}
+.file-tab-wrap::-webkit-scrollbar{
+	width: 5px;
+	height:5px;
+}
+.webview-wrap{
+	width:100%;
+	height:calc(100% - 35px);
+	left:0;
+	top:35px;
+}
+.code-space{
+	width:100%;
+	height:100%;
+}

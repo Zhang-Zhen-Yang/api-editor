@@ -1,8 +1,9 @@
-<div class="code-space absolute" style="">
+<div class="code-space absolute" style="" (click)="setSpaceIndex()">
 	<div class="file-tab-wrap absolute scrollbar-override">
 		<app-file-tab *ngFor="let tab of apiService.workSpace[0].files;let i = index;" 
 			(dismiss)="dismiss(i)" 
 			(selectFile)="selectFile(i)"
+			[fileName]="apiService.workSpace[index].files[i].fileName"
 			[active]="i == apiService.workSpaceActive[0]">
 			{{ tab }}
 		</app-file-tab>
@@ -16,11 +17,13 @@
 
 	<!--新-->
 	<div class="webview-wrap absolute">
-		<ng-container *ngFor="let file of apiService.workSpace[0].files;let i = index;">
-			<app-monaco-space *ngIf="file.type=='file'&&apiService.workSpaceActive[0]==i" [value]="file.value"></app-monaco-space>
-			<app-image-space *ngIf="file.type=='image'&&apiService.workSpaceActive[0]==i" [src]="file.src"></app-image-space>
+		<ng-container *ngFor="let file of apiService.workSpace[index].files;let i = index;">
+			<app-monaco-space *ngIf="file.type=='text'&&apiService.workSpaceActive[index]==i" 
+			[value]="file.value" 
+			[workspaceIndex]="index" 
+			[fileIndex]="i"></app-monaco-space>			
 		</ng-container>
-		
+		<app-image-space [sapceIndex]="index"></app-image-space>
 	</div>
 	
 </div>

@@ -79,9 +79,7 @@ var AppComponent = (function () {
                 case 's':
                     if (e.ctrlKey) {
                         console.log(e);
-                        if (_this.apiService.openedFileType == 'file') {
-                            _this.apiService.saveFile();
-                        }
+                        _this.apiService.saveFile();
                     }
                     break;
                 //打开文件
@@ -148,30 +146,32 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_bottom_bar_bottom_bar_component__ = __webpack_require__("../../../../../src/app/component/bottom-bar/bottom-bar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__component_code_space_code_space_component__ = __webpack_require__("../../../../../src/app/component/code-space/code-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__component_left_bar_left_bar_component__ = __webpack_require__("../../../../../src/app/component/left-bar/left-bar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__component_layout_layout_component__ = __webpack_require__("../../../../../src/app/component/layout/layout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__component_resize_layout_resize_layout_component__ = __webpack_require__("../../../../../src/app/component/resize-layout/resize-layout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_resize_layout_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/host.directive.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__ = __webpack_require__("../../../../../src/app/component/test/test.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__component_display_space_display_space_component__ = __webpack_require__("../../../../../src/app/component/display-space/display-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_display_wiew_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/display-wiew-host.directive.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__ = __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__ = __webpack_require__("../../../../../src/app/component/work-space/work-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__component_tree_tree_component__ = __webpack_require__("../../../../../src/app/component/tree/tree.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_dir_tree_dir_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-dir/tree-dir.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_file_tree_file_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pipe_file_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/file-icon.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pipe_folder_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/folder-icon.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__component_code_space_file_tab_file_tab_component__ = __webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_monaco_space_monaco_space_component__ = __webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_image_space_image_space_component__ = __webpack_require__("../../../../../src/app/component/image-space/image-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__component_code_space2_code_space2_component__ = __webpack_require__("../../../../../src/app/component/code-space2/code-space2.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__component_left_bar_left_bar_component__ = __webpack_require__("../../../../../src/app/component/left-bar/left-bar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__component_layout_layout_component__ = __webpack_require__("../../../../../src/app/component/layout/layout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_resize_layout_resize_layout_component__ = __webpack_require__("../../../../../src/app/component/resize-layout/resize-layout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_resize_layout_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/host.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__component_test_test_component__ = __webpack_require__("../../../../../src/app/component/test/test.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_display_space_display_space_component__ = __webpack_require__("../../../../../src/app/component/display-space/display-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_resize_layout_display_wiew_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/display-wiew-host.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_resource_manager_resource_manager_component__ = __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__component_work_space_work_space_component__ = __webpack_require__("../../../../../src/app/component/work-space/work-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_component__ = __webpack_require__("../../../../../src/app/component/tree/tree.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_dir_tree_dir_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-dir/tree-dir.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__component_tree_tree_file_tree_file_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pipe_file_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/file-icon.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pipe_folder_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/folder-icon.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_code_space_file_tab_file_tab_component__ = __webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_monaco_space_monaco_space_component__ = __webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__component_image_space_image_space_component__ = __webpack_require__("../../../../../src/app/component/image-space/image-space.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -207,37 +207,38 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_4__component_bottom_bar_bottom_bar_component__["a" /* BottomBarComponent */],
             __WEBPACK_IMPORTED_MODULE_5__component_code_space_code_space_component__["a" /* CodeSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__component_left_bar_left_bar_component__["a" /* LeftBarComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__component_layout_layout_component__["a" /* LayoutComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__component_resize_layout_resize_layout_component__["a" /* ResizeLayoutComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__component_resize_layout_host_directive__["a" /* HostDirective */],
-            __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__["a" /* TestComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_display_wiew_host_directive__["a" /* DisplayWiewHostDirective */],
-            __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__["a" /* WorkSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__component_tree_tree_component__["a" /* TreeComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_dir_tree_dir_component__["a" /* TreeDirComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_file_tree_file_component__["a" /* TreeFileComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__pipe_file_icon_pipe__["a" /* FileIconPipe */],
-            __WEBPACK_IMPORTED_MODULE_20__pipe_folder_icon_pipe__["a" /* FolderIconPipe */],
-            __WEBPACK_IMPORTED_MODULE_21__component_code_space_file_tab_file_tab_component__["a" /* FileTabComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__component_monaco_space_monaco_space_component__["a" /* MonacoSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_23__component_image_space_image_space_component__["a" /* ImageSpaceComponent */]
+            __WEBPACK_IMPORTED_MODULE_7__component_left_bar_left_bar_component__["a" /* LeftBarComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__component_layout_layout_component__["a" /* LayoutComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__component_resize_layout_resize_layout_component__["a" /* ResizeLayoutComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__component_resize_layout_host_directive__["a" /* HostDirective */],
+            __WEBPACK_IMPORTED_MODULE_11__component_test_test_component__["a" /* TestComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__component_resize_layout_display_wiew_host_directive__["a" /* DisplayWiewHostDirective */],
+            __WEBPACK_IMPORTED_MODULE_14__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__component_work_space_work_space_component__["a" /* WorkSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_component__["a" /* TreeComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_dir_tree_dir_component__["a" /* TreeDirComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__component_tree_tree_file_tree_file_component__["a" /* TreeFileComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__pipe_file_icon_pipe__["a" /* FileIconPipe */],
+            __WEBPACK_IMPORTED_MODULE_21__pipe_folder_icon_pipe__["a" /* FolderIconPipe */],
+            __WEBPACK_IMPORTED_MODULE_22__component_code_space_file_tab_file_tab_component__["a" /* FileTabComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__component_monaco_space_monaco_space_component__["a" /* MonacoSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__component_image_space_image_space_component__["a" /* ImageSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__component_code_space2_code_space2_component__["a" /* CodeSpace2Component */]
         ],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_10__component_test_test_component__["a" /* TestComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__component_test_test_component__["a" /* TestComponent */],
             /*CodeSpaceComponent,
             DisplaySpaceComponent,*/
-            __WEBPACK_IMPORTED_MODULE_13__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__component_work_space_work_space_component__["a" /* WorkSpaceComponent */]
+            __WEBPACK_IMPORTED_MODULE_14__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__component_work_space_work_space_component__["a" /* WorkSpaceComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_15__service_api_service__["a" /* ApiService */]
+            __WEBPACK_IMPORTED_MODULE_16__service_api_service__["a" /* ApiService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]],
         schemas: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* NO_ERRORS_SCHEMA */]]
@@ -330,7 +331,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/code-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[0].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='file'&&apiService.workSpaceActive[0]==i\" [value]=\"file.value\"></app-monaco-space>\n\t\t\t<app-image-space *ngIf=\"file.type=='image'&&apiService.workSpaceActive[0]==i\" [src]=\"file.src\"></app-image-space>\n\t\t</ng-container>\n\t\t\n\t</div>\n\t\n</div>\n\n"
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n\t\t\t[value]=\"file.value\" \n\t\t\t[workspaceIndex]=\"index\" \n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\n\t\t</ng-container>\n\t\t<app-image-space [sapceIndex]=\"index\"></app-image-space>\n\t</div>\n\t\n</div>\n\n"
 
 /***/ }),
 
@@ -355,61 +356,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var CodeSpaceComponent = (function () {
     function CodeSpaceComponent(apiService) {
         this.apiService = apiService;
+        //@ViewChild('webview') webview;
+        this.index = 0;
     }
     CodeSpaceComponent.prototype.ngOnInit = function () {
     };
-    CodeSpaceComponent.prototype.ngAfterViewInit = function () {
-        //this.apiService.openedFileWebview = this.webview.nativeElement;
-        //订阅
-        /*this.apiService.firstSpace.subscribe((e)=>{
-          let path = e['path'].replace(/\\/g,'/');
-          switch(e['action']){
-            //打开文本文件
-            case 'openFile':
-              let delimiter = Date.now()+Math.random(),
-                execStr = encodeURI(e['str']);
-              try{
-                this.webview.nativeElement.executeJavaScript('openFile("'+execStr+'")');
-              }catch(e){
-                console.log(e);
-              }
-              break;
-            //打开图片
-            case 'openImage':
-              this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
-              break;
-            //打开图片
-            case 'openPdf':
-              this.webview.nativeElement.executeJavaScript('openPdf("'+path+'")');
-            break;
-            //打开mp4,打开mp3
-            case 'openMedia':
-              this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
-            break;
-            default :
-              break;
+    //ngAfterViewInit(){
+    //this.apiService.openedFileWebview = this.webview.nativeElement;
+    //订阅
+    /*this.apiService.firstSpace.subscribe((e)=>{
+      let path = e['path'].replace(/\\/g,'/');
+      switch(e['action']){
+        //打开文本文件
+        case 'openFile':
+          let delimiter = Date.now()+Math.random(),
+            execStr = encodeURI(e['str']);
+          try{
+            this.webview.nativeElement.executeJavaScript('openFile("'+execStr+'")');
+          }catch(e){
+            console.log(e);
           }
-          //console.log(e);
-        })*/
-    };
-    CodeSpaceComponent.prototype.ngAfterContentChecked = function () {
-        //console.log('ngAfterContentChecked');
-    };
-    CodeSpaceComponent.prototype.ngAfterContentInit = function () {
-    };
+          break;
+        //打开图片
+        case 'openImage':
+          this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
+          break;
+        //打开图片
+        case 'openPdf':
+          this.webview.nativeElement.executeJavaScript('openPdf("'+path+'")');
+        break;
+        //打开mp4,打开mp3
+        case 'openMedia':
+          this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
+        break;
+        default :
+          break;
+      }
+      //console.log(e);
+    })*/
+    //}
+    /*ngAfterContentChecked(){
+      //console.log('ngAfterContentChecked');
+    }
+    ngAfterContentInit(){
+    }*/
     CodeSpaceComponent.prototype.dismiss = function (index) {
         alert('dismiss' + index);
     };
     CodeSpaceComponent.prototype.selectFile = function (i) {
-        this.apiService.workSpaceActive[0] = i;
-        //alert('select'+i);
+        this.apiService.setActiveFile(this.index, i);
+    };
+    CodeSpaceComponent.prototype.setSpaceIndex = function () {
+        this.apiService.setActiveSpaceIndex(this.index);
+        console.log(this.index);
     };
     return CodeSpaceComponent;
 }());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('webview'),
-    __metadata("design:type", Object)
-], CodeSpaceComponent.prototype, "webview", void 0);
 CodeSpaceComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-code-space',
@@ -432,7 +434,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host{\r\n\tpadding:0;\r\n\tbackground-color:white;\r\n\tdisplay: inline-block;\r\n\tpadding-right:1px;\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n}\r\n.file-tab{\r\n\tdisplay: inline-block;\r\n\theight:100%;\r\n\tbackground-color: #E7E7E7;\r\n\tmax-width:225px;\r\n\tline-height: 35px;\r\n\tcolor:#aaa;\r\n\tfont-size:13px;\r\n\tpadding:0 26px 10px 26px;\r\n\tposition: relative;\r\n\tmargin:0;\r\n}\r\n.file-tab.active{\r\n\tbackground-color:#fff;\r\n}\r\n.file-tab .file-icon{\r\n\twidth:16px;\r\n\theight:16px;\r\n\tposition: absolute;\r\n\tleft:8px;\r\n\ttop:3px;\r\n}\r\n/*关闭文件*/\r\n.file-tab .dismiss{\r\n\tdisplay: none;\r\n\tposition: absolute;\r\n\tright:8px;\r\n\ttop:12px;\r\n\tfont-size:16px;\r\n\tcolor:#333;\r\n\twidth:13px;\r\n\theight:13px;\r\n\tbackground: url(\"data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>\") 50% no-repeat;\r\n}\r\n.file-tab:hover .dismiss{\r\n\tdisplay: block;\r\n}", ""]);
+exports.push([module.i, ":host{\r\n\tpadding:0;\r\n\tbackground-color:white;\r\n\tdisplay: inline-block;\r\n\tpadding-right:1px;\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n}\r\n.file-tab{\r\n\tdisplay: inline-block;\r\n\theight:100%;\r\n\tbackground-color: #E7E7E7;\r\n\tmax-width:225px;\r\n\tline-height: 35px;\r\n\tcolor:#aaa;\r\n\tfont-size:13px;\r\n\tpadding:0 26px 10px 26px;\r\n\tposition: relative;\r\n\tmargin:0;\r\n\twhite-space: nowrap;\r\n\ttext-overflow: ellipsis;\r\n\toverflow: hidden;\r\n}\r\n.file-tab.active{\r\n\tbackground-color:#fff;\r\n}\r\n.file-tab .file-icon{\r\n\twidth:16px;\r\n\theight:16px;\r\n\tposition: absolute;\r\n\tleft:8px;\r\n\ttop:3px;\r\n}\r\n/*关闭文件*/\r\n.file-tab .dismiss{\r\n\tdisplay: none;\r\n\tposition: absolute;\r\n\tright:8px;\r\n\ttop:12px;\r\n\tfont-size:16px;\r\n\tcolor:#333;\r\n\twidth:13px;\r\n\theight:13px;\r\n\tbackground: url(\"data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>\") 50% no-repeat;\r\n}\r\n.file-tab:hover .dismiss{\r\n\tdisplay: block;\r\n}", ""]);
 
 // exports
 
@@ -445,7 +447,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/file-tab/file-tab.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\">\n  <b class=\"file-icon\">\n      <img [src]=\"'apple.css'|folderIcon:expanded\" alt=\"\">\n  </b>\n  fileName \n  <b class=\"dismiss\" (click)=\"dismiss($event)\"></b>\n</div>\n"
+module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\">\n  <b class=\"file-icon\">\n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\n  </b>\n  {{ fileName }}\n  <b class=\"dismiss\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\n</div>\n"
 
 /***/ }),
 
@@ -490,6 +492,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], FileTabComponent.prototype, "active", void 0);
 __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", String)
+], FileTabComponent.prototype, "fileName", void 0);
+__decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])('dismiss'),
     __metadata("design:type", Object)
 ], FileTabComponent.prototype, "dismissClick", void 0);
@@ -507,6 +513,87 @@ FileTabComponent = __decorate([
 ], FileTabComponent);
 
 //# sourceMappingURL=file-tab.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/code-space2/code-space2.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ":host{\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n}\r\n.file-tab-wrap{\r\n\t/*background-color: red;*/\r\n\twidth:100%;\r\n\theight:35px;\r\n\tleft:0;\r\n\ttop:0;\r\n\twhite-space: nowrap;\r\n\toverflow-y:hidden;\r\n\toverflow-x: auto;\r\n}\r\n.file-tab-wrap::-webkit-scrollbar{\r\n\twidth: 5px;\r\n\theight:5px;\r\n}\r\n.webview-wrap{\r\n\twidth:100%;\r\n\theight:calc(100% - 35px);\r\n\tleft:0;\r\n\ttop:35px;\r\n}\r\n.code-space{\r\n\twidth:100%;\r\n\theight:100%;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/code-space2/code-space2.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \n        (dismiss)=\"dismiss(i)\" \n        (selectFile)=\"selectFile(i)\"\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\n        [active]=\"i == apiService.workSpaceActive[index]\">\n        {{ tab }}\n      </app-file-tab>\n    </div>\n  \n    <!--旧-->\n    <!--<div class=\"webview-wrap absolute\" >\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n      </webview>\n    </div>-->\n  \n    <!--新-->\n    <div class=\"webview-wrap absolute\">\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n        [value]=\"file.value\"\n        [workspaceIndex]=\"index\" \n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\n      </ng-container>\n      <app-image-space [sapceIndex]=\"index\"></app-image-space>   \n    </div>        \n  </div>\n  \n  "
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/code-space2/code-space2.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CodeSpace2Component; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__ = __webpack_require__("../../../../../src/app/component/code-space/code-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CodeSpace2Component = (function (_super) {
+    __extends(CodeSpace2Component, _super);
+    function CodeSpace2Component(apiService) {
+        var _this = _super.call(this, apiService) || this;
+        _this.apiService = apiService;
+        _this.index = 1;
+        return _this;
+    }
+    CodeSpace2Component.prototype.ngOnInit = function () {
+    };
+    return CodeSpace2Component;
+}(__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */]));
+CodeSpace2Component = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-code-space2',
+        template: __webpack_require__("../../../../../src/app/component/code-space2/code-space2.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/code-space2/code-space2.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
+], CodeSpace2Component);
+
+var _a;
+//# sourceMappingURL=code-space2.component.js.map
 
 /***/ }),
 
@@ -607,7 +694,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".image-wrap{\r\n\tposition:absolute;\r\n\tleft: 0;\r\n\ttop:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\toverflow: auto;\r\n\tbox-sizing: border-box;\r\n\r\n\tpadding: 10px 10px 0;\r\n\tbackground-image: linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6),linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6);\r\n\tbackground-position: 0 0,8px 8px;\r\n\tbackground-size: 16px 16px;\r\n}", ""]);
+exports.push([module.i, ".image-wrap{\r\n\tposition:absolute;\r\n\tdisplay: none;\r\n\tleft: 0;\r\n\ttop:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\toverflow: auto;\r\n\tbox-sizing: border-box;\r\n\toverflow:hidden;\r\n\tpadding: 0;\r\n\tbackground-image: linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6),linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6);\r\n\tbackground-position: 0 0,8px 8px;\r\n\tbackground-size: 16px 16px;\r\n}\r\n.image-wrap.show{\r\n\tdisplay: block;\r\n}\r\n.image-space-webview{\r\n\twidth:100%;\r\n\theight:100%;\r\n\toverflow:auto;\r\n}", ""]);
 
 // exports
 
@@ -620,7 +707,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/image-space/image-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"image-wrap scrollbar-override\">\n  <img [src]=\"src\" alt=\"\" >\n</div>\n"
+module.exports = "<div class=\"image-wrap scrollbar-override\" \n  [class.show]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]]&&(apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='image'||apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='media')\">\n  <webview #webview src=\"src/vs/index.html\" class=\"image-space-webview\"></webview>\n <!--<img [src]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].src\" alt=\"\" >-->\n</div>\n"
 
 /***/ }),
 
@@ -630,6 +717,7 @@ module.exports = "<div class=\"image-wrap scrollbar-override\">\n  <img [src]=\"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageSpaceComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -640,10 +728,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ImageSpaceComponent = (function () {
-    function ImageSpaceComponent() {
+    function ImageSpaceComponent(apiService) {
+        this.apiService = apiService;
     }
     ImageSpaceComponent.prototype.ngOnInit = function () {
+    };
+    ImageSpaceComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.apiService.firstSpace.subscribe(function (e) {
+            var path = e['path'].replace(/\\/g, '/');
+            switch (e['action']) {
+                //打开图片
+                case 'openImage':
+                    _this.webview.nativeElement.executeJavaScript('openImage("' + path + '")');
+                    break;
+                //打开pdf
+                case 'openPdf':
+                    _this.webview.nativeElement.executeJavaScript('openPdf("' + path + '")');
+                    break;
+                //打开mp4,打开mp3
+                case 'openMedia':
+                    _this.webview.nativeElement.executeJavaScript('openMedia("' + path + '")');
+                    break;
+                case 'stop':
+                    _this.webview.nativeElement.executeJavaScript('stop()');
+                    break;
+                default:
+                    break;
+            }
+        });
     };
     return ImageSpaceComponent;
 }());
@@ -651,15 +766,24 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Object)
 ], ImageSpaceComponent.prototype, "src", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], ImageSpaceComponent.prototype, "sapceIndex", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('webview'),
+    __metadata("design:type", Object)
+], ImageSpaceComponent.prototype, "webview", void 0);
 ImageSpaceComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-image-space',
         template: __webpack_require__("../../../../../src/app/component/image-space/image-space.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/image-space/image-space.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], ImageSpaceComponent);
 
+var _a;
 //# sourceMappingURL=image-space.component.js.map
 
 /***/ }),
@@ -809,7 +933,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".monaco-space{\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n}", ""]);
+exports.push([module.i, ".monaco-space{\r\n\tdisplay: none;\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n}\r\n.monaco-space.show{\r\n\tdisplay: block;\r\n}", ""]);
 
 // exports
 
@@ -822,7 +946,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/monaco-space/monaco-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div #code class=\"monaco-space absolute\">\n\n</div>\n"
+module.exports = "<div #code class=\"monaco-space absolute\" [class.show]=\"true\">\n\n</div>\n"
 
 /***/ }),
 
@@ -832,6 +956,7 @@ module.exports = "<div #code class=\"monaco-space absolute\">\n\n</div>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MonacoSpaceComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -842,13 +967,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MonacoSpaceComponent = (function () {
-    function MonacoSpaceComponent() {
+    function MonacoSpaceComponent(apiService) {
+        this.apiService = apiService;
     }
     MonacoSpaceComponent.prototype.set = function (val) {
         console.log(val);
     };
     MonacoSpaceComponent.prototype.ngOnInit = function () {
+        console.log('init');
     };
     MonacoSpaceComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
@@ -859,10 +987,24 @@ var MonacoSpaceComponent = (function () {
                 //theme: 'vs-dark',
                 automaticLayout: true
             });
+            _this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].editor = editor;
+            editor.focus();
         });
     };
     return MonacoSpaceComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Boolean)
+], MonacoSpaceComponent.prototype, "show", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Number)
+], MonacoSpaceComponent.prototype, "workspaceIndex", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Number)
+], MonacoSpaceComponent.prototype, "fileIndex", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('code'),
     __metadata("design:type", Object)
@@ -877,9 +1019,10 @@ MonacoSpaceComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], MonacoSpaceComponent);
 
+var _a;
 //# sourceMappingURL=monaco-space.component.js.map
 
 /***/ }),
@@ -1319,13 +1462,9 @@ var TreeDirComponent = (function () {
         var emitArray = e;
         emitArray.unshift(this.dirName);
         this.fileSelect.emit(emitArray);
-        //alert('current-dir:'+this.dirName+';total'+emitArray);
     };
     //展开 收缩目录
     TreeDirComponent.prototype.toggleExpand = function ($event) {
-        /*alert('expand');
-        alert(this.nextPath());
-        alert(this.nextPathIndexs());*/
         this.apiService.togglePath(this.nextPathIndexs());
     };
     TreeDirComponent.prototype.nextPath = function () {
@@ -1438,7 +1577,6 @@ var TreeFileComponent = (function () {
      * 单击选择文件
      */
     TreeFileComponent.prototype.clickFile = function () {
-        console.log('click');
         var fileName = this.fileName;
         this.fileSelect.emit([fileName]);
     };
@@ -1446,7 +1584,7 @@ var TreeFileComponent = (function () {
      * 双击选择文件
      */
     TreeFileComponent.prototype.dblclickFile = function () {
-        console.log('dbl');
+        //console.log('dbl');
         var fileName = this.fileName;
         this.dblFileSelect.emit([fileName]);
     };
@@ -1547,18 +1685,18 @@ var TreeComponent = (function () {
     TreeComponent.prototype.ngOnInit = function () {
     };
     TreeComponent.prototype.select = function (e) {
-        var emitArray = e;
-        //alert('tree:'+e);
-        this.apiService.readFile(e);
-        this.apiService.openTabSubject.next({
+        //this.apiService.readFile(e);
+        this.apiService.observables.fileSingleClick.next({
             type: 's',
-            filePath: e
+            filePath: e,
+            timeStemp: Date.now()
         });
     };
     TreeComponent.prototype.dblSelect = function (e) {
-        this.apiService.openTabSubject.next({
+        this.apiService.observables.fileDblClick.next({
             type: 'd',
-            filePath: e
+            filePath: e,
+            timeStemp: Date.now()
         });
         //this.apiService.readFile(e);
     };
@@ -1610,7 +1748,7 @@ module.exports = "<app-resize-layout [components]=\"components\" [ratio]=\"[{val
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkSpaceComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__ = __webpack_require__("../../../../../src/app/component/code-space/code-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__display_space_display_space_component__ = __webpack_require__("../../../../../src/app/component/display-space/display-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__code_space2_code_space2_component__ = __webpack_require__("../../../../../src/app/component/code-space2/code-space2.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1625,7 +1763,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var WorkSpaceComponent = (function () {
     function WorkSpaceComponent() {
-        this.components = [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__display_space_display_space_component__["a" /* DisplaySpaceComponent */]];
+        this.components = [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__code_space2_code_space2_component__["a" /* CodeSpace2Component */]];
     }
     WorkSpaceComponent.prototype.ngOnInit = function () {
     };
@@ -1636,7 +1774,7 @@ WorkSpaceComponent = __decorate([
         selector: 'app-work-space',
         template: __webpack_require__("../../../../../src/app/component/work-space/work-space.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/work-space/work-space.component.css")],
-        entryComponents: [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__display_space_display_space_component__["a" /* DisplaySpaceComponent */]]
+        entryComponents: [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__code_space2_code_space2_component__["a" /* CodeSpace2Component */]]
     }),
     __metadata("design:paramtypes", [])
 ], WorkSpaceComponent);
@@ -2571,10 +2709,14 @@ var extensions = {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__ = __webpack_require__("../../../../rxjs/add/operator/debounceTime.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__ = __webpack_require__("../../../../rxjs/add/operator/debounceTime.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_combineLatest__ = __webpack_require__("../../../../rxjs/add/observable/combineLatest.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_combineLatest___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_combineLatest__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2587,9 +2729,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var path = window['path'], glob = window['glob'], fs = window['fs'];
 var ApiService = (function () {
     function ApiService() {
+        this.observables = {
+            fileClick: null,
+            fileSingleClick: new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"](),
+            fileDblClick: new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]()
+        };
         /**
          * 工作目录
          */
@@ -2598,32 +2747,56 @@ var ApiService = (function () {
          * 目录下的所有目录，文件
          */
         this.files = [];
-        this.workSpaceActive = [0, 1];
+        this.workSpackActiveIndex = 0;
+        this.workSpaceActive = [0, 0];
         this.workSpace = [
             {
                 open: true,
                 files: [
                     {
                         active: true,
-                        type: 'file',
+                        fileName: 'jj.js',
+                        type: 'text',
                         value: 'let a = apple;',
-                        path: ['aa', 'bb.js']
+                        path: ['aa', 'bb.js'],
+                        editor: null
                     },
                     {
                         active: false,
+                        fileName: 'jj.vue',
                         value: 'class fruit {}',
-                        type: 'file',
-                        path: ['cc', 'dd.html']
+                        type: 'text',
+                        path: ['cc', 'dd.html'],
+                        editor: null
                     },
                     {
                         active: false,
+                        fileName: 'jj.jpg',
                         type: 'image',
                         src: 'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
                     }
                 ]
             },
             {
-                open: true
+                open: true,
+                files: [
+                    {
+                        active: true,
+                        type: 'text',
+                        value: 'let a = apple;',
+                        fileName: 'jj.ts',
+                        path: ['aa', 'bb.js'],
+                        editor: null
+                    },
+                    {
+                        active: true,
+                        type: 'text',
+                        fileName: 'jj.css',
+                        value: "public  class Bridge extends BridgeAbstrace{\n            \n                public Bridge(Worker worker) {\n                    super(worker);\n                }\n            \n                @Override\n                void doBridge() {\n                    worder.doword();\n                }\n            }",
+                        path: ['aa', 'bb.js'],
+                        editor: null
+                    }
+                ]
             }
         ];
         this.workSapckRatios = [0.5, 0.5];
@@ -2641,9 +2814,14 @@ var ApiService = (function () {
         this.openedFile = null;
         this.openedFileType = null;
         this.openedFileWebview = null;
-        this.firstSpace = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
-        this.openTabSubject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
-        this.openTabSubject.debounceTime(200).subscribe(function (e) {
+        this.firstSpace = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        this.openTabSubject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        //双击打开新的文件
+        /*this.openTabSubject.subscribe((e)=>{
+          console.log(e);
+        })*/
+        this.observables.fileClick = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].combineLatest(this.observables.fileSingleClick, this.observables.fileDblClick);
+        this.observables.fileClick.subscribe(function (e) {
             console.log(e);
         });
     }
@@ -2760,27 +2938,30 @@ var ApiService = (function () {
      */
     ApiService.prototype.readFile = function (filePath) {
         var _this = this;
-        var fullPath = path.join.apply(null, [this.projectDir].concat(filePath));
+        var fullPath = path.join.apply(null, [this.projectDir].concat(filePath)), fileName = filePath[filePath.length - 1];
         this.openedFile = fullPath;
         //alert('打开文件'+fullPath);
-        var imageExt = ['.jpg', '.jpeg', '.png', '.gif', '.tiff', 'ico', '.svg'], mediaExt = ['.mp4', '.mp3'], pdfExt = ['.pdf'], action = 'openFile';
+        var imageExt = ['.jpg', '.jpeg', '.png', '.gif', '.tiff', 'ico', '.svg'], mediaExt = ['.mp4', '.mp3'], pdfExt = ['.pdf'], action = 'openFile', type = 'text';
         this.openedFileType = 'file';
         imageExt.forEach(function (item) {
             if (fullPath.toLowerCase().endsWith(item)) {
                 action = 'openImage';
                 _this.openedFileType = 'image';
+                type = 'image';
             }
         });
         pdfExt.forEach(function (item) {
             if (fullPath.toLowerCase().endsWith(item)) {
                 action = 'openPdf';
                 _this.openedFileType = 'pdf';
+                type = 'pdf';
             }
         });
         mediaExt.forEach(function (item) {
             if (fullPath.toLowerCase().endsWith(item)) {
                 action = 'openMedia';
                 _this.openedFileType = 'media';
+                type = 'media';
             }
         });
         if (action == 'openFile') {
@@ -2796,9 +2977,17 @@ var ApiService = (function () {
                         fs.readFile(fullPath, 'utf8', function (err, str) {
                             _this.firstSpace.next({
                                 str: str,
-                                action: action,
+                                action: 'stop',
                                 path: fullPath
                             });
+                            if (_this.workSpace[0].files[_this.workSpaceActive[0]]) {
+                                _this.workSpace[0].files[_this.workSpaceActive[0]] = {
+                                    fileName: fileName,
+                                    type: type,
+                                    value: str,
+                                    path: fullPath
+                                };
+                            }
                         });
                     }
                 }
@@ -2807,6 +2996,14 @@ var ApiService = (function () {
             });
         }
         else {
+            if (this.workSpace[0].files[this.workSpaceActive[0]]) {
+                this.workSpace[0].files[this.workSpaceActive[0]] = {
+                    fileName: fileName,
+                    type: type,
+                    src: fullPath,
+                    path: fullPath
+                };
+            }
             this.firstSpace.next({
                 action: action,
                 path: fullPath
@@ -2833,20 +3030,55 @@ var ApiService = (function () {
         });
     };
     /**
+     * 设置活动的代码区
+     * @param workspackIndex 工作区索引
+     * @param index
+     */
+    ApiService.prototype.setActiveFile = function (workspackIndex, index) {
+        this.workSpaceActive[workspackIndex] = index;
+        if (this.workSpace[workspackIndex].files[index] && this.workSpace[workspackIndex].files[index].type == 'image') {
+            console.log(this.workSpace[workspackIndex].files[index].src);
+            this.firstSpace.next({
+                action: 'openImage',
+                path: this.workSpace[workspackIndex].files[index].src
+            });
+        }
+        this.setActiveSpaceIndex(workspackIndex);
+    };
+    /**
+     * 设置工作区活动索引
+     * @param index
+     */
+    ApiService.prototype.setActiveSpaceIndex = function (index) {
+        this.workSpackActiveIndex = index;
+    };
+    /**
      * 保存文件
      */
     ApiService.prototype.saveFile = function () {
-        var _this = this;
-        if (this.openedFileWebview) {
-            console.log('ddd');
-            this.openedFileWebview.executeJavaScript('getCode()', function (str) {
-                var file = _this.openedFile;
-                fs.writeFile(file, str, 'utf8', function () {
-                    alert('保存成功');
-                });
+        var fileObj = this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]];
+        //如果是文本文件
+        if (fileObj.type == 'text') {
+            fs.writeFile(fileObj.path, fileObj.editor.getValue(), 'utf8', function (er) {
+                if (er) {
+                    alert('保存失败');
+                    return;
+                }
+                alert('保存成功');
             });
         }
-        alert('保存文件');
+        //alert(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].fileName);
+        /*if(this.openedFileWebview){
+          console.log('ddd');
+          this.openedFileWebview.executeJavaScript('getCode()',(str)=>{
+            let file = this.openedFile;
+            fs.writeFile(file,str,'utf8',()=>{
+              alert('保存成功');
+            })
+    
+          });
+        }
+        alert('保存文件');*/
     };
     return ApiService;
 }());

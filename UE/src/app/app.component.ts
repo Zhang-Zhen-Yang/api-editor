@@ -26,11 +26,8 @@ export class AppComponent implements OnInit{
         //保存
         case 's':
           if(e.ctrlKey){
-            console.log(e);
-            if(this.apiService.openedFileType == 'file'){
-              this.apiService.saveFile();
-            }
-            
+            console.log(e);            
+            this.apiService.saveFile();           
           }
         break;
         //打开文件

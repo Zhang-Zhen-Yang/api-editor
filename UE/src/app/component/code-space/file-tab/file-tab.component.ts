@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FileTabComponent implements OnInit {
   @Input() active:boolean;
+  @Input() fileName:string;
   @Output('dismiss') dismissClick = new EventEmitter();
   @Output() selectFile = new EventEmitter();
   constructor() { }

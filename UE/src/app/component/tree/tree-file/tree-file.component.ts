@@ -19,7 +19,6 @@ export class TreeFileComponent implements OnInit {
    * 单击选择文件
    */
   clickFile(){
-    console.log('click');
     let fileName = this.fileName;
     this.fileSelect.emit([fileName]);
   }
@@ -27,7 +26,7 @@ export class TreeFileComponent implements OnInit {
    * 双击选择文件
    */
   dblclickFile(){
-    console.log('dbl');
+    //console.log('dbl');
     let fileName = this.fileName;
     this.dblFileSelect.emit([fileName]);
   }

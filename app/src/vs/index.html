@@ -72,43 +72,7 @@
 	<div id="pdf-wrap" style="display:none;">
 		<embed src="" id="pdf" type="application/pdf" width="100%" height="100%" internalinstanceid="8">
 	</div>
-	<script src="loader.js"></script>
-	<script>
-var code=`package AbstractFactoryPattern;
-
-/**
-* Created by Administrator on 2017/4/29.
-*/
-public interface Shape {
-	void draw();
-}
-
-
-
-`;
-	
-	require.config({ paths: { 'vs': './' }});
-	var editor;
-	require(['vs/editor/editor.main'], function() {
-		editor = monaco.editor.create(document.getElementById('container'), {
-			value:code,
-			language: 'java',
-			wrappingIndent: "same",
-			wordWrap: 'wordWrapColumn',
-		});
-
-		console.debug(monaco);
-		/*var getValueButton = document.getElementById('getValue');
-		getValueButton.addEventListener('click',function(){
-			var code = editor.getValue();
-			console.debug(editor.constructor.prototype);
-		},false)*/
-		
-		//自适应宽度		
-		
-
-	});
-	
+<script>	
 	document.body.ondragover = () => {
       return false;
     }
@@ -121,13 +85,6 @@ public interface Shape {
 	  alert('drop code');
 	}
 	
-
-	//监听布局尺寸的改变
-	window.addEventListener('resize',function(){
-		if (editor&&domNode.container.style.display!='none'){
-			editor.layout();
-		}
-	},false)
 
 	//dom节点
 	var domNode = {
@@ -142,6 +99,7 @@ public interface Shape {
 		media:document.getElementById('media'),
 		mediaWrap:document.getElementById('media-wrap'),
 	}
+
 
 	//打开图片
 	function openImage(path){
@@ -187,6 +145,15 @@ public interface Shape {
 			console.log(e);
 		}
 	}
+
+	function stop(){
+		domNode.mediaWrap.style.display = 'none';
+		domNode.media.src = '';
+		domNode.container.style.display = 'none';
+		domNode.imageWrap.style.display = 'none';
+		domNode.pdfWrap.style.display = 'none';
+	}
+
 
 	//
 	function getCode(){

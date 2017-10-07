@@ -2,16 +2,36 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject'
 import 'rxjs/add/operator/debounceTime'
+import 'rxjs/add/operator/empty'
+import 'rxjs/add/observable/combineLatest'
+import 'rxjs/add/observable/audit'
+import 'rxjs/add/observable/throttle'
 let path = window['path'],
     glob = window['glob'],
     fs = window['fs'];
 @Injectable()
 export class ApiService {  
   constructor() {
-    this.openTabSubject.debounceTime(200).subscribe((e)=>{
+    //双击打开新的文件
+    /*this.openTabSubject.subscribe((e)=>{
+      console.log(e);
+    })*/
+    /*this.observables.fileClick = Observable.combineLatest(this.observables.fileSingleClick,this.observables.fileDblClick);
+    this.observables.fileClick.subscribe((e)=>{
+      console.log(e);
+    })*/
+    
+    this.observables.fileClick.subscribe((e)=>{
       console.log(e);
     })
-   }
+
+  }
+
+  observables={
+    fileClick:new Subject(),
+    fileSingleClick:new Subject(),
+    fileDblClick:new Subject()
+  }
 
   /**
    * 工作目录
@@ -43,25 +63,31 @@ export class ApiService {
    */
   files:Array<any> = [];
 
-  workSpaceActive = [0,1]
+  workSpackActiveIndex:number = 0
+  workSpaceActive = [0,0]
   workSpace:Array<any> = [
     {
       open:true,
       files:[
         {
           active:true,
-          type:'file',
+          fileName:'jj.js',
+          type:'text',
           value:'let a = apple;',
-          path:['aa','bb.js']
+          path:['aa','bb.js'],
+          editor:null
         },
         {
           active:false,
+          fileName:'jj.vue',
           value:'class fruit {}',
-          type:'file',
-          path:['cc','dd.html']
+          type:'text',
+          path:['cc','dd.html'],
+          editor:null
         },
         {
           active:false,
+          fileName:'jj.jpg',
           type:'image',
           src:'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
         } 
@@ -69,8 +95,35 @@ export class ApiService {
       ]
     },
     {
-      open:true
-
+      open:true,
+      files:[
+        {
+          active:true,
+          type:'text',
+          value:'let a = apple;',
+          fileName:'jj.ts',
+          path:['aa','bb.js'],
+          editor:null
+        },
+        {
+          active:true,
+          type:'text',
+          fileName:'jj.css',
+          value:`public  class Bridge extends BridgeAbstrace{
+            
+                public Bridge(Worker worker) {
+                    super(worker);
+                }
+            
+                @Override
+                void doBridge() {
+                    worder.doword();
+                }
+            }`,
+          path:['aa','bb.js'],
+          editor:null
+        }
+      ]
     }
   ]
 
@@ -193,31 +246,35 @@ export class ApiService {
    * 读取文件
    */
   readFile(filePath){
-    let fullPath = path.join.apply(null,[this.projectDir].concat(filePath));
+    let fullPath = path.join.apply(null,[this.projectDir].concat(filePath)),fileName = filePath[filePath.length-1];
     this.openedFile = fullPath;
     //alert('打开文件'+fullPath);
 
     let imageExt:Array<string> = ['.jpg','.jpeg','.png','.gif','.tiff','ico','.svg'],
         mediaExt:Array<string> = ['.mp4','.mp3'],
         pdfExt:Array<string>=['.pdf'],
-        action = 'openFile';
+        action = 'openFile',
+        type = 'text';
         this.openedFileType = 'file';
     imageExt.forEach((item)=>{
       if(fullPath.toLowerCase().endsWith(item)){
         action = 'openImage';
         this.openedFileType = 'image';
+        type = 'image'
       }
     })
     pdfExt.forEach((item)=>{
       if(fullPath.toLowerCase().endsWith(item)){
         action = 'openPdf';
         this.openedFileType = 'pdf';
+        type = 'pdf'
       }
     })
     mediaExt.forEach((item)=>{
       if(fullPath.toLowerCase().endsWith(item)){
         action = 'openMedia';
         this.openedFileType = 'media';
+        type='media';
       }
     })
 
@@ -232,11 +289,21 @@ export class ApiService {
 
           }else{
             fs.readFile(fullPath,'utf8',(err,str)=>{
+
               this.firstSpace.next({
                 str:str,
-                action:action,
+                action:'stop',
                 path:fullPath
               });
+              if(this.workSpace[0].files[this.workSpaceActive[0]]){
+                this.workSpace[0].files[this.workSpaceActive[0]]={
+                  fileName:fileName,
+                  type:type,
+                  value:str,
+                  path:fullPath
+                }
+              }
+              
             })
           }          
         }else{
@@ -244,13 +311,22 @@ export class ApiService {
         }
       })
     }else{
+      if(this.workSpace[0].files[this.workSpaceActive[0]]){
+        this.workSpace[0].files[this.workSpaceActive[0]]={
+          fileName:fileName,
+          type:type,
+          src:fullPath,
+          path:fullPath
+        }
+      }
       this.firstSpace.next({
         action:action,
         path:fullPath
       });
-    }
-    
+    }    
   }
+
+
 
   /**
    * 目录投放
@@ -273,10 +349,52 @@ export class ApiService {
   }
 
   /**
+   * 设置活动的代码区
+   * @param workspackIndex 工作区索引
+   * @param index 
+   */
+  setActiveFile(workspackIndex,index){
+    this.workSpaceActive[workspackIndex] = index;
+    if(this.workSpace[workspackIndex].files[index]&&this.workSpace[workspackIndex].files[index].type=='image'){
+      console.log(this.workSpace[workspackIndex].files[index].src);
+      this.firstSpace.next({
+        action:'openImage',
+        path:this.workSpace[workspackIndex].files[index].src
+      });
+    }
+    this.setActiveSpaceIndex(workspackIndex);
+    
+  }
+
+  /**
+   * 设置工作区活动索引
+   * @param index 
+   */
+  setActiveSpaceIndex(index){
+    
+    this.workSpackActiveIndex = index;
+  }
+
+  /**
    * 保存文件
    */
   saveFile(){
-    if(this.openedFileWebview){
+
+    let fileObj = this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]];
+    //如果是文本文件
+    if(fileObj.type == 'text'){
+      fs.writeFile(fileObj.path,fileObj.editor.getValue(),'utf8',(er)=>{
+        if(er){
+          alert('保存失败');
+          return;
+        }
+        alert('保存成功');
+      })
+    }
+
+    //alert(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].fileName);
+
+    /*if(this.openedFileWebview){
       console.log('ddd');
       this.openedFileWebview.executeJavaScript('getCode()',(str)=>{
         let file = this.openedFile;
@@ -286,7 +404,7 @@ export class ApiService {
 
       });
     }
-    alert('保存文件');
+    alert('保存文件');*/
   }
 
 }
