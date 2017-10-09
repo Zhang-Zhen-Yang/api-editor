@@ -4,7 +4,8 @@
         (dismiss)="dismiss(i)" 
         (selectFile)="selectFile(i)"
         [fileName]="apiService.workSpace[index].files[i].fileName"
-        [active]="i == apiService.workSpaceActive[index]">
+        [active]="i == apiService.workSpaceActive[index]"
+        [modelChanges]="apiService.workSpace[index].files[i].modelChanges">
         {{ tab }}
       </app-file-tab>
     </div>

@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject'
 import 'rxjs/add/operator/debounceTime'
-import 'rxjs/add/operator/empty'
-import 'rxjs/add/observable/combineLatest'
-import 'rxjs/add/observable/audit'
-import 'rxjs/add/observable/throttle'
+//import 'rxjs/add/operator/empty'
+//import 'rxjs/add/observable/combineLatest'
+//import 'rxjs/add/observable/audit'
+import 'rxjs/add/operator/throttle';
+import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/operator/debounceTime'
 let path = window['path'],
     glob = window['glob'],
     fs = window['fs'];
@@ -20,9 +22,19 @@ export class ApiService {
     this.observables.fileClick.subscribe((e)=>{
       console.log(e);
     })*/
-    
-    this.observables.fileClick.subscribe((e)=>{
-      console.log(e);
+    let d = this;
+    this.observables.fileClick.debounceTime(200).subscribe((e)=>{
+      switch(e['type']){
+        //单击
+        case 's':
+          d.readFile(e['filePath'],'single');
+          break;
+        //双击
+        case 'd':
+          d.readFile(e['filePath'],'double');
+          break;
+        default:;
+      }
     })
 
   }
@@ -75,7 +87,11 @@ export class ApiService {
           type:'text',
           value:'let a = apple;',
           path:['aa','bb.js'],
-          editor:null
+          pathArray:['aa','bb.js'],
+          editor:null,
+          viewState:null,
+          model:null,
+          modelChanges:[]
         },
         {
           active:false,
@@ -83,11 +99,16 @@ export class ApiService {
           value:'class fruit {}',
           type:'text',
           path:['cc','dd.html'],
-          editor:null
+          pathArray:['cc','dd.html'],
+          editor:null,
+          viewState:null,
+          model:null,
+          modelChanges:[]
         },
         {
           active:false,
           fileName:'jj.jpg',
+          pathArray:['jj.jpg'],
           type:'image',
           src:'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
         } 
@@ -103,7 +124,10 @@ export class ApiService {
           value:'let a = apple;',
           fileName:'jj.ts',
           path:['aa','bb.js'],
-          editor:null
+          editor:null,
+          viewState:null,
+          model:null,
+          modelChanges:[]
         },
         {
           active:true,
@@ -121,7 +145,10 @@ export class ApiService {
                 }
             }`,
           path:['aa','bb.js'],
-          editor:null
+          editor:null,
+          viewState:null,
+          model:null,
+          modelChanges:[]
         }
       ]
     }
@@ -144,6 +171,7 @@ export class ApiService {
   openedFileType = null;
   openedFileWebview = null;
 
+  space=[new Subject(),new Subject()]
   firstSpace = new Subject();
   openTabSubject = new Subject();
 
@@ -245,10 +273,15 @@ export class ApiService {
   /**
    * 读取文件
    */
-  readFile(filePath){
+  readFile(filePath,openType){
+
     let fullPath = path.join.apply(null,[this.projectDir].concat(filePath)),fileName = filePath[filePath.length-1];
     this.openedFile = fullPath;
     //alert('打开文件'+fullPath);
+
+    if(this.checkReclick(filePath,openType)){
+      return;
+    }
 
     let imageExt:Array<string> = ['.jpg','.jpeg','.png','.gif','.tiff','ico','.svg'],
         mediaExt:Array<string> = ['.mp4','.mp3'],
@@ -278,6 +311,7 @@ export class ApiService {
       }
     })
 
+    //打开文本文件
     if(action == 'openFile'){
       fs.stat(fullPath,(er,stat)=>{
         if(er){
@@ -285,24 +319,63 @@ export class ApiService {
           return;
         }
         if(stat.isFile()){
+          //如果文件大于 4mb
           if(stat.size > 1<<22){
-
+            alert('文件大于4mb');
           }else{
             fs.readFile(fullPath,'utf8',(err,str)=>{
+              
+              //如果单击打开文件
+              if(
+                  openType == 'single'&&(
+                    this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type!='text'||
+                    this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].modelChanges.length==0)
+                  ){
+                if(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
+                  this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]={
+                    fileName:fileName,
+                    type:type,
+                    value:str,
+                    path:fullPath,
+                    pathArray:filePath,
+                    editor:null,
+                    viewState:null,
+                    model:null,
+                    modelChanges:[]
+                  }
+                  this.space[this.workSpackActiveIndex].next({
+                    str:str,
+                    type:type,
+                    action:'stop',
+                    path:fullPath
+                  })
 
-              this.firstSpace.next({
-                str:str,
-                action:'stop',
-                path:fullPath
-              });
-              if(this.workSpace[0].files[this.workSpaceActive[0]]){
-                this.workSpace[0].files[this.workSpaceActive[0]]={
-                  fileName:fileName,
-                  type:type,
-                  value:str,
-                  path:fullPath
                 }
               }
+              //如果是双击打开文件
+              else /*if(openType == 'double')*/{
+
+                this.workSpace[this.workSpackActiveIndex].files.push(
+                  {
+                    fileName:fileName,
+                    type:type,
+                    value:str,
+                    path:fullPath,
+                    pathArray:filePath,
+                    editor:null,
+                    viewState:null,
+                    model:null,
+                    modelChanges:[]
+                  }
+                )
+                this.workSpaceActive[this.workSpackActiveIndex] = this.workSpace[this.workSpackActiveIndex].files.length - 1;
+                this.space[this.workSpackActiveIndex].next({
+                  str:str,
+                  action:'stop',
+                  path:fullPath,
+                  type:type
+                })        
+              }              
               
             })
           }          
@@ -311,21 +384,85 @@ export class ApiService {
         }
       })
     }else{
-      if(this.workSpace[0].files[this.workSpaceActive[0]]){
-        this.workSpace[0].files[this.workSpaceActive[0]]={
+
+      if(openType == 'single'){
+        if(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
+          this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]={
+            fileName:fileName,
+            type:type,
+            src:fullPath,
+            pathArray:filePath,
+            path:fullPath
+          }
+          /*this.firstSpace.next({
+            action:action,
+            path:fullPath
+          });*/
+          this.space[this.workSpackActiveIndex].next({
+            action:action,
+            path:fullPath,
+            type:type
+          })
+        }
+      }else if(openType == 'double'){
+
+        this.workSpace[this.workSpackActiveIndex].files.push({
           fileName:fileName,
           type:type,
           src:fullPath,
+          pathArray:filePath,
           path:fullPath
-        }
+        })
+        this.workSpaceActive[this.workSpackActiveIndex] = this.workSpace[this.workSpackActiveIndex].files.length - 1;
+        /*this.firstSpace.next({
+          action:action,
+          path:fullPath
+        });*/
+        this.space[this.workSpackActiveIndex].next({
+          action:action,
+          path:fullPath,
+          type:type
+        })
       }
-      this.firstSpace.next({
-        action:action,
-        path:fullPath
-      });
     }    
   }
 
+  checkReclick(filePath,openType):boolean{
+    /*if(openType == 'single'){
+      if(
+        this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].pathArray+'' == filePath+''
+      ){
+        alert('相同');
+        return true;
+      }else{
+        return false;
+      }
+    }else if(openType == 'double'){
+      let reclick = false;
+      this.workSpace[this.workSpackActiveIndex].files.forEach((item,index)=>{
+        if(item.pathArray+'' == filePath+''){
+          this.workSpaceActive[this.workSpackActiveIndex] = index;
+          reclick = true;
+        }
+      })
+      return reclick
+    }*/
+
+    let reclick = false;
+    this.workSpace[this.workSpackActiveIndex].files.forEach((item,index)=>{
+      if(item.pathArray+'' == filePath+''){
+        this.workSpaceActive[this.workSpackActiveIndex] = index;
+        this.space[this.workSpackActiveIndex].next({
+          str:item.str,
+          type:item.type,
+          path:item.src
+        })   
+      
+        reclick = true;
+      }
+    })
+    return reclick
+  }
 
 
   /**
@@ -343,8 +480,7 @@ export class ApiService {
         localStorage.setItem('projectDir',name);
         this.files=[];
         this.readDir(name,this.files);
-      }
-      
+      }      
     })
   }
 
@@ -357,9 +493,14 @@ export class ApiService {
     this.workSpaceActive[workspackIndex] = index;
     if(this.workSpace[workspackIndex].files[index]&&this.workSpace[workspackIndex].files[index].type=='image'){
       console.log(this.workSpace[workspackIndex].files[index].src);
-      this.firstSpace.next({
+      /*this.firstSpace.next({
         action:'openImage',
         path:this.workSpace[workspackIndex].files[index].src
+      });*/
+      this.space[workspackIndex].next({
+        action:'openImage',
+        path:this.workSpace[workspackIndex].files[index].src,
+        type:this.workSpace[workspackIndex].files[index].type
       });
     }
     this.setActiveSpaceIndex(workspackIndex);
@@ -379,7 +520,7 @@ export class ApiService {
    * 保存文件
    */
   saveFile(){
-
+   
     let fileObj = this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]];
     //如果是文本文件
     if(fileObj.type == 'text'){
@@ -389,8 +530,12 @@ export class ApiService {
           return;
         }
         alert('保存成功');
+
+        console.log(fileObj.editor.getModel());
+        fileObj.editor.dispose();
+        
       })
-    }
+    }    
 
     //alert(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].fileName);
 
@@ -405,6 +550,26 @@ export class ApiService {
       });
     }
     alert('保存文件');*/
+  }
+
+  /**
+   * 关闭文件
+   * @param param0 
+   */
+  dismissFile({workSpaceIndex,fileIndex}){
+    
+    if(this.workSpace[workSpaceIndex].files.length-1<=fileIndex){
+      this.workSpaceActive[workSpaceIndex] = fileIndex-1;
+    }
+    this.workSpace[workSpaceIndex].files.splice(fileIndex,1);
+
+    if(this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type!='text'){
+      this.space[workSpaceIndex].next({
+        type:this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type,
+        path:this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].src
+      })
+    }
+
   }
 
 }

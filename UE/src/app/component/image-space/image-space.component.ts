@@ -15,9 +15,9 @@ export class ImageSpaceComponent implements OnInit,AfterViewInit {
     
   }
   ngAfterViewInit(){
-    this.apiService.firstSpace.subscribe((e)=>{
-      let path = e['path'].replace(/\\/g,'/');
-      switch(e['action']){
+    this.apiService.space[this.sapceIndex].subscribe((e)=>{
+      let path = e['path']?e['path'].replace(/\\/g,'/'):'';
+      /*switch(e['action']){
         //打开图片
         case 'openImage':
           this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
@@ -31,6 +31,25 @@ export class ImageSpaceComponent implements OnInit,AfterViewInit {
           this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
           break;
         case 'stop':
+          this.webview.nativeElement.executeJavaScript('stop()');
+          break;
+        default :
+          break;
+      }*/
+      switch(e['type']){
+        //打开图片
+        case 'image':
+          this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
+          break;
+        //打开pdf
+        case 'pdf':
+          this.webview.nativeElement.executeJavaScript('openPdf("'+path+'")');
+          break;
+        //打开mp4,打开mp3
+        case 'media':
+          this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
+          break;
+        case 'text':
           this.webview.nativeElement.executeJavaScript('stop()');
           break;
         default :

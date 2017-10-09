@@ -56,10 +56,11 @@ export class CodeSpaceComponent implements OnInit {
   }*/
 
   dismiss(index){
-    alert('dismiss'+index);
+    this.apiService.dismissFile({workSpaceIndex:this.index,fileIndex:index});
   }
   selectFile(i){
     this.apiService.setActiveFile(this.index,i);
+    
   }
 
   setSpaceIndex(){

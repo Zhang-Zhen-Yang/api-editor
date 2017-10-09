@@ -17,7 +17,7 @@ export class TreeComponent implements OnInit {
 
   select(e){
     //this.apiService.readFile(e);
-    console.log('s');
+    //console.log('s');
     this.apiService.observables.fileClick.next({
       type:'s',
       filePath:e,
@@ -26,7 +26,7 @@ export class TreeComponent implements OnInit {
   }
 
   dblSelect(e){
-    console.log('d');
+    //console.log('d');
     this.apiService.observables.fileClick.next({
       type:'d',
       filePath:e,

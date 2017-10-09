@@ -331,7 +331,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/code-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n\t\t\t[value]=\"file.value\" \n\t\t\t[workspaceIndex]=\"index\" \n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\n\t\t</ng-container>\n\t\t<app-image-space [sapceIndex]=\"index\"></app-image-space>\n\t</div>\n\t\n</div>\n\n"
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\"\n\t\t\t[modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n\t\t\t[value]=\"file.value\" \n\t\t\t[workspaceIndex]=\"index\" \n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\n\t\t</ng-container>\n\t\t<app-image-space [sapceIndex]=\"index\"></app-image-space>\n\t</div>\n\t\n</div>\n\n"
 
 /***/ }),
 
@@ -401,7 +401,7 @@ var CodeSpaceComponent = (function () {
     ngAfterContentInit(){
     }*/
     CodeSpaceComponent.prototype.dismiss = function (index) {
-        alert('dismiss' + index);
+        this.apiService.dismissFile({ workSpaceIndex: this.index, fileIndex: index });
     };
     CodeSpaceComponent.prototype.selectFile = function (i) {
         this.apiService.setActiveFile(this.index, i);
@@ -434,7 +434,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host{\r\n\tpadding:0;\r\n\tbackground-color:white;\r\n\tdisplay: inline-block;\r\n\tpadding-right:1px;\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n}\r\n.file-tab{\r\n\tdisplay: inline-block;\r\n\theight:100%;\r\n\tbackground-color: #E7E7E7;\r\n\tmax-width:225px;\r\n\tline-height: 35px;\r\n\tcolor:#aaa;\r\n\tfont-size:13px;\r\n\tpadding:0 26px 10px 26px;\r\n\tposition: relative;\r\n\tmargin:0;\r\n\twhite-space: nowrap;\r\n\ttext-overflow: ellipsis;\r\n\toverflow: hidden;\r\n}\r\n.file-tab.active{\r\n\tbackground-color:#fff;\r\n}\r\n.file-tab .file-icon{\r\n\twidth:16px;\r\n\theight:16px;\r\n\tposition: absolute;\r\n\tleft:8px;\r\n\ttop:3px;\r\n}\r\n/*关闭文件*/\r\n.file-tab .dismiss{\r\n\tdisplay: none;\r\n\tposition: absolute;\r\n\tright:8px;\r\n\ttop:12px;\r\n\tfont-size:16px;\r\n\tcolor:#333;\r\n\twidth:13px;\r\n\theight:13px;\r\n\tbackground: url(\"data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>\") 50% no-repeat;\r\n}\r\n.file-tab:hover .dismiss{\r\n\tdisplay: block;\r\n}", ""]);
+exports.push([module.i, ":host{\r\n\tpadding:0;\r\n\tbackground-color:white;\r\n\tdisplay: inline-block;\r\n\tpadding-right:1px;\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n}\r\n.file-tab{\r\n\tdisplay: inline-block;\r\n\theight:100%;\r\n\tbackground-color: #E7E7E7;\r\n\tmax-width:225px;\r\n\tline-height: 35px;\r\n\tcolor:#aaa;\r\n\tfont-size:13px;\r\n\tpadding:0 26px 10px 26px;\r\n\tposition: relative;\r\n\tmargin:0;\r\n\twhite-space: nowrap;\r\n\ttext-overflow: ellipsis;\r\n\toverflow: hidden;\r\n}\r\n.file-tab.active{\r\n\tbackground-color:#fff;\r\n}\r\n.file-tab .file-icon{\r\n\twidth:16px;\r\n\theight:16px;\r\n\tposition: absolute;\r\n\tleft:8px;\r\n\ttop:3px;\r\n}\r\n/*关闭文件*/\r\n.file-tab .dismiss{\r\n\tdisplay: none;\r\n\tposition: absolute;\r\n\tright:8px;\r\n\ttop:13px;\r\n\tfont-size:16px;\r\n\tcolor:#333;\r\n\twidth:13px;\r\n\theight:13px;\r\n\tbackground: url(\"data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>\") 50% no-repeat;\r\n}\r\n.file-tab.active .dismiss{\r\n\tdisplay: block;\r\n}\r\n.file-tab .dismiss.dirty{\r\n\tdisplay: block;\r\n\tbackground:url(\"data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' height='16' width='16'><circle fill='%23424242' cx='8' cy='8' r='4'/></svg>\") 50% no-repeat;\r\n}\r\n.file-tab:hover .dismiss{\r\n\tdisplay: block;\r\n\tbackground: url(\"data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>\") 50% no-repeat;\r\n\t\r\n}", ""]);
 
 // exports
 
@@ -447,7 +447,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/file-tab/file-tab.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\">\n  <b class=\"file-icon\">\n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\n  </b>\n  {{ fileName }}\n  <b class=\"dismiss\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\n</div>\n"
+module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\">\n  <b class=\"file-icon\">    \n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\n  </b>\n  {{ changes()}}\n  {{ fileName }}\n  <b class=\"dismiss\"  [class.dirty]=\"changes()\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\n</div>\n"
 
 /***/ }),
 
@@ -485,6 +485,12 @@ var FileTabComponent = (function () {
     FileTabComponent.prototype.setFileActive = function () {
         this.selectFile.emit();
     };
+    FileTabComponent.prototype.changes = function () {
+        if (this.modelChanges) {
+            return this.modelChanges.length;
+        }
+        return null;
+    };
     return FileTabComponent;
 }());
 __decorate([
@@ -495,6 +501,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", String)
 ], FileTabComponent.prototype, "fileName", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], FileTabComponent.prototype, "modelChanges", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])('dismiss'),
     __metadata("design:type", Object)
@@ -537,7 +547,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space2/code-space2.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \n        (dismiss)=\"dismiss(i)\" \n        (selectFile)=\"selectFile(i)\"\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\n        [active]=\"i == apiService.workSpaceActive[index]\">\n        {{ tab }}\n      </app-file-tab>\n    </div>\n  \n    <!--旧-->\n    <!--<div class=\"webview-wrap absolute\" >\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n      </webview>\n    </div>-->\n  \n    <!--新-->\n    <div class=\"webview-wrap absolute\">\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n        [value]=\"file.value\"\n        [workspaceIndex]=\"index\" \n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\n      </ng-container>\n      <app-image-space [sapceIndex]=\"index\"></app-image-space>   \n    </div>        \n  </div>\n  \n  "
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \n        (dismiss)=\"dismiss(i)\" \n        (selectFile)=\"selectFile(i)\"\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\n        [active]=\"i == apiService.workSpaceActive[index]\"\n        [modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n        {{ tab }}\n      </app-file-tab>\n    </div>\n  \n    <!--旧-->\n    <!--<div class=\"webview-wrap absolute\" >\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n      </webview>\n    </div>-->\n  \n    <!--新-->\n    <div class=\"webview-wrap absolute\">\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n        [value]=\"file.value\"\n        [workspaceIndex]=\"index\" \n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\n      </ng-container>\n      <app-image-space [sapceIndex]=\"index\"></app-image-space>   \n    </div>        \n  </div>\n  \n  "
 
 /***/ }),
 
@@ -737,22 +747,41 @@ var ImageSpaceComponent = (function () {
     };
     ImageSpaceComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
-        this.apiService.firstSpace.subscribe(function (e) {
-            var path = e['path'].replace(/\\/g, '/');
-            switch (e['action']) {
+        this.apiService.space[this.sapceIndex].subscribe(function (e) {
+            var path = e['path'] ? e['path'].replace(/\\/g, '/') : '';
+            /*switch(e['action']){
+              //打开图片
+              case 'openImage':
+                this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
+                break;
+              //打开pdf
+              case 'openPdf':
+                this.webview.nativeElement.executeJavaScript('openPdf("'+path+'")');
+                break;
+              //打开mp4,打开mp3
+              case 'openMedia':
+                this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
+                break;
+              case 'stop':
+                this.webview.nativeElement.executeJavaScript('stop()');
+                break;
+              default :
+                break;
+            }*/
+            switch (e['type']) {
                 //打开图片
-                case 'openImage':
+                case 'image':
                     _this.webview.nativeElement.executeJavaScript('openImage("' + path + '")');
                     break;
                 //打开pdf
-                case 'openPdf':
+                case 'pdf':
                     _this.webview.nativeElement.executeJavaScript('openPdf("' + path + '")');
                     break;
                 //打开mp4,打开mp3
-                case 'openMedia':
+                case 'media':
                     _this.webview.nativeElement.executeJavaScript('openMedia("' + path + '")');
                     break;
-                case 'stop':
+                case 'text':
                     _this.webview.nativeElement.executeJavaScript('stop()');
                     break;
                 default:
@@ -987,9 +1016,40 @@ var MonacoSpaceComponent = (function () {
                 //theme: 'vs-dark',
                 automaticLayout: true
             });
-            _this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].editor = editor;
-            editor.focus();
+            _this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].editor = _this.editor = editor;
+            if (_this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].viewState) {
+                editor.setModel(_this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].model);
+                editor.restoreViewState(_this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].viewState);
+            }
+            else {
+                editor.onDidChangeModelContent(function (e) {
+                    console.log(e);
+                    if (e.isRedoing) {
+                        _this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].modelChanges.push({ versionId: e.versionId, action: 'redoing' });
+                    }
+                    else if (e.isUndoing) {
+                        _this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].modelChanges.pop();
+                    }
+                    else {
+                        _this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].modelChanges.push({ versionId: e.versionId, action: 'doing' });
+                    }
+                });
+            }
+            if (_this.apiService.workSpackActiveIndex == _this.workspaceIndex) {
+                editor.focus();
+            }
+            //监听内容改变
         });
+    };
+    MonacoSpaceComponent.prototype.ngOnDestroy = function () {
+        if (this.editor &&
+            this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].editor &&
+            this.editor.getId() == this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].editor.getId()) {
+            this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].value = this.editor.getValue();
+            this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].viewState = this.editor.saveViewState();
+            this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].model = this.editor.getModel();
+            //console.log(this.editor.getModel());
+        }
     };
     return MonacoSpaceComponent;
 }());
@@ -1429,7 +1489,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\"\n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"\n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" \n        [title]=\"file.fullPath\"\n        [fileName]=\"file.name\" \n        (fileSelect)=\"select($event)\" \n        [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
+module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\"\n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"\n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" \n        [title]=\"file.fullPath\"\n        [fileName]=\"file.name\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"       \n        [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
 
 /***/ }),
 
@@ -1455,6 +1515,7 @@ var TreeDirComponent = (function () {
     function TreeDirComponent(apiService) {
         this.apiService = apiService;
         this.fileSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.dblFileSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
     }
     TreeDirComponent.prototype.ngOnInit = function () {
     };
@@ -1462,6 +1523,11 @@ var TreeDirComponent = (function () {
         var emitArray = e;
         emitArray.unshift(this.dirName);
         this.fileSelect.emit(emitArray);
+    };
+    TreeDirComponent.prototype.dblSelect = function (e) {
+        var emitArray = e;
+        e.unshift(this.dirName);
+        this.dblFileSelect.emit(emitArray);
     };
     //展开 收缩目录
     TreeDirComponent.prototype.toggleExpand = function ($event) {
@@ -1511,6 +1577,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
     __metadata("design:type", Object)
 ], TreeDirComponent.prototype, "fileSelect", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
+    __metadata("design:type", Object)
+], TreeDirComponent.prototype, "dblFileSelect", void 0);
 TreeDirComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'tree-dir',
@@ -1686,14 +1756,16 @@ var TreeComponent = (function () {
     };
     TreeComponent.prototype.select = function (e) {
         //this.apiService.readFile(e);
-        this.apiService.observables.fileSingleClick.next({
+        //console.log('s');
+        this.apiService.observables.fileClick.next({
             type: 's',
             filePath: e,
             timeStemp: Date.now()
         });
     };
     TreeComponent.prototype.dblSelect = function (e) {
-        this.apiService.observables.fileDblClick.next({
+        //console.log('d');
+        this.apiService.observables.fileClick.next({
             type: 'd',
             filePath: e,
             timeStemp: Date.now()
@@ -2709,14 +2781,14 @@ var extensions = {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__ = __webpack_require__("../../../../rxjs/add/operator/debounceTime.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_combineLatest__ = __webpack_require__("../../../../rxjs/add/observable/combineLatest.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_combineLatest___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_combineLatest__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__ = __webpack_require__("../../../../rxjs/add/operator/debounceTime.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttle__ = __webpack_require__("../../../../rxjs/add/operator/throttle.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttle__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttleTime__ = __webpack_require__("../../../../rxjs/add/operator/throttleTime.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttleTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttleTime__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2729,15 +2801,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+//import 'rxjs/add/operator/empty'
+//import 'rxjs/add/observable/combineLatest'
+//import 'rxjs/add/observable/audit'
+
 
 
 var path = window['path'], glob = window['glob'], fs = window['fs'];
 var ApiService = (function () {
     function ApiService() {
         this.observables = {
-            fileClick: null,
-            fileSingleClick: new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"](),
-            fileDblClick: new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]()
+            fileClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](),
+            fileSingleClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](),
+            fileDblClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]()
         };
         /**
          * 工作目录
@@ -2759,7 +2835,11 @@ var ApiService = (function () {
                         type: 'text',
                         value: 'let a = apple;',
                         path: ['aa', 'bb.js'],
-                        editor: null
+                        pathArray: ['aa', 'bb.js'],
+                        editor: null,
+                        viewState: null,
+                        model: null,
+                        modelChanges: []
                     },
                     {
                         active: false,
@@ -2767,11 +2847,16 @@ var ApiService = (function () {
                         value: 'class fruit {}',
                         type: 'text',
                         path: ['cc', 'dd.html'],
-                        editor: null
+                        pathArray: ['cc', 'dd.html'],
+                        editor: null,
+                        viewState: null,
+                        model: null,
+                        modelChanges: []
                     },
                     {
                         active: false,
                         fileName: 'jj.jpg',
+                        pathArray: ['jj.jpg'],
                         type: 'image',
                         src: 'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
                     }
@@ -2786,7 +2871,10 @@ var ApiService = (function () {
                         value: 'let a = apple;',
                         fileName: 'jj.ts',
                         path: ['aa', 'bb.js'],
-                        editor: null
+                        editor: null,
+                        viewState: null,
+                        model: null,
+                        modelChanges: []
                     },
                     {
                         active: true,
@@ -2794,7 +2882,10 @@ var ApiService = (function () {
                         fileName: 'jj.css',
                         value: "public  class Bridge extends BridgeAbstrace{\n            \n                public Bridge(Worker worker) {\n                    super(worker);\n                }\n            \n                @Override\n                void doBridge() {\n                    worder.doword();\n                }\n            }",
                         path: ['aa', 'bb.js'],
-                        editor: null
+                        editor: null,
+                        viewState: null,
+                        model: null,
+                        modelChanges: []
                     }
                 ]
             }
@@ -2814,15 +2905,30 @@ var ApiService = (function () {
         this.openedFile = null;
         this.openedFileType = null;
         this.openedFileWebview = null;
-        this.firstSpace = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
-        this.openTabSubject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        this.space = [new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](), new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]()];
+        this.firstSpace = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
+        this.openTabSubject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
         //双击打开新的文件
         /*this.openTabSubject.subscribe((e)=>{
           console.log(e);
         })*/
-        this.observables.fileClick = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].combineLatest(this.observables.fileSingleClick, this.observables.fileDblClick);
-        this.observables.fileClick.subscribe(function (e) {
-            console.log(e);
+        /*this.observables.fileClick = Observable.combineLatest(this.observables.fileSingleClick,this.observables.fileDblClick);
+        this.observables.fileClick.subscribe((e)=>{
+          console.log(e);
+        })*/
+        var d = this;
+        this.observables.fileClick.debounceTime(200).subscribe(function (e) {
+            switch (e['type']) {
+                //单击
+                case 's':
+                    d.readFile(e['filePath'], 'single');
+                    break;
+                //双击
+                case 'd':
+                    d.readFile(e['filePath'], 'double');
+                    break;
+                default: ;
+            }
         });
     }
     /**
@@ -2936,11 +3042,14 @@ var ApiService = (function () {
     /**
      * 读取文件
      */
-    ApiService.prototype.readFile = function (filePath) {
+    ApiService.prototype.readFile = function (filePath, openType) {
         var _this = this;
         var fullPath = path.join.apply(null, [this.projectDir].concat(filePath)), fileName = filePath[filePath.length - 1];
         this.openedFile = fullPath;
         //alert('打开文件'+fullPath);
+        if (this.checkReclick(filePath, openType)) {
+            return;
+        }
         var imageExt = ['.jpg', '.jpeg', '.png', '.gif', '.tiff', 'ico', '.svg'], mediaExt = ['.mp4', '.mp3'], pdfExt = ['.pdf'], action = 'openFile', type = 'text';
         this.openedFileType = 'file';
         imageExt.forEach(function (item) {
@@ -2964,6 +3073,7 @@ var ApiService = (function () {
                 type = 'media';
             }
         });
+        //打开文本文件
         if (action == 'openFile') {
             fs.stat(fullPath, function (er, stat) {
                 if (er) {
@@ -2971,22 +3081,54 @@ var ApiService = (function () {
                     return;
                 }
                 if (stat.isFile()) {
+                    //如果文件大于 4mb
                     if (stat.size > 1 << 22) {
+                        alert('文件大于4mb');
                     }
                     else {
                         fs.readFile(fullPath, 'utf8', function (err, str) {
-                            _this.firstSpace.next({
-                                str: str,
-                                action: 'stop',
-                                path: fullPath
-                            });
-                            if (_this.workSpace[0].files[_this.workSpaceActive[0]]) {
-                                _this.workSpace[0].files[_this.workSpaceActive[0]] = {
+                            //如果单击打开文件
+                            if (openType == 'single' && (_this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]].type != 'text' ||
+                                _this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]].modelChanges.length == 0)) {
+                                if (_this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]]) {
+                                    _this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]] = {
+                                        fileName: fileName,
+                                        type: type,
+                                        value: str,
+                                        path: fullPath,
+                                        pathArray: filePath,
+                                        editor: null,
+                                        viewState: null,
+                                        model: null,
+                                        modelChanges: []
+                                    };
+                                    _this.space[_this.workSpackActiveIndex].next({
+                                        str: str,
+                                        type: type,
+                                        action: 'stop',
+                                        path: fullPath
+                                    });
+                                }
+                            }
+                            else {
+                                _this.workSpace[_this.workSpackActiveIndex].files.push({
                                     fileName: fileName,
                                     type: type,
                                     value: str,
-                                    path: fullPath
-                                };
+                                    path: fullPath,
+                                    pathArray: filePath,
+                                    editor: null,
+                                    viewState: null,
+                                    model: null,
+                                    modelChanges: []
+                                });
+                                _this.workSpaceActive[_this.workSpackActiveIndex] = _this.workSpace[_this.workSpackActiveIndex].files.length - 1;
+                                _this.space[_this.workSpackActiveIndex].next({
+                                    str: str,
+                                    action: 'stop',
+                                    path: fullPath,
+                                    type: type
+                                });
                             }
                         });
                     }
@@ -2996,19 +3138,81 @@ var ApiService = (function () {
             });
         }
         else {
-            if (this.workSpace[0].files[this.workSpaceActive[0]]) {
-                this.workSpace[0].files[this.workSpaceActive[0]] = {
+            if (openType == 'single') {
+                if (this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]) {
+                    this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]] = {
+                        fileName: fileName,
+                        type: type,
+                        src: fullPath,
+                        pathArray: filePath,
+                        path: fullPath
+                    };
+                    /*this.firstSpace.next({
+                      action:action,
+                      path:fullPath
+                    });*/
+                    this.space[this.workSpackActiveIndex].next({
+                        action: action,
+                        path: fullPath,
+                        type: type
+                    });
+                }
+            }
+            else if (openType == 'double') {
+                this.workSpace[this.workSpackActiveIndex].files.push({
                     fileName: fileName,
                     type: type,
                     src: fullPath,
+                    pathArray: filePath,
                     path: fullPath
-                };
+                });
+                this.workSpaceActive[this.workSpackActiveIndex] = this.workSpace[this.workSpackActiveIndex].files.length - 1;
+                /*this.firstSpace.next({
+                  action:action,
+                  path:fullPath
+                });*/
+                this.space[this.workSpackActiveIndex].next({
+                    action: action,
+                    path: fullPath,
+                    type: type
+                });
             }
-            this.firstSpace.next({
-                action: action,
-                path: fullPath
-            });
         }
+    };
+    ApiService.prototype.checkReclick = function (filePath, openType) {
+        /*if(openType == 'single'){
+          if(
+            this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].pathArray+'' == filePath+''
+          ){
+            alert('相同');
+            return true;
+          }else{
+            return false;
+          }
+        }else if(openType == 'double'){
+          let reclick = false;
+          this.workSpace[this.workSpackActiveIndex].files.forEach((item,index)=>{
+            if(item.pathArray+'' == filePath+''){
+              this.workSpaceActive[this.workSpackActiveIndex] = index;
+              reclick = true;
+            }
+          })
+          return reclick
+        }*/
+        var _this = this;
+        var reclick = false;
+        this.workSpace[this.workSpackActiveIndex].files.forEach(function (item, index) {
+            if (item.pathArray + '' == filePath + '') {
+                _this.workSpaceActive[_this.workSpackActiveIndex] = index;
+                _this.space[_this.workSpackActiveIndex].next({
+                    str: item.str,
+                    type: item.type,
+                    path: item.src
+                });
+                reclick = true;
+            }
+        });
+        return reclick;
     };
     /**
      * 目录投放
@@ -3038,9 +3242,14 @@ var ApiService = (function () {
         this.workSpaceActive[workspackIndex] = index;
         if (this.workSpace[workspackIndex].files[index] && this.workSpace[workspackIndex].files[index].type == 'image') {
             console.log(this.workSpace[workspackIndex].files[index].src);
-            this.firstSpace.next({
+            /*this.firstSpace.next({
+              action:'openImage',
+              path:this.workSpace[workspackIndex].files[index].src
+            });*/
+            this.space[workspackIndex].next({
                 action: 'openImage',
-                path: this.workSpace[workspackIndex].files[index].src
+                path: this.workSpace[workspackIndex].files[index].src,
+                type: this.workSpace[workspackIndex].files[index].type
             });
         }
         this.setActiveSpaceIndex(workspackIndex);
@@ -3065,6 +3274,8 @@ var ApiService = (function () {
                     return;
                 }
                 alert('保存成功');
+                console.log(fileObj.editor.getModel());
+                fileObj.editor.dispose();
             });
         }
         //alert(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].fileName);
@@ -3079,6 +3290,23 @@ var ApiService = (function () {
           });
         }
         alert('保存文件');*/
+    };
+    /**
+     * 关闭文件
+     * @param param0
+     */
+    ApiService.prototype.dismissFile = function (_a) {
+        var workSpaceIndex = _a.workSpaceIndex, fileIndex = _a.fileIndex;
+        if (this.workSpace[workSpaceIndex].files.length - 1 <= fileIndex) {
+            this.workSpaceActive[workSpaceIndex] = fileIndex - 1;
+        }
+        this.workSpace[workSpaceIndex].files.splice(fileIndex, 1);
+        if (this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type != 'text') {
+            this.space[workSpaceIndex].next({
+                type: this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type,
+                path: this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].src
+            });
+        }
     };
     return ApiService;
 }());

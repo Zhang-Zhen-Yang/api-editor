@@ -15,6 +15,7 @@ export class TreeDirComponent implements OnInit {
   @Input() paths:Array<string>;
   @Input() pathsIndexs:Array<number>
   @Output() fileSelect = new EventEmitter();
+  @Output() dblFileSelect = new EventEmitter();
   constructor(public apiService:ApiService) { }
 
   ngOnInit() {
@@ -24,6 +25,11 @@ export class TreeDirComponent implements OnInit {
     let emitArray = e;
     emitArray.unshift(this.dirName);
     this.fileSelect.emit(emitArray);
+  }
+  dblSelect(e){
+    let emitArray = e;
+    e.unshift(this.dirName);
+    this.dblFileSelect.emit(emitArray);
   }
   //展开 收缩目录
   toggleExpand($event){

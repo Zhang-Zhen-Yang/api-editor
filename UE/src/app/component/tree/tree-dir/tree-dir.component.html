@@ -23,7 +23,8 @@
       <tree-file *ngIf="file.type=='file'" 
         [title]="file.fullPath"
         [fileName]="file.name" 
-        (fileSelect)="select($event)" 
+        (fileSelect)="select($event)"
+        (dblFileSelect)="dblSelect($event)"       
         [indent]="indent+1"></tree-file>
     </div>
   </div>

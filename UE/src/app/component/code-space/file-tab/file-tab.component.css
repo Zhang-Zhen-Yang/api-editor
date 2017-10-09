@@ -35,13 +35,22 @@
 	display: none;
 	position: absolute;
 	right:8px;
-	top:12px;
+	top:13px;
 	font-size:16px;
 	color:#333;
 	width:13px;
 	height:13px;
 	background: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>") 50% no-repeat;
 }
+.file-tab.active .dismiss{
+	display: block;
+}
+.file-tab .dismiss.dirty{
+	display: block;
+	background:url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' height='16' width='16'><circle fill='%23424242' cx='8' cy='8' r='4'/></svg>") 50% no-repeat;
+}
 .file-tab:hover .dismiss{
 	display: block;
+	background: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='3 3 16 16'><path fill='%23424242' d='M12.597 11.042l2.803 2.803-1.556 1.555-2.802-2.802L8.239 15.4l-1.556-1.555 2.802-2.803-2.802-2.803 1.555-1.556 2.804 2.803 2.803-2.803L15.4 8.239z'/></svg>") 50% no-repeat;
+	
 }
