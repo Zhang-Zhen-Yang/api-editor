@@ -943,7 +943,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/left-bar/left-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"left-bar\">\n  <div class=\"file-side-bar pointer relative\">\n    <div class=\"badge-content\">\n      1\n    </div>\n  </div>\n\n\n</div>\n\n"
+module.exports = "<div id=\"left-bar\">\n  <div class=\"file-side-bar pointer relative\">\n    <div class=\"badge-content\">\n      1\n    </div>\n    \n  </div>\n\n\n</div>\n\n"
 
 /***/ }),
 
@@ -1670,7 +1670,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*.expanded-space{\r\n\tdisplay: inline-block;\r\n\twidth:16px;\r\n\theight:16px;\r\n}*/", ""]);
+exports.push([module.i, "/*.expanded-space{\r\n\tdisplay: inline-block;\r\n\twidth:16px;\r\n\theight:16px;\r\n}*/\r\n.fileResourceActive{\r\n\tbackground-color:#ccc;\r\n}", ""]);
 
 // exports
 
@@ -1683,7 +1683,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent\" \n    [class.fileResourceActive]=\"fileActive()\" \n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1693,6 +1693,7 @@ module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreeFileComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1703,12 +1704,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var TreeFileComponent = (function () {
-    function TreeFileComponent() {
+    function TreeFileComponent(apiService) {
+        this.apiService = apiService;
         this.dblFileSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
         this.fileSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
     }
     TreeFileComponent.prototype.ngOnInit = function () {
+    };
+    TreeFileComponent.prototype.fileActive = function () {
+        var activeFile = this.apiService.workSpace[this.apiService.workSpackActiveIndex].files[this.apiService.workSpaceActive[this.apiService.workSpackActiveIndex]];
+        return this.title == activeFile.path || this.title == activeFile.src;
     };
     /**
      * 单击选择文件
@@ -1763,9 +1770,10 @@ TreeFileComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], TreeFileComponent);
 
+var _a;
 //# sourceMappingURL=tree-file.component.js.map
 
 /***/ }),

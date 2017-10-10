@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ApiService } from '../../../service/api.service'
 
 @Component({
   selector: 'tree-file',
@@ -11,10 +12,16 @@ export class TreeFileComponent implements OnInit {
   @Input() indent:number
   @Output() dblFileSelect = new EventEmitter()
   @Output() fileSelect = new EventEmitter();
-  constructor() { }
+  constructor( public apiService:ApiService ) { }
 
   ngOnInit() {
   }
+
+  fileActive(){
+    let activeFile = this.apiService.workSpace[this.apiService.workSpackActiveIndex].files[this.apiService.workSpaceActive[this.apiService.workSpackActiveIndex]];
+    return this.title == activeFile.path || this.title == activeFile.src;
+  }
+
   /**
    * 单击选择文件
    */
@@ -40,5 +47,6 @@ export class TreeFileComponent implements OnInit {
     e.unshift(this.fileName);
     this.dblFileSelect.emit(emitArray);
   }
+
 
 }

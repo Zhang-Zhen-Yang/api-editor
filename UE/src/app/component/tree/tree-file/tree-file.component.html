@@ -1,5 +1,7 @@
 <div class="tree-item" (click)="clickFile()" (dblclick)="dblclickFile()">  
-  <div class="tree-item-indent" [style.textIndent]="indent+'em'" title="{{ title }}">
+  <div class="tree-item-indent" 
+    [class.fileResourceActive]="fileActive()" 
+    [style.textIndent]="indent+'em'" title="{{ title }}">
     <!--<div class="expanded-space"></div>-->
     <img [ngClass]="['tree-icon','file-type']" [src]="fileName|fileIcon:expanded" alt="">{{fileName}}
   </div>

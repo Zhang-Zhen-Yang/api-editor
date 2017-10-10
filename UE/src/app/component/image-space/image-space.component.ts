@@ -67,7 +67,7 @@ export class ImageSpaceComponent implements OnInit,AfterViewInit {
         case 'click':
         this.apiService.workSpackActiveIndex = this.sapceIndex;
           break;
-      
+          
         default:
           break;
       }
