@@ -2,7 +2,7 @@
  * @Author: zhangzhenyang 
  * @Date: 2017-09-27 10:58:03 
  * @Last Modified by: zhangzhenyang
- * @Last Modified time: 2017-09-27 17:11:51
+ * @Last Modified time: 2017-10-10 14:03:05
  */
 //调整左右上下占比 组件
 import { Component, OnInit, AfterViewInit,AfterContentInit, Input, Output, EventEmitter, ViewChild, ComponentFactoryResolver,ElementRef } from '@angular/core';
@@ -22,7 +22,8 @@ enum resizeDirection{
 export class ResizeLayoutComponent implements OnInit,AfterViewInit,AfterContentInit  {
   @ViewChild(HostDirective) host;
   @ViewChild(DisplayWiewHostDirective) displayHost;
-
+  
+  @Input() shows:Array<boolean>
   @Input() direction:resizeDirection;
   @Input() components:Array<any>;
   @Input() ratio:Array<any>;
@@ -61,18 +62,28 @@ export class ResizeLayoutComponent implements OnInit,AfterViewInit,AfterContentI
   }
 
   ratioStyle(){
+
+    let ratio:Array<string|number|boolean> = ['50%','50%'];
+
+    if(!this.shows[0]||!this.shows[1]){
+      ratio = [this.shows[0]?'100%':0,this.shows[1]?'100%':0];
+      return ratio;
+    }
     if(this.ratios&&this.delivery_type){
       if(this.delivery_type=='ratio'){
-        return [this.ratios[0].value*100+'%',this.ratios[1].value*100+'%']
+        ratio = [this.ratios[0].value*100+'%',this.ratios[1].value*100+'%'];
+        //return [this.ratios[0].value*100+'%',this.ratios[1].value*100+'%']
       }
       if(this.delivery_type=='firstFixed'){
-        return [this.ratios[0].value+'px',`calc( 100% - ${this.ratios[0].value}px)`]
+        ratio = [this.ratios[0].value+'px',`calc( 100% - ${this.ratios[0].value}px)`];
+        //return [this.ratios[0].value+'px',`calc( 100% - ${this.ratios[0].value}px)`]
       }
       if(this.delivery_type=='secondFixed'){
-        return [`calc( 100% - ${this.ratios[1].value}px)`,this.ratios[1].value+'px']
+        ratio = [`calc( 100% - ${this.ratios[1].value}px)`,this.ratios[1].value+'px'];
+        //return [`calc( 100% - ${this.ratios[1].value}px)`,this.ratios[1].value+'px']
       }
     }
-    return ['50%','50%']
+    return ratio
   }
   /**
    * 开始调整占比

@@ -41,6 +41,7 @@
 .resize-layout-delimiter.left{
 	left:0;
 	/*background-color: red;*/
+	border-left:1px solid #CFCFCF;
 }
 .resize-layout-delimiter:hover{
 	cursor: e-resize;

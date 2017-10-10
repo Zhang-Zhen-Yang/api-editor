@@ -2,7 +2,7 @@
   <b class="file-icon">    
       <img [src]="fileName|fileIcon:expanded" alt="">
   </b>
-  {{ changes()}}
+  <!--{{ changes()}}-->
   {{ fileName }}
   <b class="dismiss"  [class.dirty]="changes()" (click)="dismiss($event)" title="关闭"></b>
 </div>

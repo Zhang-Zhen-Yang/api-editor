@@ -5,7 +5,11 @@
     </div>
     <div id="layout-right"  class="absolute">
       <!--<app-code-space></app-code-space>-->
-      <app-resize-layout [components]="resourcemanger" [ratio]="[{value:250},{value:0.5}]" [delivery_type]="'firstFixed'"></app-resize-layout>
+      <app-resize-layout 
+        [components]="resourcemanger" 
+        [ratio]="[{value:250},{value:0.5}]"
+        [shows]="[true,true]"
+        [delivery_type]="'firstFixed'"></app-resize-layout>
       <!--<app-resize-layout [components]="components" [ratio]="[{value:0.5},{value:0.5}]" [delivery_type]="'ratio'"></app-resize-layout>-->
     </div>
   </div>

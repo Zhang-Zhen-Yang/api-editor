@@ -7,3 +7,14 @@
 	background-color:#1ABC9C;
 	color:white;
 }
+.edit-message-wrap{
+	float:right;
+	color:white;
+}
+.edit-message{
+	display: inline-block;
+	height:25px;
+	line-height: 25px;
+	font-size:12px;
+	padding:0 5px;
+}

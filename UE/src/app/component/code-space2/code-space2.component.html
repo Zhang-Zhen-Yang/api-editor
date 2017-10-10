@@ -21,7 +21,9 @@
       <ng-container *ngFor="let file of apiService.workSpace[index].files;let i = index;">
         <app-monaco-space *ngIf="file.type=='text'&&apiService.workSpaceActive[index]==i" 
         [value]="file.value"
-        [workspaceIndex]="index" 
+        [workspaceIndex]="index"
+        [fileName]="file.fileName"
+        [lang]="file.lang"
         [fileIndex]="i"></app-monaco-space>			
       </ng-container>
       <app-image-space [sapceIndex]="index"></app-image-space>   

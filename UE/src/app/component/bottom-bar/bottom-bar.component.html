@@ -1,3 +1,24 @@
 <div id="bottom-bar">
-  bottom-bar works!
+
+  <div class="edit-message-wrap" *ngIf="apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].type=='text'">
+    <div class="row-index edit-message">
+      12行
+    </div>
+    <div class="column-index edit-message">
+      15列
+    </div>
+    <div class="charset edit-message">
+      UTF-8
+    </div>
+    <div class="language edit-message" *ngIf="apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang">
+      {{ apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang }}
+    </div>
+  </div>
+
+  <div class="edit-message-wrap" *ngIf="apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].type!='text'">
+    <div class="edit-message">
+      图片等
+    </div>    
+  </div>
+  
 </div>

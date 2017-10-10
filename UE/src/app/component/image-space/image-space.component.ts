@@ -15,8 +15,11 @@ export class ImageSpaceComponent implements OnInit,AfterViewInit {
     
   }
   ngAfterViewInit(){
+
     this.apiService.space[this.sapceIndex].subscribe((e)=>{
-      let path = e['path']?e['path'].replace(/\\/g,'/'):'';
+      let path = e['path'];//?e['path'].replace(/\\/g,'/'):'';
+
+      let params = JSON.stringify({path:e['path']});
       /*switch(e['action']){
         //打开图片
         case 'openImage':
@@ -39,7 +42,8 @@ export class ImageSpaceComponent implements OnInit,AfterViewInit {
       switch(e['type']){
         //打开图片
         case 'image':
-          this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
+          //this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
+          this.webview.nativeElement.send('setImage',path);
           break;
         //打开pdf
         case 'pdf':
@@ -47,7 +51,8 @@ export class ImageSpaceComponent implements OnInit,AfterViewInit {
           break;
         //打开mp4,打开mp3
         case 'media':
-          this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
+          //this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
+          this.webview.nativeElement.send('setMedia',path);
           break;
         case 'text':
           this.webview.nativeElement.executeJavaScript('stop()');
@@ -55,6 +60,18 @@ export class ImageSpaceComponent implements OnInit,AfterViewInit {
         default :
           break;
       }
+    })
+
+    this.webview.nativeElement.addEventListener('ipc-message',(e)=>{
+      switch (e.channel) {
+        case 'click':
+        this.apiService.workSpackActiveIndex = this.sapceIndex;
+          break;
+      
+        default:
+          break;
+      }
+
     })
   }
 

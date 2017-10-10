@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject'
+
+import { DialogService } from './dialog.service'
 import 'rxjs/add/operator/debounceTime'
 //import 'rxjs/add/operator/empty'
 //import 'rxjs/add/observable/combineLatest'
@@ -12,8 +14,9 @@ let path = window['path'],
     glob = window['glob'],
     fs = window['fs'];
 @Injectable()
-export class ApiService {  
-  constructor() {
+export class ApiService {
+  languages:Array<any>
+  constructor(public dialog:DialogService) {
     //双击打开新的文件
     /*this.openTabSubject.subscribe((e)=>{
       console.log(e);
@@ -36,7 +39,6 @@ export class ApiService {
         default:;
       }
     })
-
   }
 
   observables={
@@ -71,6 +73,108 @@ export class ApiService {
   }
 
   /**
+   * 初始化菜单
+   */
+  initMenu(){
+    let { Menu, MenuItem, shell} = window['remote'],_this = this;
+    const template = [
+      {
+        label:'文件(F)',
+        submenu:[
+          {
+            label:'打开文件',
+            click(){ alert('打开文件') }
+          },
+          {
+            label:'打开文件夹',
+            click(){ _this.openFile(()=>{
+              console.log('通过菜单打单文件夹');
+            })}
+          },
+          {type: 'separator'},
+          {
+            label:'新建项目',
+            click(){ _this.createNewProject() }
+          },
+          {type: 'separator'},
+
+          {
+            label:'保存',
+            role:'save',
+            click(){ alert('保存') }
+          },
+          {
+            label:'另存为',
+            click(){ alert('另存为') }
+          },
+          {
+            label:'全部保存',
+            click(){ alert('全部保存') }
+          },
+          {type: 'separator'},
+
+          {
+            label:'退出',
+            role:'close',
+            click(){ alert('退出') }
+          },
+        ]
+      },
+      {
+        label: 'Edit',
+        submenu: [
+          {role: 'undo'},
+          {role: 'redo'},
+          {type: 'separator'},
+          {role: 'cut'},
+          {role: 'copy'},
+          {role: 'paste'},
+          {role: 'pasteandmatchstyle'},
+          {role: 'delete'},
+          {role: 'selectall'}
+        ]
+      },
+      {
+        label: 'View',
+        submenu: [
+          {role: 'reload'},
+          {role: 'forcereload'},
+          {role: 'toggledevtools'},
+          {type: 'separator'},
+          {role: 'resetzoom'},
+          {role: 'zoomin'},
+          {role: 'zoomout'},
+          {type: 'separator'},
+          {role: 'togglefullscreen'}
+        ]
+      },
+      {
+        role: 'window',
+        submenu: [
+          {role: 'minimize'},
+          {role: 'close'}
+        ]
+      },
+      {
+        role: 'help',
+        submenu: [
+          {
+            label: 'Learn More',
+            click () { shell.openExternal('https://electron.atom.io') }
+          }
+        ]
+      }
+    ]
+    const menu = Menu.buildFromTemplate(template);
+    Menu.setApplicationMenu(menu);
+  }
+
+
+  createNewProject(){
+    alert('createNewProject');
+  }
+
+  /**
    * 目录下的所有目录，文件
    */
   files:Array<any> = [];
@@ -91,6 +195,7 @@ export class ApiService {
           editor:null,
           viewState:null,
           model:null,
+          lang:null,
           modelChanges:[]
         },
         {
@@ -103,7 +208,8 @@ export class ApiService {
           editor:null,
           viewState:null,
           model:null,
-          modelChanges:[]
+          modelChanges:[],
+          lang:null
         },
         {
           active:false,
@@ -127,7 +233,8 @@ export class ApiService {
           editor:null,
           viewState:null,
           model:null,
-          modelChanges:[]
+          modelChanges:[],
+          lang:null
         },
         {
           active:true,
@@ -148,7 +255,8 @@ export class ApiService {
           editor:null,
           viewState:null,
           model:null,
-          modelChanges:[]
+          modelChanges:[],
+          lang:null
         }
       ]
     }
@@ -182,12 +290,17 @@ export class ApiService {
   openFile(callback){
     let _this = this;
 
-    window['remote'].dialog.showOpenDialog({
+    window['remote'].dialog.showOpenDialog(
+    window['remote'].getCurrentWindow(),
+    {
       title:'请选择文件目录',
       properties: [ 'openDirectory', 'multiSelections']
     },function(filePaths){
       callback(filePaths);
       //this.getCurrentDirFiles(filePaths[0],result);
+      if(!filePaths){
+        return;
+      }
       _this.projectDir = filePaths[0];
       _this.readDir(filePaths[0],_this.files);
       localStorage.setItem('projectDir',filePaths[0]);
@@ -519,9 +632,8 @@ export class ApiService {
   /**
    * 保存文件
    */
-  saveFile(){
-   
-    let fileObj = this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]];
+  saveFile(obj?,callback?){   
+    let fileObj = obj||this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]];
     //如果是文本文件
     if(fileObj.type == 'text'){
       fs.writeFile(fileObj.path,fileObj.editor.getValue(),'utf8',(er)=>{
@@ -529,27 +641,16 @@ export class ApiService {
           alert('保存失败');
           return;
         }
-        alert('保存成功');
-
-        console.log(fileObj.editor.getModel());
-        fileObj.editor.dispose();
+        //alert('保存成功');
+        /*console.log(fileObj.editor.getModel());
+        fileObj.editor.dispose();*/
+        fileObj.modelChanges = [];
+        if(callback){
+          callback()
+        }
         
       })
-    }    
-
-    //alert(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].fileName);
-
-    /*if(this.openedFileWebview){
-      console.log('ddd');
-      this.openedFileWebview.executeJavaScript('getCode()',(str)=>{
-        let file = this.openedFile;
-        fs.writeFile(file,str,'utf8',()=>{
-          alert('保存成功');
-        })
-
-      });
-    }
-    alert('保存文件');*/
+    } 
   }
 
   /**
@@ -557,19 +658,63 @@ export class ApiService {
    * @param param0 
    */
   dismissFile({workSpaceIndex,fileIndex}){
-    
+
+    //如果是文本文件类型，并作了修改
+    if(this.workSpace[workSpaceIndex].files[fileIndex].type=='text'&&this.workSpace[workSpaceIndex].files[fileIndex].modelChanges.length>0){
+      let fileName = this.workSpace[workSpaceIndex].files[fileIndex].fileName;
+      this.dialog.showMessageBox(
+      window['remote'].getCurrentWindow(),
+      {
+        type:'warning',
+        message:`是否要保存对 ${fileName} 的更改？`,
+        detail :'如果不保存，更改将丢失。',
+        buttons:['保存(S)','不保存(N)','取消'],
+        cancelId:2,
+        defaultId:1,
+        noLink :true
+      },(e,checkboxChecked)=>{
+        switch(e){
+          //保存并关闭
+          case 0:
+            this.saveFile(this.workSpace[workSpaceIndex].files[fileIndex].type=='text'&&this.workSpace[workSpaceIndex].files[fileIndex],()=>{
+              this.closeFile({workSpaceIndex,fileIndex});
+            })
+            break;
+          //直接关闭
+          case 1:
+            this.closeFile({workSpaceIndex,fileIndex});
+            break;
+          case 2:
+            break;
+        }
+      });
+    }else{
+      this.closeFile({workSpaceIndex,fileIndex})
+    }    
+  }
+
+  /**
+   * 关闭文件
+   * @param param0 
+   */
+  closeFile({workSpaceIndex,fileIndex}){
     if(this.workSpace[workSpaceIndex].files.length-1<=fileIndex){
       this.workSpaceActive[workSpaceIndex] = fileIndex-1;
     }
     this.workSpace[workSpaceIndex].files.splice(fileIndex,1);
 
-    if(this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type!='text'){
+    if(
+      this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]&&
+      this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type!='text'
+    ){
       this.space[workSpaceIndex].next({
         type:this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type,
         path:this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].src
       })
     }
-
   }
+
+
+
 
 }

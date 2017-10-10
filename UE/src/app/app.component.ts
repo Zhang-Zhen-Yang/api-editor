@@ -18,7 +18,12 @@ export class AppComponent implements OnInit{
   }
   title = 'app';
   ngOnInit(){
+
+    //初始化项目
     this.apiService.initProjectDir();
+
+    //初始化菜单
+    this.apiService.initMenu();
 
     //注册键盘事件
     document.addEventListener('keydown',(e)=>{
@@ -61,6 +66,8 @@ export class AppComponent implements OnInit{
       console.log(e);
       return false;
     }
+
+
 
 
 

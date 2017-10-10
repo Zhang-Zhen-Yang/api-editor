@@ -3,6 +3,10 @@ import { NgModule,NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from "@angular/forms"
 import { TestModuleMetadata } from '@angular/core/testing';
 
+//service
+import { ApiService } from './service/api.service';
+import { DialogService } from './service/dialog.service';
+//component
 import { AppComponent } from './app.component';
 import { BottomBarComponent } from './component/bottom-bar/bottom-bar.component';
 import { CodeSpaceComponent } from './component/code-space/code-space.component';
@@ -16,7 +20,7 @@ import { DisplaySpaceComponent } from './component/display-space/display-space.c
 import { DisplayWiewHostDirective } from './component/resize-layout/display-wiew-host.directive';
 import { ResourceManagerComponent } from './component/resource-manager/resource-manager.component';
 import { WorkSpaceComponent } from './component/work-space/work-space.component';
-import { ApiService } from './service/api.service';
+
 import { TreeComponent } from './component/tree/tree.component';
 import { TreeDirComponent } from './component/tree/tree-dir/tree-dir.component';
 import { TreeFileComponent } from './component/tree/tree-file/tree-file.component';
@@ -63,7 +67,8 @@ import { ImageSpaceComponent } from './component/image-space/image-space.compone
     FormsModule
   ],
   providers: [
-    ApiService
+    ApiService,
+    DialogService
   ],
   bootstrap: [AppComponent],
   schemas:[NO_ERRORS_SCHEMA]

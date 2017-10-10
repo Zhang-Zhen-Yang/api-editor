@@ -1,5 +1,5 @@
 <div class="image-wrap scrollbar-override" 
   [class.show]="apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]]&&(apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='image'||apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='media')">
-  <webview #webview src="src/vs/index.html" class="image-space-webview"></webview>
+  <webview #webview src="src/vs/index.html" class="image-space-webview" minwidth="0" nodeintegration></webview>
  <!--<img [src]="apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].src" alt="" >-->
 </div>

@@ -71,7 +71,10 @@ var AppComponent = (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
+        //初始化项目
         this.apiService.initProjectDir();
+        //初始化菜单
+        this.apiService.initMenu();
         //注册键盘事件
         document.addEventListener('keydown', function (e) {
             switch (e.key) {
@@ -143,28 +146,29 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_bottom_bar_bottom_bar_component__ = __webpack_require__("../../../../../src/app/component/bottom-bar/bottom-bar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__component_code_space_code_space_component__ = __webpack_require__("../../../../../src/app/component/code-space/code-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__component_code_space2_code_space2_component__ = __webpack_require__("../../../../../src/app/component/code-space2/code-space2.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__component_left_bar_left_bar_component__ = __webpack_require__("../../../../../src/app/component/left-bar/left-bar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__component_layout_layout_component__ = __webpack_require__("../../../../../src/app/component/layout/layout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_resize_layout_resize_layout_component__ = __webpack_require__("../../../../../src/app/component/resize-layout/resize-layout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_resize_layout_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/host.directive.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__component_test_test_component__ = __webpack_require__("../../../../../src/app/component/test/test.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_display_space_display_space_component__ = __webpack_require__("../../../../../src/app/component/display-space/display-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_resize_layout_display_wiew_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/display-wiew-host.directive.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_resource_manager_resource_manager_component__ = __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__component_work_space_work_space_component__ = __webpack_require__("../../../../../src/app/component/work-space/work-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_component__ = __webpack_require__("../../../../../src/app/component/tree/tree.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_dir_tree_dir_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-dir/tree-dir.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__component_tree_tree_file_tree_file_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pipe_file_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/file-icon.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pipe_folder_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/folder-icon.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_code_space_file_tab_file_tab_component__ = __webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_monaco_space_monaco_space_component__ = __webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__component_image_space_image_space_component__ = __webpack_require__("../../../../../src/app/component/image-space/image-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_dialog_service__ = __webpack_require__("../../../../../src/app/service/dialog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__component_bottom_bar_bottom_bar_component__ = __webpack_require__("../../../../../src/app/component/bottom-bar/bottom-bar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__component_code_space_code_space_component__ = __webpack_require__("../../../../../src/app/component/code-space/code-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__component_code_space2_code_space2_component__ = __webpack_require__("../../../../../src/app/component/code-space2/code-space2.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_left_bar_left_bar_component__ = __webpack_require__("../../../../../src/app/component/left-bar/left-bar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_layout_layout_component__ = __webpack_require__("../../../../../src/app/component/layout/layout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__component_resize_layout_resize_layout_component__ = __webpack_require__("../../../../../src/app/component/resize-layout/resize-layout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/host.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_test_test_component__ = __webpack_require__("../../../../../src/app/component/test/test.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_display_space_display_space_component__ = __webpack_require__("../../../../../src/app/component/display-space/display-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__component_resize_layout_display_wiew_host_directive__ = __webpack_require__("../../../../../src/app/component/resize-layout/display-wiew-host.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__component_resource_manager_resource_manager_component__ = __webpack_require__("../../../../../src/app/component/resource-manager/resource-manager.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__component_work_space_work_space_component__ = __webpack_require__("../../../../../src/app/component/work-space/work-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_component__ = __webpack_require__("../../../../../src/app/component/tree/tree.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__component_tree_tree_dir_tree_dir_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-dir/tree-dir.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__component_tree_tree_file_tree_file_component__ = __webpack_require__("../../../../../src/app/component/tree/tree-file/tree-file.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pipe_file_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/file-icon.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pipe_folder_icon_pipe__ = __webpack_require__("../../../../../src/app/pipe/folder-icon.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_code_space_file_tab_file_tab_component__ = __webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__component_monaco_space_monaco_space_component__ = __webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__component_image_space_image_space_component__ = __webpack_require__("../../../../../src/app/component/image-space/image-space.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -174,7 +178,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+//service
 
+
+//component
 
 
 
@@ -204,43 +211,44 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_4__component_bottom_bar_bottom_bar_component__["a" /* BottomBarComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__component_code_space_code_space_component__["a" /* CodeSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__component_left_bar_left_bar_component__["a" /* LeftBarComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__component_layout_layout_component__["a" /* LayoutComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__component_resize_layout_resize_layout_component__["a" /* ResizeLayoutComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__component_resize_layout_host_directive__["a" /* HostDirective */],
-            __WEBPACK_IMPORTED_MODULE_11__component_test_test_component__["a" /* TestComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__component_resize_layout_display_wiew_host_directive__["a" /* DisplayWiewHostDirective */],
-            __WEBPACK_IMPORTED_MODULE_14__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__component_work_space_work_space_component__["a" /* WorkSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__component_tree_tree_component__["a" /* TreeComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_dir_tree_dir_component__["a" /* TreeDirComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__component_tree_tree_file_tree_file_component__["a" /* TreeFileComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__pipe_file_icon_pipe__["a" /* FileIconPipe */],
-            __WEBPACK_IMPORTED_MODULE_21__pipe_folder_icon_pipe__["a" /* FolderIconPipe */],
-            __WEBPACK_IMPORTED_MODULE_22__component_code_space_file_tab_file_tab_component__["a" /* FileTabComponent */],
-            __WEBPACK_IMPORTED_MODULE_23__component_monaco_space_monaco_space_component__["a" /* MonacoSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_24__component_image_space_image_space_component__["a" /* ImageSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__component_code_space2_code_space2_component__["a" /* CodeSpace2Component */]
+            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__component_bottom_bar_bottom_bar_component__["a" /* BottomBarComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__component_code_space_code_space_component__["a" /* CodeSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__component_left_bar_left_bar_component__["a" /* LeftBarComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__component_layout_layout_component__["a" /* LayoutComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__component_resize_layout_resize_layout_component__["a" /* ResizeLayoutComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__component_resize_layout_host_directive__["a" /* HostDirective */],
+            __WEBPACK_IMPORTED_MODULE_13__component_test_test_component__["a" /* TestComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__component_display_space_display_space_component__["a" /* DisplaySpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__component_resize_layout_display_wiew_host_directive__["a" /* DisplayWiewHostDirective */],
+            __WEBPACK_IMPORTED_MODULE_16__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__component_work_space_work_space_component__["a" /* WorkSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__component_tree_tree_component__["a" /* TreeComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__component_tree_tree_dir_tree_dir_component__["a" /* TreeDirComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__component_tree_tree_file_tree_file_component__["a" /* TreeFileComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__pipe_file_icon_pipe__["a" /* FileIconPipe */],
+            __WEBPACK_IMPORTED_MODULE_22__pipe_folder_icon_pipe__["a" /* FolderIconPipe */],
+            __WEBPACK_IMPORTED_MODULE_23__component_code_space_file_tab_file_tab_component__["a" /* FileTabComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__component_monaco_space_monaco_space_component__["a" /* MonacoSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__component_image_space_image_space_component__["a" /* ImageSpaceComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__component_code_space2_code_space2_component__["a" /* CodeSpace2Component */]
         ],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_11__component_test_test_component__["a" /* TestComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__component_test_test_component__["a" /* TestComponent */],
             /*CodeSpaceComponent,
             DisplaySpaceComponent,*/
-            __WEBPACK_IMPORTED_MODULE_14__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__component_work_space_work_space_component__["a" /* WorkSpaceComponent */]
+            __WEBPACK_IMPORTED_MODULE_16__component_resource_manager_resource_manager_component__["a" /* ResourceManagerComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__component_work_space_work_space_component__["a" /* WorkSpaceComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_16__service_api_service__["a" /* ApiService */]
+            __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */],
+            __WEBPACK_IMPORTED_MODULE_4__service_dialog_service__["a" /* DialogService */]
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]],
         schemas: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* NO_ERRORS_SCHEMA */]]
     })
 ], AppModule);
@@ -257,7 +265,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#bottom-bar{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\tbottom:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\tbackground-color:#1ABC9C;\r\n\tcolor:white;\r\n}", ""]);
+exports.push([module.i, "#bottom-bar{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\tbottom:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\tbackground-color:#1ABC9C;\r\n\tcolor:white;\r\n}\r\n.edit-message-wrap{\r\n\tfloat:right;\r\n\tcolor:white;\r\n}\r\n.edit-message{\r\n\tdisplay: inline-block;\r\n\theight:25px;\r\n\tline-height: 25px;\r\n\tfont-size:12px;\r\n\tpadding:0 5px;\r\n}", ""]);
 
 // exports
 
@@ -270,7 +278,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/bottom-bar/bottom-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"bottom-bar\">\n  bottom-bar works!\n</div>\n"
+module.exports = "<div id=\"bottom-bar\">\n\n  <div class=\"edit-message-wrap\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].type=='text'\">\n    <div class=\"row-index edit-message\">\n      12行\n    </div>\n    <div class=\"column-index edit-message\">\n      15列\n    </div>\n    <div class=\"charset edit-message\">\n      UTF-8\n    </div>\n    <div class=\"language edit-message\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang\">\n      {{ apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang }}\n    </div>\n  </div>\n\n  <div class=\"edit-message-wrap\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].type!='text'\">\n    <div class=\"edit-message\">\n      图片等\n    </div>    \n  </div>\n  \n</div>\n"
 
 /***/ }),
 
@@ -280,6 +288,7 @@ module.exports = "<div id=\"bottom-bar\">\n  bottom-bar works!\n</div>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BottomBarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -290,10 +299,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var BottomBarComponent = (function () {
-    function BottomBarComponent() {
+    function BottomBarComponent(apiService) {
+        this.apiService = apiService;
     }
     BottomBarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        window['loader']().then(function (monaco) {
+            //console.log(monaco.languages.getLanguages());
+            _this.lang = monaco.languages.getLanguages();
+        });
     };
     return BottomBarComponent;
 }());
@@ -303,9 +319,10 @@ BottomBarComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/component/bottom-bar/bottom-bar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/bottom-bar/bottom-bar.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], BottomBarComponent);
 
+var _a;
 //# sourceMappingURL=bottom-bar.component.js.map
 
 /***/ }),
@@ -331,7 +348,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/code-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\"\n\t\t\t[modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n\t\t\t[value]=\"file.value\" \n\t\t\t[workspaceIndex]=\"index\" \n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\n\t\t</ng-container>\n\t\t<app-image-space [sapceIndex]=\"index\"></app-image-space>\n\t</div>\n\t\n</div>\n\n"
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\"\n\t\t\t[modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n\t\t\t[value]=\"file.value\" \n\t\t\t[workspaceIndex]=\"index\"\n\t\t\t[fileName]=\"file.fileName\"\n\t\t\t[lang]=\"file.lang\"\n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\n\t\t</ng-container>\n\t\t<app-image-space [sapceIndex]=\"index\"></app-image-space>\n\t</div>\n\t\n</div>\n\n"
 
 /***/ }),
 
@@ -447,7 +464,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/file-tab/file-tab.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\">\n  <b class=\"file-icon\">    \n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\n  </b>\n  {{ changes()}}\n  {{ fileName }}\n  <b class=\"dismiss\"  [class.dirty]=\"changes()\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\n</div>\n"
+module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\">\n  <b class=\"file-icon\">    \n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\n  </b>\n  <!--{{ changes()}}-->\n  {{ fileName }}\n  <b class=\"dismiss\"  [class.dirty]=\"changes()\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\n</div>\n"
 
 /***/ }),
 
@@ -547,7 +564,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space2/code-space2.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \n        (dismiss)=\"dismiss(i)\" \n        (selectFile)=\"selectFile(i)\"\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\n        [active]=\"i == apiService.workSpaceActive[index]\"\n        [modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n        {{ tab }}\n      </app-file-tab>\n    </div>\n  \n    <!--旧-->\n    <!--<div class=\"webview-wrap absolute\" >\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n      </webview>\n    </div>-->\n  \n    <!--新-->\n    <div class=\"webview-wrap absolute\">\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n        [value]=\"file.value\"\n        [workspaceIndex]=\"index\" \n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\n      </ng-container>\n      <app-image-space [sapceIndex]=\"index\"></app-image-space>   \n    </div>        \n  </div>\n  \n  "
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \n        (dismiss)=\"dismiss(i)\" \n        (selectFile)=\"selectFile(i)\"\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\n        [active]=\"i == apiService.workSpaceActive[index]\"\n        [modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n        {{ tab }}\n      </app-file-tab>\n    </div>\n  \n    <!--旧-->\n    <!--<div class=\"webview-wrap absolute\" >\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n      </webview>\n    </div>-->\n  \n    <!--新-->\n    <div class=\"webview-wrap absolute\">\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n        [value]=\"file.value\"\n        [workspaceIndex]=\"index\"\n        [fileName]=\"file.fileName\"\n        [lang]=\"file.lang\"\n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\n      </ng-container>\n      <app-image-space [sapceIndex]=\"index\"></app-image-space>   \n    </div>        \n  </div>\n  \n  "
 
 /***/ }),
 
@@ -704,7 +721,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".image-wrap{\r\n\tposition:absolute;\r\n\tdisplay: none;\r\n\tleft: 0;\r\n\ttop:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\toverflow: auto;\r\n\tbox-sizing: border-box;\r\n\toverflow:hidden;\r\n\tpadding: 0;\r\n\tbackground-image: linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6),linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6);\r\n\tbackground-position: 0 0,8px 8px;\r\n\tbackground-size: 16px 16px;\r\n}\r\n.image-wrap.show{\r\n\tdisplay: block;\r\n}\r\n.image-space-webview{\r\n\twidth:100%;\r\n\theight:100%;\r\n\toverflow:auto;\r\n}", ""]);
+exports.push([module.i, ".image-wrap{\r\n\tposition:absolute;\r\n\tdisplay: block;\r\n\tleft: 0;\r\n\ttop:0;\r\n\twidth:0px;\r\n\theight:0px;\r\n\toverflow: hidden;\r\n\tbox-sizing: border-box;\r\n\toverflow:hidden;\r\n\tpadding: 0;\r\n\tbackground-image: linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6),linear-gradient(45deg,#e6e6e6 25%,transparent 0,transparent 75%,#e6e6e6 0,#e6e6e6);\r\n\tbackground-position: 0 0,8px 8px;\r\n\tbackground-size: 16px 16px;\r\n}\r\n.image-wrap.show{\r\n\tdisplay: block;\r\n\twidth:100%;\r\n\theight:100%;\r\n}\r\n.image-space-webview{\r\n\tdisplay: block;\r\n\tdisplay:-webkit-box;\r\n\tdisplay:-ms-flexbox;\r\n\tdisplay:flex;\r\n\t-webkit-box-flex:1;\r\n\t    -ms-flex:1;\r\n\t        flex:1;\r\n\tposition: absolute;\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n\toverflow:hidden;\r\n}", ""]);
 
 // exports
 
@@ -717,7 +734,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/image-space/image-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"image-wrap scrollbar-override\" \n  [class.show]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]]&&(apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='image'||apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='media')\">\n  <webview #webview src=\"src/vs/index.html\" class=\"image-space-webview\"></webview>\n <!--<img [src]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].src\" alt=\"\" >-->\n</div>\n"
+module.exports = "<div class=\"image-wrap scrollbar-override\" \n  [class.show]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]]&&(apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='image'||apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='media')\">\n  <webview #webview src=\"src/vs/index.html\" class=\"image-space-webview\" minwidth=\"0\" nodeintegration></webview>\n <!--<img [src]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].src\" alt=\"\" >-->\n</div>\n"
 
 /***/ }),
 
@@ -748,7 +765,8 @@ var ImageSpaceComponent = (function () {
     ImageSpaceComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         this.apiService.space[this.sapceIndex].subscribe(function (e) {
-            var path = e['path'] ? e['path'].replace(/\\/g, '/') : '';
+            var path = e['path']; //?e['path'].replace(/\\/g,'/'):'';
+            var params = JSON.stringify({ path: e['path'] });
             /*switch(e['action']){
               //打开图片
               case 'openImage':
@@ -771,7 +789,8 @@ var ImageSpaceComponent = (function () {
             switch (e['type']) {
                 //打开图片
                 case 'image':
-                    _this.webview.nativeElement.executeJavaScript('openImage("' + path + '")');
+                    //this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
+                    _this.webview.nativeElement.send('setImage', path);
                     break;
                 //打开pdf
                 case 'pdf':
@@ -779,10 +798,20 @@ var ImageSpaceComponent = (function () {
                     break;
                 //打开mp4,打开mp3
                 case 'media':
-                    _this.webview.nativeElement.executeJavaScript('openMedia("' + path + '")');
+                    //this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
+                    _this.webview.nativeElement.send('setMedia', path);
                     break;
                 case 'text':
                     _this.webview.nativeElement.executeJavaScript('stop()');
+                    break;
+                default:
+                    break;
+            }
+        });
+        this.webview.nativeElement.addEventListener('ipc-message', function (e) {
+            switch (e.channel) {
+                case 'click':
+                    _this.apiService.workSpackActiveIndex = _this.sapceIndex;
                     break;
                 default:
                     break;
@@ -838,7 +867,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/layout/layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div id=\"layout-top\" class=\"absolute\">\n    <div id=\"layout-left-bar\"  class=\"absolute\">\n      <app-left-bar></app-left-bar>\n    </div>\n    <div id=\"layout-right\"  class=\"absolute\">\n      <!--<app-code-space></app-code-space>-->\n      <app-resize-layout [components]=\"resourcemanger\" [ratio]=\"[{value:250},{value:0.5}]\" [delivery_type]=\"'firstFixed'\"></app-resize-layout>\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\n    </div>\n  </div>\n  <div id=\"layout-bottom\"  class=\"absolute\">\n    <app-bottom-bar></app-bottom-bar>\n  </div>\n\n\n\n\n\n\n\n"
+module.exports = "\n  <div id=\"layout-top\" class=\"absolute\">\n    <div id=\"layout-left-bar\"  class=\"absolute\">\n      <app-left-bar></app-left-bar>\n    </div>\n    <div id=\"layout-right\"  class=\"absolute\">\n      <!--<app-code-space></app-code-space>-->\n      <app-resize-layout \n        [components]=\"resourcemanger\" \n        [ratio]=\"[{value:250},{value:0.5}]\"\n        [shows]=\"[true,true]\"\n        [delivery_type]=\"'firstFixed'\"></app-resize-layout>\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\n    </div>\n  </div>\n  <div id=\"layout-bottom\"  class=\"absolute\">\n    <app-bottom-bar></app-bottom-bar>\n  </div>\n\n\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -901,7 +930,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#left-bar{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\ttop:0;\r\n\twidth:50px;\r\n\theight:100%;\r\n\tbackground-color:#2B2B2B;\r\n\tcolor:#aaa;\r\n}", ""]);
+exports.push([module.i, "#left-bar{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\ttop:0;\r\n\twidth:50px;\r\n\theight:100%;\r\n\tbackground-color:#2B2B2B;\r\n\tcolor:#aaa;\r\n}\r\n.file-side-bar{\r\n\twidth:50px;\r\n\theight:50px;\r\n\tbackground:url(\"data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><path d='M17.705 8H9s-2 .078-2 2v15s0 2 2 2l11-.004C22 27 22 25 22 25V13.509L17.705 8zM16 10v5h4v10H9V10h7zm5.509-6h-8.493S11 4.016 10.985 6H19v.454L22.931 11H24v12c2 0 2-1.995 2-1.995V9.648L21.509 4z' fill='%23fff'/></svg>\") no-repeat center;\r\n}\r\n\r\n.badge-content{\r\n\tposition: absolute;\r\n    top: 20px;\r\n    right: 8px;\r\n    font-size: 11px;\r\n    min-width: 8px;\r\n    height: 18px;\r\n    line-height: 18px;\r\n    padding: 0 5px;\r\n    border-radius: 20px;\r\n\ttext-align: center;\r\n\tbackground-color:rgb(0,122,204);\r\n\tcolor:white;\r\n}", ""]);
 
 // exports
 
@@ -914,7 +943,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/left-bar/left-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"left-bar\">\n  left-bar works!\n</div>\n\n"
+module.exports = "<div id=\"left-bar\">\n  <div class=\"file-side-bar pointer relative\">\n    <div class=\"badge-content\">\n      1\n    </div>\n  </div>\n\n\n</div>\n\n"
 
 /***/ }),
 
@@ -1010,9 +1039,26 @@ var MonacoSpaceComponent = (function () {
     MonacoSpaceComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         window['loader']().then(function (monaco) {
+            var lang;
+            if (_this.lang) {
+                lang = _this.lang;
+            }
+            else {
+                monaco.languages.getLanguages().forEach(function (item) {
+                    if (lang)
+                        return;
+                    item.extensions.forEach(function (ext) {
+                        if (_this.fileName.endsWith(ext)) {
+                            lang = item.id;
+                        }
+                    });
+                });
+                lang = lang || 'plaintext';
+                _this.apiService.workSpace[_this.workspaceIndex].files[_this.fileIndex].lang = lang;
+            }
             var editor = monaco.editor.create(_this.codeSpace.nativeElement, {
                 value: _this.value,
-                language: 'javascript',
+                language: lang,
                 //theme: 'vs-dark',
                 automaticLayout: true
             });
@@ -1043,6 +1089,7 @@ var MonacoSpaceComponent = (function () {
     };
     MonacoSpaceComponent.prototype.ngOnDestroy = function () {
         if (this.editor &&
+            this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex] &&
             this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].editor &&
             this.editor.getId() == this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].editor.getId()) {
             this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].value = this.editor.getValue();
@@ -1063,8 +1110,16 @@ __decorate([
 ], MonacoSpaceComponent.prototype, "workspaceIndex", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", String)
+], MonacoSpaceComponent.prototype, "fileName", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Number)
 ], MonacoSpaceComponent.prototype, "fileIndex", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", String)
+], MonacoSpaceComponent.prototype, "lang", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('code'),
     __metadata("design:type", Object)
@@ -1163,7 +1218,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\ttop:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n}\r\n.resize-layout{\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n}\r\n.resize-layout-divider{\r\n\twidth:10px;\r\n\theight:10px;\r\n\tbackground-color:red;\r\n}\r\n.resize-layout-first{\r\n\twidth:50%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n\tbackground-color:pink;\r\n}\r\n.resize-layout-second{\r\n\twidth:50%;\r\n\theight:100%;\r\n\tleft:50%;\r\n\ttop:0;\r\n\tbackground-color: royalblue;\r\n}\r\n.resize-layout-delimiter{\r\n\tposition: absolute;\r\n\twidth:5px;\r\n\theight:100%;\r\n\tright:0px;\r\n\ttop:0;\r\n\t/*background-color:orange;*/\r\n}\r\n.resize-layout-delimiter.left{\r\n\tleft:0;\r\n\t/*background-color: red;*/\r\n}\r\n.resize-layout-delimiter:hover{\r\n\tcursor: e-resize;\r\n}", ""]);
+exports.push([module.i, ":host{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\ttop:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n}\r\n.resize-layout{\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n}\r\n.resize-layout-divider{\r\n\twidth:10px;\r\n\theight:10px;\r\n\tbackground-color:red;\r\n}\r\n.resize-layout-first{\r\n\twidth:50%;\r\n\theight:100%;\r\n\tleft:0;\r\n\ttop:0;\r\n\tbackground-color:pink;\r\n}\r\n.resize-layout-second{\r\n\twidth:50%;\r\n\theight:100%;\r\n\tleft:50%;\r\n\ttop:0;\r\n\tbackground-color: royalblue;\r\n}\r\n.resize-layout-delimiter{\r\n\tposition: absolute;\r\n\twidth:5px;\r\n\theight:100%;\r\n\tright:0px;\r\n\ttop:0;\r\n\t/*background-color:orange;*/\r\n}\r\n.resize-layout-delimiter.left{\r\n\tleft:0;\r\n\t/*background-color: red;*/\r\n\tborder-left:1px solid #CFCFCF;\r\n}\r\n.resize-layout-delimiter:hover{\r\n\tcursor: e-resize;\r\n}", ""]);
 
 // exports
 
@@ -1201,7 +1256,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * @Author: zhangzhenyang
  * @Date: 2017-09-27 10:58:03
  * @Last Modified by: zhangzhenyang
- * @Last Modified time: 2017-09-27 17:11:51
+ * @Last Modified time: 2017-10-10 14:03:05
  */
 //调整左右上下占比 组件
 
@@ -1239,18 +1294,26 @@ var ResizeLayoutComponent = (function () {
         //salert(typeof this.components[1]);   
     };
     ResizeLayoutComponent.prototype.ratioStyle = function () {
+        var ratio = ['50%', '50%'];
+        if (!this.shows[0] || !this.shows[1]) {
+            ratio = [this.shows[0] ? '100%' : 0, this.shows[1] ? '100%' : 0];
+            return ratio;
+        }
         if (this.ratios && this.delivery_type) {
             if (this.delivery_type == 'ratio') {
-                return [this.ratios[0].value * 100 + '%', this.ratios[1].value * 100 + '%'];
+                ratio = [this.ratios[0].value * 100 + '%', this.ratios[1].value * 100 + '%'];
+                //return [this.ratios[0].value*100+'%',this.ratios[1].value*100+'%']
             }
             if (this.delivery_type == 'firstFixed') {
-                return [this.ratios[0].value + 'px', "calc( 100% - " + this.ratios[0].value + "px)"];
+                ratio = [this.ratios[0].value + 'px', "calc( 100% - " + this.ratios[0].value + "px)"];
+                //return [this.ratios[0].value+'px',`calc( 100% - ${this.ratios[0].value}px)`]
             }
             if (this.delivery_type == 'secondFixed') {
-                return ["calc( 100% - " + this.ratios[1].value + "px)", this.ratios[1].value + 'px'];
+                ratio = ["calc( 100% - " + this.ratios[1].value + "px)", this.ratios[1].value + 'px'];
+                //return [`calc( 100% - ${this.ratios[1].value}px)`,this.ratios[1].value+'px']
             }
         }
-        return ['50%', '50%'];
+        return ratio;
     };
     /**
      * 开始调整占比
@@ -1292,6 +1355,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2__display_wiew_host_directive__["a" /* DisplayWiewHostDirective */]),
     __metadata("design:type", Object)
 ], ResizeLayoutComponent.prototype, "displayHost", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], ResizeLayoutComponent.prototype, "shows", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Number)
@@ -1809,7 +1876,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/work-space/work-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>"
+module.exports = "<app-resize-layout \r\n\t[components]=\"components\" \r\n\t[ratio]=\"[{value:0.5},{value:0.5}]\" \r\n\t[shows]=\"shows()\"\r\n\t[delivery_type]=\"'ratio'\"></app-resize-layout>"
 
 /***/ }),
 
@@ -1821,6 +1888,7 @@ module.exports = "<app-resize-layout [components]=\"components\" [ratio]=\"[{val
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__ = __webpack_require__("../../../../../src/app/component/code-space/code-space.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__code_space2_code_space2_component__ = __webpack_require__("../../../../../src/app/component/code-space2/code-space2.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1833,10 +1901,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WorkSpaceComponent = (function () {
-    function WorkSpaceComponent() {
+    function WorkSpaceComponent(apiService) {
+        this.apiService = apiService;
         this.components = [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__code_space2_code_space2_component__["a" /* CodeSpace2Component */]];
     }
+    WorkSpaceComponent.prototype.shows = function () {
+        return [
+            this.apiService.workSpace[0].files.length > 0,
+            this.apiService.workSpace[1].files.length > 0
+        ];
+    };
     WorkSpaceComponent.prototype.ngOnInit = function () {
     };
     return WorkSpaceComponent;
@@ -1848,9 +1924,10 @@ WorkSpaceComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/component/work-space/work-space.component.css")],
         entryComponents: [__WEBPACK_IMPORTED_MODULE_1__code_space_code_space_component__["a" /* CodeSpaceComponent */], __WEBPACK_IMPORTED_MODULE_2__code_space2_code_space2_component__["a" /* CodeSpace2Component */]]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], WorkSpaceComponent);
 
+var _a;
 //# sourceMappingURL=work-space.component.js.map
 
 /***/ }),
@@ -2783,12 +2860,13 @@ var extensions = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__ = __webpack_require__("../../../../rxjs/add/operator/debounceTime.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttle__ = __webpack_require__("../../../../rxjs/add/operator/throttle.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttle__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttleTime__ = __webpack_require__("../../../../rxjs/add/operator/throttleTime.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttleTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttleTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dialog_service__ = __webpack_require__("../../../../../src/app/service/dialog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__ = __webpack_require__("../../../../rxjs/add/operator/debounceTime.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttle__ = __webpack_require__("../../../../rxjs/add/operator/throttle.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_throttle__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_throttleTime__ = __webpack_require__("../../../../rxjs/add/operator/throttleTime.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_throttleTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_throttleTime__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2801,6 +2879,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 //import 'rxjs/add/operator/empty'
 //import 'rxjs/add/observable/combineLatest'
 //import 'rxjs/add/observable/audit'
@@ -2809,7 +2888,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var path = window['path'], glob = window['glob'], fs = window['fs'];
 var ApiService = (function () {
-    function ApiService() {
+    function ApiService(dialog) {
+        this.dialog = dialog;
         this.observables = {
             fileClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](),
             fileSingleClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](),
@@ -2839,6 +2919,7 @@ var ApiService = (function () {
                         editor: null,
                         viewState: null,
                         model: null,
+                        lang: null,
                         modelChanges: []
                     },
                     {
@@ -2851,7 +2932,8 @@ var ApiService = (function () {
                         editor: null,
                         viewState: null,
                         model: null,
-                        modelChanges: []
+                        modelChanges: [],
+                        lang: null
                     },
                     {
                         active: false,
@@ -2874,7 +2956,8 @@ var ApiService = (function () {
                         editor: null,
                         viewState: null,
                         model: null,
-                        modelChanges: []
+                        modelChanges: [],
+                        lang: null
                     },
                     {
                         active: true,
@@ -2885,7 +2968,8 @@ var ApiService = (function () {
                         editor: null,
                         viewState: null,
                         model: null,
-                        modelChanges: []
+                        modelChanges: [],
+                        lang: null
                     }
                 ]
             }
@@ -2950,17 +3034,119 @@ var ApiService = (function () {
         }
     };
     /**
+     * 初始化菜单
+     */
+    ApiService.prototype.initMenu = function () {
+        var _a = window['remote'], Menu = _a.Menu, MenuItem = _a.MenuItem, shell = _a.shell, _this = this;
+        var template = [
+            {
+                label: '文件(F)',
+                submenu: [
+                    {
+                        label: '打开文件',
+                        click: function () { alert('打开文件'); }
+                    },
+                    {
+                        label: '打开文件夹',
+                        click: function () {
+                            _this.openFile(function () {
+                                console.log('通过菜单打单文件夹');
+                            });
+                        }
+                    },
+                    { type: 'separator' },
+                    {
+                        label: '新建项目',
+                        click: function () { _this.createNewProject(); }
+                    },
+                    { type: 'separator' },
+                    {
+                        label: '保存',
+                        role: 'save',
+                        click: function () { alert('保存'); }
+                    },
+                    {
+                        label: '另存为',
+                        click: function () { alert('另存为'); }
+                    },
+                    {
+                        label: '全部保存',
+                        click: function () { alert('全部保存'); }
+                    },
+                    { type: 'separator' },
+                    {
+                        label: '退出',
+                        role: 'close',
+                        click: function () { alert('退出'); }
+                    },
+                ]
+            },
+            {
+                label: 'Edit',
+                submenu: [
+                    { role: 'undo' },
+                    { role: 'redo' },
+                    { type: 'separator' },
+                    { role: 'cut' },
+                    { role: 'copy' },
+                    { role: 'paste' },
+                    { role: 'pasteandmatchstyle' },
+                    { role: 'delete' },
+                    { role: 'selectall' }
+                ]
+            },
+            {
+                label: 'View',
+                submenu: [
+                    { role: 'reload' },
+                    { role: 'forcereload' },
+                    { role: 'toggledevtools' },
+                    { type: 'separator' },
+                    { role: 'resetzoom' },
+                    { role: 'zoomin' },
+                    { role: 'zoomout' },
+                    { type: 'separator' },
+                    { role: 'togglefullscreen' }
+                ]
+            },
+            {
+                role: 'window',
+                submenu: [
+                    { role: 'minimize' },
+                    { role: 'close' }
+                ]
+            },
+            {
+                role: 'help',
+                submenu: [
+                    {
+                        label: 'Learn More',
+                        click: function () { shell.openExternal('https://electron.atom.io'); }
+                    }
+                ]
+            }
+        ];
+        var menu = Menu.buildFromTemplate(template);
+        Menu.setApplicationMenu(menu);
+    };
+    ApiService.prototype.createNewProject = function () {
+        alert('createNewProject');
+    };
+    /**
      * 打开目录
      * @param callback
      */
     ApiService.prototype.openFile = function (callback) {
         var _this = this;
-        window['remote'].dialog.showOpenDialog({
+        window['remote'].dialog.showOpenDialog(window['remote'].getCurrentWindow(), {
             title: '请选择文件目录',
             properties: ['openDirectory', 'multiSelections']
         }, function (filePaths) {
             callback(filePaths);
             //this.getCurrentDirFiles(filePaths[0],result);
+            if (!filePaths) {
+                return;
+            }
             _this.projectDir = filePaths[0];
             _this.readDir(filePaths[0], _this.files);
             localStorage.setItem('projectDir', filePaths[0]);
@@ -3264,8 +3450,8 @@ var ApiService = (function () {
     /**
      * 保存文件
      */
-    ApiService.prototype.saveFile = function () {
-        var fileObj = this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]];
+    ApiService.prototype.saveFile = function (obj, callback) {
+        var fileObj = obj || this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]];
         //如果是文本文件
         if (fileObj.type == 'text') {
             fs.writeFile(fileObj.path, fileObj.editor.getValue(), 'utf8', function (er) {
@@ -3273,35 +3459,67 @@ var ApiService = (function () {
                     alert('保存失败');
                     return;
                 }
-                alert('保存成功');
-                console.log(fileObj.editor.getModel());
-                fileObj.editor.dispose();
+                //alert('保存成功');
+                /*console.log(fileObj.editor.getModel());
+                fileObj.editor.dispose();*/
+                fileObj.modelChanges = [];
+                if (callback) {
+                    callback();
+                }
             });
         }
-        //alert(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].fileName);
-        /*if(this.openedFileWebview){
-          console.log('ddd');
-          this.openedFileWebview.executeJavaScript('getCode()',(str)=>{
-            let file = this.openedFile;
-            fs.writeFile(file,str,'utf8',()=>{
-              alert('保存成功');
-            })
-    
-          });
-        }
-        alert('保存文件');*/
     };
     /**
      * 关闭文件
      * @param param0
      */
     ApiService.prototype.dismissFile = function (_a) {
+        var _this = this;
+        var workSpaceIndex = _a.workSpaceIndex, fileIndex = _a.fileIndex;
+        //如果是文本文件类型，并作了修改
+        if (this.workSpace[workSpaceIndex].files[fileIndex].type == 'text' && this.workSpace[workSpaceIndex].files[fileIndex].modelChanges.length > 0) {
+            var fileName = this.workSpace[workSpaceIndex].files[fileIndex].fileName;
+            this.dialog.showMessageBox(window['remote'].getCurrentWindow(), {
+                type: 'warning',
+                message: "\u662F\u5426\u8981\u4FDD\u5B58\u5BF9 " + fileName + " \u7684\u66F4\u6539\uFF1F",
+                detail: '如果不保存，更改将丢失。',
+                buttons: ['保存(S)', '不保存(N)', '取消'],
+                cancelId: 2,
+                defaultId: 1,
+                noLink: true
+            }, function (e, checkboxChecked) {
+                switch (e) {
+                    //保存并关闭
+                    case 0:
+                        _this.saveFile(_this.workSpace[workSpaceIndex].files[fileIndex].type == 'text' && _this.workSpace[workSpaceIndex].files[fileIndex], function () {
+                            _this.closeFile({ workSpaceIndex: workSpaceIndex, fileIndex: fileIndex });
+                        });
+                        break;
+                    //直接关闭
+                    case 1:
+                        _this.closeFile({ workSpaceIndex: workSpaceIndex, fileIndex: fileIndex });
+                        break;
+                    case 2:
+                        break;
+                }
+            });
+        }
+        else {
+            this.closeFile({ workSpaceIndex: workSpaceIndex, fileIndex: fileIndex });
+        }
+    };
+    /**
+     * 关闭文件
+     * @param param0
+     */
+    ApiService.prototype.closeFile = function (_a) {
         var workSpaceIndex = _a.workSpaceIndex, fileIndex = _a.fileIndex;
         if (this.workSpace[workSpaceIndex].files.length - 1 <= fileIndex) {
             this.workSpaceActive[workSpaceIndex] = fileIndex - 1;
         }
         this.workSpace[workSpaceIndex].files.splice(fileIndex, 1);
-        if (this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type != 'text') {
+        if (this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]] &&
+            this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type != 'text') {
             this.space[workSpaceIndex].next({
                 type: this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type,
                 path: this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].src
@@ -3312,10 +3530,45 @@ var ApiService = (function () {
 }());
 ApiService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__dialog_service__["a" /* DialogService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__dialog_service__["a" /* DialogService */]) === "function" && _a || Object])
 ], ApiService);
 
+var _a;
 //# sourceMappingURL=api.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/service/dialog.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DialogService = (function () {
+    function DialogService() {
+        this.remote = window['remote'];
+    }
+    DialogService.prototype.showMessageBox = function (browserWindow, options, callback) {
+        this.remote.dialog.showMessageBox(browserWindow, options, callback);
+    };
+    return DialogService;
+}());
+DialogService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [])
+], DialogService);
+
+//# sourceMappingURL=dialog.service.js.map
 
 /***/ }),
 

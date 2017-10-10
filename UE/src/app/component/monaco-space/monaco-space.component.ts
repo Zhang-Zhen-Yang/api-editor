@@ -8,7 +8,10 @@ import { ApiService } from '../../service/api.service'
 export class MonacoSpaceComponent implements OnInit, AfterViewInit,OnDestroy {
   @Input() show:boolean;
   @Input() workspaceIndex:number;
+  @Input() fileName:string;
   @Input() fileIndex:number;
+  @Input() lang:string;
+
   @ViewChild('code') codeSpace;
   @Input() value
     set (val){
@@ -24,14 +27,32 @@ export class MonacoSpaceComponent implements OnInit, AfterViewInit,OnDestroy {
 
   ngAfterViewInit(){
     window['loader']().then((monaco) => {
+
+      let lang;
+      if(this.lang){
+        lang = this.lang;
+      }else{
+        monaco.languages.getLanguages().forEach((item)=>{
+          if(lang) return;
+          item.extensions.forEach((ext)=>{
+            if(this.fileName.endsWith(ext)){
+              lang = item.id;
+            }
+          })
+        })        
+        lang = lang||'plaintext'
+        this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].lang = lang;
+      }      
+      
       let editor = monaco.editor.create(this.codeSpace.nativeElement, {
         value:this.value,
-        language: 'javascript',
+        language: lang,
         //theme: 'vs-dark',
         automaticLayout: true
       })
+
       this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].editor = this.editor = editor;
-      if(this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].viewState){        
+      if(this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].viewState){    
         editor.setModel(this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].model);
         editor.restoreViewState(this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].viewState);
       }else{
@@ -57,6 +78,7 @@ export class MonacoSpaceComponent implements OnInit, AfterViewInit,OnDestroy {
   ngOnDestroy(){
     if(
       this.editor&&
+      this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex]&&
       this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].editor&&
       this.editor.getId()== this.apiService.workSpace[this.workspaceIndex].files[this.fileIndex].editor.getId()
     ){
