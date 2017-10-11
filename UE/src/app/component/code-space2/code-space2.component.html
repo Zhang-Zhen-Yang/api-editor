@@ -4,6 +4,8 @@
         (dismiss)="dismiss(i)" 
         (selectFile)="selectFile(i)"
         [fileName]="apiService.workSpace[index].files[i].fileName"
+        [workspaceIndex]="1"
+        [fileIndex]="i"
         [active]="i == apiService.workSpaceActive[index]"
         [modelChanges]="apiService.workSpace[index].files[i].modelChanges">
         {{ tab }}
@@ -26,7 +28,10 @@
         [lang]="file.lang"
         [fileIndex]="i"></app-monaco-space>			
       </ng-container>
-      <app-image-space [sapceIndex]="index"></app-image-space>   
+      <app-image-space 
+        [sapceIndex]="index"
+        [activeIndex]="apiService.workSpaceActive[index]"
+        [fileObj]="apiService.workSpace[1].files[apiService.workSpaceActive[index]]"></app-image-space>   
     </div>        
   </div>
   

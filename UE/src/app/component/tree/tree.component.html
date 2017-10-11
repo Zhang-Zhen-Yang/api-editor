@@ -1,6 +1,9 @@
 <div>
-  <div class="tree-item">{{ apiService.projectDir }}</div>
-  <div>
+  <div class="tree-item" (click)="toggleRootDir()">
+      <div [ngClass]="[apiService.projectDirOpen?'expanded':'noexpanded']"></div>
+    {{ apiService.projectDir }}
+  </div>
+  <div class="tree-root-sub" [class.show]="apiService.projectDirOpen">
     <div *ngFor="let file of apiService.files;let i = index;">
       <!--目录-->
       <tree-dir *ngIf="file.type=='dir'" 

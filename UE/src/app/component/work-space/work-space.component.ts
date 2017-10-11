@@ -24,5 +24,9 @@ export class WorkSpaceComponent implements OnInit {
 
   ngOnInit() {
   }
+  showNoConent(){
+    return this.apiService.workSpace[0].files.length==0&&this.apiService.workSpace[1].files.length==0
+  }
+
 
 }

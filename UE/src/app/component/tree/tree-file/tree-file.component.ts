@@ -19,7 +19,7 @@ export class TreeFileComponent implements OnInit {
 
   fileActive(){
     let activeFile = this.apiService.workSpace[this.apiService.workSpackActiveIndex].files[this.apiService.workSpaceActive[this.apiService.workSpackActiveIndex]];
-    return this.title == activeFile.path || this.title == activeFile.src;
+    return activeFile&&(this.title == activeFile.path || this.title == activeFile.src);
   }
 
   /**

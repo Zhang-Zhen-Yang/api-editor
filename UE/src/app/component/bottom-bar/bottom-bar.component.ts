@@ -17,4 +17,14 @@ export class BottomBarComponent implements OnInit {
       this.lang = monaco.languages.getLanguages();
     })
   }
+
+  textType(){
+    let activeFile = this.apiService.workSpace[this.apiService.workSpackActiveIndex].files[this.apiService.workSpaceActive[this.apiService.workSpackActiveIndex]];
+    return activeFile&&activeFile.type=='text';
+  }
+  mediaType(){
+    let activeFile = this.apiService.workSpace[this.apiService.workSpackActiveIndex].files[this.apiService.workSpaceActive[this.apiService.workSpackActiveIndex]];
+    return activeFile&&activeFile.type!='text';
+  }
+
 }

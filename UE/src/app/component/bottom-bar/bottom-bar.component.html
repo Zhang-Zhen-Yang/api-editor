@@ -1,6 +1,6 @@
 <div id="bottom-bar">
 
-  <div class="edit-message-wrap" *ngIf="apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].type=='text'">
+  <div class="edit-message-wrap" *ngIf="textType()">
     <div class="row-index edit-message">
       12行
     </div>
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="edit-message-wrap" *ngIf="apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].type!='text'">
+  <div class="edit-message-wrap" *ngIf="mediaType()">
     <div class="edit-message">
       图片等
     </div>    

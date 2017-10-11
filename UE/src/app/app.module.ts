@@ -29,6 +29,7 @@ import { FolderIconPipe } from './pipe/folder-icon.pipe';
 import { FileTabComponent } from './component/code-space/file-tab/file-tab.component';
 import { MonacoSpaceComponent } from './component/monaco-space/monaco-space.component';
 import { ImageSpaceComponent } from './component/image-space/image-space.component';
+import { WorkspaceNoContentComponent } from './component/work-space/workspace-no-content/workspace-no-content.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ImageSpaceComponent } from './component/image-space/image-space.compone
     FileTabComponent,
     MonacoSpaceComponent,
     ImageSpaceComponent,
-    CodeSpace2Component
+    CodeSpace2Component,
+    WorkspaceNoContentComponent
   ],
   entryComponents:[
     TestComponent,

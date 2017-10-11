@@ -1,5 +1,8 @@
-<app-resize-layout 
+<div class="absolute work-space">	
+	<app-resize-layout 
 	[components]="components" 
 	[ratio]="[{value:0.5},{value:0.5}]" 
 	[shows]="shows()"
 	[delivery_type]="'ratio'"></app-resize-layout>
+	<app-workspace-no-content *ngIf="showNoConent()"></app-workspace-no-content>
+</div>

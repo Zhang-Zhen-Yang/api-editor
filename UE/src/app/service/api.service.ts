@@ -16,6 +16,9 @@ let path = window['path'],
 @Injectable()
 export class ApiService {
   languages:Array<any>
+  fileTabContextMenu = new window['remote'].Menu();
+  fileTabContextMenuWorkspaceIndex:number = 0
+  fileTabContextMenufileIndex:number = 0
   constructor(public dialog:DialogService) {
     //双击打开新的文件
     /*this.openTabSubject.subscribe((e)=>{
@@ -39,6 +42,21 @@ export class ApiService {
         default:;
       }
     })
+
+    this.fileTabContextMenu.append(new window['remote'].MenuItem({
+      label:'关闭',
+      click(){ d.dismissFile({workSpaceIndex:d.fileTabContextMenuWorkspaceIndex,fileIndex:d.fileTabContextMenufileIndex})}
+    }));
+    this.fileTabContextMenu.append(new window['remote'].MenuItem({
+      label:'关闭其他'
+    }));
+    this.fileTabContextMenu.append(new window['remote'].MenuItem({
+      label:'关闭未更改',
+
+    }));
+    this.fileTabContextMenu.append(new window['remote'].MenuItem({
+      label:'全部关闭'
+    }));
   }
 
   observables={
@@ -51,6 +69,7 @@ export class ApiService {
    * 工作目录
    */
   projectDir = null;
+  projectDirOpen = true;
 
   /**
    * 打开软件时自动加载工作目录
@@ -186,6 +205,13 @@ export class ApiService {
       open:true,
       files:[
         {
+          active:false,
+          fileName:'jj.jpg',
+          pathArray:['jj.jpg'],
+          type:'image',
+          src:'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
+        },
+        {
           active:true,
           fileName:'jj.js',
           type:'text',
@@ -210,14 +236,7 @@ export class ApiService {
           model:null,
           modelChanges:[],
           lang:null
-        },
-        {
-          active:false,
-          fileName:'jj.jpg',
-          pathArray:['jj.jpg'],
-          type:'image',
-          src:'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
-        } 
+        }       
        
       ]
     },
@@ -440,11 +459,14 @@ export class ApiService {
               
               //如果单击打开文件
               if(
-                  openType == 'single'&&(
-                    this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type!='text'||
-                    this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].modelChanges.length==0)
-                  ){
-                if(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
+                openType == 'single'&&
+                this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]&&
+                (
+                  this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].type!='text'||
+                  this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].modelChanges.length==0
+                )
+              ){
+                //if(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
                   this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]={
                     fileName:fileName,
                     type:type,
@@ -463,7 +485,7 @@ export class ApiService {
                     path:fullPath
                   })
 
-                }
+                //}
               }
               //如果是双击打开文件
               else /*if(openType == 'double')*/{
@@ -498,8 +520,9 @@ export class ApiService {
       })
     }else{
 
-      if(openType == 'single'){
-        if(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
+      //如果是单击并且
+      if(openType == 'single'&&this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
+        //if(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
           this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]={
             fileName:fileName,
             type:type,
@@ -516,8 +539,8 @@ export class ApiService {
             path:fullPath,
             type:type
           })
-        }
-      }else if(openType == 'double'){
+        //}
+      }else/* if(openType == 'double')*/{
 
         this.workSpace[this.workSpackActiveIndex].files.push({
           fileName:fileName,
@@ -712,6 +735,15 @@ export class ApiService {
         path:this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].src
       })
     }
+  }
+
+
+
+  fileTabContextMenuShow(workspaceIndex,fileIndex){
+    //alert('fileTabContextMenuShow');
+    this.fileTabContextMenuWorkspaceIndex = workspaceIndex;
+    this.fileTabContextMenufileIndex = fileIndex;
+    this.fileTabContextMenu.popup(window['remote'].getCurrentWindow());
   }
 
 

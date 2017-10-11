@@ -14,6 +14,9 @@ export class TreeComponent implements OnInit {
 
   ngOnInit() {
   }
+  toggleRootDir(){
+    this.apiService.projectDirOpen = !this.apiService.projectDirOpen;
+  }
 
   select(e){
     //this.apiService.readFile(e);

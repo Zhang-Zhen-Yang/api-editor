@@ -1,4 +1,4 @@
-<div class="file-tab pointer" (click)="setFileActive()" [class.active]="active" title="{{ fileName }}">
+<div class="file-tab pointer" (click)="setFileActive()" [class.active]="active" title="{{ fileName }}" (contextmenu)="contextmenu($event)">
   <b class="file-icon">    
       <img [src]="fileName|fileIcon:expanded" alt="">
   </b>

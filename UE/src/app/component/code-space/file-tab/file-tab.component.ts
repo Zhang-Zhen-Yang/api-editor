@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { ApiService } from '../../../service/api.service'
 @Component({
   selector: 'app-file-tab',
   templateUrl: './file-tab.component.html',
@@ -9,9 +9,12 @@ export class FileTabComponent implements OnInit {
   @Input() active:boolean;
   @Input() fileName:string;
   @Input() modelChanges:Array<any>
+  @Input() workspaceIndex:number
+  @Input() fileIndex:number
+
   @Output('dismiss') dismissClick = new EventEmitter();
   @Output() selectFile = new EventEmitter();
-  constructor() { }
+  constructor( public apiService:ApiService ) { }
 
   ngOnInit() {
   }
@@ -33,6 +36,9 @@ export class FileTabComponent implements OnInit {
       return this.modelChanges.length;
     }
     return null;
+  }
+  contextmenu(e){
+    this.apiService.fileTabContextMenuShow(this.workspaceIndex,this.fileIndex);
   }
 
 }

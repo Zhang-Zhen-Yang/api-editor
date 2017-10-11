@@ -169,6 +169,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_code_space_file_tab_file_tab_component__ = __webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__component_monaco_space_monaco_space_component__ = __webpack_require__("../../../../../src/app/component/monaco-space/monaco-space.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__component_image_space_image_space_component__ = __webpack_require__("../../../../../src/app/component/image-space/image-space.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__component_work_space_workspace_no_content_workspace_no_content_component__ = __webpack_require__("../../../../../src/app/component/work-space/workspace-no-content/workspace-no-content.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -182,6 +183,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 //component
+
 
 
 
@@ -231,7 +233,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_23__component_code_space_file_tab_file_tab_component__["a" /* FileTabComponent */],
             __WEBPACK_IMPORTED_MODULE_24__component_monaco_space_monaco_space_component__["a" /* MonacoSpaceComponent */],
             __WEBPACK_IMPORTED_MODULE_25__component_image_space_image_space_component__["a" /* ImageSpaceComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__component_code_space2_code_space2_component__["a" /* CodeSpace2Component */]
+            __WEBPACK_IMPORTED_MODULE_8__component_code_space2_code_space2_component__["a" /* CodeSpace2Component */],
+            __WEBPACK_IMPORTED_MODULE_26__component_work_space_workspace_no_content_workspace_no_content_component__["a" /* WorkspaceNoContentComponent */]
         ],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_13__component_test_test_component__["a" /* TestComponent */],
@@ -278,7 +281,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/bottom-bar/bottom-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"bottom-bar\">\n\n  <div class=\"edit-message-wrap\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].type=='text'\">\n    <div class=\"row-index edit-message\">\n      12行\n    </div>\n    <div class=\"column-index edit-message\">\n      15列\n    </div>\n    <div class=\"charset edit-message\">\n      UTF-8\n    </div>\n    <div class=\"language edit-message\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang\">\n      {{ apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang }}\n    </div>\n  </div>\n\n  <div class=\"edit-message-wrap\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].type!='text'\">\n    <div class=\"edit-message\">\n      图片等\n    </div>    \n  </div>\n  \n</div>\n"
+module.exports = "<div id=\"bottom-bar\">\n\n  <div class=\"edit-message-wrap\" *ngIf=\"textType()\">\n    <div class=\"row-index edit-message\">\n      12行\n    </div>\n    <div class=\"column-index edit-message\">\n      15列\n    </div>\n    <div class=\"charset edit-message\">\n      UTF-8\n    </div>\n    <div class=\"language edit-message\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang\">\n      {{ apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang }}\n    </div>\n  </div>\n\n  <div class=\"edit-message-wrap\" *ngIf=\"mediaType()\">\n    <div class=\"edit-message\">\n      图片等\n    </div>    \n  </div>\n  \n</div>\n"
 
 /***/ }),
 
@@ -310,6 +313,14 @@ var BottomBarComponent = (function () {
             //console.log(monaco.languages.getLanguages());
             _this.lang = monaco.languages.getLanguages();
         });
+    };
+    BottomBarComponent.prototype.textType = function () {
+        var activeFile = this.apiService.workSpace[this.apiService.workSpackActiveIndex].files[this.apiService.workSpaceActive[this.apiService.workSpackActiveIndex]];
+        return activeFile && activeFile.type == 'text';
+    };
+    BottomBarComponent.prototype.mediaType = function () {
+        var activeFile = this.apiService.workSpace[this.apiService.workSpackActiveIndex].files[this.apiService.workSpaceActive[this.apiService.workSpackActiveIndex]];
+        return activeFile && activeFile.type != 'text';
     };
     return BottomBarComponent;
 }());
@@ -348,7 +359,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/code-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\"\n\t\t\t[modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n\t\t\t[value]=\"file.value\" \n\t\t\t[workspaceIndex]=\"index\"\n\t\t\t[fileName]=\"file.fileName\"\n\t\t\t[lang]=\"file.lang\"\n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\n\t\t</ng-container>\n\t\t<app-image-space [sapceIndex]=\"index\"></app-image-space>\n\t</div>\n\t\n</div>\n\n"
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[workspaceIndex]=\"0\"\n\t\t\t[fileIndex]=\"i\"\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\"\n\t\t\t[modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n\t\t\t[value]=\"file.value\" \n\t\t\t[workspaceIndex]=\"index\"\n\t\t\t[fileName]=\"file.fileName\"\n\t\t\t[lang]=\"file.lang\"\n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\n\t\t</ng-container>\n\t\t<app-image-space [sapceIndex]=\"index\" \n\t\t\t[activeIndex]=\"apiService.workSpaceActive[index]\"\n\t\t\t[fileObj]=\"apiService.workSpace[0].files[apiService.workSpaceActive[index]]\"\n\t\t></app-image-space>\n\t</div>\n\t\n</div>\n\n"
 
 /***/ }),
 
@@ -464,7 +475,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/file-tab/file-tab.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\">\n  <b class=\"file-icon\">    \n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\n  </b>\n  <!--{{ changes()}}-->\n  {{ fileName }}\n  <b class=\"dismiss\"  [class.dirty]=\"changes()\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\n</div>\n"
+module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\" (contextmenu)=\"contextmenu($event)\">\n  <b class=\"file-icon\">    \n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\n  </b>\n  <!--{{ changes()}}-->\n  {{ fileName }}\n  <b class=\"dismiss\"  [class.dirty]=\"changes()\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\n</div>\n"
 
 /***/ }),
 
@@ -474,6 +485,7 @@ module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [c
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FileTabComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -484,8 +496,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var FileTabComponent = (function () {
-    function FileTabComponent() {
+    function FileTabComponent(apiService) {
+        this.apiService = apiService;
         this.dismissClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
         this.selectFile = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
     }
@@ -508,6 +522,9 @@ var FileTabComponent = (function () {
         }
         return null;
     };
+    FileTabComponent.prototype.contextmenu = function (e) {
+        this.apiService.fileTabContextMenuShow(this.workspaceIndex, this.fileIndex);
+    };
     return FileTabComponent;
 }());
 __decorate([
@@ -523,6 +540,14 @@ __decorate([
     __metadata("design:type", Object)
 ], FileTabComponent.prototype, "modelChanges", void 0);
 __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Number)
+], FileTabComponent.prototype, "workspaceIndex", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Number)
+], FileTabComponent.prototype, "fileIndex", void 0);
+__decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])('dismiss'),
     __metadata("design:type", Object)
 ], FileTabComponent.prototype, "dismissClick", void 0);
@@ -536,9 +561,10 @@ FileTabComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/code-space/file-tab/file-tab.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
 ], FileTabComponent);
 
+var _a;
 //# sourceMappingURL=file-tab.component.js.map
 
 /***/ }),
@@ -564,7 +590,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space2/code-space2.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \n        (dismiss)=\"dismiss(i)\" \n        (selectFile)=\"selectFile(i)\"\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\n        [active]=\"i == apiService.workSpaceActive[index]\"\n        [modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n        {{ tab }}\n      </app-file-tab>\n    </div>\n  \n    <!--旧-->\n    <!--<div class=\"webview-wrap absolute\" >\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n      </webview>\n    </div>-->\n  \n    <!--新-->\n    <div class=\"webview-wrap absolute\">\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n        [value]=\"file.value\"\n        [workspaceIndex]=\"index\"\n        [fileName]=\"file.fileName\"\n        [lang]=\"file.lang\"\n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\n      </ng-container>\n      <app-image-space [sapceIndex]=\"index\"></app-image-space>   \n    </div>        \n  </div>\n  \n  "
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \n        (dismiss)=\"dismiss(i)\" \n        (selectFile)=\"selectFile(i)\"\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\n        [workspaceIndex]=\"1\"\n        [fileIndex]=\"i\"\n        [active]=\"i == apiService.workSpaceActive[index]\"\n        [modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n        {{ tab }}\n      </app-file-tab>\n    </div>\n  \n    <!--旧-->\n    <!--<div class=\"webview-wrap absolute\" >\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n      </webview>\n    </div>-->\n  \n    <!--新-->\n    <div class=\"webview-wrap absolute\">\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n        [value]=\"file.value\"\n        [workspaceIndex]=\"index\"\n        [fileName]=\"file.fileName\"\n        [lang]=\"file.lang\"\n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\n      </ng-container>\n      <app-image-space \n        [sapceIndex]=\"index\"\n        [activeIndex]=\"apiService.workSpaceActive[index]\"\n        [fileObj]=\"apiService.workSpace[1].files[apiService.workSpaceActive[index]]\"></app-image-space>   \n    </div>        \n  </div>\n  \n  "
 
 /***/ }),
 
@@ -759,54 +785,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ImageSpaceComponent = (function () {
     function ImageSpaceComponent(apiService) {
         this.apiService = apiService;
+        this.ready = false;
     }
     ImageSpaceComponent.prototype.ngOnInit = function () {
     };
-    ImageSpaceComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        this.apiService.space[this.sapceIndex].subscribe(function (e) {
-            var path = e['path']; //?e['path'].replace(/\\/g,'/'):'';
-            var params = JSON.stringify({ path: e['path'] });
-            /*switch(e['action']){
-              //打开图片
-              case 'openImage':
-                this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
-                break;
-              //打开pdf
-              case 'openPdf':
-                this.webview.nativeElement.executeJavaScript('openPdf("'+path+'")');
-                break;
-              //打开mp4,打开mp3
-              case 'openMedia':
-                this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
-                break;
-              case 'stop':
-                this.webview.nativeElement.executeJavaScript('stop()');
-                break;
-              default :
-                break;
-            }*/
-            switch (e['type']) {
-                //打开图片
-                case 'image':
-                    //this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
-                    _this.webview.nativeElement.send('setImage', path);
-                    break;
-                //打开pdf
-                case 'pdf':
-                    _this.webview.nativeElement.executeJavaScript('openPdf("' + path + '")');
-                    break;
-                //打开mp4,打开mp3
-                case 'media':
-                    //this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
-                    _this.webview.nativeElement.send('setMedia', path);
-                    break;
-                case 'text':
-                    _this.webview.nativeElement.executeJavaScript('stop()');
-                    break;
-                default:
-                    break;
+    ImageSpaceComponent.prototype.ngOnChanges = function (e) {
+        //console.log(e);
+        if (e.fileObj) {
+            var activeFile = e.fileObj.currentValue;
+            if (activeFile) {
+                this.render(activeFile);
             }
+        }
+    };
+    ImageSpaceComponent.prototype.ngAfterViewInit = function () {
+        /*this.apiService.space[this.sapceIndex].subscribe((e)=>{
+          let path = e['path'];//?e['path'].replace(/\\/g,'/'):'';
+    
+          let params = JSON.stringify({path:e['path']});
+          switch(e['type']){
+            //打开图片
+            case 'image':
+              //this.webview.nativeElement.executeJavaScript('openImage("'+path+'")');
+              this.webview.nativeElement.send('setImage',path);
+              break;
+            //打开pdf
+            case 'pdf':
+              this.webview.nativeElement.executeJavaScript('openPdf("'+path+'")');
+              break;
+            //打开mp4,打开mp3
+            case 'media':
+              //this.webview.nativeElement.executeJavaScript('openMedia("'+path+'")');
+              this.webview.nativeElement.send('setMedia',path);
+              break;
+            case 'text':
+              this.webview.nativeElement.executeJavaScript('stop()');
+              break;
+            default :
+              break;
+          }
+        })*/
+        var _this = this;
+        this.webview.nativeElement.addEventListener('dom-ready', function () {
+            _this.ready = true;
+            _this.render(_this.apiService.workSpace[_this.sapceIndex].files[_this.activeIndex]);
         });
         this.webview.nativeElement.addEventListener('ipc-message', function (e) {
             switch (e.channel) {
@@ -818,6 +840,20 @@ var ImageSpaceComponent = (function () {
             }
         });
     };
+    ImageSpaceComponent.prototype.render = function (activeFile) {
+        if (this.ready) {
+            switch (activeFile.type) {
+                case 'image':
+                    this.webview.nativeElement.send('setImage', activeFile['src']);
+                    break;
+                case 'media':
+                    this.webview.nativeElement.send('setMedia', activeFile['src']);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
     return ImageSpaceComponent;
 }());
 __decorate([
@@ -828,6 +864,14 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Object)
 ], ImageSpaceComponent.prototype, "sapceIndex", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], ImageSpaceComponent.prototype, "activeIndex", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], ImageSpaceComponent.prototype, "fileObj", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('webview'),
     __metadata("design:type", Object)
@@ -1414,7 +1458,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/resource-manager/resource-manager.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n  <div class=\"resource-manager-title\">资源管理器</div>\n  <p>\n    resource-manager works!\n  </p>\n  <app-tree ></app-tree>\n  <button \n    *ngIf=\"!apiService.projectDir\"\n    class=\"resource-manager-open-directory-btn pointer\" \n    (click)=\"openDirectory()\">打开文件夹</button>\n\n</div>\n"
+module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n  <div class=\"resource-manager-title\">资源管理器</div>\n  <app-tree ></app-tree>\n  <button \n    *ngIf=\"!apiService.projectDir\"\n    class=\"resource-manager-open-directory-btn pointer\" \n    (click)=\"openDirectory()\">打开文件夹</button>\n\n</div>\n"
 
 /***/ }),
 
@@ -1543,7 +1587,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".expanded{\r\n\tdisplay: inline-block;\r\n\twidth:16px;\r\n\theight:16px;\r\n\tbackground-position: center center;\r\n\tbackground-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23646465' d='M11 10H5.344L11 4.414V10z'/%3E%3C/svg%3E\");\r\n\t-webkit-transform: translateY(3px);\r\n\t        transform: translateY(3px)\r\n}\r\n.noexpanded{\r\n\tdisplay: inline-block;\r\n\twidth:16px;\r\n\theight:16px;\r\n\tbackground-position: center center;\r\n\tbackground-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23646465' d='M6 4v8l4-4-4-4zm1 2.414L8.586 8 7 9.586V6.414z'/%3E%3C/svg%3E\");\r\n\t-webkit-transform: translateY(3px);\r\n\t        transform: translateY(3px)\r\n}", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -1715,7 +1759,7 @@ var TreeFileComponent = (function () {
     };
     TreeFileComponent.prototype.fileActive = function () {
         var activeFile = this.apiService.workSpace[this.apiService.workSpackActiveIndex].files[this.apiService.workSpaceActive[this.apiService.workSpackActiveIndex]];
-        return this.title == activeFile.path || this.title == activeFile.src;
+        return activeFile && (this.title == activeFile.path || this.title == activeFile.src);
     };
     /**
      * 单击选择文件
@@ -1786,7 +1830,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".tree-item{\r\n\tbackground-color:#E4E4E4;\r\n}\r\n.tree-root-sub{\r\n\tdisplay: none;\r\n}\r\n\r\n.tree-root-sub.show{\r\n\tdisplay: block;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1799,7 +1843,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <div class=\"tree-item\">{{ apiService.projectDir }}</div>\r\n  <div>\r\n    <div *ngFor=\"let file of apiService.files;let i = index;\">\r\n      <!--目录-->\r\n      <tree-dir *ngIf=\"file.type=='dir'\" \r\n        [title]=\"file.fullPath\"\r\n        [dirName]=\"file.name\" \r\n        [expanded]=\"file.expanded\"\r\n        [child]=\"file.child\" \r\n        (fileSelect)=\"select($event)\"\r\n        (dblFileSelect)=\"dblSelect($event)\"\r\n        [indent]=\"1\" \r\n        [paths]=\"[]\" \r\n        [index]=\"i\" \r\n        [pathsIndexs]=\"[]\">\r\n      </tree-dir>\r\n      <!--文件-->\r\n      <tree-file \r\n        *ngIf=\"file.type=='file'\" \r\n        [fileName]=\"file.name\"\r\n        [title]=\"file.fullPath\"\r\n        [indent]=\"1\" \r\n        (dblFileSelect)=\"dblSelect($event)\"\r\n        (fileSelect)=\"select($event)\" ></tree-file>\r\n    </div>\r\n  </div>  \r\n</div>\r\n"
+module.exports = "<div>\r\n  <div class=\"tree-item\" (click)=\"toggleRootDir()\">\r\n      <div [ngClass]=\"[apiService.projectDirOpen?'expanded':'noexpanded']\"></div>\r\n    {{ apiService.projectDir }}\r\n  </div>\r\n  <div class=\"tree-root-sub\" [class.show]=\"apiService.projectDirOpen\">\r\n    <div *ngFor=\"let file of apiService.files;let i = index;\">\r\n      <!--目录-->\r\n      <tree-dir *ngIf=\"file.type=='dir'\" \r\n        [title]=\"file.fullPath\"\r\n        [dirName]=\"file.name\" \r\n        [expanded]=\"file.expanded\"\r\n        [child]=\"file.child\" \r\n        (fileSelect)=\"select($event)\"\r\n        (dblFileSelect)=\"dblSelect($event)\"\r\n        [indent]=\"1\" \r\n        [paths]=\"[]\" \r\n        [index]=\"i\" \r\n        [pathsIndexs]=\"[]\">\r\n      </tree-dir>\r\n      <!--文件-->\r\n      <tree-file \r\n        *ngIf=\"file.type=='file'\" \r\n        [fileName]=\"file.name\"\r\n        [title]=\"file.fullPath\"\r\n        [indent]=\"1\" \r\n        (dblFileSelect)=\"dblSelect($event)\"\r\n        (fileSelect)=\"select($event)\" ></tree-file>\r\n    </div>\r\n  </div>  \r\n</div>\r\n"
 
 /***/ }),
 
@@ -1828,6 +1872,9 @@ var TreeComponent = (function () {
         this.files = apiService.files;
     }
     TreeComponent.prototype.ngOnInit = function () {
+    };
+    TreeComponent.prototype.toggleRootDir = function () {
+        this.apiService.projectDirOpen = !this.apiService.projectDirOpen;
     };
     TreeComponent.prototype.select = function (e) {
         //this.apiService.readFile(e);
@@ -1871,7 +1918,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".work-space{\r\n\twidth:100%;\r\n\theight:100%;\r\n\tleft:0;\r\n\tbackground-color:orange;\r\n}", ""]);
 
 // exports
 
@@ -1884,7 +1931,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/work-space/work-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-resize-layout \r\n\t[components]=\"components\" \r\n\t[ratio]=\"[{value:0.5},{value:0.5}]\" \r\n\t[shows]=\"shows()\"\r\n\t[delivery_type]=\"'ratio'\"></app-resize-layout>"
+module.exports = "<div class=\"absolute work-space\">\t\r\n\t<app-resize-layout \r\n\t[components]=\"components\" \r\n\t[ratio]=\"[{value:0.5},{value:0.5}]\" \r\n\t[shows]=\"shows()\"\r\n\t[delivery_type]=\"'ratio'\"></app-resize-layout>\r\n\t<app-workspace-no-content *ngIf=\"showNoConent()\"></app-workspace-no-content>\r\n</div>"
 
 /***/ }),
 
@@ -1923,6 +1970,9 @@ var WorkSpaceComponent = (function () {
     };
     WorkSpaceComponent.prototype.ngOnInit = function () {
     };
+    WorkSpaceComponent.prototype.showNoConent = function () {
+        return this.apiService.workSpace[0].files.length == 0 && this.apiService.workSpace[1].files.length == 0;
+    };
     return WorkSpaceComponent;
 }());
 WorkSpaceComponent = __decorate([
@@ -1937,6 +1987,71 @@ WorkSpaceComponent = __decorate([
 
 var _a;
 //# sourceMappingURL=work-space.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/work-space/workspace-no-content/workspace-no-content.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".work-space-no-content{\r\n\tposition: absolute;\r\n\tleft:0;\r\n\ttop:0;\r\n\twidth:100%;\r\n\theight:100%;\r\n\tdisplay: table;\r\n}\r\n.work-space-no-content-cell{\r\n\tdisplay: table-cell;\r\n\ttext-align: center;\r\n\tvertical-align: middle;\r\n\tfont-size: 100px;\r\n\tcolor:#E9E9E9;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/work-space/workspace-no-content/workspace-no-content.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"work-space-no-content\">\n  <div class=\"work-space-no-content-cell\">\n    Empty\n  </div>    \n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/work-space/workspace-no-content/workspace-no-content.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceNoContentComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__("../../../../../src/app/service/api.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var WorkspaceNoContentComponent = (function () {
+    function WorkspaceNoContentComponent(apiService) {
+        this.apiService = apiService;
+    }
+    WorkspaceNoContentComponent.prototype.ngOnInit = function () {
+    };
+    return WorkspaceNoContentComponent;
+}());
+WorkspaceNoContentComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-workspace-no-content',
+        template: __webpack_require__("../../../../../src/app/component/work-space/workspace-no-content/workspace-no-content.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/component/work-space/workspace-no-content/workspace-no-content.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === "function" && _a || Object])
+], WorkspaceNoContentComponent);
+
+var _a;
+//# sourceMappingURL=workspace-no-content.component.js.map
 
 /***/ }),
 
@@ -2898,6 +3013,9 @@ var path = window['path'], glob = window['glob'], fs = window['fs'];
 var ApiService = (function () {
     function ApiService(dialog) {
         this.dialog = dialog;
+        this.fileTabContextMenu = new window['remote'].Menu();
+        this.fileTabContextMenuWorkspaceIndex = 0;
+        this.fileTabContextMenufileIndex = 0;
         this.observables = {
             fileClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](),
             fileSingleClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](),
@@ -2907,6 +3025,7 @@ var ApiService = (function () {
          * 工作目录
          */
         this.projectDir = null;
+        this.projectDirOpen = true;
         /**
          * 目录下的所有目录，文件
          */
@@ -2917,6 +3036,13 @@ var ApiService = (function () {
             {
                 open: true,
                 files: [
+                    {
+                        active: false,
+                        fileName: 'jj.jpg',
+                        pathArray: ['jj.jpg'],
+                        type: 'image',
+                        src: 'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
+                    },
                     {
                         active: true,
                         fileName: 'jj.js',
@@ -2942,13 +3068,6 @@ var ApiService = (function () {
                         model: null,
                         modelChanges: [],
                         lang: null
-                    },
-                    {
-                        active: false,
-                        fileName: 'jj.jpg',
-                        pathArray: ['jj.jpg'],
-                        type: 'image',
-                        src: 'http://ww1.sinaimg.cn/large/006xin4Sgw1f6ngydeeedj31hc0u0e1x.jpg'
                     }
                 ]
             },
@@ -3022,6 +3141,19 @@ var ApiService = (function () {
                 default: ;
             }
         });
+        this.fileTabContextMenu.append(new window['remote'].MenuItem({
+            label: '关闭',
+            click: function () { d.dismissFile({ workSpaceIndex: d.fileTabContextMenuWorkspaceIndex, fileIndex: d.fileTabContextMenufileIndex }); }
+        }));
+        this.fileTabContextMenu.append(new window['remote'].MenuItem({
+            label: '关闭其他'
+        }));
+        this.fileTabContextMenu.append(new window['remote'].MenuItem({
+            label: '关闭未更改',
+        }));
+        this.fileTabContextMenu.append(new window['remote'].MenuItem({
+            label: '全部关闭'
+        }));
     }
     /**
      * 打开软件时自动加载工作目录
@@ -3282,27 +3414,29 @@ var ApiService = (function () {
                     else {
                         fs.readFile(fullPath, 'utf8', function (err, str) {
                             //如果单击打开文件
-                            if (openType == 'single' && (_this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]].type != 'text' ||
-                                _this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]].modelChanges.length == 0)) {
-                                if (_this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]]) {
-                                    _this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]] = {
-                                        fileName: fileName,
-                                        type: type,
-                                        value: str,
-                                        path: fullPath,
-                                        pathArray: filePath,
-                                        editor: null,
-                                        viewState: null,
-                                        model: null,
-                                        modelChanges: []
-                                    };
-                                    _this.space[_this.workSpackActiveIndex].next({
-                                        str: str,
-                                        type: type,
-                                        action: 'stop',
-                                        path: fullPath
-                                    });
-                                }
+                            if (openType == 'single' &&
+                                _this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]] &&
+                                (_this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]].type != 'text' ||
+                                    _this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]].modelChanges.length == 0)) {
+                                //if(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
+                                _this.workSpace[_this.workSpackActiveIndex].files[_this.workSpaceActive[_this.workSpackActiveIndex]] = {
+                                    fileName: fileName,
+                                    type: type,
+                                    value: str,
+                                    path: fullPath,
+                                    pathArray: filePath,
+                                    editor: null,
+                                    viewState: null,
+                                    model: null,
+                                    modelChanges: []
+                                };
+                                _this.space[_this.workSpackActiveIndex].next({
+                                    str: str,
+                                    type: type,
+                                    action: 'stop',
+                                    path: fullPath
+                                });
+                                //}
                             }
                             else {
                                 _this.workSpace[_this.workSpackActiveIndex].files.push({
@@ -3332,27 +3466,28 @@ var ApiService = (function () {
             });
         }
         else {
-            if (openType == 'single') {
-                if (this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]) {
-                    this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]] = {
-                        fileName: fileName,
-                        type: type,
-                        src: fullPath,
-                        pathArray: filePath,
-                        path: fullPath
-                    };
-                    /*this.firstSpace.next({
-                      action:action,
-                      path:fullPath
-                    });*/
-                    this.space[this.workSpackActiveIndex].next({
-                        action: action,
-                        path: fullPath,
-                        type: type
-                    });
-                }
+            //如果是单击并且
+            if (openType == 'single' && this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]) {
+                //if(this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]]){
+                this.workSpace[this.workSpackActiveIndex].files[this.workSpaceActive[this.workSpackActiveIndex]] = {
+                    fileName: fileName,
+                    type: type,
+                    src: fullPath,
+                    pathArray: filePath,
+                    path: fullPath
+                };
+                /*this.firstSpace.next({
+                  action:action,
+                  path:fullPath
+                });*/
+                this.space[this.workSpackActiveIndex].next({
+                    action: action,
+                    path: fullPath,
+                    type: type
+                });
+                //}
             }
-            else if (openType == 'double') {
+            else {
                 this.workSpace[this.workSpackActiveIndex].files.push({
                     fileName: fileName,
                     type: type,
@@ -3533,6 +3668,12 @@ var ApiService = (function () {
                 path: this.workSpace[workSpaceIndex].files[this.workSpaceActive[this.workSpackActiveIndex]].src
             });
         }
+    };
+    ApiService.prototype.fileTabContextMenuShow = function (workspaceIndex, fileIndex) {
+        //alert('fileTabContextMenuShow');
+        this.fileTabContextMenuWorkspaceIndex = workspaceIndex;
+        this.fileTabContextMenufileIndex = fileIndex;
+        this.fileTabContextMenu.popup(window['remote'].getCurrentWindow());
     };
     return ApiService;
 }());

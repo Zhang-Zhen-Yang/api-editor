@@ -1,0 +1,15 @@
+.work-space-no-content{
+	position: absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	display: table;
+}
+.work-space-no-content-cell{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 100px;
+	color:#E9E9E9;
+}
