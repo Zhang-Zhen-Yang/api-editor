@@ -1717,7 +1717,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*.expanded-space{\r\n\tdisplay: inline-block;\r\n\twidth:16px;\r\n\theight:16px;\r\n}*/\r\n.fileResourceActive{\r\n\tbackground-color:#ccc;\r\n}", ""]);
+exports.push([module.i, "/*.expanded-space{\r\n\tdisplay: inline-block;\r\n\twidth:16px;\r\n\theight:16px;\r\n}*/\r\n.fileResourceActive{\r\n\tbackground-color:#ccc;\r\n}\r\n\r\n.tree-file-input{\r\n\tposition: absolute;\r\n\topacity:0.3;\r\n\tright:0;\r\n\ttop:0;\r\n\tbottom:0;\r\n\tmargin:auto;\r\n\t/*width:100px;*/\r\n}", ""]);
 
 // exports
 
@@ -1730,7 +1730,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent\" \n    [class.fileResourceActive]=\"fileActive()\" \n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\"\n    (contextmenu)=\"showContextmenu()\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent relative\" \n    [class.fileResourceActive]=\"fileActive()\" \n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\"\n    (contextmenu)=\"showContextmenu()\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n    <input\n      *ngIf=\"false\" \n      type=\"text\" \n      [style.width]=\"'calc( 100% - '+(indent+3)+'em)'\" \n      class=\"tree-file-input\">\n  </div>\n</div>\n"
 
 /***/ }),
 
