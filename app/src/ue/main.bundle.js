@@ -234,7 +234,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_24__component_monaco_space_monaco_space_component__["a" /* MonacoSpaceComponent */],
             __WEBPACK_IMPORTED_MODULE_25__component_image_space_image_space_component__["a" /* ImageSpaceComponent */],
             __WEBPACK_IMPORTED_MODULE_8__component_code_space2_code_space2_component__["a" /* CodeSpace2Component */],
-            __WEBPACK_IMPORTED_MODULE_26__component_work_space_workspace_no_content_workspace_no_content_component__["a" /* WorkspaceNoContentComponent */]
+            __WEBPACK_IMPORTED_MODULE_26__component_work_space_workspace_no_content_workspace_no_content_component__["a" /* WorkspaceNoContentComponent */],
         ],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_13__component_test_test_component__["a" /* TestComponent */],
@@ -1600,7 +1600,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\"\n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"\n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" \n        [title]=\"file.fullPath\"\n        [fileName]=\"file.name\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"       \n        [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
+module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\" (contextmenu)=\"showContextMenu()\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\"\n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"\n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" \n        [title]=\"file.fullPath\"\n        [fileName]=\"file.name\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"       \n        [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
 
 /***/ }),
 
@@ -1649,6 +1649,9 @@ var TreeDirComponent = (function () {
     };
     TreeDirComponent.prototype.nextPathIndexs = function () {
         return this.pathsIndexs.concat([this.index]);
+    };
+    TreeDirComponent.prototype.showContextMenu = function () {
+        this.apiService.dirContextMenuShow({ title: this.title });
     };
     return TreeDirComponent;
 }());
@@ -1727,7 +1730,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent\" \n    [class.fileResourceActive]=\"fileActive()\" \n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent\" \n    [class.fileResourceActive]=\"fileActive()\" \n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\"\n    (contextmenu)=\"showContextmenu()\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1785,6 +1788,9 @@ var TreeFileComponent = (function () {
         var emitArray = e;
         e.unshift(this.fileName);
         this.dblFileSelect.emit(emitArray);
+    };
+    TreeFileComponent.prototype.showContextmenu = function () {
+        this.apiService.fileContextMenuShow({ title: this.title });
     };
     return TreeFileComponent;
 }());
@@ -3016,6 +3022,10 @@ var ApiService = (function () {
         this.fileTabContextMenu = new window['remote'].Menu();
         this.fileTabContextMenuWorkspaceIndex = 0;
         this.fileTabContextMenufileIndex = 0;
+        this.fileContextMenu = new window['remote'].Menu();
+        this.fileContextMenuFullPath = null;
+        this.dirContextMenu = new window['remote'].Menu();
+        this.dirContextMenuFullPath = null;
         this.observables = {
             fileClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](),
             fileSingleClick: new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"](),
@@ -3141,6 +3151,7 @@ var ApiService = (function () {
                 default: ;
             }
         });
+        //工作区文件tab右键菜单
         this.fileTabContextMenu.append(new window['remote'].MenuItem({
             label: '关闭',
             click: function () { d.dismissFile({ workSpaceIndex: d.fileTabContextMenuWorkspaceIndex, fileIndex: d.fileTabContextMenufileIndex }); }
@@ -3153,6 +3164,56 @@ var ApiService = (function () {
         }));
         this.fileTabContextMenu.append(new window['remote'].MenuItem({
             label: '全部关闭'
+        }));
+        //资源管理器文件右键菜单
+        this.fileContextMenu.append(new window['remote'].MenuItem({
+            label: '复制',
+            click: function () { alert('复制'); }
+        }));
+        this.fileContextMenu.append(new window['remote'].MenuItem({
+            label: '复制路径',
+            click: function () {
+                window['clipboard'].writeText(d.fileContextMenuFullPath);
+            }
+        }));
+        this.fileContextMenu.append(new window['remote'].MenuItem({
+            label: '重命名',
+            click: function () { alert('重命名'); }
+        }));
+        this.fileContextMenu.append(new window['remote'].MenuItem({
+            label: '删除',
+            click: function () { alert('删除'); }
+        }));
+        //资源管理器目录右键菜单
+        this.dirContextMenu.append(new window['remote'].MenuItem({
+            label: '新建文件',
+            click: function () { alert('新建文件'); }
+        }));
+        this.dirContextMenu.append(new window['remote'].MenuItem({
+            label: '新建文件夹',
+            click: function () { alert('复制'); }
+        }));
+        this.dirContextMenu.append(new window['remote'].MenuItem({
+            label: '复制',
+            click: function () { alert('复制'); }
+        }));
+        this.dirContextMenu.append(new window['remote'].MenuItem({
+            label: '粘贴',
+            click: function () { alert('粘贴'); }
+        }));
+        this.dirContextMenu.append(new window['remote'].MenuItem({
+            label: '复制路径',
+            click: function () {
+                window['clipboard'].writeText(d.dirContextMenuFullPath);
+            }
+        }));
+        this.dirContextMenu.append(new window['remote'].MenuItem({
+            label: '重命名',
+            click: function () { alert('重命名'); }
+        }));
+        this.dirContextMenu.append(new window['remote'].MenuItem({
+            label: '删除',
+            click: function () { alert('删除'); }
         }));
     }
     /**
@@ -3177,6 +3238,7 @@ var ApiService = (function () {
      * 初始化菜单
      */
     ApiService.prototype.initMenu = function () {
+        //全局顶部菜单
         var _a = window['remote'], Menu = _a.Menu, MenuItem = _a.MenuItem, shell = _a.shell, _this = this;
         var template = [
             {
@@ -3669,11 +3731,26 @@ var ApiService = (function () {
             });
         }
     };
+    /**
+     * 显示工作区顶部右键菜单
+     * @param workspaceIndex
+     * @param fileIndex
+     */
     ApiService.prototype.fileTabContextMenuShow = function (workspaceIndex, fileIndex) {
         //alert('fileTabContextMenuShow');
         this.fileTabContextMenuWorkspaceIndex = workspaceIndex;
         this.fileTabContextMenufileIndex = fileIndex;
         this.fileTabContextMenu.popup(window['remote'].getCurrentWindow());
+    };
+    ApiService.prototype.fileContextMenuShow = function (_a) {
+        var title = _a.title;
+        this.fileContextMenuFullPath = title;
+        this.fileContextMenu.popup(window['remote'].getCurrentWindow());
+    };
+    ApiService.prototype.dirContextMenuShow = function (_a) {
+        var title = _a.title;
+        this.dirContextMenuFullPath = title;
+        this.dirContextMenu.popup(window['remote'].getCurrentWindow());
     };
     return ApiService;
 }());

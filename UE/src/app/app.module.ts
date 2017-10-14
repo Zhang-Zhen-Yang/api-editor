@@ -30,8 +30,6 @@ import { FileTabComponent } from './component/code-space/file-tab/file-tab.compo
 import { MonacoSpaceComponent } from './component/monaco-space/monaco-space.component';
 import { ImageSpaceComponent } from './component/image-space/image-space.component';
 import { WorkspaceNoContentComponent } from './component/work-space/workspace-no-content/workspace-no-content.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +53,7 @@ import { WorkspaceNoContentComponent } from './component/work-space/workspace-no
     MonacoSpaceComponent,
     ImageSpaceComponent,
     CodeSpace2Component,
-    WorkspaceNoContentComponent
+    WorkspaceNoContentComponent,
   ],
   entryComponents:[
     TestComponent,

@@ -41,5 +41,8 @@ export class TreeDirComponent implements OnInit {
   nextPathIndexs(){
     return this.pathsIndexs.concat([this.index])
   }
+  showContextMenu(){
+    this.apiService.dirContextMenuShow({title:this.title});
+  }
 
 }

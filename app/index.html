@@ -10,11 +10,12 @@
   <body>
     <app-root></app-root>
     <script>
-      let { desktopCapturer, ipcRenderer, remote, webFrame } = require('electron');
+      let { desktopCapturer, ipcRenderer, remote, webFrame, clipboard } = require('electron');
       window.desktopCapturer = desktopCapturer;
       window.ipcRenderer = ipcRenderer;
       window.remote = remote;
       window.webFrame = webFrame;
+      window.clipboard = clipboard;
 
       window.glob = require('glob');
       window.path = require('path');

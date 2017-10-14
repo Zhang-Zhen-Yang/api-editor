@@ -16,9 +16,16 @@ let path = window['path'],
 @Injectable()
 export class ApiService {
   languages:Array<any>
+  
   fileTabContextMenu = new window['remote'].Menu();
   fileTabContextMenuWorkspaceIndex:number = 0
   fileTabContextMenufileIndex:number = 0
+
+  fileContextMenu = new window['remote'].Menu();
+  fileContextMenuFullPath = null;
+
+  dirContextMenu = new window['remote'].Menu();
+  dirContextMenuFullPath = null;
   constructor(public dialog:DialogService) {
     //双击打开新的文件
     /*this.openTabSubject.subscribe((e)=>{
@@ -43,6 +50,7 @@ export class ApiService {
       }
     })
 
+    //工作区文件tab右键菜单
     this.fileTabContextMenu.append(new window['remote'].MenuItem({
       label:'关闭',
       click(){ d.dismissFile({workSpaceIndex:d.fileTabContextMenuWorkspaceIndex,fileIndex:d.fileTabContextMenufileIndex})}
@@ -57,6 +65,69 @@ export class ApiService {
     this.fileTabContextMenu.append(new window['remote'].MenuItem({
       label:'全部关闭'
     }));
+
+    //资源管理器文件右键菜单
+    this.fileContextMenu.append(new window['remote'].MenuItem({
+      label:'复制',
+      click(){ alert('复制');}
+    }));
+
+    this.fileContextMenu.append(new window['remote'].MenuItem({
+      label:'复制路径',
+      click(){
+        window['clipboard'].writeText(d.fileContextMenuFullPath);
+      }
+    }));
+
+    this.fileContextMenu.append(new window['remote'].MenuItem({
+      label:'重命名',
+      click(){ alert('重命名');}
+    }));
+
+    this.fileContextMenu.append(new window['remote'].MenuItem({
+      label:'删除',
+      click(){ alert('删除');}
+    }));
+
+    //资源管理器目录右键菜单
+    this.dirContextMenu.append(new window['remote'].MenuItem({
+      label:'新建文件',
+      click(){ alert('新建文件');}
+    }));
+
+    this.dirContextMenu.append(new window['remote'].MenuItem({
+      label:'新建文件夹',
+      click(){ alert('复制');}
+    }));
+
+    this.dirContextMenu.append(new window['remote'].MenuItem({
+      label:'复制',
+      click(){ alert('复制');}
+    }));
+
+    this.dirContextMenu.append(new window['remote'].MenuItem({
+      label:'粘贴',
+      click(){ alert('粘贴');}
+    }));
+
+    this.dirContextMenu.append(new window['remote'].MenuItem({
+      label:'复制路径',
+      click(){ 
+        window['clipboard'].writeText(d.dirContextMenuFullPath);
+      }
+    }));
+
+    this.dirContextMenu.append(new window['remote'].MenuItem({
+      label:'重命名',
+      click(){ alert('重命名');}
+    }));
+
+    this.dirContextMenu.append(new window['remote'].MenuItem({
+      label:'删除',
+      click(){ alert('删除');}
+    }));
+
+
   }
 
   observables={
@@ -95,6 +166,7 @@ export class ApiService {
    * 初始化菜单
    */
   initMenu(){
+    //全局顶部菜单
     let { Menu, MenuItem, shell} = window['remote'],_this = this;
     const template = [
       {
@@ -738,13 +810,30 @@ export class ApiService {
   }
 
 
-
+  /**
+   * 显示工作区顶部右键菜单
+   * @param workspaceIndex 
+   * @param fileIndex 
+   */
   fileTabContextMenuShow(workspaceIndex,fileIndex){
     //alert('fileTabContextMenuShow');
     this.fileTabContextMenuWorkspaceIndex = workspaceIndex;
     this.fileTabContextMenufileIndex = fileIndex;
     this.fileTabContextMenu.popup(window['remote'].getCurrentWindow());
   }
+
+  fileContextMenuShow({title}){
+    this.fileContextMenuFullPath = title;
+    this.fileContextMenu.popup(window['remote'].getCurrentWindow());
+  }
+
+  dirContextMenuShow({title}){
+    this.dirContextMenuFullPath = title;
+    this.dirContextMenu.popup(window['remote'].getCurrentWindow());
+  }
+
+
+
 
 
 

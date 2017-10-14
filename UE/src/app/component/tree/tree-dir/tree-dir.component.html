@@ -1,6 +1,6 @@
 <div>
   <div class="tree-item" (click)="toggleExpand($event)">
-    <div class="tree-item-indent" [style.textIndent]="indent+'em'" title="{{ title }}">
+    <div class="tree-item-indent" [style.textIndent]="indent+'em'" title="{{ title }}" (contextmenu)="showContextMenu()">
       <div [ngClass]="[expanded?'expanded':'noexpanded']"></div><img [ngClass]="['tree-icon']" [src]="dirName|folderIcon:expanded" alt="">{{ dirName }}
     </div>
   </div> 

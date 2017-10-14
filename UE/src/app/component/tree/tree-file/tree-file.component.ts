@@ -47,6 +47,9 @@ export class TreeFileComponent implements OnInit {
     e.unshift(this.fileName);
     this.dblFileSelect.emit(emitArray);
   }
+  showContextmenu(){
+    this.apiService.fileContextMenuShow({title:this.title});
+  }
 
 
 }
