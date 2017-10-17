@@ -1730,7 +1730,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent relative\" \n    [class.fileResourceActive]=\"fileActive()\" \n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\"\n    (contextmenu)=\"showContextmenu()\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n    <input\n      *ngIf=\"false\" \n      type=\"text\" \n      [style.width]=\"'calc( 100% - '+(indent+3)+'em)'\" \n      class=\"tree-file-input\">\n  </div>\n</div>\n"
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent relative\" \n    [class.fileResourceActive]=\"fileActive()\" \n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\"\n    (contextmenu)=\"showContextmenu()\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n    <input\n      *ngIf=\"false\" \n      type=\"text\" \n      [style.width]=\"'calc( 100% - '+(indent+3)+'em)'\" \n      class=\"tree-file-input\">\n  </div>\n</div>\n\n\n"
 
 /***/ }),
 
