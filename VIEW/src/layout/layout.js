@@ -1,9 +1,6 @@
-import MarkDown from './MarkDown/MarkDown'
-import IFrame from './IFrame/IFrame'
-import Dynamic from './Dynamic/Dynamic'
+import struct from './struct/struct'
 const options = {
-	MarkDown,
-	IFrame
+	struct
 }
 options.install = (Vue) => {
 	for (let component in options) {

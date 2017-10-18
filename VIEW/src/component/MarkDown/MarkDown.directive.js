@@ -1,4 +1,4 @@
-import Vue from 'vue'
+//import Vue from 'vue'
 const marked = require('marked');
 const hljs = require('highlight.js');
 //const {rendererCode, rendererListitem, rendererHtml, rendererHeading} = require('../js/utils.js');
@@ -36,7 +36,7 @@ marked.setOptions({
 });
 
 
-Vue.directive('md', {
+/*Vue.directive('md', {
   // 当绑定元素插入到 DOM 中。
   inserted: function (el,binding, vnode) {
     let val = el.innerHTML.replace(/&gt;/mig,'>');
@@ -46,4 +46,16 @@ Vue.directive('md', {
     console.log(marked(el.innerHTML));
     el.innerHTML = marked(el.innerHTML)
   }
-})
+})*/
+
+export default {
+  // 当绑定元素插入到 DOM 中。
+  inserted: function (el,binding, vnode) {
+    let val = el.innerHTML.replace(/&gt;/mig,'>');
+    /*console.log(el.innerHTML);
+    console.log(val);
+
+    console.log(marked(el.innerHTML));*/
+    el.innerHTML = marked(el.innerHTML)
+  }
+}

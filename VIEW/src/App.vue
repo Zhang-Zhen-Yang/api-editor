@@ -43,11 +43,16 @@ export default {
 <style>
   body{
     margin:0;
-    padding:0;    
+    padding:0;
+    /*font-family:微软雅黑;*/
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 120%;
+    color: #333;
+    -webkit-tap-highlight-color: transparent;
   }
   body *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
   }
 </style>

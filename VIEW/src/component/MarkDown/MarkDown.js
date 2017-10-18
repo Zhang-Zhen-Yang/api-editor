@@ -1,5 +1,8 @@
 import MarkDown from './MarkDown.vue'
-require('./MarkDown.directive');
+import md from './MarkDown.directive'
+//require('./MarkDown.directive');
 export default function install(Vue){
-	Vue.component('MarkDown', MarkDown);
+	Vue.directive('md',md);
+	Vue.component('markdown', MarkDown);
+	
 }
