@@ -1,6 +1,16 @@
 import struct from './struct/struct'
+import header from './header/header'
+import nav from './nav/nav'
+import aside from './aside/aside'
+import remote from './remote/remote'
+import scrolltop from './scrolltop/scrolltop'
 const options = {
-	struct
+	struct,
+	header,
+	nav,
+	aside,
+	scrolltop,
+	remote
 }
 options.install = (Vue) => {
 	for (let component in options) {

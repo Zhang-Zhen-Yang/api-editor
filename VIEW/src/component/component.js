@@ -1,9 +1,8 @@
 import MarkDown from './MarkDown/MarkDown'
-import IFrame from './IFrame/IFrame'
-import Dynamic from './Dynamic/Dynamic'
+//import remote from './remote/remote'
 const options = {
 	MarkDown,
-	IFrame
+	//remote
 }
 options.install = (Vue) => {
 	for (let component in options) {
