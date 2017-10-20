@@ -1,8 +1,8 @@
 import MarkDown from './MarkDown/MarkDown'
-//import remote from './remote/remote'
+import table from './table/table'
 const options = {
 	MarkDown,
-	//remote
+	table
 }
 options.install = (Vue) => {
 	for (let component in options) {

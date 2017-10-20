@@ -5,8 +5,7 @@
     </div>
     <div style="float:left;">
       <slot name="nav"></slot>
-    </div>   
-    {{ windowH }}
+    </div>
     <slot name="default"></slot>
   </header>
 </template>
@@ -16,13 +15,10 @@ export default {
   name: 'struct-header',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+     
     }
   },
   computed:{
-    windowH(){
-      return document.body.clientHeight;
-    }
   },
   methods:{
     

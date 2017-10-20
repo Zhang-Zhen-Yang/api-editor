@@ -35,9 +35,10 @@ export default {
 
 <style>
   .struct-nav{
-    width:100%;
-    height:72px;
-    position:static;
+   /* width:100%;*/
+   display:inline-block;
+    /*height:72px;*/
+    /*position:static;*/
     z-index:1;
   }
   .struct-nav ul{
@@ -47,7 +48,7 @@ export default {
   }
   .struct-nav li{
     display:inline-block;
-    font-size:20px;
+    font-size:18px;
     margin:0 10px;
     line-height:
   }

@@ -7,6 +7,7 @@
       <div class="iframe-content" v-if="mode=='remote'">
         <dynamic v-if="rendered"></dynamic>
       </div>
+      <slot name="default"></slot>
   </div>
 </template>
 
@@ -51,7 +52,7 @@ export default {
         try{
           let href = this.frame.contentWindow.location.href,iframeValue;
           if(href.endsWith('.md')){
-            iframeValue = this.frame.contentWindow.document.body.firstChild.innerHTML;
+            iframeValue = this.frame.contentWindow.document.body.firstChild.innerHTML.replace(/&lt;/mig,'<').replace(/&gt;/mig,'>');
           }else if(href.indexOf('http')==0&&window.location.href.indexOf('file:///')==0){
             this.mode ='iframe';
             return;
@@ -61,12 +62,12 @@ export default {
           
           this.iframeValue = iframeValue;
           if(href.endsWith('.md')){
-            console.log('md',iframeValue);
+            //console.log('md',iframeValue);
             iframeValue = `<markdown>${iframeValue}</markdown>`;
           }else{
             iframeValue = `<div>${iframeValue}</div>`
           }
-          console.log(iframeValue);
+          //console.log(iframeValue);
           window.Vue.component('dynamic',{
             template: iframeValue
           })

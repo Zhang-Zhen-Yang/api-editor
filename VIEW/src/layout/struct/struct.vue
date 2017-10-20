@@ -9,10 +9,7 @@
       </article>
     </div>
     <slot name="scrolltop">
-    </slot>
-    <footer style="position:absolute;bottom:0;width:100%;height:100px;background-color:red;">
-      footerfdg sfdg sdfg 
-    </footer>
+    </slot>    
   </div>
 </template>
 
@@ -35,22 +32,16 @@ export default {
 <style>
   .container{
     width:100%;
-    height:100%;
-    border-left:300px solid transparent;
-    position:fixed;
-    top:0;
-    left:0;
+    /*height:100%;*/
     border-top:72px solid transparent;
-    border-bottom:100px solid transparent;
+    border-left:300px solid transparent;
+    /*position:fixed;*/
+    top:0;
+    left:0;   
     margin:0 auto;
     overflow:auto;
   }
-  
   article{
     width:100%;
   }
-  .struct{
-    min-height:100%;
-  }
-
 </style>

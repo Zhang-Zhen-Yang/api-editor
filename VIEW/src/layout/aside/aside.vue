@@ -1,21 +1,25 @@
 <template>
-  <nav class="struct-aside">
+  <nav class="struct-aside" :class="{expandable:expandable}">
     <ul>
-      <li v-for="(val,index) in links">
+      <li v-for="(val,index) in links" 
+        class="parent-list" 
+        :class="{noexpanded:!expandedList[index]}"
+        @click="linkAction($event,index,null,'parent')">
+        <div class="marker" v-if="val.children" :class="{'linkActive':activeIndex[0]==index&&val.url}"></div>
         <a :href="val.url" 
           v-if="val.url" 
           class="chapter-title" 
           :class="{'linkActive':activeIndex[0]==index}" 
-          :target="val.target||'_black'" 
-          @click="linkAction($event,index)">{{ val.name }}</a>
+          :target="val.target||'_black'">{{ val.name }}</a>
         <h3 v-if="!val.url" class="chapter-title">{{ val.name }}</h3>
         <ul v-if="val.children">
-          <li v-for="(childVal,childIndex) in val.children">
+          <li v-for="(childVal,childIndex) in val.children" class="child-list">
+            
             <a :href="childVal.url" 
               class="chapter-list" 
               :class="{'linkActive':activeIndex[0]==index&&activeIndex[1]==childIndex}" 
               :target="val.target||'_black'" 
-              @click="linkAction($event,index,childIndex)">{{ childVal.name }}</a>
+              @click.stop="linkAction($event,index,childIndex,'child')"><span v-if="expandable">–</span> {{ childVal.name }}</a>
           </li>
         </ul>
       </li>
@@ -38,28 +42,55 @@ export default {
       default(){
         return [0,0];
       }
+    },
+    expandable:{
+      type:Boolean,
+      default:false
     }
   },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      activeIndex:[0,0]
+      activeIndex:[0,0],
+      expandedList:[]
     }
   },
   computed:{
   },
   methods:{
-    linkAction(e,parent,child){
+    linkAction(e,parent,child,from){
+      if(from=='parent'){
+        if(this.expandable){
+          this.$set(this.expandedList,parent,!this.expandedList[parent]);
+        }
+        
+        if(!this.links[parent].url){
+          return;
+        }
+      }      
+      
       this.$set(this.activeIndex,0,parent);
+      
       //this.activeIndex[0] = parent;
-      if(child!= undefined){
-        this.activeIndex[1] = child;
+      if(from=='child'){
+        if(child!= undefined){
+          this.activeIndex[1] = child;
+        }
+      }else{
+        this.activeIndex[1] = null;
       }
+      
       console.log(arguments);
     }
   },
   created(){
     this.activeIndex = this['initActive'];
+    this.expandedList = this.links.map((item)=>{
+      if(!this.expandable){
+        return true;
+      }
+      return item.expanded;
+    })
   }
 }
 </script>
@@ -96,5 +127,34 @@ export default {
   .struct-aside .chapter-list{
     font-weight:normal;
   }
- 
+  .struct-aside .parent-list.noexpanded ul{
+    display:none;
+  }
+
+  .struct-aside.expandable .noexpanded .marker{
+    
+    margin-left: -10px;
+    margin-top: 4px;   
+   
+    border-width: 4px 0 4px 5px;
+    border-color: transparent transparent transparent #333;
+  }
+  .struct-aside.expandable .noexpanded .marker.linkActive{
+    border-color: transparent transparent transparent #088bc3;
+  }
+  .struct-aside.expandable .marker{
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    margin-left: -12px;
+    margin-top: 4px;
+    border-width: 0 0 6px 6px;
+    border-color: transparent transparent #333;
+  }
+  .struct-aside.expandable .marker.linkActive{
+    border-color: transparent transparent #088bc3;
+  }
+  
 </style>

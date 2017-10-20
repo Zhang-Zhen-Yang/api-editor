@@ -9,7 +9,7 @@ module.exports = {
     filename: 'build.js'
   },*/
   entry: {
-    main: "./src/main.js",
+    /*main: "./src/main.js",*/
     layout:"./src/layout/layout.js",
     component: "./src/component/component.js"
    },
