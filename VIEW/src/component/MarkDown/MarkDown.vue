@@ -421,14 +421,15 @@ export default {
   .mermaid .label {
     color: #333;
   }
-  .node rect,
+
+  /*.node rect,
   .node circle,
   .node ellipse,
   .node polygon {
     fill: #ECECFF;
     stroke: #CCCCFF;
     stroke-width: 1px;
-  }
+  }*/
   .edgePath .path {
     stroke: #333333;
   }

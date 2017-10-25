@@ -1,11 +1,11 @@
 //import Vue from 'vue'
 const marked = require('marked');
 const hljs = require('highlight.js');
-const viz = require("viz.js");
+//const viz = require("viz.js");
 
 const codeConverters = {
-  graphNative:function(code){
-    return viz(code,'svg')
+  graph:function(code){    
+    return window.Viz(code,'svg')
   }
 }
 
