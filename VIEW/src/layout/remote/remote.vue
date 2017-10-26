@@ -104,6 +104,7 @@ export default {
 }
 .iframe .iframe-content{
   padding-right:100px;
+  min-height:600px;
 }
   
 </style>

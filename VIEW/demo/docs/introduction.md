@@ -20,7 +20,13 @@ chrome 浏览器 右键 属性
 添加
  --args --disable-web-security --user-data-dir
 
+打开浏览器，提示
+
+ ![](./image/chromeNotice.png)
+
 <img src="http://img1.gamersky.com/image2017/10/20171020_sy_225_2/gamersky_05small_10_20171020107D42.jpg" alt="" >
+
+
 
 
 ![](http://imgs.aixifan.com/live/1508316746718/1508316746718.jpg)

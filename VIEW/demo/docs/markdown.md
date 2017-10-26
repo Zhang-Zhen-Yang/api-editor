@@ -85,6 +85,11 @@ Content in the first column | Content in the second column
 只需要在文本前加入 > 这种尖括号（大于号）即可
 
 ##### 7.html
+<video src="https://tbm.alicdn.com/t6j5w4IjQkWm66aICZ0/NYnk9mFWUGcpPwJN6cZ%40%40ud.mp4" controls style="width:700px;"></video>
+
+```
+<video src="https://tbm.alicdn.com/t6j5w4IjQkWm66aICZ0/NYnk9mFWUGcpPwJN6cZ%40%40ud.mp4" controls style="width:700px;"></video>
+```
 
 
 <img src="http://img1.gamersky.com/image2017/10/20171020_sy_225_2/gamersky_05small_10_20171020107D42.jpg" alt="" >
