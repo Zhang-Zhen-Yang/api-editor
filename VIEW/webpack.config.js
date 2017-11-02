@@ -11,7 +11,8 @@ module.exports = {
   entry: {
     /*main: "./src/main.js",*/
     layout:"./src/layout/layout.js",
-    component: "./src/component/component.js"
+    component: "./src/component/component.js",
+    directive: "./src/directive/directive.js"
    },
    output: {
     path: path.join(__dirname, "./dist"),

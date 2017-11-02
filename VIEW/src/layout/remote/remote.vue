@@ -103,7 +103,8 @@ export default {
   position:static;
 }
 .iframe .iframe-content{
-  padding-right:100px;
+  max-width:1200px;
+  min-width:600px;
   min-height:600px;
 }
   

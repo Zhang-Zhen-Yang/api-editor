@@ -1,0 +1,47 @@
+## CODE
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | v-code| 自定义标签 
+attribute | templateId | 提供代码的script标签的id 
+> v-code 组件的功能由highlight.js实现，您可以更换highlight提供的不同样式表，使其显示不同的高亮效果。[highlight.js](http://www.bootcdn.cn/highlight.js/)CDN。
+在markdown组件中也同样提供了代码的高亮写法，两者效果大体一致。但是，如果想对自定义组件进行高亮，则只能通过下列代码区的写法实现。
+
+### 示例
+<v-code :templateId="'code'">
+</v-code>
+
+<script type="x-template" id="code">
+<v-row :css="{backgroundColor:'#efefef'}">
+	<img v-column.left="0.5" src="http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg" alt="">
+	<img v-column.right="0.5" src="http://pixiv-zingaro.jp/wp-content/uploads/norioikeru_main.jpg" alt="">
+</v-row>
+</script>
+
+
+
+### 代码（实现示例效果的实际代码）
+<v-code :templateId="'code2'">
+</v-code>
+
+<script type="x-template" id="code2">
+<v-code :templateId="'code'">
+</v-code>
+</script>
+
+```
+<script type="x-template" id="code">
+	<v-row :css="{backgroundColor:'#efefef'}">
+		<img v-column.left="0.5" src="http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg" alt="">
+		<img v-column.right="0.5" src="http://pixiv-zingaro.jp/wp-content/uploads/norioikeru_main.jpg" alt="">
+	</v-row>
+</script>
+```
+
+### 实际的渲染（示例中代码写在markdown文件中所显现的效果）
+
+<v-row :css="{backgroundColor:'#efefef'}">
+	<img v-column.left="0.5" src="http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg" alt="">
+	<img v-column.right="0.5" src="http://pixiv-zingaro.jp/wp-content/uploads/norioikeru_main.jpg" alt="">
+</v-row>
+
+

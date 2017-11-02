@@ -43,6 +43,12 @@ chrome 浏览器 右键 属性
  ![](./image/chromeNotice.png)
 
  即可支持动态加载本地文件。
+ 
+ ![](http://pixiv-zingaro.jp/wp-content/uploads/eromanga-sensei_main.jpg?pub) 
+ ![](http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg) 
+ ![](http://pixiv-zingaro.jp/wp-content/uploads/norioikeru_main.jpg) 
+ ![](http://pixiv-zingaro.jp/wp-content/uploads/alternapixiv_main.jpg?1717) 
+ ![](http://pixiv-zingaro.jp/wp-content/banner/135/watanabeakio_main.jpg) 
 
 <img src="http://img1.gamersky.com/image2017/10/20171020_sy_225_2/gamersky_05small_10_20171020107D42.jpg" alt="" >
 

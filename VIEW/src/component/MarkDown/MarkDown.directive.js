@@ -51,16 +51,18 @@ render.code = (code,language)=>{
     "\n******************* Convert Error *******************\n";
   const ERR_TAIL =
     "\n*****************************************************\n";
-  let hljsCode = hljs.highlightAuto(code).value;
+    console.log('code',code);
+  let translateCode = code.replace(/&amp;lt;/mig,'<').replace(/&amp;gt;/mig,'>');
+  let hljsCode = hljs.highlightAuto(translateCode).value;
 
   if (codeConverters[language]) {
     try {
-      return  codeConverters[language](code);
+      let hljsCode = hljs.highlightAuto(translateCode).value;
+      return  codeConverters[language](translateCode);
     } catch (error) {
       let errMsg = String(error).trim();
       let retCode =
         `<pre><code>${hljsCode}${ERR_HEAD}${errMsg}${ERR_TAIL}</code></pre>`;
-
       return retCode;
     }
   }

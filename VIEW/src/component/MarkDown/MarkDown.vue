@@ -179,6 +179,7 @@ export default {
       margin-bottom: 0; }
 
   table {
+    border-collapse: collapse;
     padding: 0; }
     table tr {
       border-top: 1px solid #cccccc;
@@ -313,7 +314,7 @@ export default {
 
   */
 
-  .hljs {
+  /*.hljs {
     display: block;
     overflow-x: auto;
     padding: 0.5em;
@@ -405,7 +406,7 @@ export default {
 
   .hljs-strong {
     font-weight: bold;
-  }
+  }*/
 
   /*
   * For task-list-item
