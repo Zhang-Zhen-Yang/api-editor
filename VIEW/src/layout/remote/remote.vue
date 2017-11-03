@@ -69,7 +69,12 @@ export default {
           }
           //console.log(iframeValue);
           window.Vue.component('dynamic',{
-            template: iframeValue
+            template: iframeValue,
+            data:function(){
+              return {
+                window:window
+              }              
+            }
           })
           this.rendered = false;
           this.mode = 'remote';

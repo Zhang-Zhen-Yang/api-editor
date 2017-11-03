@@ -101,7 +101,7 @@ export default {
     left:0;
     top:72px;
     width:300px;
-    padding:20px 20px 0;
+    padding:20px 20px 0 30px;
     overflow:auto;
     height:calc(100% - 72px);
   }
@@ -123,6 +123,7 @@ export default {
   .struct-aside .chapter-title{
     font-size:1.1em;
     font-weight:bold;
+    cursor:default;
   }
   .struct-aside .chapter-list{
     font-weight:normal;
@@ -152,6 +153,7 @@ export default {
     margin-top: 4px;
     border-width: 0 0 6px 6px;
     border-color: transparent transparent #333;
+    
   }
   .struct-aside.expandable .marker.linkActive{
     border-color: transparent transparent #088bc3;

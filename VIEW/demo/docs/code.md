@@ -43,5 +43,3 @@ attribute | templateId | 提供代码的script标签的id
 	<img v-column.left="0.5" src="http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg" alt="">
 	<img v-column.right="0.5" src="http://pixiv-zingaro.jp/wp-content/uploads/norioikeru_main.jpg" alt="">
 </v-row>
-
-
