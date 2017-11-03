@@ -1,18 +1,37 @@
 <template>
-  <pre>
-    <code class="v-code" ref="code">
+  <div class="code-wrap">
+    <div class="copy-icon-wrap" v-if="showCopyIcon">
+      <clipboard :target="templateId">
+        <div class="copy-icon" title="复制代码">
+        </div>
+      </clipboard>
+    </div>
+    
+    
+    <pre>
+      <code class="v-code" ref="code">
 
-    </code>
-  </pre>
+      </code>
+    </pre>
+  </div>
+
 </template>
 
 <script>
+import clipboard from '../clipboard/clipboard.vue'
 const hljs = require('highlight.js');
 export default {
+  components:{
+    clipboard,
+  },
   props:{
     templateId:{
       type:String,
       default:'',
+    },
+    showCopyIcon:{
+      type:Boolean,
+      default:true,
     }
   },
   name: 'v-code',
@@ -50,7 +69,41 @@ export default {
 }
 </script>
 <style>
-  .v-code:{
-
+  .code-wrap{
+    position:relative;
+  }
+  .code-wrap pre{
+    padding-bottom:0;
+  }
+  .copy-icon-wrap{
+    display:inline-block;
+    position:absolute;
+    right:15px;
+    top:15px;
+  }
+  .copy-icon{
+    position:relative;
+    width:15px;
+    height:18px;    
+    background-color:#efefef;
+    border:2px solid;
+    border-radius:2px;
+    color:#b0bec5;
+    cursor:pointer;
+  }
+  .copy-icon:hover{
+    color:#6e6e6e;
+  }
+  .copy-icon:before{
+    content:'';
+    display:block;
+    position:absolute;
+    width:12px;
+    height:15px;
+    border-left:2px solid;
+    border-top:2px solid;
+    left:-6px;
+    top:-6px;
+    border-radius:2px 0;
   }
 </style>

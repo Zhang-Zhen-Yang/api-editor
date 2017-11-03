@@ -1,17 +1,125 @@
 ## ASIDE
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | v-aside| 自定义标签
+attribute | links | 生成a链接的数组，格式看下列示例代码
+attribute | init-active | 高亮的link
+attribute | expandable | 是否可展开子级
+attribute | css | css样式的对象表达式
+
+> v-aside 提供了生成 a 链接的功能;
+
+#### 简单的代码
+<v-row>
+	<div v-column.left="0.3">
+		<struct-aside 
+			:links="[
+				{name:'bilibili',url:'https://www.bilibili.com/',target:'_blank'},
+				{name:'taobao',url:'https://www.taobao.com/',target:'remote'},
+			]" 
+			:init-active="[1,0]" 
+			:expandable="true">
+		</struct-aside>
+	</div>
+	<div v-column.right="0.7">
+	<v-code templateId="code" >
+	</v-code>
+</div>
+</v-row>
+<script type="x-tempate" id="code">
+<struct-aside 
+	:links="[
+		{name:'android-api',target:'remote'},
+		{name:'ios-api',target:'remote'},
+	]" 
+	:init-active="[1,0]" 
+	:expandable="true">
+</struct-aside>
+</script>
 
 
-<img src="http://img1.gamersky.com/image2017/10/20171020_sy_225_2/gamersky_05small_10_20171020107D42.jpg" alt="" >
-<video src="./resource/01.mp4" controls></video>
+#### 含子集的链接（不可展开缩合）
 
-![](http://imgs.aixifan.com/live/1508316746718/1508316746718.jpg)
+<v-row>
+	<div v-column.left="0.3">
+		<struct-aside 
+			:links="[
+				{
+					name:'bilibili',
+					children:[
+						{
+							name:'番剧',
+							url:'https://bangumi.bilibili.com/22/',
+							target:'_blank',
+						},
+						{
+							name:'科技',
+							url:'https://www.bilibili.com/video/technology.html',
+							target:'_blank',
+						},
+					]
+				},
+				{
+					name:'taobao',
+					children:[
+						{
+							name:'数码',
+							url:'https://www.taobao.com/markets/3c/shuma',
+							target:'_blank',
+						},
+						{
+							name:'动漫',
+							url:'https://www.taobao.com/markets/acg/dongman',
+							target:'_blank',
+						},
+					]
+				},
+			]" 
+			:init-active="[1,0]" 
+			:expandable="false">
+		</struct-aside>
+	</div>
+	<div v-column.right="0.7">
+	<v-code templateId="code2" >
+	</v-code>
+</div>
+</v-row>
+<script type="x-tempate" id="code2">
+<struct-aside 
+	:links="[
+		{
+			name:'bilibili',
+			children:[
+				{
+					name:'番剧',
+					url:'https://bangumi.bilibili.com/22/',
+					target:'_blank',
+				},
+				{
+					name:'科技',
+					url:'https://www.bilibili.com/video/technology.html',
+					target:'_blank',
+				},
+			]
+		},
+		{
+			name:'taobao',
+			children:[
+				{
+					name:'数码',
+					url:'https://www.taobao.com/markets/3c/shuma',
+					target:'_blank',
+				},
+				{
+					name:'动漫',
+					url:'https://www.taobao.com/markets/acg/dongman',
+					target:'_blank',
+				},
+			]
+		},
+	]" 
+	:init-active="[1,0]" 
+	:expandable="false">
+</struct-aside>
+</script>
 
-![](http://imgs.aixifan.com/live/1508316747024/1508316747024.jpg)
-
-![](http://imgs.aixifan.com/live/1508316746718/1508316746718.jpg)
-
-![](http://imgs.aixifan.com/live/1508316747024/1508316747024.jpg)

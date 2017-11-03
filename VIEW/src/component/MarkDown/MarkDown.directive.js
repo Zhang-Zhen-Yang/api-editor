@@ -4,8 +4,9 @@ const hljs = require('highlight.js');
 //const viz = require("viz.js");
 
 const codeConverters = {
-  graph:function(code){    
-    return window.Viz(code,'svg')
+  graph:function(code){
+    let translateCode = code.replace(/&lt;/mig,'<');
+    return window.Viz(translateCode,'svg')
   }
 }
 

@@ -23,13 +23,12 @@
 				<div style="float:left;margin-left:30px;">
 					<img src="./image/api.png" slot="logo" alt="">
 				</div>
-				<div style="font-size:30px;float:left;margin-top:27px;color:#aaa;">
+				<!--<div style="font-size:30px;float:left;margin-top:27px;color:#aaa;">
 					-
 					<b style="color:#088bc3;">
 					struct
 					</b>
-				</div>
-				
+				</div>-->		
 				
 				
 				<!--顶部链接-->
@@ -45,7 +44,20 @@
 			</struct-header>
 
 			<!--边栏-->
-			<struct-aside slot="aside" :links="aside" :init-active="[1,0]" :expandable="true">
+			<struct-aside 
+				slot="aside" 
+				:links="aside" 
+				:init-active="[1,0]" 
+				:expandable="true" 
+				:css="{
+					position:'fixed',
+					left:0,
+					top:'72px',
+					width:'300px',
+					padding:'20px 20px 0 30px',
+					overflow:'auto',
+					height:'calc(100% - 72px)',
+				}">
 				
 				<img src="https://gw.alicdn.com/tfs/TB1pTBZQFXXXXX9XXXXXXXXXXXX-794-280.png" slot="content" alt="" style="width:80%;display:block;margin:0 auto;">
 			</struct-aside>	
@@ -78,10 +90,10 @@
 					{name:'手册',url:'./docs/md3.md',target:'remote'},
 					{name:'简介',url:'./docs/introduction.md',target:'remote'},
 					{name:'api-struct',target:'remote',expanded:true,children:[
-						{name:'struct-header',url:'./docs/header.md'},
-						{name:'struct-nav',url:'./docs/nav.md'},
-						{name:'struct-aside',url:'./docs/aside.md'},
-						{name:'struct-remote',url:'./docs/remote.md'}
+						{name:'header',url:'./docs/header.md'},
+						{name:'nav',url:'./docs/nav.md'},
+						{name:'aside',url:'./docs/aside.md'},
+						{name:'remote',url:'./docs/remote.md'}
 					]},
 					{name:'component',expanded:true,target:'remote',children:[
 						{name:'markdown',url:'./docs/markdown.md'},
@@ -94,21 +106,14 @@
 							{name:'column',url:'./docs/column.md'},
 						]
 					},
-					{name:'test md',url:'./docs/md.md',target:'remote'},
+					{name:'bilibili',url:'https://www.bilibili.com/',target:'remote'},
 					{name:'test md1',url:'./docs/md2.md',target:'remote'},
 					{name:'通用特性展开',url:'./docs/md3.md',target:'remote',expanded:true,children:[
 						{name:'iOS APIs',url:'http://weex-project.io/cn/references/index.html'},
 						{name:'Android APIs',url:'http://weex-project.io/cn/references/index.html'},
 						{name:'降级方案'}
 					]},
-					{name:'通用特性不展开',target:'remote',expanded:false,children:[
-						{name:'iOS APIs',url:'http://weex-project.io/cn/references/index.html'},
-						{name:'Android APIs',url:'http://weex-project.io/cn/references/index.html'},
-						{name:'降级方案'}
-					]},
-					{name:'内建组件',target:'remote'},
-					{name:'orange',url:'https://www.bilibili.com/',target:'remote'},
-					{name:'apple',url:'https://www.bilibili.com/',target:'remote'},
+
 				],
 				nav:[
 					{name:'教程',url:'./index.html',target:'_self'},

@@ -1,17 +1,30 @@
 ## REMOTE
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | struct-remote | 自定义标签 
+attribute | init | remote 组件首次加载的文件地址
+
+> struct-remote 是 核心组件，用于加载文件并装载到页面中。本质上是利用 iframe 来获取文件内容。所以请注意是否存在跨域的问题。如果存在跨域问题，将原原本本地呈现iframe，而不是装载iframe内容到页面上。
+
+### 实现remote功能的内部代码
+<v-code :templateId="'code'">
+</v-code>
+
+> 使用本组件时只要写好了struct-remote并定义init属性值即可。通过a 标签可以加载不同的文件，只要a 标签的 target 属性值为'remote'值即可。
+
+### 简单的代码
+<v-code :templateId="'code2'">
+</v-code>
 
 
-<img src="http://img1.gamersky.com/image2017/10/20171020_sy_225_2/gamersky_05small_10_20171020107D42.jpg" alt="" >
-<video src="./resource/01.mp4" controls></video>
+<script type="x-template" id="code">
+	<iframe :src="init" name="remote" frameborder="0" ref="frame"></iframe>
+</script>
 
-![](http://imgs.aixifan.com/live/1508316746718/1508316746718.jpg)
-
-![](http://imgs.aixifan.com/live/1508316747024/1508316747024.jpg)
-
-![](http://imgs.aixifan.com/live/1508316746718/1508316746718.jpg)
-
-![](http://imgs.aixifan.com/live/1508316747024/1508316747024.jpg)
+<script type="x-template" id="code2">
+	<struct-remote :init="'./docs/a.md'" >
+	</struct-remote>
+	<a href="docs/a.md" target="remote"></a>
+	<a href="docs/b.md" target="remote"></a>
+	<a href="docs/c.md" target="remote"></a>
+</script>

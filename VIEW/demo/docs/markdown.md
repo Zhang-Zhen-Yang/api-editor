@@ -3,7 +3,7 @@
 
 ### 接下来是markdown的一些代码示范
 
-##### 1.代码高亮
+#### 1.代码高亮
 ```java
 public class HelloWorld {
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class HelloWorld {
 ```
 </pre>
 
-##### 2.制作待办事项To-do List
+#### 2.制作待办事项To-do List
 
 - [x] 已完成项目1
 	- [x] 已完成事项1
@@ -38,7 +38,7 @@ public class HelloWorld {
 </pre>
 
 
-##### 3.表格
+#### 3.表格
 
 First Header | Second Header
 ------------ | -------------
@@ -51,7 +51,7 @@ Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
 ```
 
-##### 4.标题
+#### 4.标题
 
 # 一级标题
 ## 二级标题
@@ -68,7 +68,7 @@ Content in the first column | Content in the second column
 ###### 六级标题
 ```
 
-##### 5.链接，图片
+#### 5.链接，图片
 [https://github.com/](https://github.com/)
 
 ![](http://img1.gamersky.com/image2017/10/20171019_sy_225_4/gamersky_02small_04_201710191026325.jpg)
@@ -90,15 +90,3 @@ Content in the first column | Content in the second column
 ```
 <video src="https://tbm.alicdn.com/t6j5w4IjQkWm66aICZ0/NYnk9mFWUGcpPwJN6cZ%40%40ud.mp4" controls style="width:700px;"></video>
 ```
-
-
-<img src="http://img1.gamersky.com/image2017/10/20171020_sy_225_2/gamersky_05small_10_20171020107D42.jpg" alt="" >
-<video src="./resource/01.mp4" controls></video>
-
-![](http://imgs.aixifan.com/live/1508316746718/1508316746718.jpg)
-
-![](http://imgs.aixifan.com/live/1508316747024/1508316747024.jpg)
-
-![](http://imgs.aixifan.com/live/1508316746718/1508316746718.jpg)
-
-![](http://imgs.aixifan.com/live/1508316747024/1508316747024.jpg)

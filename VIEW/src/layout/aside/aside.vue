@@ -1,5 +1,5 @@
 <template>
-  <nav class="struct-aside" :class="{expandable:expandable}">
+  <nav class="struct-aside" :class="{expandable:expandable}" :style="css">
     <ul>
       <li v-for="(val,index) in links" 
         class="parent-list" 
@@ -10,7 +10,7 @@
           v-if="val.url" 
           class="chapter-title" 
           :class="{'linkActive':activeIndex[0]==index}" 
-          :target="val.target||'_black'">{{ val.name }}</a>
+          :target="val.target||'_blank'">{{ val.name }}</a>
         <h3 v-if="!val.url" class="chapter-title">{{ val.name }}</h3>
         <ul v-if="val.children">
           <li v-for="(childVal,childIndex) in val.children" class="child-list">
@@ -18,7 +18,7 @@
             <a :href="childVal.url" 
               class="chapter-list" 
               :class="{'linkActive':activeIndex[0]==index&&activeIndex[1]==childIndex}" 
-              :target="val.target||'_black'" 
+              :target="val.target||'_blank'" 
               @click.stop="linkAction($event,index,childIndex,'child')"><span v-if="expandable">–</span> {{ childVal.name }}</a>
           </li>
         </ul>
@@ -46,6 +46,12 @@ export default {
     expandable:{
       type:Boolean,
       default:false
+    },
+    css:{
+      type:Object,
+      default(){
+        return {};
+      }
     }
   },
   data () {
@@ -97,13 +103,6 @@ export default {
 
 <style>
   .struct-aside{
-    position:fixed;
-    left:0;
-    top:72px;
-    width:300px;
-    padding:20px 20px 0 30px;
-    overflow:auto;
-    height:calc(100% - 72px);
   }
   .struct-aside ul{
     list-style:none;
