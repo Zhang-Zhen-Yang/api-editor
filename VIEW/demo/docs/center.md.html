@@ -11,22 +11,27 @@ attribute | type | 居中类型emun{'middle','center','centerInParent'};middle�
 > v-center 所包围的元素相对于v-center处于居中位置。水平居中，垂直居中和水平垂直居中。
 
 <v-row>
-<v-center v-column.left="0.4" :css="{width:'100%',height: '180px', backgroundColor:'#efefef'}">
-	<img src="http://pixiv-zingaro.jp/wp-content/uploads/eromanga-sensei_main.jpg?pub" 
-	alt="" 
-	style="width:200px;">
-</v-center>
+<div v-column.left="0.4" style="padding-top:16px;">
+	<v-center  :css="{width:'100%',height: '180px', backgroundColor:'#efefef'}">
+		<img 
+		src="http://pixiv-zingaro.jp/wp-content/uploads/eromanga-sensei_main.jpg?pub" 
+		alt="" 
+		style="width:300px;">
+	</v-center>
+</div>
+
 <div v-column.left="0.6">
-	<v-code  :templateId="'code'">
+	<v-code  :templateid="'code'">
 	</v-code>
 </div>
 </v-row>
 
 <script type="x-template" id="code">
-<v-center v-column.left="0.4" :css="{width:'100%',height: '180px', backgroundColor:'#efefef'}">
-	<img src="http://pixiv-zingaro.jp/wp-content/uploads/eromanga-sensei_main.jpg?pub" 
-	alt="" 
-	style="width:200px;">
+<v-center  :css="{width:'100%',height: '180px', backgroundColor:'#efefef'}">
+  <img 
+  src="http://pixiv-zingaro.jp/wp-content/uploads/eromanga-sensei_main.jpg?pub" 
+  alt="" 
+  style="width:200px;">
 </v-center>
 </script>
 

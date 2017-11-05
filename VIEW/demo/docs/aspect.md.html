@@ -1,0 +1,63 @@
+## ASPECT
+
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | v-aspect| 自定义标签
+attribute | ratio | 高宽比 数值类型或计算表达式如1/3;0 - 1 表达高度为宽度的0% - 100%
+attribute | css | css样式的对象表达式
+> v-aspect 提供了高度与宽度成一定比例的容器;
+
+### 示例
+
+<v-row>
+    <div v-column.left="0.3">
+        <v-aspect :ratio="133/226" :css="{backgroundColor:'#efefef',width:'95%'}">
+            <v-center :css="{width:'100%',height:'100%'}">
+                <img src="http://pixiv-zingaro.jp/wp-content/banner/120/kantoku_small_2.jpg" alt="">
+            </v-center>            
+        </v-aspect>
+    </div>
+
+    <div v-column.right="0.7">
+        <v-code :templateid="'code'">
+        </v-code>
+    </div>
+</v-row>
+
+<script type="x-template" id="code">
+<v-aspect :ratio="133/226" :css="{backgroundColor:'#efefef',width:'95%'}">
+    <v-center :css="{width:'100%',height:'100%'}">
+        <img src="http://pixiv-zingaro.jp/wp-content/banner/120/kantoku_small_2.jpg" alt="">
+    </v-center>            
+</v-aspect>
+</script>
+<br>
+
+<v-row>
+    <div v-column.left="0.3">
+        <v-aspect :ratio="0.8" :css="{backgroundColor:'#efefef',width:'324px'}">
+            <v-center :css="{width:'100%',height:'100%',border:'5px solid #ddd'}">
+                <img src="http://pixiv-zingaro.jp/wp-content/banner/6/jh_kagaku_small.jpg" alt="">
+                <div>2011.07.14(Thu) – 07.26(Tue)</div>
+                <div>参加アーティスト</div>
+                <i>John Hathway</i>
+            </v-center>     
+        </v-aspect>
+    </div>
+
+    <div v-column.right="0.7">
+        <v-code :templateid="'code2'">
+        </v-code>
+    </div>
+</v-row>
+
+<script type="x-template" id="code2">
+<v-aspect :ratio="0.8" :css="{backgroundColor:'#efefef',width:'324px'}">
+    <v-center :css="{width:'100%',height:'100%',border:'5px solid #ddd'}">
+        <img src="http://pixiv-zingaro.jp/wp-content/banner/6/jh_kagaku_small.jpg" alt="">
+        <div>2011.07.14(Thu) – 07.26(Tue)</div>
+        <div>参加アーティスト</div>
+        <i>John Hathway</i>
+    </v-center>     
+</v-aspect>
+</script>

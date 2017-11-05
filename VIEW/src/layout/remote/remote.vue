@@ -51,7 +51,7 @@ export default {
       }else{*/
         try{
           let href = this.frame.contentWindow.location.href,iframeValue;
-          if(href.endsWith('.md')){
+          if(href.indexOf('.md')>-1&&href.indexOf('.md.html')<0){
             iframeValue = this.frame.contentWindow.document.body.firstChild.innerHTML.replace(/&lt;/mig,'<').replace(/&gt;/mig,'>');
           }else if(href.indexOf('http')==0&&window.location.href.indexOf('file:///')==0){
             this.mode ='iframe';
@@ -61,7 +61,7 @@ export default {
           }
           
           this.iframeValue = iframeValue;
-          if(href.endsWith('.md')){
+          if(href.indexOf('.md')>-1){
             //console.log('md',iframeValue);
             iframeValue = `<markdown>${iframeValue}</markdown>`;
           }else{

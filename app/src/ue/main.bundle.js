@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div id=\"root\" (click)=\"click($event)\">\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\n  </webview>-->\n  <app-layout></app-layout>  \n</div>\n\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div id=\"root\" (click)=\"click($event)\">\r\n  <!--<webview id=\"webview\" style=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\" src=\"src/vs/index.html\">\r\n  </webview>-->\r\n  <app-layout></app-layout>  \r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -281,7 +281,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/bottom-bar/bottom-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"bottom-bar\">\n\n  <div class=\"edit-message-wrap\" *ngIf=\"textType()\">\n    <div class=\"row-index edit-message\">\n      12行\n    </div>\n    <div class=\"column-index edit-message\">\n      15列\n    </div>\n    <div class=\"charset edit-message\">\n      UTF-8\n    </div>\n    <div class=\"language edit-message\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang\">\n      {{ apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang }}\n    </div>\n  </div>\n\n  <div class=\"edit-message-wrap\" *ngIf=\"mediaType()\">\n    <div class=\"edit-message\">\n      图片等\n    </div>    \n  </div>\n  \n</div>\n"
+module.exports = "<div id=\"bottom-bar\">\r\n\r\n  <div class=\"edit-message-wrap\" *ngIf=\"textType()\">\r\n    <div class=\"row-index edit-message\">\r\n      12行\r\n    </div>\r\n    <div class=\"column-index edit-message\">\r\n      15列\r\n    </div>\r\n    <div class=\"charset edit-message\">\r\n      UTF-8\r\n    </div>\r\n    <div class=\"language edit-message\" *ngIf=\"apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang\">\r\n      {{ apiService.workSpace[apiService.workSpackActiveIndex].files[apiService.workSpaceActive[apiService.workSpackActiveIndex]].lang }}\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"edit-message-wrap\" *ngIf=\"mediaType()\">\r\n    <div class=\"edit-message\">\r\n      图片等\r\n    </div>    \r\n  </div>\r\n  \r\n</div>\r\n"
 
 /***/ }),
 
@@ -359,7 +359,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/code-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \n\t\t\t(dismiss)=\"dismiss(i)\" \n\t\t\t(selectFile)=\"selectFile(i)\"\n\t\t\t[workspaceIndex]=\"0\"\n\t\t\t[fileIndex]=\"i\"\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\"\n\t\t\t[modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n\t\t\t{{ tab }}\n\t\t</app-file-tab>\n\t</div>\n\n\t<!--旧-->\n\t<!--<div class=\"webview-wrap absolute\" >\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n\t\t</webview>\n\t</div>-->\n\n\t<!--新-->\n\t<div class=\"webview-wrap absolute\">\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n\t\t\t[value]=\"file.value\" \n\t\t\t[workspaceIndex]=\"index\"\n\t\t\t[fileName]=\"file.fileName\"\n\t\t\t[lang]=\"file.lang\"\n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\n\t\t</ng-container>\n\t\t<app-image-space [sapceIndex]=\"index\" \n\t\t\t[activeIndex]=\"apiService.workSpaceActive[index]\"\n\t\t\t[fileObj]=\"apiService.workSpace[0].files[apiService.workSpaceActive[index]]\"\n\t\t></app-image-space>\n\t</div>\n\t\n</div>\n\n"
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\r\n\t<div class=\"file-tab-wrap absolute scrollbar-override\">\r\n\t\t<app-file-tab *ngFor=\"let tab of apiService.workSpace[0].files;let i = index;\" \r\n\t\t\t(dismiss)=\"dismiss(i)\" \r\n\t\t\t(selectFile)=\"selectFile(i)\"\r\n\t\t\t[workspaceIndex]=\"0\"\r\n\t\t\t[fileIndex]=\"i\"\r\n\t\t\t[fileName]=\"apiService.workSpace[index].files[i].fileName\"\r\n\t\t\t[active]=\"i == apiService.workSpaceActive[0]\"\r\n\t\t\t[modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\r\n\t\t\t{{ tab }}\r\n\t\t</app-file-tab>\r\n\t</div>\r\n\r\n\t<!--旧-->\r\n\t<!--<div class=\"webview-wrap absolute\" >\r\n\t\t<webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\r\n\t\t</webview>\r\n\t</div>-->\r\n\r\n\t<!--新-->\r\n\t<div class=\"webview-wrap absolute\">\r\n\t\t<ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\r\n\t\t\t<app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \r\n\t\t\t[value]=\"file.value\" \r\n\t\t\t[workspaceIndex]=\"index\"\r\n\t\t\t[fileName]=\"file.fileName\"\r\n\t\t\t[lang]=\"file.lang\"\r\n\t\t\t[fileIndex]=\"i\"></app-monaco-space>\t\t\t\r\n\t\t</ng-container>\r\n\t\t<app-image-space [sapceIndex]=\"index\" \r\n\t\t\t[activeIndex]=\"apiService.workSpaceActive[index]\"\r\n\t\t\t[fileObj]=\"apiService.workSpace[0].files[apiService.workSpaceActive[index]]\"\r\n\t\t></app-image-space>\r\n\t</div>\r\n\t\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -475,7 +475,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space/file-tab/file-tab.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\" (contextmenu)=\"contextmenu($event)\">\n  <b class=\"file-icon\">    \n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\n  </b>\n  <!--{{ changes()}}-->\n  {{ fileName }}\n  <b class=\"dismiss\"  [class.dirty]=\"changes()\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\n</div>\n"
+module.exports = "<div class=\"file-tab pointer\" (click)=\"setFileActive()\" [class.active]=\"active\" title=\"{{ fileName }}\" (contextmenu)=\"contextmenu($event)\">\r\n  <b class=\"file-icon\">    \r\n      <img [src]=\"fileName|fileIcon:expanded\" alt=\"\">\r\n  </b>\r\n  <!--{{ changes()}}-->\r\n  {{ fileName }}\r\n  <b class=\"dismiss\"  [class.dirty]=\"changes()\" (click)=\"dismiss($event)\" title=\"关闭\"></b>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -590,7 +590,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/code-space2/code-space2.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \n        (dismiss)=\"dismiss(i)\" \n        (selectFile)=\"selectFile(i)\"\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\n        [workspaceIndex]=\"1\"\n        [fileIndex]=\"i\"\n        [active]=\"i == apiService.workSpaceActive[index]\"\n        [modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\n        {{ tab }}\n      </app-file-tab>\n    </div>\n  \n    <!--旧-->\n    <!--<div class=\"webview-wrap absolute\" >\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\n      </webview>\n    </div>-->\n  \n    <!--新-->\n    <div class=\"webview-wrap absolute\">\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \n        [value]=\"file.value\"\n        [workspaceIndex]=\"index\"\n        [fileName]=\"file.fileName\"\n        [lang]=\"file.lang\"\n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\n      </ng-container>\n      <app-image-space \n        [sapceIndex]=\"index\"\n        [activeIndex]=\"apiService.workSpaceActive[index]\"\n        [fileObj]=\"apiService.workSpace[1].files[apiService.workSpaceActive[index]]\"></app-image-space>   \n    </div>        \n  </div>\n  \n  "
+module.exports = "<div class=\"code-space absolute\" style=\"\" (click)=\"setSpaceIndex()\">\r\n    <div class=\"file-tab-wrap absolute scrollbar-override\">\r\n      <app-file-tab *ngFor=\"let tab of apiService.workSpace[index].files;let i = index;\" \r\n        (dismiss)=\"dismiss(i)\" \r\n        (selectFile)=\"selectFile(i)\"\r\n        [fileName]=\"apiService.workSpace[index].files[i].fileName\"\r\n        [workspaceIndex]=\"1\"\r\n        [fileIndex]=\"i\"\r\n        [active]=\"i == apiService.workSpaceActive[index]\"\r\n        [modelChanges]=\"apiService.workSpace[index].files[i].modelChanges\">\r\n        {{ tab }}\r\n      </app-file-tab>\r\n    </div>\r\n  \r\n    <!--旧-->\r\n    <!--<div class=\"webview-wrap absolute\" >\r\n      <webview #webview style=\"width:100%; height:100%;\" src=\"src/vs/index.html\">\t\t\t\r\n      </webview>\r\n    </div>-->\r\n  \r\n    <!--新-->\r\n    <div class=\"webview-wrap absolute\">\r\n      <ng-container *ngFor=\"let file of apiService.workSpace[index].files;let i = index;\">\r\n        <app-monaco-space *ngIf=\"file.type=='text'&&apiService.workSpaceActive[index]==i\" \r\n        [value]=\"file.value\"\r\n        [workspaceIndex]=\"index\"\r\n        [fileName]=\"file.fileName\"\r\n        [lang]=\"file.lang\"\r\n        [fileIndex]=\"i\"></app-monaco-space>\t\t\t\r\n      </ng-container>\r\n      <app-image-space \r\n        [sapceIndex]=\"index\"\r\n        [activeIndex]=\"apiService.workSpaceActive[index]\"\r\n        [fileObj]=\"apiService.workSpace[1].files[apiService.workSpaceActive[index]]\"></app-image-space>   \r\n    </div>        \r\n  </div>\r\n  \r\n  "
 
 /***/ }),
 
@@ -671,7 +671,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/display-space/display-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src()\">\n\t<webview #webview \n\t\tclass=\"display-webview\" \n\t\tstyle=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\"\n\t\tsrc=\"src/displayWebview.html\"\n\t\t>\n\t</webview>\n\t<!-- src=\"src/displayWebview.html\" -->\n</div>\n\t\n\n\n"
+module.exports = "<div class=\"absolute\" style=\"position:absolute;display:block;width:100%; height:100%;left:0;top:0;\" [title]=\"src()\">\r\n\t<webview #webview \r\n\t\tclass=\"display-webview\" \r\n\t\tstyle=\"position:absolute;display:flex;flex:1;width:100%; height:100%;left:0;top:0;\"\r\n\t\tsrc=\"src/displayWebview.html\"\r\n\t\t>\r\n\t</webview>\r\n\t<!-- src=\"src/displayWebview.html\" -->\r\n</div>\r\n\t\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -760,7 +760,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/image-space/image-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"image-wrap scrollbar-override\" \n  [class.show]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]]&&(apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='image'||apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='media')\">\n  <webview #webview src=\"src/vs/index.html\" class=\"image-space-webview\" minwidth=\"0\" nodeintegration></webview>\n <!--<img [src]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].src\" alt=\"\" >-->\n</div>\n"
+module.exports = "<div class=\"image-wrap scrollbar-override\" \r\n  [class.show]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]]&&(apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='image'||apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].type=='media')\">\r\n  <webview #webview src=\"src/vs/index.html\" class=\"image-space-webview\" minwidth=\"0\" nodeintegration></webview>\r\n <!--<img [src]=\"apiService.workSpace[sapceIndex].files[apiService.workSpaceActive[sapceIndex]].src\" alt=\"\" >-->\r\n</div>\r\n"
 
 /***/ }),
 
@@ -911,7 +911,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/layout/layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div id=\"layout-top\" class=\"absolute\">\n    <div id=\"layout-left-bar\"  class=\"absolute\">\n      <app-left-bar></app-left-bar>\n    </div>\n    <div id=\"layout-right\"  class=\"absolute\">\n      <!--<app-code-space></app-code-space>-->\n      <app-resize-layout \n        [components]=\"resourcemanger\" \n        [ratio]=\"[{value:250},{value:0.5}]\"\n        [shows]=\"[true,true]\"\n        [delivery_type]=\"'firstFixed'\"></app-resize-layout>\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\n    </div>\n  </div>\n  <div id=\"layout-bottom\"  class=\"absolute\">\n    <app-bottom-bar></app-bottom-bar>\n  </div>\n\n\n\n\n\n\n\n"
+module.exports = "\r\n  <div id=\"layout-top\" class=\"absolute\">\r\n    <div id=\"layout-left-bar\"  class=\"absolute\">\r\n      <app-left-bar></app-left-bar>\r\n    </div>\r\n    <div id=\"layout-right\"  class=\"absolute\">\r\n      <!--<app-code-space></app-code-space>-->\r\n      <app-resize-layout \r\n        [components]=\"resourcemanger\" \r\n        [ratio]=\"[{value:250},{value:0.5}]\"\r\n        [shows]=\"[true,true]\"\r\n        [delivery_type]=\"'firstFixed'\"></app-resize-layout>\r\n      <!--<app-resize-layout [components]=\"components\" [ratio]=\"[{value:0.5},{value:0.5}]\" [delivery_type]=\"'ratio'\"></app-resize-layout>-->\r\n    </div>\r\n  </div>\r\n  <div id=\"layout-bottom\"  class=\"absolute\">\r\n    <app-bottom-bar></app-bottom-bar>\r\n  </div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -987,7 +987,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/left-bar/left-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"left-bar\">\n  <div class=\"file-side-bar pointer relative\">\n    <div class=\"badge-content\">\n      1\n    </div>\n    \n  </div>\n\n\n</div>\n\n"
+module.exports = "<div id=\"left-bar\">\r\n  <div class=\"file-side-bar pointer relative\">\r\n    <div class=\"badge-content\">\r\n      1\r\n    </div>\r\n    \r\n  </div>\r\n\r\n\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1048,7 +1048,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/monaco-space/monaco-space.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div #code class=\"monaco-space absolute\" [class.show]=\"true\">\n\n</div>\n"
+module.exports = "<div #code class=\"monaco-space absolute\" [class.show]=\"true\">\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1275,7 +1275,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/resize-layout/resize-layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"resize-layout absolute\" [class]=\"'dirction'+direction\" (mousemove)=\"mousemove($event)\" (mouseup)=\"mouseup($event)\" (mouseleave)=\"mouseup($event)\">\n  <div class=\"resize-layout-first absolute\" [style.width]=\"ratioStyle()[0]\">\n    <div appHost>\n\n    </div>\n    <div class=\"resize-layout-delimiter right\" (mousedown)=\"resizeStart($event)\"></div>\n  </div>\n  <div class=\"resize-layout-second absolute\"  [style.width]=\"ratioStyle()[1]\" [style.left]=\"ratioStyle()[0]\">\n      <div appDisplayWiewHost>\n      </div>\n      <div class=\"resize-layout-delimiter left\" (mousedown)=\"resizeStart($event)\"></div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"resize-layout absolute\" [class]=\"'dirction'+direction\" (mousemove)=\"mousemove($event)\" (mouseup)=\"mouseup($event)\" (mouseleave)=\"mouseup($event)\">\r\n  <div class=\"resize-layout-first absolute\" [style.width]=\"ratioStyle()[0]\">\r\n    <div appHost>\r\n\r\n    </div>\r\n    <div class=\"resize-layout-delimiter right\" (mousedown)=\"resizeStart($event)\"></div>\r\n  </div>\r\n  <div class=\"resize-layout-second absolute\"  [style.width]=\"ratioStyle()[1]\" [style.left]=\"ratioStyle()[0]\">\r\n      <div appDisplayWiewHost>\r\n      </div>\r\n      <div class=\"resize-layout-delimiter left\" (mousedown)=\"resizeStart($event)\"></div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1458,7 +1458,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/resource-manager/resource-manager.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\n  <div class=\"resource-manager-title\">资源管理器</div>\n  <app-tree ></app-tree>\n  <button \n    *ngIf=\"!apiService.projectDir\"\n    class=\"resource-manager-open-directory-btn pointer\" \n    (click)=\"openDirectory()\">打开文件夹</button>\n\n</div>\n"
+module.exports = "<div class=\"resource-manager absolute scrollbar-override\">\r\n  <div class=\"resource-manager-title\">资源管理器</div>\r\n  <app-tree ></app-tree>\r\n  <button \r\n    *ngIf=\"!apiService.projectDir\"\r\n    class=\"resource-manager-open-directory-btn pointer\" \r\n    (click)=\"openDirectory()\">打开文件夹</button>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1539,7 +1539,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/test/test.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  test works!\n  dfadfsadf dafsg afdg adsfg afsdg afsdgsadfg a\n</p>\n"
+module.exports = "<p>\r\n  test works!\r\n  dfadfsadf dafsg afdg adsfg afsdg afsdgsadfg a\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1600,7 +1600,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-dir/tree-dir.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\" (contextmenu)=\"showContextMenu()\">\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\n    </div>\n  </div> \n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\n    <div *ngFor=\"let file of child;let i = index;\">    \n      <!--目录-->\n      <tree-dir *ngIf=\"file.type=='dir'\"\n        [title]=\"file.fullPath\"\n        [dirName]=\"file.name\"\n        [expanded]=\"file.expanded\"\n        [child]=\"file.child\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"\n        [indent]=\"indent+1\" \n        [paths]=\"nextPath()\"\n        [index]=\"i\"\n        [pathsIndexs]=\"nextPathIndexs()\">\n      </tree-dir>\n      <!--文件-->\n      <tree-file *ngIf=\"file.type=='file'\" \n        [title]=\"file.fullPath\"\n        [fileName]=\"file.name\" \n        (fileSelect)=\"select($event)\"\n        (dblFileSelect)=\"dblSelect($event)\"       \n        [indent]=\"indent+1\"></tree-file>\n    </div>\n  </div>\n  \n</div>\n"
+module.exports = "<div>\r\n  <div class=\"tree-item\" (click)=\"toggleExpand($event)\">\r\n    <div class=\"tree-item-indent\" [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\" (contextmenu)=\"showContextMenu()\">\r\n      <div [ngClass]=\"[expanded?'expanded':'noexpanded']\"></div><img [ngClass]=\"['tree-icon']\" [src]=\"dirName|folderIcon:expanded\" alt=\"\">{{ dirName }}\r\n    </div>\r\n  </div> \r\n  <div class=\"tree-sub-dir\" *ngIf=\"expanded\">\r\n    <div *ngFor=\"let file of child;let i = index;\">    \r\n      <!--目录-->\r\n      <tree-dir *ngIf=\"file.type=='dir'\"\r\n        [title]=\"file.fullPath\"\r\n        [dirName]=\"file.name\"\r\n        [expanded]=\"file.expanded\"\r\n        [child]=\"file.child\" \r\n        (fileSelect)=\"select($event)\"\r\n        (dblFileSelect)=\"dblSelect($event)\"\r\n        [indent]=\"indent+1\" \r\n        [paths]=\"nextPath()\"\r\n        [index]=\"i\"\r\n        [pathsIndexs]=\"nextPathIndexs()\">\r\n      </tree-dir>\r\n      <!--文件-->\r\n      <tree-file *ngIf=\"file.type=='file'\" \r\n        [title]=\"file.fullPath\"\r\n        [fileName]=\"file.name\" \r\n        (fileSelect)=\"select($event)\"\r\n        (dblFileSelect)=\"dblSelect($event)\"       \r\n        [indent]=\"indent+1\"></tree-file>\r\n    </div>\r\n  </div>\r\n  \r\n</div>\r\n"
 
 /***/ }),
 
@@ -1730,7 +1730,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/tree/tree-file/tree-file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \n  <div class=\"tree-item-indent relative\" \n    [class.fileResourceActive]=\"fileActive()\" \n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\"\n    (contextmenu)=\"showContextmenu()\">\n    <!--<div class=\"expanded-space\"></div>-->\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\n    <input\n      *ngIf=\"false\" \n      type=\"text\" \n      [style.width]=\"'calc( 100% - '+(indent+3)+'em)'\" \n      class=\"tree-file-input\">\n  </div>\n</div>\n\n\n"
+module.exports = "<div class=\"tree-item\" (click)=\"clickFile()\" (dblclick)=\"dblclickFile()\">  \r\n  <div class=\"tree-item-indent relative\" \r\n    [class.fileResourceActive]=\"fileActive()\" \r\n    [style.textIndent]=\"indent+'em'\" title=\"{{ title }}\"\r\n    (contextmenu)=\"showContextmenu()\">\r\n    <!--<div class=\"expanded-space\"></div>-->\r\n    <img [ngClass]=\"['tree-icon','file-type']\" [src]=\"fileName|fileIcon:expanded\" alt=\"\">{{fileName}}\r\n    <input\r\n      *ngIf=\"false\" \r\n      type=\"text\" \r\n      [style.width]=\"'calc( 100% - '+(indent+3)+'em)'\" \r\n      class=\"tree-file-input\">\r\n  </div>\r\n</div>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -2017,7 +2017,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/work-space/workspace-no-content/workspace-no-content.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"work-space-no-content\">\n  <div class=\"work-space-no-content-cell\">\n    Empty\n  </div>    \n</div>"
+module.exports = "<div class=\"work-space-no-content\">\r\n  <div class=\"work-space-no-content-cell\">\r\n    Empty\r\n  </div>    \r\n</div>"
 
 /***/ }),
 

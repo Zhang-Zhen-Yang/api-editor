@@ -6,7 +6,7 @@
         :class="{noexpanded:!expandedList[index]}"
         @click="linkAction($event,index,null,'parent')">
         <div class="marker" v-if="val.children" :class="{'linkActive':activeIndex[0]==index&&val.url}"></div>
-        <a :href="val.url" 
+        <a :href="val.url+version" 
           v-if="val.url" 
           class="chapter-title" 
           :class="{'linkActive':activeIndex[0]==index}" 
@@ -15,7 +15,7 @@
         <ul v-if="val.children">
           <li v-for="(childVal,childIndex) in val.children" class="child-list">
             
-            <a :href="childVal.url" 
+            <a :href="childVal.url+version" 
               class="chapter-list" 
               :class="{'linkActive':activeIndex[0]==index&&activeIndex[1]==childIndex}" 
               :target="val.target||'_blank'" 
@@ -52,16 +52,24 @@ export default {
       default(){
         return {};
       }
+    },
+    dev:{
+      type:Boolean,
+      default:false
     }
   },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       activeIndex:[0,0],
-      expandedList:[]
+      expandedList:[],
+      v:Date.now()
     }
   },
   computed:{
+    version(){
+      return this.dev?('?'+this.v):'';
+    }
   },
   methods:{
     linkAction(e,parent,child,from){

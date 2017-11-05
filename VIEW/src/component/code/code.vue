@@ -1,13 +1,11 @@
 <template>
   <div class="code-wrap">
     <div class="copy-icon-wrap" v-if="showCopyIcon">
-      <clipboard :target="templateId">
+      <clipboard :target="templateid">
         <div class="copy-icon" title="复制代码">
         </div>
       </clipboard>
-    </div>
-    
-    
+    </div>    
     <pre>
       <code class="v-code" ref="code">
 
@@ -26,6 +24,10 @@ export default {
   },
   props:{
     templateId:{
+      type:String,
+      default:'',
+    },
+    templateid:{
       type:String,
       default:'',
     },
@@ -52,9 +54,10 @@ export default {
     "\n******************* Convert Error *******************\n";
     const ERR_TAIL =
     "\n*****************************************************\n";
-    let id = document.getElementById(this.templateId);
+    console.log('templateid',this.templateid);
+    let id = document.getElementById(this.templateid);
     let hljsCode = '';
-    console.log(id);
+    console.log('id',id);
     if(id){
       try{
         hljsCode = hljs.highlightAuto(id.innerHTML).value

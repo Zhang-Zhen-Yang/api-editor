@@ -46,25 +46,18 @@
 			<!--边栏-->
 			<struct-aside 
 				slot="aside" 
+				:dev="true"
 				:links="aside" 
-				:init-active="[1,0]" 
+				:init-active="[0,0]" 
 				:expandable="true" 
-				:css="{
-					position:'fixed',
-					left:0,
-					top:'72px',
-					width:'300px',
-					padding:'20px 20px 0 30px',
-					overflow:'auto',
-					height:'calc(100% - 72px)',
-				}">
+				:css="{'position':'fixed','left':'0','top':'72px','width':'300px','padding':'20px 20px 0 30px','overflow':'auto','height':'calc(100% - 72px)'}">
 				
 				<img src="https://gw.alicdn.com/tfs/TB1pTBZQFXXXXX9XXXXXXXXXXXX-794-280.png" slot="content" alt="" style="width:80%;display:block;margin:0 auto;">
 			</struct-aside>	
 			
 			<!--内容区-->
 			<!--<iframe src="" slot="article" name="remote" frameborder="0" style="position:fixed;width:100%;height:calc(100% - 72px);" ></iframe>-->
-			<struct-remote slot="article" :init="'./docs/introduction.md'" >
+			<struct-remote slot="article" :init="'./docs/introduction.md.html'" >
 				<div style="margin-bottom:20px;">
 					<img src="./image/api.png" alt="" style="vertical-align:-15px;">
 					<span style="font-size:16px">
@@ -87,34 +80,34 @@
 			el: '#app',
 			data: {
 				aside:[
-					{name:'手册',url:'./docs/md3.md',target:'remote'},
-					{name:'简介',url:'./docs/introduction.md',target:'remote'},
+					//{name:'手册',url:'./docs/md3.md',target:'remote'},
+					{name:'简介',url:'./docs/introduction.md.html',target:'remote'},
 					{name:'api-struct',target:'remote',expanded:true,children:[
-						{name:'header',url:'./docs/header.md'},
-						{name:'nav',url:'./docs/nav.md'},
-						{name:'aside',url:'./docs/aside.md'},
-						{name:'remote',url:'./docs/remote.md'}
+						{name:'header',url:'./docs/header.md.html'},
+						{name:'nav',url:'./docs/nav.md.html'},
+						{name:'aside',url:'./docs/aside.md.html'},
+						{name:'remote',url:'./docs/remote.md.html'}
 					]},
 					{name:'component',expanded:true,target:'remote',children:[
-						{name:'markdown',url:'./docs/markdown.md'},
-						{name:'row',url:'./docs/row.md'},
-						{name:'code',url:'./docs/code.md'},
-						{name:'clipboard',url:'./docs/clipboard.md'},
-						{name:'center',url:'./docs/center.md'},
-						{name:'aspect',url:'./docs/aspect.md'},
+						{name:'markdown',url:'./docs/markdown.md.html'},
+						{name:'row',url:'./docs/row.md.html'},
+						{name:'code',url:'./docs/code.md.html'},
+						{name:'clipboard',url:'./docs/clipboard.md.html'},
+						{name:'center',url:'./docs/center.md.html'},
+						{name:'aspect',url:'./docs/aspect.md.html'},
 					]},
 					{
 						name:'directive',expanded:true,target:'remote',children:[
-							{name:'column',url:'./docs/column.md'},
+							{name:'column',url:'./docs/column.md.html'},
 						]
 					},
-					{name:'bilibili',url:'https://www.bilibili.com/',target:'remote'},
+					/*{name:'bilibili',url:'https://www.bilibili.com/',target:'remote'},
 					{name:'test md1',url:'./docs/md2.md',target:'remote'},
 					{name:'通用特性展开',url:'./docs/md3.md',target:'remote',expanded:true,children:[
 						{name:'iOS APIs',url:'http://weex-project.io/cn/references/index.html'},
 						{name:'Android APIs',url:'http://weex-project.io/cn/references/index.html'},
 						{name:'降级方案'}
-					]},
+					]},*/
 
 				],
 				nav:[
