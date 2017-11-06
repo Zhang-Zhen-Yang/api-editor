@@ -276,6 +276,10 @@ export default {
     background-color: #f8f8f8;
     border-radius: 3px; }
 
+  code:not(.v-code) {
+    background-color: rgba(255, 128, 171, 0.2);
+    color: #ad1457;
+  }
   pre code {
     margin: 0;
     padding: 0;

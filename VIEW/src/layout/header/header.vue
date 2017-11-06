@@ -1,5 +1,5 @@
 <template>
-  <header class="struct-header">
+  <header class="struct-header" :style="css">
     <div style="float:left;">
       <slot name="logo"></slot>
     </div>
@@ -13,6 +13,14 @@
 <script>
 export default {
   name: 'struct-header',
+  props:{
+    css:{
+      type:Object,
+      default(){
+        return {};
+      }
+    }
+  },
   data () {
     return {
      

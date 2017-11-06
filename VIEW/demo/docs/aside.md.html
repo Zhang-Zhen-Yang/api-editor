@@ -1,12 +1,12 @@
 ## ASIDE
 参数 | 值 | 说明 |
 ------------ | -------------| -------|
-tag | v-aside| 自定义标签
-attribute | links | 生成a链接的数组，格式看下列示例代码
-attribute | init-active | 高亮的link
-attribute | expandable | 是否可展开子级
-attribute | css | css样式的对象表达式
-attribute | dev | boolean
+tag | `v-aside`| 自定义标签
+attribute | `links` | 生成a链接的数组，格式看下列示例代码
+attribute | `init-active` | 高亮的link
+attribute | `expandable` | 是否可展开子级
+attribute | `css` | css样式的对象表达式
+attribute | `dev` | boolean 类型。 如果为ture,则每次刷新页面，都会在链接后面加上以时间戳为值的版本号，防止因缓存而页面不能及时更新的问题。如果用于线上，则不应该为true.
 > v-aside 提供了生成 a 链接的功能;
 
 #### 简单的代码

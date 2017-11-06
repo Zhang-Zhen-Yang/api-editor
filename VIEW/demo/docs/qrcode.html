@@ -1,0 +1,54 @@
+<markdown>
+## QRCODE
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | `v-qrcode` | 自定义标签
+attribute | `width` | 二维码的宽度;默认值为`100`。
+attribute | `height` | 二维码的高度;默认值为`100` 宽度和高度应尽量保持一致。
+attribute | `css` | 二维码的样式的对象表达式;`string`类型。
+attribute | `data` | 二维码所要呈现的内容。
+attribute | `data-config` | 二维码的配置 {`foreground`:前景色默认为值为'#000000',`background`:背景色，默认值为'#ffffff',`typeNumber` : 类型，默认值为-1,`errorCorrectionLevel` : 1}
+event | `rendered` | 二维码图像渲染完成 回参为组件的实例，可以调用下列方法。
+function | `getBase64` | 获取二维码的base64 字符串。
+> 本组件在markdown中不起作用
+
+### 示例&代码
+</markdown>
+
+
+<div style="">
+	<v-row>
+		<div v-column.left="0.15">
+			<v-center  :css="{width:'100%'}">
+				<v-qrcode
+					:data="'http://pixiv-zingaro.jp/exhibition/snowmiku2017'"
+					:data-config="{foreground:'#2C3E50',background:'#ECF0F1'}"
+					:width="120"
+					:height="120"
+					@rendered="function(i){window.alert(i.getBase64())}">
+				</v-qrcode>
+				<br>
+				<div>
+					扫二维码查看详情
+				</div>
+			</v-center>			
+		</div>
+		<div v-column.left="0.25">
+			<img src="http://pixiv-zingaro.jp/wp-content/uploads/banner/159/snowmiku2017_small.jpg" alt="">
+		</div>
+		<div v-column.right="0.6">
+			<v-code :templateid="'code'" >
+			</v-code>
+		</div>
+	</v-row>
+</div>
+
+<script type="x-template" id="code">
+<v-qrcode
+	:data="'http://pixiv-zingaro.jp/exhibition/snowmiku2017'"
+	:data-config="{foreground:'#2C3E50',background:'#ECF0F1'}"
+	:width="120"
+	:height="120"
+	@rendered="function(i){window.alert(i.getBase64())}">
+</v-qrcode>
+</script>

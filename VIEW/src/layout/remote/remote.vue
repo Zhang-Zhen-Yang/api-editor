@@ -65,14 +65,16 @@ export default {
             //console.log('md',iframeValue);
             iframeValue = `<markdown>${iframeValue}</markdown>`;
           }else{
-            iframeValue = `<div>${iframeValue}</div>`
+            iframeValue = `<div class="no-markdown">${iframeValue}</div>`
           }
           //console.log(iframeValue);
           window.Vue.component('dynamic',{
             template: iframeValue,
             data:function(){
+              var _this = this;
               return {
-                window:window
+                window:window,
+                _this:_this,
               }              
             }
           })
@@ -111,6 +113,16 @@ export default {
   max-width:1200px;
   min-width:600px;
   min-height:600px;
+}
+.no-markdown{
+  padding:30px;
+}
+.no-markdown .markdown{
+  padding:0;
+  
+}
+.no-markdown>*{
+  margin-bottom:15px;
 }
   
 </style>

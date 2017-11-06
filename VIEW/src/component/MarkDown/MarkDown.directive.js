@@ -50,11 +50,13 @@ render.listitem = (text) => {
 }
 
 render.html = (html) => {
-  // console.log('html -------------------------------------',html);
+  console.log('html -----------------------------------------------------------',html);
   if (/(<[^>]*script[^>]*>|<[^>]* on[^=>]*=)/.test(html)) {
+    console.log('rended ------------------------------------html');
     let hljsCode = hljs.highlightAuto(html).value.trim();
-    return `<pre><code>${hljsCode}</code></pre>`;
+    return `<pre><code class="v-code">${hljsCode}</code></pre>`;
   }
+  
   return html;
 }
 
@@ -64,12 +66,15 @@ render.heading = (text, level) => {
 }
 
 render.code = (code,language)=>{
-  // console.log('language--------------------------------------------',language);
+  console.log('code-------------------------------',code);
+  if(code.indexOf('class="hljs')>-1){
+    return code;
+  }
   const ERR_HEAD =
     "\n******************* Convert Error *******************\n";
   const ERR_TAIL =
     "\n*****************************************************\n";
-  // console.log('code',code);
+  
   let translateCode = code.replace(/&amp;lt;/mig,'<').replace(/&amp;gt;/mig,'>');
   let hljsCode = hljs.highlightAuto(translateCode).value;
 
@@ -80,11 +85,11 @@ render.code = (code,language)=>{
     } catch (error) {
       let errMsg = String(error).trim();
       let retCode =
-        `<pre><code>${hljsCode}${ERR_HEAD}${errMsg}${ERR_TAIL}</code></pre>`;
+        `<pre><code class="v-code">${hljsCode}${ERR_HEAD}${errMsg}${ERR_TAIL}</code></pre>`;
       return retCode;
     }
   }
-  return `<pre><code>${hljsCode}</code></pre>`;
+  return `<pre><code class="v-code">${hljsCode}</code></pre>`;
 }
 
 marked.setOptions({
@@ -118,11 +123,11 @@ export default {
   // 当绑定元素插入到 DOM 中。
   inserted: function (el,binding, vnode) {
     let val = el.innerHTML.replace(/&gt;/mig,'>');
-    /*console.log(el.innerHTML);
+   /* console.log('el.innerHTML---------------------------------------------------',el.innerHTML);
     console.log(val);
     console.log(marked(el.innerHTML));*/
    /* console.log('innerHTML',el.innerHTML);
-    console.log('val',val);*/
+    console.log('val------------------------------------------',val);*/
     el.innerHTML = marked(val)
   }
 }

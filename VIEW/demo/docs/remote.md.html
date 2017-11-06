@@ -1,8 +1,8 @@
 ## REMOTE
 参数 | 值 | 说明 |
 ------------ | -------------| -------|
-tag | struct-remote | 自定义标签 
-attribute | init | remote 组件首次加载的文件地址
+tag | `struct-remote` | 自定义标签 
+attribute | `init` | remote 组件首次加载的文件地址
 
 > struct-remote 是 核心组件，用于加载文件并装载到页面中。本质上是利用 iframe 来获取文件内容。所以请注意是否存在跨域的问题。如果存在跨域问题，将原原本本地呈现iframe，而不是装载iframe内容到页面上。
 

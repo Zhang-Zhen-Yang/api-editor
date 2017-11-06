@@ -4,55 +4,150 @@
 ### 接下来是markdown的一些代码示范
 
 #### 1.代码高亮
+
+<v-row>
+<div v-column.left="0.5">
+<markdown>
 ```java
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello World");
     }
-}
+} 
 ```
+</markdown>
+</div>
+
+<div v-column.left="0.5">
 <pre>
-```java
-public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello World");
+    ```java
+    public class HelloWorld {
+        public static void main(String[] args) {
+            System.out.println("Hello World");
+        }
     }
-}
-```
+    ```
 </pre>
+</div>
 
-#### 2.制作待办事项To-do List
+</v-row>
 
+
+
+#### 2.文本突出显示
+<v-row>
+    <div v-column.left="0.5">
+<markdown>
+类型 `string`
+</mardkown>
+    </div>
+    <div v-column.left="0.5">
+<markdown>
+```
+类型 `string`
+```
+</mardkown>
+</div>
+</v-row>
+
+
+
+
+#### 3.粗体，斜体
+
+<v-row>
+    <div v-column.left="0.5">
+<markdown>
+**粗体**
+*粗体*  
+</markdown>
+    </div>
+    <div v-column.left="0.5">
+<markdown>
+```
+**粗体**
+*粗体*
+```
+</markdown>
+    </div>
+</v-row>
+
+
+
+#### 4.制作待办事项To-do List
+
+
+<v-row>
+    <div v-column.left="0.5">
+<markdown>
 - [x] 已完成项目1
-	- [x] 已完成事项1
-	- [x] 已完成事项2
+    - [x] 已完成事项1
+    - [x] 已完成事项2
 - [ ] 待办事项1
 - [ ] 待办事项2
-
+</markdown>
+    </div>
+    <div v-column.left="0.5">
+<markdown>
 <pre>
 - [x] 已完成项目1
-	- [x] 已完成事项1
-	- [x] 已完成事项2
+    - [x] 已完成事项1
+    - [x] 已完成事项2
 - [ ] 待办事项1
 - [ ] 待办事项2
 </pre>
+</markdown>
+    </div>
+</v-row>
 
 
-#### 3.表格
 
+
+
+#### 5.表格
+
+
+<v-row>
+    <div v-column.left="0.5">
+<markdown>
 First Header | Second Header
 ------------ | -------------
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
+</markdown>
+    </div>
+    <div v-column.left="0.5">
+<markdown>
 ```
 First Header | Second Header
 ------------ | -------------
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
 ```
+</markdown>
+    </div>
+</v-row>
 
-#### 4.标题
 
+
+#### 6.标题
+
+
+<v-row>
+    <div v-column.left="0.5">
+<markdown>
+# 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</markdown>
+    </div>
+    <div v-column.left="0.5">
+<markdown>
+
+```
 # 一级标题
 ## 二级标题
 ### 三级标题
@@ -60,33 +155,161 @@ Content in the first column | Content in the second column
 ##### 五级标题
 ###### 六级标题
 ```
-# 一级标题
-## 二级标题
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题
-```
 
-#### 5.链接，图片
+</markdown>
+    </div>
+</v-row>
+
+
+
+#### 7.链接，图片
+
+<v-row>
+    <div v-column.left="0.5">
+<markdown>
 [https://github.com/](https://github.com/)
 
-![](http://pixiv-zingaro.jp/wp-content/banner/57/mitsugo_main.jpg)
+![](http://pixiv-zingaro.jp/wp-content/uploads/banner/160/naniwa_small.jpg)   
+</markdown>
+    </div>
+
+    <div v-column.left="0.5">
+<markdown>
 ```
 [https://github.com/](https://github.com/)
-![](http://pixiv-zingaro.jp/wp-content/banner/57/mitsugo_main.jpg)
-```
-##### 6.引用
-> 引用
 
+![](http://pixiv-zingaro.jp/wp-content/uploads/banner/160/naniwa_small.jpg)
+```
+</markdown>
+    </div>
+
+</v-row>
+
+
+#### 8.引用
+
+<v-row>
+    <div v-column.left="0.5"> 
+<markdown>
+> 引用  
+</markdown>
+    </div>
+    <div v-column.left="0.5"> 
+<markdown>
 ```
 > 引用
-```
+``` 
+</markdown>
+    </div>
+</v-row>
+
+
+
 只需要在文本前加入 > 这种尖括号（大于号）即可
 
-##### 7.html
-<video src="https://tbm.alicdn.com/t6j5w4IjQkWm66aICZ0/NYnk9mFWUGcpPwJN6cZ%40%40ud.mp4" controls style="width:700px;"></video>
 
+#### 9.下划线
+
+<v-row>
+    <div v-column.left="0.5">
+<markdown>
+------
+******  
+</markdown>
+        
+    </div>
+    <div v-column.left="0.5">
+<markdown>
 ```
-<video src="https://tbm.alicdn.com/t6j5w4IjQkWm66aICZ0/NYnk9mFWUGcpPwJN6cZ%40%40ud.mp4" controls style="width:700px;"></video>
+------
+******
+``` 
+</markdown>
+    </div>
+</v-row>
+
+
+
+
+#### 10.html(写在markdown中的html代码原样输出)
+
+<v-row>
+<div v-column.left="0.3">
+<img src="http://pixiv-zingaro.jp/wp-content/uploads/banner/168/littlewitchacademia_small.jpg" alt="">
+</div>
+<div v-column.left="0.7">
+<markdown>
 ```
+<img src="http://pixiv-zingaro.jp/wp-content/uploads/banner/168/littlewitchacademia_small.jpg" alt="">
+```
+</markdown>
+</div>
+
+</v-row>
+
+
+
+
+#### 11.graphviz 示例图
+<v-row>
+<div v-column.left="0.3"> 
+<markdown>
+```graph
+digraph G{
+    
+    fontname = "Courier New"
+    fontsize = 10
+    
+    node [ fontname = "Courier New", fontsize = 10, shape = "record" ];
+    edge [ fontname = "Courier New", fontsize = 10 ];
+    
+    Animal [ label = "{Animal |+ name : String\l+ age : int\l|+ die() : void\l}" ];
+    
+    subgraph clusterAnimalImpl{
+        bgcolor="yellow"
+        Dog [ label = "{Dog||+ bark() : void\l}" ];
+        Cat [ label = "{Cat||+ meow() : void\l}" ];
+    };
+    
+    edge [ arrowhead = "empty" ];
+    
+    Dog->Animal;
+    Cat->Animal;
+    Dog->Cat [arrowhead="none", label="0..*"];
+}
+```
+</markdown>
+</div>
+<div v-column.left="0.7"> 
+<markdown>
+```
+digraph G{
+
+    fontname = "Courier New"
+    fontsize = 10
+
+    node [ fontname = "Courier New", fontsize = 10, shape = "record" ];
+    edge [ fontname = "Courier New", fontsize = 10 ];
+
+    Animal [ label = "{Animal |+ name : String\l+ age : int\l|+ die() : void\l}" ];
+
+    subgraph clusterAnimalImpl{
+        bgcolor="yellow"
+        Dog [ label = "{Dog||+ bark() : void\l}" ];
+        Cat [ label = "{Cat||+ meow() : void\l}" ];
+    };
+
+    edge [ arrowhead = "empty" ];
+
+    Dog->Animal;
+    Cat->Animal;
+    Dog->Cat [arrowhead="none", label="0..*"];
+}
+```
+
+</markdown>
+</div>
+</v-row>
+
+
+

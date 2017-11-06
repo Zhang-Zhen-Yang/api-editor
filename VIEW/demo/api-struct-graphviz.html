@@ -57,7 +57,7 @@
 			
 			<!--内容区-->
 			<!--<iframe src="" slot="article" name="remote" frameborder="0" style="position:fixed;width:100%;height:calc(100% - 72px);" ></iframe>-->
-			<struct-remote slot="article" :init="'./graphviz-docs/md.md'" >
+			<struct-remote slot="article" :init="'./graphviz-docs/md.md.html'" >
 				<div>
 					<img src="./image/api.png" alt="" style="vertical-align:-15px;">
 					<span style="font-size:16px">
@@ -80,7 +80,7 @@
 			el: '#app',
 			data: {
 				aside:[
-					{name:'Graphviz简介',url:'./graphviz-docs/md.md',target:'remote'},
+					{name:'Graphviz简介',url:'./graphviz-docs/md.md.html',target:'remote'},
 					{
 						name:'入门',
 						expanded:true,
@@ -89,11 +89,11 @@
 							{
 								name:'基础',
 								target:'remote',
-								url:'./graphviz-docs/base.md'},
+								url:'./graphviz-docs/base.md.html'},
 							{
 								name:'基础2',
 								target:'remote',
-								url:'./graphviz-docs/base2.md'},
+								url:'./graphviz-docs/base2.md.html'},
 						]
 					},
 					{
@@ -104,23 +104,23 @@
 							{
 								name:'node节点',
 								target:'remote',
-								url:'./graphviz-docs/node.md'},
+								url:'./graphviz-docs/node.md.html'},
 							{
 								name:'node节点样式',
 								target:'remote',
-								url:'./graphviz-docs/nodeStyle.md'},
+								url:'./graphviz-docs/nodeStyle.md.html'},
 							{
 								name:'edge',
 								target:'remote',
-								url:'./graphviz-docs/edge.md'},
+								url:'./graphviz-docs/edge.md.html'},
 							{
 								name:'箭头',
 								target:'remote',
-								url:'./graphviz-docs/arrow.md'},
+								url:'./graphviz-docs/arrow.md.html'},
 							{
 								name:'图片',
 								target:'remote',
-								url:'./graphviz-docs/image.md'},
+								url:'./graphviz-docs/image.md.html'},
 						]
 					},
 					{
@@ -131,27 +131,27 @@
 							{
 								name:'状态图',
 								target:'remote',
-								url:'./graphviz-docs/statusGraph.md'
+								url:'./graphviz-docs/statusGraph.md.html'
 							},
 							{
 								name:'生命周期图',
 								target:'remote',
-								url:'./graphviz-docs/OSGi.md'
+								url:'./graphviz-docs/OSGi.md.html'
 							},
 							{
 								name:'uml类图',
 								target:'remote',
-								url:'./graphviz-docs/uml.md'
+								url:'./graphviz-docs/uml.md.html'
 							},
 							{
 								name:'时序图',
 								target:'remote',
-								url:'./graphviz-docs/time.md'
+								url:'./graphviz-docs/time.md.html'
 							},
 							{
 								name:'其他',
 								target:'remote',
-								url:'./graphviz-docs/others.md'
+								url:'./graphviz-docs/others.md.html'
 							},
 						]
 					},
@@ -159,7 +159,7 @@
 						name:'测试',
 						expanded:true,
 						target:'remote',
-						url:'./graphviz-docs/test.md'
+						url:'./graphviz-docs/test.md.html'
 					},
 					{name:'test iframe2',url:'./docs/iframe2.html',target:'remote'},
 					{name:'test md',url:'./docs/md.md',target:'remote'},

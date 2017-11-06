@@ -5,6 +5,8 @@ import code from './code/code'
 import clipboard from './clipboard/clipboard'
 import center from './center/center'
 import aspect from './aspect/aspect'
+import qrcode from './qrcode/qrcode'
+import tabs from './tabs/tabs'
 const options = {
 	MarkDown,
 	table,
@@ -12,7 +14,9 @@ const options = {
 	code,
 	clipboard,
 	center,
-	aspect
+	aspect,
+	qrcode,
+	tabs
 }
 options.install = (Vue) => {
 	for (let component in options) {

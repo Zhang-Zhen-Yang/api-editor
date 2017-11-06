@@ -6,11 +6,7 @@
         </div>
       </clipboard>
     </div>    
-    <pre>
-      <code class="v-code" ref="code">
-
-      </code>
-    </pre>
+    <pre><code class="v-code" ref="code"></code></pre>
   </div>
 
 </template>
@@ -61,7 +57,12 @@ export default {
     if(id){
       try{
         hljsCode = hljs.highlightAuto(id.innerHTML).value
+        //console.log('hljscode',hljsCode);
         this.$refs.code.innerHTML = hljsCode;
+        this.$nextTick(()=>{
+          console.log(this.$refs.code.innerHTML,this.$refs.code.innerHTML);
+        })
+        
       }catch(errMsg){
         this.$refs.code.innerHTML = `${hljsCode}${ERR_HEAD}${errMsg}${ERR_TAIL}`;
       }
@@ -72,11 +73,13 @@ export default {
 }
 </script>
 <style>
+  .code-wrap pre{
+    margin:0;
+    padding-bottom:10px;
+    border-radius:0;
+  }
   .code-wrap{
     position:relative;
-  }
-  .code-wrap pre{
-    padding-bottom:0;
   }
   .copy-icon-wrap{
     display:inline-block;
