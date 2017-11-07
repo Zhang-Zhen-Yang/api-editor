@@ -1,14 +1,15 @@
 <template>
-  <div class="code-wrap">
+  <div class="code-wrap" :style="css">
     <div class="copy-icon-wrap" v-if="showCopyIcon">
-      <clipboard :target="templateid">
+      <clipboard :target="templateid" @success="copysuccess">
         <div class="copy-icon" title="复制代码">
         </div>
       </clipboard>
     </div>    
     <pre><code class="v-code" ref="code"></code></pre>
+    
   </div>
-
+  
 </template>
 
 <script>
@@ -30,6 +31,12 @@ export default {
     showCopyIcon:{
       type:Boolean,
       default:true,
+    },
+    css:{
+      type:Object,
+      default(){
+        return {};
+      }
     }
   },
   name: 'v-code',
@@ -43,7 +50,15 @@ export default {
   computed:{
   },
   methods:{
-    
+    copysuccess(){
+      try{
+        window.app.show('Code Copied',1500);
+      }catch(e){
+        console.log(e);
+      }
+    }
+  },
+  created(){
   },
   mounted(){
     const ERR_HEAD =
@@ -68,7 +83,7 @@ export default {
       }
       
     }
-    //console.log('ddddddddddddddd',this.$refs.code.innerHTML);
+
   }
 }
 </script>
@@ -80,6 +95,9 @@ export default {
   }
   .code-wrap{
     position:relative;
+    display:inline-block;
+    vertical-align:top;
+    width:100%;
   }
   .copy-icon-wrap{
     display:inline-block;

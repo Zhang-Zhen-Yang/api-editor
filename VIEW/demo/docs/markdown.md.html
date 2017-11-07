@@ -1,94 +1,84 @@
 ## MARKDOWN
+类型 | 值 | 说明
+-----|----| ----
+tag | `markdown` | 自定义标签
+value | markdown | 内部是markdown写法。内部支持自定组件，但并不是所有组件都能被正确解析。
+
+
 > 什么是Markdown？Markdown是一种轻量级的「标记语言」，通常为程序员群体所用，目前它已是全球最大的技术分享网站 GitHub 和技术问答网站 StackOverFlow 的御用书写格式。
 
 ### 接下来是markdown的一些代码示范
 
 #### 1.代码高亮
 
-<v-row>
-<div v-column.left="0.5">
-<markdown>
-```java
+```0.4
+^^^java
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello World");
     }
-} 
+}
+^^^
 ```
-</markdown>
-</div>
 
-<div v-column.left="0.5">
+```width0.1
+```
+
+```width0.5
 <pre>
-    ```java
+    ^^^java
     public class HelloWorld {
         public static void main(String[] args) {
             System.out.println("Hello World");
         }
     }
-    ```
+    ^^^
 </pre>
-</div>
-
-</v-row>
-
+```
 
 
 #### 2.文本突出显示
-<v-row>
-    <div v-column.left="0.5">
-<markdown>
-类型 `string`
-</mardkown>
-    </div>
-    <div v-column.left="0.5">
-<markdown>
-```
+
+```width0.5
 类型 `string`
 ```
-</mardkown>
-</div>
-</v-row>
+
+```width0.5
+^^^
+类型 `string`
+^^^
+```
 
 
 
 
 #### 3.粗体，斜体
 
-<v-row>
-    <div v-column.left="0.5">
-<markdown>
+```width0.5
 **粗体**
-*粗体*  
-</markdown>
-    </div>
-    <div v-column.left="0.5">
-<markdown>
+*斜体*  
 ```
+
+```width0.5
+^^^
 **粗体**
-*粗体*
+*斜体*
+^^^
 ```
-</markdown>
-    </div>
-</v-row>
 
 
 
 #### 4.制作待办事项To-do List
 
-
-<v-row>
-    <div v-column.left="0.5">
-<markdown>
+```width0.5
 - [x] 已完成项目1
     - [x] 已完成事项1
     - [x] 已完成事项2
 - [ ] 待办事项1
 - [ ] 待办事项2
-</markdown>
-    </div>
-    <div v-column.left="0.5">
-<markdown>
+```
+
+```width0.5
 <pre>
 - [x] 已完成项目1
     - [x] 已完成事项1
@@ -96,10 +86,7 @@ public class HelloWorld {
 - [ ] 待办事项1
 - [ ] 待办事项2
 </pre>
-</markdown>
-    </div>
-</v-row>
-
+```
 
 
 
@@ -107,47 +94,31 @@ public class HelloWorld {
 #### 5.表格
 
 
-<v-row>
-    <div v-column.left="0.5">
-<markdown>
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-</markdown>
-    </div>
-    <div v-column.left="0.5">
-<markdown>
-```
+```width0.5
 First Header | Second Header
 ------------ | -------------
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
 ```
-</markdown>
-    </div>
-</v-row>
+
+
+```width0.5
+^^^
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+^^^
+```
+
+
 
 
 
 #### 6.标题
 
 
-<v-row>
-    <div v-column.left="0.5">
-<markdown>
-# 一级标题
-## 二级标题
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题
-</markdown>
-    </div>
-    <div v-column.left="0.5">
-<markdown>
-
-```
+```width0.4
 # 一级标题
 ## 二级标题
 ### 三级标题
@@ -156,96 +127,88 @@ Content in the first column | Content in the second column
 ###### 六级标题
 ```
 
-</markdown>
-    </div>
-</v-row>
+```width0.1
+```
+
+```width0.5
+^^^
+# 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+^^^
+```
+
 
 
 
 #### 7.链接，图片
 
-<v-row>
-    <div v-column.left="0.5">
-<markdown>
-[https://github.com/](https://github.com/)
-
-![](http://pixiv-zingaro.jp/wp-content/uploads/banner/160/naniwa_small.jpg)   
-</markdown>
-    </div>
-
-    <div v-column.left="0.5">
-<markdown>
-```
+```width0.5
 [https://github.com/](https://github.com/)
 
 ![](http://pixiv-zingaro.jp/wp-content/uploads/banner/160/naniwa_small.jpg)
-```
-</markdown>
-    </div>
 
-</v-row>
+```
+```width0.5
+^^^
+[https://github.com/](https://github.com/)
+
+![](http://pixiv-zingaro.jp/wp-content/uploads/banner/160/naniwa_small.jpg)
+^^^
+```
+
 
 
 #### 8.引用
 
-<v-row>
-    <div v-column.left="0.5"> 
-<markdown>
+```width0.5
 > 引用  
-</markdown>
-    </div>
-    <div v-column.left="0.5"> 
-<markdown>
+
 ```
+
+```width0.5
+^^^
 > 引用
-``` 
-</markdown>
-    </div>
-</v-row>
-
-
+^^^ 
+```
 
 只需要在文本前加入 > 这种尖括号（大于号）即可
 
 
 #### 9.下划线
 
-<v-row>
-    <div v-column.left="0.5">
-<markdown>
+```width0.4
 ------
 ******  
-</markdown>
-        
-    </div>
-    <div v-column.left="0.5">
-<markdown>
 ```
+
+```width0.1
+```
+
+```width0.5
+^^^
 ------
 ******
+^^^
 ``` 
-</markdown>
-    </div>
-</v-row>
-
 
 
 
 #### 10.html(写在markdown中的html代码原样输出)
 
-<v-row>
-<div v-column.left="0.3">
-<img src="http://pixiv-zingaro.jp/wp-content/uploads/banner/168/littlewitchacademia_small.jpg" alt="">
-</div>
-<div v-column.left="0.7">
-<markdown>
-```
+```width0.5
 <img src="http://pixiv-zingaro.jp/wp-content/uploads/banner/168/littlewitchacademia_small.jpg" alt="">
 ```
-</markdown>
-</div>
 
-</v-row>
+```width0.5
+^^^
+<img src="http://pixiv-zingaro.jp/wp-content/uploads/banner/168/littlewitchacademia_small.jpg" alt="">
+^^^
+```
+
 
 
 

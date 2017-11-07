@@ -1,0 +1,45 @@
+<markdown>
+## WIDTH
+类型 | 值 | 说明
+-----|----| ----
+language | `width` | 共有 width0.05, width0.1, width0.15, width0.2 ... width1 20种，其中width可加可不加，即写一个数值即可
+value | markdown | 内部是markdown写法。注意内部不能出现```,请用^^^代替。也不能有自定义组件。
+
+> markdown中大多数元素都是占一行，本扩展主要限制元素的宽度并使其为inline-block属性。
+
+```width0.2
+![](http://imgs.aixifan.com/live/1509595117642/1509595117642.jpg)
+
+```
+
+```width0.05
+```
+
+```0.2
+![](http://imgs.aixifan.com/live/1509595287981/1509595287981.jpg)
+```
+```0.05
+```
+<v-code :templateid="'code'" :css="{width:'50%'}">
+</v-code>
+
+</markdown>
+
+
+
+
+<script type="x-template" id="code">
+```width0.2
+![](http://imgs.aixifan.com/live/1509595117642/1509595117642.jpg)
+
+```
+
+```width0.05
+```
+
+```0.2
+![](http://imgs.aixifan.com/live/1509595287981/1509595287981.jpg)
+```
+```0.05
+```
+</script>

@@ -2,7 +2,7 @@
 const marked = require('marked');
 const hljs = require('highlight.js');
 //const viz = require("viz.js");
-
+import extend from './markdown-extension.js'
 const codeConverters = {
   graph:function(code){
     let translateCode = code.replace(/&lt;/mig,'<');
@@ -67,6 +67,7 @@ render.heading = (text, level) => {
 
 render.code = (code,language)=>{
   console.log('code-------------------------------',code);
+  console.log('language-------------------------------',language);
   if(code.indexOf('class="hljs')>-1){
     return code;
   }
@@ -80,7 +81,7 @@ render.code = (code,language)=>{
 
   if (codeConverters[language]) {
     try {
-      let hljsCode = hljs.highlightAuto(translateCode).value;
+      // let hljsCode = hljs.highlightAuto(translateCode).value;
       return  codeConverters[language](translateCode);
     } catch (error) {
       let errMsg = String(error).trim();
@@ -106,6 +107,15 @@ marked.setOptions({
   }*/
 });
 
+extend(codeConverters,marked);
+window.markdown = {
+  extend:function(language,fun){
+    codeConverters[language] = fun;
+    console.log(codeConverters);
+  },
+  render:marked
+}
+
 
 /*Vue.directive('md', {
   // 当绑定元素插入到 DOM 中。
@@ -118,6 +128,13 @@ marked.setOptions({
     el.innerHTML = marked(el.innerHTML)
   }
 })*/
+
+
+
+
+
+
+
 
 export default {
   // 当绑定元素插入到 DOM 中。

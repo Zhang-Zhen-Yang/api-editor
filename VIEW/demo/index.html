@@ -13,6 +13,35 @@
 	<script src="../dist/directive.bundle.js"></script>
 	<script src="../dist/layout.bundle.js"></script>
 	<script src="../dist/component.bundle.js"></script>
+	<script>
+		markdown.extend('roundimage',function(code){
+			return '<div \
+				style="display:inline-block;width:200px;height:200px;margin:10px;background-image:url('+code+');background-size:cover;background-position:center center;border-radius:50%;">\
+			</div>'
+		})
+
+		Vue.component('triimage',{
+			template:'<img :src="src" :style="[sty]" />',
+			props:{
+				src:{
+					type:String,
+					default:''
+				},
+				length:{
+					type:Number,
+					default:100
+				}
+			},
+			data:function(){
+				return {
+					sty:{
+						'-webkit-clip-path': 'polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%,0% 90%, 0% 10%)',
+						clipPath: 'polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%,0% 90%, 0% 10%)',
+					}
+				}
+			}
+		})
+	</script>
 </head>
 <body>
 	<div id="app">
@@ -70,13 +99,12 @@
 			<struct-scrolltop slot="scrolltop" :target="'remote'">			
 			</struct-scrolltop>
 		</struct>
+		<v-snackbar ref="snackbar"></v-snackbar>
 	</div>
 
 	<script>
-		function tt(){
-			alert('tt');
-		}
-		var vm = new Vue({
+
+		var app = new Vue({
 			el: '#app',
 			data: {
 				aside:[
@@ -103,6 +131,30 @@
 							{name:'column',url:'./docs/column.md.html'},
 						]
 					},
+					{
+						name:'markdown扩展',expanded:true,target:'remote',children:[
+							{
+								name:'width',
+								url:'./docs/markdown-width.html'
+							},
+							{
+								name:'vertical',
+								url:'./docs/markdown-vertical.md.html'
+							}
+						]
+					},
+					{
+						name:'扩展教程',expanded:true,target:'remote',children:[
+							{
+								name:'自定义组件扩展',
+								url:'./docs/demo-component.md.html'
+							},
+							{
+								name:'markdown扩展',
+								url:'./docs/demo-markdown.md.html'
+							},
+						]
+					},
 					/*{name:'bilibili',url:'https://www.bilibili.com/',target:'remote'},
 					{name:'test md1',url:'./docs/md2.md',target:'remote'},
 					{name:'通用特性展开',url:'./docs/md3.md',target:'remote',expanded:true,children:[
@@ -123,7 +175,13 @@
 			methods:{
 				aa:function(e){
 					alert(e);
+				},
+				show:function(text,timeout){
+					app.snackbar.show(text,timeout);
 				}
+			},
+			mounted:function(){
+				this.snackbar = this.$refs.snackbar;
 			}
 		})		
 	</script>

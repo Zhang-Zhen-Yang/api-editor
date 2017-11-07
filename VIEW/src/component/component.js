@@ -7,6 +7,7 @@ import center from './center/center'
 import aspect from './aspect/aspect'
 import qrcode from './qrcode/qrcode'
 import tabs from './tabs/tabs'
+import snackbar from './snackbar/snackbar'
 const options = {
 	MarkDown,
 	table,
@@ -16,7 +17,8 @@ const options = {
 	center,
 	aspect,
 	qrcode,
-	tabs
+	tabs,
+	snackbar
 }
 options.install = (Vue) => {
 	for (let component in options) {

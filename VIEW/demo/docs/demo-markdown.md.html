@@ -1,0 +1,46 @@
+## markdown扩展
+
+> markdown是具有可扩展性,markdown 的高亮被我用highlight.js重写;graph示例图则是我扩展的。都直接打包在component.bundle.js文件中。
+
+下面提供markdown扩展的写法。
+
+在引入component.bundle.js后你会得到名为`markdown`的全局对象;其包含`extend`方法和`render`方法。
+extend用于扩展markdown,render方法用于将markdown文本转成html;extend方法有两个参数`language` 和 `function`;
+language为字符串类型，function是一个方法，在方法你将拿到包含在你所扩展的代码中的字符串。
+
+比如如果我们想通过在markdown 写入一个图片地址，然后显示出一个高宽为200px的圆形图片可以这样：
+### 代码
+<v-code :templateid="'code'">
+
+</v-code>
+<p>在js脚本中写好上述代码后只要在markdown写下下述代码</p>
+<v-code :templateid="'code2'">	
+</v-code>
+
+### 示例
+```roundimage
+http://imgs.aixifan.com/live/1509595287981/1509595287981.jpg
+```
+```roundimage
+http://imgs.aixifan.com/live/1509595445751/1509595445751.jpg
+```
+
+
+<div></div>
+
+<script type="x-template" id="code">
+markdown.extend('roundimage',function(code){
+	return '<div \
+		style="display:inline-block;width:200px;height:200px;margin:10px;background-image:url('+code+');background-size:cover;background-position:center center;border-radius:50%;">\
+	</div>'
+})
+</script>
+
+<script type="x-template" id="code2">
+```roundimage
+http://imgs.aixifan.com/live/1509595287981/1509595287981.jpg
+```
+```roundimage
+http://imgs.aixifan.com/live/1509595445751/1509595445751.jpg
+```
+</script>
