@@ -1,0 +1,32 @@
+<markdown>
+## STEPPER
+
+类型 | 值 | 说明
+-----|----| ----
+language | `stepper` | markdown 扩展
+value | [status,text] | status 表示当前状态，emun{ `complete`, `current`, `uncomplete` }; text 表示当前状态下的文本。 具体看下例代码。
+
+> 步骤条。用于简单显示步骤或进度。
+
+### 示例&代码 
+
+```0.5
+^^^stepper
+[status=complete,text=step1]
+[status=current ,text = current step]
+[status=uncomplate,text = finish]
+^^^
+```
+<v-code :templateid="'code'" :css="{width:'50%'}">
+</v-code>	
+</markdown>
+
+
+<script type="x-tempate" id="code">
+```stepper
+[status=complete,text = step1]
+[status=current ,text = current step]
+[status=uncomplete,text = finish]
+```
+</script>
+

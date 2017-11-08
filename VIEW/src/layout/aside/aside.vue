@@ -3,18 +3,19 @@
     <ul>
       <li v-for="(val,index) in links" 
         class="parent-list" 
-        :class="{noexpanded:!expandedList[index]}"
-        @click="linkAction($event,index,null,'parent')">
+        :class="{noexpanded:!expandedList[index]}">
         <div class="marker" v-if="val.children" :class="{'linkActive':activeIndex[0]==index&&val.url}"></div>
         <a :href="val.url+version" 
           v-if="val.url" 
           class="chapter-title" 
           :class="{'linkActive':activeIndex[0]==index}" 
-          :target="val.target||'_blank'">{{ val.name }}</a>
-        <h3 v-if="!val.url" class="chapter-title">{{ val.name }}</h3>
+          :target="val.target||'_blank'" @click="linkAction($event,index,null,'parent')">{{ val.name }}</a>
+        <h3 v-if="!val.url" class="chapter-title" @click="linkAction($event,index,null,'parent')">
+          {{ val.name }}
+        </h3>
+
         <ul v-if="val.children">
           <li v-for="(childVal,childIndex) in val.children" class="child-list">
-            
             <a :href="childVal.url+version" 
               class="chapter-list" 
               :class="{'linkActive':activeIndex[0]==index&&activeIndex[1]==childIndex}" 

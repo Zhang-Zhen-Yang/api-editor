@@ -39,11 +39,9 @@ render.listitem = (text) => {
 
   if (text.startsWith("[x]")) {
     task = text.slice("[x]".length).trim();
-
     return  `${TASK_START}${COMPLETE}${task}</li>`;
   } else if (text.startsWith("[ ]")) {
     task = text.slice("[ ]".length).trim();
-
     return  `${TASK_START}${UNCOMPLETE}${task}</li>`;
   }
   return `<li>${text}</li>`;
@@ -128,12 +126,6 @@ window.markdown = {
     el.innerHTML = marked(el.innerHTML)
   }
 })*/
-
-
-
-
-
-
 
 
 export default {

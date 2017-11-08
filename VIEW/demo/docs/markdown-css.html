@@ -1,0 +1,35 @@
+<markdown>
+
+## CSS
+
+类型 | 值 | 说明
+-----|----| ----
+tag | `css` | 自定义标签
+value | style行内样式表达式 | 在内部第一行写入类似{widh:100px;height:100px} 格式的样式。
+
+> 简单地为makdown添加行内样式，如果经常使用此样式，自己定义组件或自已扩展markdown会更好。
+
+### 示例
+
+```0.4
+^^^css
+{border:5px solid #ccc;}
+![](http://pixiv-zingaro.jp/wp-content/banner/67/fantasista_banner.jpg)
+
+^^^
+```
+
+```0.1
+```
+
+<v-code :templateid="'code'" :css="{width:'50%',marginTop:'15px'}"></v-code>
+	
+</markdown>
+
+<script type="x-template" id="code">
+```css
+{border:5px solid #ccc;}
+![](http://pixiv-zingaro.jp/wp-content/banner/67/fantasista_banner.jpg)
+```
+</script>
+

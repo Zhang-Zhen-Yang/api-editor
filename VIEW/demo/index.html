@@ -20,23 +20,22 @@
 			</div>'
 		})
 
-		Vue.component('triimage',{
-			template:'<img :src="src" :style="[sty]" />',
+		Vue.component('radiusimage',{
+			template:'<img :src="src" :style="sty" />',
 			props:{
 				src:{
 					type:String,
 					default:''
 				},
-				length:{
+				radius:{
 					type:Number,
-					default:100
+					default:0
 				}
 			},
 			data:function(){
 				return {
 					sty:{
-						'-webkit-clip-path': 'polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%,0% 90%, 0% 10%)',
-						clipPath: 'polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%,0% 90%, 0% 10%)',
+						borderRadius:this.radius+'px',
 					}
 				}
 			}
@@ -47,7 +46,7 @@
 	<div id="app">
 		<struct>
 			<!--头部-->
-			<struct-header slot="header" :css="{backgroundColor:'#efefef',color:'white'}">
+			<struct-header slot="header" :css="{backgroundColor:'#ffffff'}">
 				<!--logo-->
 				<div style="float:left;margin-left:30px;">
 					<img src="./image/api.png" slot="logo" alt="">
@@ -81,7 +80,7 @@
 				:expandable="true" 
 				:css="{'position':'fixed','left':'0','top':'72px','width':'300px','padding':'20px 20px 0 30px','overflow':'auto','height':'calc(100% - 72px)'}">
 				
-				<img src="https://gw.alicdn.com/tfs/TB1pTBZQFXXXXX9XXXXXXXXXXXX-794-280.png" slot="content" alt="" style="width:80%;display:block;margin:0 auto;">
+				<img src="https://gw.alicdn.com/tfs/TB1pTBZQFXXXXX9XXXXXXXXXXXX-794-280.png" slot="content" alt="" style="width:80%;display:block;">
 			</struct-aside>	
 			
 			<!--内容区-->
@@ -111,13 +110,13 @@
 					//{name:'手册',url:'./docs/md3.md',target:'remote'},
 					{name:'简介',url:'./docs/introduction.md.html',target:'remote'},
 					{name:'api-struct',target:'remote',expanded:true,children:[
-						{name:'header',url:'./docs/header.md.html'},
-						{name:'nav',url:'./docs/nav.md.html'},
+						/*{name:'header',url:'./docs/header.md.html'},
+						{name:'nav',url:'./docs/nav.md.html'},*/
 						{name:'aside',url:'./docs/aside.md.html'},
 						{name:'remote',url:'./docs/remote.md.html'}
 					]},
 					{name:'component',expanded:true,target:'remote',children:[
-						{name:'markdown',url:'./docs/markdown.md.html'},
+						{name:'markdown',url:'./docs/markdown.html'},
 						{name:'row',url:'./docs/row.md.html'},
 						{name:'code',url:'./docs/code.md.html'},
 						{name:'clipboard',url:'./docs/clipboard.md.html'},
@@ -138,8 +137,16 @@
 								url:'./docs/markdown-width.html'
 							},
 							{
+								name:'css',
+								url:'./docs/markdown-css.html'
+							},
+							{
 								name:'vertical',
 								url:'./docs/markdown-vertical.md.html'
+							},
+							{
+								name:'stepper',
+								url:'./docs/markdown-stepper.html'
 							}
 						]
 					},
@@ -155,20 +162,11 @@
 							},
 						]
 					},
-					/*{name:'bilibili',url:'https://www.bilibili.com/',target:'remote'},
-					{name:'test md1',url:'./docs/md2.md',target:'remote'},
-					{name:'通用特性展开',url:'./docs/md3.md',target:'remote',expanded:true,children:[
-						{name:'iOS APIs',url:'http://weex-project.io/cn/references/index.html'},
-						{name:'Android APIs',url:'http://weex-project.io/cn/references/index.html'},
-						{name:'降级方案'}
-					]},*/
-
 				],
 				nav:[
 					{name:'教程',url:'./index.html',target:'_self'},
 					{name:'手册',url:'https://www.bilibili.com/',target:'_blank'},
 					{name:'Graphviz',url:'./api-struct-graphviz.html',target:'_self'},
-					//{name:'工具',url:'https://www.bilibili.com/',target:'_blank'},
 					{name:'下载',url:'./download/dist.zip',target:'_blank'},
 				]
 			},

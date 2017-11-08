@@ -15,7 +15,7 @@ export default {
   data () {
     return {
       msg: 'scrolltop',
-      style:{'background-image':'url(./image/scrolltop.png)'}
+      style:{'background-image':'url(./image/TOP.png)'}
     }
   },
   computed:{
@@ -39,20 +39,21 @@ export default {
 <style>
   .struct-scrolltop{
     position:fixed;
-    width:60px;
-    height:60px;    
-    bottom:30px;
-    right:30px;
+    width:50px;
+    height:50px;    
+    bottom:40px;
+    right:40px;
     cursor:pointer;
     border-radius:50%;
-    background-color:white;
-    box-shadow:0 2px 20px rgba(0,0,0,0.2);
+    background-color:#ccc;
+    /*box-shadow:0 2px 20px rgba(0,0,0,0.2);*/
     z-index:1;
-    background-size:50% auto;
+    background-size:60% auto;
     background-repeat:no-repeat;
     background-position:center center;
   }
   .struct-scrolltop:hover{
-    box-shadow:0 2px 25px rgba(0,0,0,0.3);
+    /*box-shadow:0 2px 25px rgba(0,0,0,0.3);*/
+    background-color:#bbb;
   }
 </style>

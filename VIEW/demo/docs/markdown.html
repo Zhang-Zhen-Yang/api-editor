@@ -1,18 +1,24 @@
+<markdown>
 ## MARKDOWN
+
+![](http://markdown.tw/images/208x128.png)
+
+> 什么是Markdown？Markdown是一种轻量级的「标记语言」，通常为程序员群体所用，目前它已是全球最大的技术分享网站 GitHub 和技术问答网站 StackOverFlow 的御用书写格式。
+
 类型 | 值 | 说明
 -----|----| ----
 tag | `markdown` | 自定义标签
 value | markdown | 内部是markdown写法。内部支持自定组件，但并不是所有组件都能被正确解析。
 
 
-> 什么是Markdown？Markdown是一种轻量级的「标记语言」，通常为程序员群体所用，目前它已是全球最大的技术分享网站 GitHub 和技术问答网站 StackOverFlow 的御用书写格式。
+
 
 ### 接下来是markdown的一些代码示范
 
 #### 1.代码高亮
 
 ```0.4
-^^^java
+^^^
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello World");
@@ -24,17 +30,7 @@ public class HelloWorld {
 ```width0.1
 ```
 
-```width0.5
-<pre>
-    ^^^java
-    public class HelloWorld {
-        public static void main(String[] args) {
-            System.out.println("Hello World");
-        }
-    }
-    ^^^
-</pre>
-```
+<v-code :templateid="'code1'" :css="{width:'50%'}"></v-code>
 
 
 #### 2.文本突出显示
@@ -52,19 +48,26 @@ public class HelloWorld {
 
 
 
-#### 3.粗体，斜体
+#### 3.粗体，斜体,删除线
 
 ```width0.5
 **粗体**
-*斜体*  
-```
-
-```width0.5
-^^^
-**粗体**
+__粗体__
 *斜体*
+_斜体_
+~~删除线~~ 
+```
+
+```width0.5
+^^^
+**粗体**
+__粗体__
+*斜体*
+_斜体_
+~~删除线~~
 ^^^
 ```
+
 
 
 
@@ -79,13 +82,13 @@ public class HelloWorld {
 ```
 
 ```width0.5
-<pre>
+^^^
 - [x] 已完成项目1
     - [x] 已完成事项1
     - [x] 已完成事项2
 - [ ] 待办事项1
 - [ ] 待办事项2
-</pre>
+^^^
 ```
 
 
@@ -214,39 +217,53 @@ Content in the first column | Content in the second column
 
 
 #### 11.graphviz 示例图
-<v-row>
-<div v-column.left="0.3"> 
-<markdown>
+```0.3
+^^^graph
+digraph G{
+    
+    fontname = "Courier New"
+    fontsize = 10
+    
+    node [ fontname = "Courier New", fontsize = 10, shape = "record" ];
+    edge [ fontname = "Courier New", fontsize = 10 ];
+    
+    Animal [ label = "{Animal |+ name : String\l+ age : int\l|+ die() : void\l}" ];
+    
+    subgraph clusterAnimalImpl{
+        bgcolor="yellow"
+        Dog [ label = "{Dog||+ bark() : void\l}" ];
+        Cat [ label = "{Cat||+ meow() : void\l}" ];
+    };
+    
+    edge [ arrowhead = "empty" ];
+    
+    Dog->Animal;
+    Cat->Animal;
+    Dog->Cat [arrowhead="none", label="0..*"];
+}
+^^^
+```
+<v-code :templateid="'code2'" :css="{width:'70%'}"></v-code>
+
+</markdown>
+
+
+
+
+
+<script type="x-template" id="code1">
+```
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
+```
+</script>
+
+<script type="x-template" id="code2">
 ```graph
 digraph G{
-    
-    fontname = "Courier New"
-    fontsize = 10
-    
-    node [ fontname = "Courier New", fontsize = 10, shape = "record" ];
-    edge [ fontname = "Courier New", fontsize = 10 ];
-    
-    Animal [ label = "{Animal |+ name : String\l+ age : int\l|+ die() : void\l}" ];
-    
-    subgraph clusterAnimalImpl{
-        bgcolor="yellow"
-        Dog [ label = "{Dog||+ bark() : void\l}" ];
-        Cat [ label = "{Cat||+ meow() : void\l}" ];
-    };
-    
-    edge [ arrowhead = "empty" ];
-    
-    Dog->Animal;
-    Cat->Animal;
-    Dog->Cat [arrowhead="none", label="0..*"];
-}
-```
-</markdown>
-</div>
-<div v-column.left="0.7"> 
-<markdown>
-```
-digraph G{
 
     fontname = "Courier New"
     fontsize = 10
@@ -269,10 +286,4 @@ digraph G{
     Dog->Cat [arrowhead="none", label="0..*"];
 }
 ```
-
-</markdown>
-</div>
-</v-row>
-
-
-
+</script>
