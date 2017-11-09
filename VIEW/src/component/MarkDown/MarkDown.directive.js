@@ -1,31 +1,8 @@
 //import Vue from 'vue'
 const marked = require('marked');
 const hljs = require('highlight.js');
-//const viz = require("viz.js");
 import extend from './markdown-extension.js'
-const codeConverters = {
-  graph:function(code){
-    let translateCode = code.replace(/&lt;/mig,'<');
-    // console.log('translateCode',translateCode);
-    let reg = /\[.*?image.*?\]/mig; 
-    let match = (translateCode).match(reg);
-    let images = [];
-    if(match){
-      match.forEach((item)=>{
-        let itemMatch = (/image.*?"(.*?)".*?imgwidth.*?"(.*?)".*?imgheight.*?"(.*?)"/mig).exec(item);
-        if(itemMatch){
-          images.push({
-            path:itemMatch[1],
-            width:itemMatch[2],
-            height:itemMatch[3],
-          })
-        }
-      })
-    }
-    // console.log('match',match);
-    return window.Viz(translateCode,{ images});
-  }
-}
+const codeConverters = {}
 
 //const {rendererCode, rendererListitem, rendererHtml, rendererHeading} = require('../js/utils.js');
 let render = new marked.Renderer();
@@ -54,7 +31,6 @@ render.html = (html) => {
     let hljsCode = hljs.highlightAuto(html).value.trim();
     return `<pre><code class="v-code">${hljsCode}</code></pre>`;
   }
-  
   return html;
 }
 
