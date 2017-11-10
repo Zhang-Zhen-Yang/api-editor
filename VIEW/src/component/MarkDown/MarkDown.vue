@@ -33,7 +33,7 @@ export default {
   * https://gist.github.com/andyferra/2554919
   */
   .markdown {
-    font-family: 微软雅黑 Helvetica, arial, sans-serif;
+    /*font-family: 微软雅黑 Helvetica, arial, sans-serif;*/
     font-size: 14px;
     line-height: 1.6;
     padding-top: 10px;

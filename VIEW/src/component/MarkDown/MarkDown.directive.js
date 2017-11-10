@@ -8,7 +8,7 @@ const codeConverters = {}
 let render = new marked.Renderer();
 
 render.listitem = (text) => {
-  // console.log('text -------------------------------------',text);
+  console.log('listitem -------------------------------------',text);
   const TASK_START = '<li class="task-list-item">';
   const COMPLETE = '<input type="checkbox" checked="true" disabled="true">';
   const UNCOMPLETE = '<input type="checkbox" disabled="true">';
@@ -40,8 +40,8 @@ render.heading = (text, level) => {
 }
 
 render.code = (code,language)=>{
-  console.log('code-------------------------------',code);
-  console.log('language-------------------------------',language);
+  // console.log('code-------------------------------',code);
+  //console.log('language-------------------------------',language);
   if(code.indexOf('class="hljs')>-1){
     return code;
   }

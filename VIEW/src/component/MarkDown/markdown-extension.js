@@ -2,6 +2,7 @@ import css from './exts/css.ext.js'
 import stepper from './exts/stepper.ext.js'
 import vertical from './exts/vertical.ext.js'
 import graph from './exts/graph.ext.js'
+import vars from './exts/var.ext.js'
 import utils from './utils.js'
 
 function extend(obj,marked){
@@ -14,6 +15,8 @@ function extend(obj,marked){
 	}
 
 	const ext = {
+
+		// 各种宽度
 		'0.05':widthFun(0.05),
 		'0.1':widthFun(0.1),
 		'0.15':widthFun(0.15),
@@ -78,6 +81,10 @@ function extend(obj,marked){
 		// each 
 		each:function(code){
 			return code+code;
+		},
+		//变量
+		var:function(code){
+			return vars(code);
 		}
 	}
 
