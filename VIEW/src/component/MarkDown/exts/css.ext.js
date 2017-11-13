@@ -5,9 +5,10 @@ export default function(code,marked){
 	let styles = {};
 	if(css){
 		css.forEach((item)=>{
-			localCode = localCode.replace(item,'');
 			let execArray = (/(\w+?)\s*?{(.*?)}/).exec(item);
 			if(execArray){
+				// console.log('execArray',execArray);
+				localCode = localCode.replace(item,'');
 				styles[execArray[1]] = execArray[2]
 			}
 		})

@@ -716,6 +716,37 @@ export default {
   .coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata,.xml .php,.php .xml{opacity:.5}
 */
 
+/*tip */
+div.tip{
+  padding: 2px 24px 2px 30px;
+  margin: 2em 0;
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-left-color: #f66;
+  background-color: #f8f8f8;
+  position: relative;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.tip:before{
+  content: "!";
+  background-color: #f66;
+}
+.tip:before{
+  position: absolute;
+  top: 14px;
+  left: -12px;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+}
+
 
 
 </style>

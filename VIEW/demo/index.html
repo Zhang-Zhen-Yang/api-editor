@@ -41,6 +41,15 @@
 			}
 		})
 	</script>
+	<style>
+	.bilibili{
+		transition:all 1s ease-in-out;
+		max-width:700px;
+	}
+	.bilibili:hover{
+		transform:scale(0.9,0.9);
+	}
+	</style>
 </head>
 <body>
 	<div id="app">
@@ -80,7 +89,7 @@
 				:expandable="true" 
 				:css="{'position':'fixed','left':'0','top':'72px','width':'300px','padding':'20px 20px 0 30px','overflow':'auto','height':'calc(100% - 72px)'}">
 				
-				<img src="https://gw.alicdn.com/tfs/TB1pTBZQFXXXXX9XXXXXXXXXXXX-794-280.png" slot="content" alt="" style="width:80%;display:block;">
+				<!--<img src="https://gw.alicdn.com/tfs/TB1pTBZQFXXXXX9XXXXXXXXXXXX-794-280.png" slot="content" alt="" style="width:80%;display:block;">-->
 			</struct-aside>	
 			
 			<!--内容区-->
@@ -141,13 +150,21 @@
 								url:'./docs/markdown-css.html'
 							},
 							{
+								name:'attr',
+								url:'./docs/markdown-attr.html'
+							},
+							{
+								name:'tip',
+								url:'./docs/markdown-tip.html'
+							},
+							/*{
 								name:'var',
 								url:'./docs/markdown-var.html'
 							},
 							{
 								name:'each',
 								url:'./docs/markdown-each.html'
-							},
+							},*/
 							{
 								name:'vertical',
 								url:'./docs/markdown-vertical.md.html'

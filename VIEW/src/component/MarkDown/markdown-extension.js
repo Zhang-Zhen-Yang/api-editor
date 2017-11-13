@@ -3,6 +3,8 @@ import stepper from './exts/stepper.ext.js'
 import vertical from './exts/vertical.ext.js'
 import graph from './exts/graph.ext.js'
 import vars from './exts/var.ext.js'
+import attr from './exts/attr.ext.js'
+import tip from './exts/tip.ext.js'
 import utils from './utils.js'
 
 function extend(obj,marked){
@@ -78,6 +80,17 @@ function extend(obj,marked){
 		css:function(code){
 			return css(code,marked);
 		},
+
+		// 属性
+		attr:function(code){
+			return attr(code,marked);
+		},
+		
+		// 属性
+		tip:function(code){
+			return tip(code,marked);
+		},
+
 		// each 
 		each:function(code){
 			return code+code;

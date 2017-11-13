@@ -20,10 +20,6 @@ export default {
     clipboard,
   },
   props:{
-    templateId:{
-      type:String,
-      default:'',
-    },
     templateid:{
       type:String,
       default:'',
@@ -71,11 +67,11 @@ export default {
     console.log('id',id);
     if(id){
       try{
-        hljsCode = hljs.highlightAuto(id.innerHTML).value
-        //console.log('hljscode',hljsCode);
+        hljsCode = hljs.highlightAuto(id.innerHTML.replace(/\\{\\{/mig,'{{').replace(/\\}\\}/mig,'}}')).value
+        console.log('hljscode',hljsCode);
         this.$refs.code.innerHTML = hljsCode;
         this.$nextTick(()=>{
-          console.log(this.$refs.code.innerHTML,this.$refs.code.innerHTML);
+          console.log('this.$refs.code.innerHTML',this.$refs.code.innerHTML);
         })
         
       }catch(errMsg){

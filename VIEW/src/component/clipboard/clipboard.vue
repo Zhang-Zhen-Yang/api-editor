@@ -52,7 +52,7 @@ export default {
             if(target.value == undefined){
               this.clipboard = new Clipboard('#'+this.sourceID,{
                 text: ()=>{
-                  return target.innerHTML;
+                  return target.innerHTML.replace(/\\{\\{/mig,'{{').replace(/\\}\\}/mig,'}}');
                 }
               });
             }else{

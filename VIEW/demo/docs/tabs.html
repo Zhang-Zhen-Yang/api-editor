@@ -29,33 +29,34 @@ function | `getBase64` | 获取二维码的base64 字符串。
 
 
 <script type="x-template" id="code">
-public class Puppy{
-	int puppyAge;
-	public Puppy(String name){
-		// 这个构造器仅有一个参数：name
-		System.out.println("小狗的名字是 : " + name ); 
-	}
-
-	public void setAge( int age ){
-		puppyAge = age;
-	}
-	
-	public int getAge( ){
-		System.out.println("小狗的年龄为 : " + puppyAge ); 
-		return puppyAge;
-	}
-
-	public static void main(String []args){
-
-		/* 创建对象 */
-		Puppy myPuppy = new Puppy( "tommy" );
-		/* 通过方法来设定age */
-		myPuppy.setAge( 2 );
-		/* 调用另一个方法获取age */
-		myPuppy.getAge( );
-		/*你也可以像下面这样访问成员变量 */
-		System.out.println("变量值 : " + myPuppy.puppyAge ); 
-	}
+// 打开
+_open() {
+	this.DrawerLayout.open();
+}
+// 关闭
+_close() {
+	this.DrawerLayout.close();
+}
+renderf() {
+	return(<DrawerLayout
+		ref={ref => { this.DrawerLayout = ref; }}
+		duration={200}
+		gestureDisabled={false}
+		drawerWidth={500}
+		drawerTriggerWidth={20}
+		renderNavigationView={() => this._navigationView()}
+		backdropDisabled={false}
+		backdropOpacity={0.7}
+		closeWhenBackdropPress
+		opened={() => { Modal.toast('打开完成'); }}
+		closed={() => { Modal.toast('关闭完成'); }}
+		openCancel={() => { Modal.toast('打开取消'); }}
+		closeCancel={() => { Modal.toast('关闭取消'); }}
+		style=\{\{ justifyContent: 'center', alignItems: 'center' }}
+	>
+		<Button onPress={() => { this._open(); }}>OPEN</Button>
+		<Button onPress={() => { this._close(); }}>CLOSE</Button>
+	</DrawerLayout>) 
 }
 </script>
 
