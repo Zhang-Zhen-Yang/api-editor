@@ -86,9 +86,21 @@ function extend(obj,marked){
 			return attr(code,marked);
 		},
 		
-		// 属性
+		// 提示
 		tip:function(code){
-			return tip(code,marked);
+			return tip(code,marked,'warning');
+		},
+		// 提示
+		'tip-warning':function(code){
+			return tip(code,marked,'warning');
+		},
+		// 提示-成功
+		'tip-success':function(code){
+			return tip(code,marked,'success');
+		},
+		// 提示-notice
+		'tip-notice':function(code){
+			return tip(code,marked,'notice');
 		},
 
 		// each 

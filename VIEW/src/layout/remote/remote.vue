@@ -124,5 +124,4 @@ export default {
 .no-markdown>*{
   margin-bottom:15px;
 }
-  
 </style>

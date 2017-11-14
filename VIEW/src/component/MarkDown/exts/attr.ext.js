@@ -10,11 +10,11 @@ export default function(code,marked){
 			let execArray = (/([\w-]+?)\s*?\[(.*?)]/).exec(item);
 			console.log(execArray);
 			if(execArray){
-				let attrItem = execArray[2].split(';').filter((item)=>{
+				let attrItem = execArray[2].split(',').filter((item)=>{
 					return !!item.trim();
 				})
 				let maplist = attrItem.map((item)=>{
-					let itemMap = item.split(':');
+					let itemMap = item.split('=');
 					if(itemMap.length>1){
 						return {attr: itemMap[0], value:itemMap[1]}
 					}

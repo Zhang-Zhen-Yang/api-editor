@@ -722,7 +722,7 @@ div.tip{
   margin: 2em 0;
   border-left-width: 4px;
   border-left-style: solid;
-  border-left-color: #f66;
+  
   background-color: #f8f8f8;
   position: relative;
   border-bottom-right-radius: 2px;
@@ -730,9 +730,6 @@ div.tip{
 }
 .tip:before{
   content: "!";
-  background-color: #f66;
-}
-.tip:before{
   position: absolute;
   top: 14px;
   left: -12px;
@@ -745,6 +742,24 @@ div.tip{
   font-weight: bold;
   font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
+}
+div.tip-warning{
+  border-left-color: #f66;
+}
+div.tip-warning:before{
+  background-color: #f66;
+}
+div.tip-success{
+  border-left-color: #42b983;
+}
+div.tip-success:before{
+  background-color: #42b983;
+}
+div.tip-notice{
+  border-left-color: #F39C12;
+}
+div.tip-notice:before{
+  background-color: #F39C12;
 }
 
 

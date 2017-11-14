@@ -41,7 +41,7 @@ render.heading = (text, level) => {
 
 render.code = (code,language)=>{
   // console.log('code-------------------------------',code);
-  //console.log('language-------------------------------',language);
+  console.log('language-------------------------------',language);
   if(code.indexOf('class="hljs')>-1){
     return code;
   }
