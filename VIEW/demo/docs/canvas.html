@@ -1,10 +1,211 @@
 <markdown>
 ## CANVAS
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | `v-canvas`| 自定义标签 
+attribute | `width` | 画布的宽度，数值类型
+attribute | `height` | 画布的高度度，数值类型
+innerHTML | 数组 | 包含了定义各种画布元素的对象字面量，具体请看下面各元素的属性与值，说明。
+function | `getBase64` | 获取画布的base64 字符串。
+
+```tip
+用途：为图片加水印。简单的图片合成。请注意如果画布存在跨域内容时，将无法通过`getBase64`方法获取base64信息。
+```
+### 各种画布元素通用属性
+
+属性 | 值 | 说明 |
+------------ | -------------| -------|
+rotate | `number` | 旋转角度,旋转点为{x,y}
+opacity | `number` | 不透明度
+shadowOffsetX | `number` | 投影x轴的偏移
+shadowOffsetY | `number` | 投影y轴的偏移
+shadowBlur | `number` | 投影的扩散距离
+shadowColor | 颜色值 | 投影的扩散颜色
+
+
+### 各种画布元素
+
+#### image（图片）
+
+属性 | 值 | 说明 |
+------------ | -------------| -------|
+type | `image`| 定义该元素为image类型
+x | `number` | 图片距左边的宽度
+y | `number` | 图片距上边的宽度
+w | enum{`number`,'auto'} | 图处的宽度
+h | enum{`number`,'auto'} | 图处的高度
+clipX | `number` | 从原图绘制到画布上时从原图切取的位置x
+clipY | `number` | 从原图绘制到画布上时从原图切取的位置y
+clipW | `number` | 从原图绘制到画布上时从原图切取的宽度
+clipH | `number` | 从原图绘制到画布上时从原图切取的高度
+src | `string` | 图片链接
+
+
+
+#### text（文本）
+
+属性 | 值 | 说明 |
+------------ | -------------| -------|
+type | `text`| 定义该元素为text类型
+x | `number` | 文本距左边的宽度
+y | `number` | 文本距上边的宽度
+value | `string` | 文本
+color | 颜色值 | 文本颜色
+fontSize | `number` | 文本大小
+fontFamily | `string` | 文本字体
+strokeWidth | `number` | 描边宽度
+strokeColor | 颜色值 | 描边颜色
+
+#### rect（矩形）
+
+属性 | 值 | 说明 |
+------------ | -------------| -------|
+type | `rect`| 定义该元素为rect类型
+x | `number` | 距左边的宽度
+y | `number` | 距上边的宽度
+w | `number` | 矩形的宽度
+h | `number` | 矩形的高度
+fillColor | `颜色值 | 填充颜色
+strokeWidth | `number` | 描边宽度
+strokeColor | 颜色值 | 描边颜色
+
+#### line（线段）
+
+属性 | 值 | 说明 |
+------------ | -------------| -------|
+type | `line`| 定义该元素为line类型
+start | { x: `number`, y: `number` } | 线条的开始点
+end | {x: `numbe`r, y: `number` } | 线条的结束点
+lineWidth | `number` | 线条宽度
+lineColor | 颜色值 | 线条颜色
+
+#### path（路径）
+
+属性 | 值 | 说明 |
+------------ | -------------| -------|
+type | `path`| 定义该元素为line类型
+path | `string` |路径 写法见下面说明
+strokeWidth | `number` | 描边宽度
+strokeColor | 颜色值 | 描边颜色
+fillColor | 颜色值 | 填充颜色
+- M = moveto 后面跟2个数值，路径开始的坐标
+- L = lineto 后面跟2个数值，路径连接的坐标
+- B = 创建三次贝塞尔曲线，后面跟6个数值。三次贝塞尔曲线需要三个点。前两个点是用于三次贝塞尔计算中的控制点，第三个点是曲线的结束点。
+- Q = 创建二次贝塞尔曲线，后面跟4个数值。二次贝塞尔曲线需要两个点。第一个点是用于二次贝塞尔计算中的控制点，第二个点是曲线的结束点。
+- A = 创建两切线之间的弧/曲线。后面跟5个数值。弧的起点的 x，y 坐标;弧的终点的 x，y 坐标;弧的半径。
+- Z = 关闭路径
+
+
+
+
+
+### 示例
 </markdown>
-<v-canvas :width="500" :height="500">
+<v-canvas :width="1000" :height="500" @rendered="(i) => { window.alert('渲染完成');}">
 	[
-		{type:'text',value:'apple'},
-		{type:'image',x:10,y:20,w:'auto',h:100,src:'http://img1.gamersky.com/image2017/11/20171111_sy_225_6/gamersky_01small_02_201711111123F23.jpg'},
-		{type:'text',value:'banana'},
+		{	
+			type:'rect',
+			w:1000,
+			h:500,
+			fillColor:'#efefef',
+		},
+		{type:'image',x:300,w:200,clipX:200,clipW:300,src:'http://pixiv-zingaro.jp/wp-content/uploads/banner/173/digimonstory_top_ver2.jpg'},
+		{
+			type:'image',
+			x:700,y:50,
+			src:'https://p1.ssl.qhmsg.com/dr/220__/t015f80e3a498f8e748.png',
+			rotate:-10,
+			shadowOffsetX:5,
+			shadowOffsetY:13,
+			shadowBlur:10,
+			shadowColor:'rgba(0,0,0,0.5)'
+		},
+		{
+			type:'image',
+			x:700,y:50,
+			src:'https://p1.ssl.qhmsg.com/dr/220__/t010902106db62393f6.png',
+			rotate:30,
+			opacity:0.7,
+			shadowOffsetX:5,
+			shadowOffsetY:8,
+			shadowBlur:20,
+			shadowColor:'rgba(0,0,0,0.5)'
+		},
+		{
+			type:'text',
+			value:'SAMPLE',
+			color:'#aaaaaa',
+			fontSize:100,
+			x:200,
+			y:300,
+			fontFamily:'微软雅黑',
+			strokeColor:'#ffffff',
+			strokeWidth:5,
+			shadowOffsetX:0,
+			shadowOffsetY:2,
+			shadowBlur:15,
+			shadowColor:'#333333',
+		},
+		{	
+			type:'rect',
+			x:20,
+			y:300,
+			w:100,
+			h:100,
+			strokeWidth:8,
+			strokeColor:'#E67E22',
+			fillColor:'#F1C40F',
+			shadowOffsetX:1,
+			shadowOffsetY:3,
+			shadowBlur:20,
+			shadowColor:'rgba(0,0,0,0.9)'
+		},
+		{	
+			type:'arc',
+			x:70,
+			y:150,
+			r:50,
+			strokeWidth:1,
+			strokeColor:'gray',
+			fillColor:'rgba(255,255,0,1)',
+			counterclockwise:true,// False = 顺时针，true = 逆时针
+			shadowOffsetX:10,
+			shadowOffsetY:13,
+			shadowBlur:20,
+			shadowColor:'rgba(0,0,0,0.9)'
+		},
+		{	
+			type:'line',
+			start:{
+				x:200,
+				y:200,
+			},
+			end:{
+				x:600,
+				y:200,
+			},
+			lineWidth:3,
+			lineColor:'#aaaaaa',
+		},
+		{	
+			type:'line',
+			start:{
+				x:200,
+				y:205,
+			},
+			end:{
+				x:600,
+				y:205,
+			},
+			lineWidth:1,
+			lineColor:'#aaaaaa',
+		},
+		{	
+			type:'path',
+			strokeWidth:3,
+			strokeColor:'#1ABC9C',
+			fillColor:'#8E44AD',
+			path:'M20 20, L100 20, A150 20 150 70 50, L150 120, Z'
+		},
 	]
 </v-canvas>

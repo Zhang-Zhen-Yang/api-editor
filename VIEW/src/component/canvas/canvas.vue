@@ -3,7 +3,6 @@
   <div ref="contents"><slot name="default"></slot></div>
   <canvas ref="canvas" :width="width" :height="height">
   </canvas>
-    动态组件
   </div>
 </template>
 
@@ -25,30 +24,44 @@ export default {
     return {
       msg: 'canvas',
       contents:[],
+      getBase64(){
+        try{
+          return (this.ctx.canvas.toDataURL());
+        }catch(e){
+          return '获取失败'
+        }
+      },
       render(){
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
         if(Array.isArray(this.contents)){
           this.contents.forEach((item)=>{
-            console.log(item.type);
+            // console.log(item.type,JSON.stringify(item));
             if(item.type=='image'){
-              if(!item.imgObj){
+              if(!item.renderIng){
                 console.log(item.src);
                 let img = new Image;
                 img.src=item.src;
+                item.renderIng = true;
                 img.onload = ()=>{
-                  alert('load');
                   item.imgObj = img;
                   this.render();
                 }
                 img.onerror=()=>{
-                  alert('load error');
-                }
-              
+                  item.imgObjNULL = true;
+                  item.imgObj = null;
+                  console.error(item.src+' load error');
+                }              
                 return;
               }
             }
             render[item.type](this.ctx, item);
           })
+
+
+          // console.log('noIMG',this.contents.filter((item)=>{console.log('item----------------',item);return item.type=='image'&&(!item.imgObj&&!item.imgObjNULL)}).length);
+          if(this.contents.filter((item)=>{return item.type=='image'&&(!item.imgObj||item.imgObjNULL===true)}).length==0){
+            this.$emit('rendered',this);
+          }
         }
         // this.ctx.fillText('apple',100,100);
       }
@@ -66,7 +79,7 @@ export default {
     let arrayContents = this.$refs.contents.innerHTML;
     let fun = new Function(`return ${arrayContents.trim()}`);
     this.contents = fun();
-    this.render();
+    this.render();  
   }
 }
 </script>
