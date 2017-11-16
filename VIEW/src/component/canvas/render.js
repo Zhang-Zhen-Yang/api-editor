@@ -264,7 +264,43 @@ let obj = {
 	// 设置ctx
 	setOptions:(ctx,options)=>{
 		for(let i in options){
-			ctx[i] = options[i];
+			let val = options[i]
+			if(i == 'fillStyle' || i == 'strokeStyle'){
+				val = obj.parseColor(ctx,val);
+			}
+			ctx[i] = val;
+		}
+	},
+
+	//解析颜色
+	parseColor:(ctx,val)=>{
+		if(typeof val == 'string'){
+			return val;
+		}else{
+			try{
+				let color = '';
+				switch(val.type){
+					case 'line':
+						let linearColor = ctx.createLinearGradient(val.start.x, val.start.y, val.end.x, val.end.y);
+						val.colorStop.forEach((item)=>{
+							linearColor.addColorStop(item.offset,item.color);
+						})
+						color =  linearColor;
+
+					break;
+					case 'radial':
+						let radialColor = ctx.createRadialGradient(val.start.x, val.start.y, val.start.r, val.end.x, val.end.y, val.end.r);
+						val.colorStop.forEach((item)=>{
+							radialColor.addColorStop(item.offset,item.color);
+						})
+						color = radialColor;
+					break;
+				}
+				return color;
+
+			}catch(e){
+				return '#000000';
+			}
 		}
 	},
 

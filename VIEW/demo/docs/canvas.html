@@ -22,6 +22,17 @@ shadowOffsetY | `number` | 投影y轴的偏移
 shadowBlur | `number` | 投影的扩散距离
 shadowColor | 颜色值 | 投影的扩散颜色
 
+### 颜色值定义
+
+> 颜色可以使用纯色和渐变色。纯色 可以使 如`gray`,`#aaaaaa`,`rgba(0,0,0,0.7)`之类的写法。渐变色有‘线性渐变’和‘径向/圆渐变’。
+
+类型 | 值 | 说明 |
+------------ | -------------| -------|
+纯色 | 颜色值 | `gray`,`#aaaaaa`,`rgba(0,0,0,0.7)`之类的颜色
+lineGradient | { type: `line`, start: { x: `number`, y: `number` }, end: { x: `number`, y: `number` }, colorStop: [{ offset: `float`, color: 颜色值 }] } | 线性渐变
+radialGradient | { type: `radial`, start: { x: `number`, y: `number`, r: `number` }, end: { x: `number`, y: `number`, r: `number` }, colorStop: [{offset: `float`, color :颜色值}] } | 线性渐变
+
+
 
 ### 各种画布元素
 
@@ -101,7 +112,7 @@ fillColor | 颜色值 | 填充颜色
 
 ### 示例
 </markdown>
-<v-canvas :width="1000" :height="500" @rendered="(i) => { window.alert('渲染完成');}">
+<v-canvas :width="1000" :height="500" @rendered="(i) => { window.console.log('渲染完成');}">
 	[
 		{	
 			type:'rect',
@@ -149,7 +160,7 @@ fillColor | 颜色值 | 填充颜色
 		{	
 			type:'rect',
 			x:20,
-			y:300,
+			y:350,
 			w:100,
 			h:100,
 			strokeWidth:8,
@@ -159,6 +170,35 @@ fillColor | 颜色值 | 填充颜色
 			shadowOffsetY:3,
 			shadowBlur:20,
 			shadowColor:'rgba(0,0,0,0.9)'
+		},
+		{	
+			type:'rect',
+			x:180,
+			y:350,
+			w:100,
+			h:100,
+			strokeWidth:8,
+			strokeColor:{type:'line',start:{x:180,y:350},end:{x:280,y:450},colorStop:[{offset:0,color:'red'},{offset:1,color:'#fba500'}]},
+			fillColor:{type:'line',start:{x:180,y:350},end:{x:280,y:450},colorStop:[{offset:0,color:'#fb00db'},{offset:1,color:'#00b7fb'}]},
+			shadowOffsetX:1,
+			shadowOffsetY:3,
+			shadowBlur:20,
+			shadowColor:'rgba(0,0,0,0.9)'
+		},
+		{
+			type:'text',
+			value:'SAMPLE',
+			color:{type:'line',start:{x:300,y:450},end:{x:500,y:550},colorStop:[{offset:0,color:'#fb00db'},{offset:1,color:'#00b7fb'}]},
+			fontSize:50,
+			x:300,
+			y:450,
+			fontFamily:'微软雅黑',
+			strokeColor:'#ffffff',
+			strokeWidth:5,
+			shadowOffsetX:0,
+			shadowOffsetY:2,
+			shadowBlur:15,
+			shadowColor:'#333333',
 		},
 		{	
 			type:'arc',
@@ -209,3 +249,141 @@ fillColor | 颜色值 | 填充颜色
 		},
 	]
 </v-canvas>
+<v-code :templateid="'code'"></v-code>
+<script type="x-template" id="code">
+[
+	{	
+		type:'rect',
+		w:1000,
+		h:500,
+		fillColor:'#efefef',
+	},
+	{type:'image',x:300,w:200,clipX:200,clipW:300,src:'http://pixiv-zingaro.jp/wp-content/uploads/banner/173/digimonstory_top_ver2.jpg'},
+	{
+		type:'image',
+		x:700,y:50,
+		src:'https://p1.ssl.qhmsg.com/dr/220__/t015f80e3a498f8e748.png',
+		rotate:-10,
+		shadowOffsetX:5,
+		shadowOffsetY:13,
+		shadowBlur:10,
+		shadowColor:'rgba(0,0,0,0.5)'
+	},
+	{
+		type:'image',
+		x:700,y:50,
+		src:'https://p1.ssl.qhmsg.com/dr/220__/t010902106db62393f6.png',
+		rotate:30,
+		opacity:0.7,
+		shadowOffsetX:5,
+		shadowOffsetY:8,
+		shadowBlur:20,
+		shadowColor:'rgba(0,0,0,0.5)'
+	},
+	{
+		type:'text',
+		value:'SAMPLE',
+		color:'#aaaaaa',
+		fontSize:100,
+		x:200,
+		y:300,
+		fontFamily:'微软雅黑',
+		strokeColor:'#ffffff',
+		strokeWidth:5,
+		shadowOffsetX:0,
+		shadowOffsetY:2,
+		shadowBlur:15,
+		shadowColor:'#333333',
+	},
+	{	
+		type:'rect',
+		x:20,
+		y:350,
+		w:100,
+		h:100,
+		strokeWidth:8,
+		strokeColor:'#E67E22',
+		fillColor:'#F1C40F',
+		shadowOffsetX:1,
+		shadowOffsetY:3,
+		shadowBlur:20,
+		shadowColor:'rgba(0,0,0,0.9)'
+	},
+	{	
+		type:'rect',
+		x:180,
+		y:350,
+		w:100,
+		h:100,
+		strokeWidth:8,
+		strokeColor:{type:'line',start:{x:180,y:350},end:{x:280,y:450},colorStop:[{offset:0,color:'red'},{offset:1,color:'#fba500'}]},
+		fillColor:{type:'line',start:{x:180,y:350},end:{x:280,y:450},colorStop:[{offset:0,color:'#fb00db'},{offset:1,color:'#00b7fb'}]},
+		shadowOffsetX:1,
+		shadowOffsetY:3,
+		shadowBlur:20,
+		shadowColor:'rgba(0,0,0,0.9)'
+	},
+	{
+		type:'text',
+		value:'SAMPLE',
+		color:{type:'line',start:{x:300,y:450},end:{x:500,y:550},colorStop:[{offset:0,color:'#fb00db'},{offset:1,color:'#00b7fb'}]},
+		fontSize:50,
+		x:300,
+		y:450,
+		fontFamily:'微软雅黑',
+		strokeColor:'#ffffff',
+		strokeWidth:5,
+		shadowOffsetX:0,
+		shadowOffsetY:2,
+		shadowBlur:15,
+		shadowColor:'#333333',
+	},
+	{	
+		type:'arc',
+		x:70,
+		y:150,
+		r:50,
+		strokeWidth:1,
+		strokeColor:'gray',
+		fillColor:'rgba(255,255,0,1)',
+		counterclockwise:true,// False = 顺时针，true = 逆时针
+		shadowOffsetX:10,
+		shadowOffsetY:13,
+		shadowBlur:20,
+		shadowColor:'rgba(0,0,0,0.9)'
+	},
+	{	
+		type:'line',
+		start:{
+			x:200,
+			y:200,
+		},
+		end:{
+			x:600,
+			y:200,
+		},
+		lineWidth:3,
+		lineColor:'#aaaaaa',
+	},
+	{	
+		type:'line',
+		start:{
+			x:200,
+			y:205,
+		},
+		end:{
+			x:600,
+			y:205,
+		},
+		lineWidth:1,
+		lineColor:'#aaaaaa',
+	},
+	{	
+		type:'path',
+		strokeWidth:3,
+		strokeColor:'#1ABC9C',
+		fillColor:'#8E44AD',
+		path:'M20 20, L100 20, A150 20 150 70 50, L150 120, Z'
+	},
+]
+</script>
