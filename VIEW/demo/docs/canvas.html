@@ -1,10 +1,28 @@
+
+<v-canvas :height="50" :width="600" v-if="false">
+	[{
+		type:'text',
+		value:'CANVAS ( 画布 )',
+		color:{type:'line',start:{x:0,y:0},end:{x:170,y:50},colorStop:[{offset:0,color:'#fb00db'},{offset:1,color:'#00b7fb'}]},
+		fontSize:40,
+		x:0,
+		y:40,
+		fontFamily:'微软雅黑',
+		strokeColor:'#ffffff',
+		strokeWidth:3,
+		shadowBlur:15,
+		shadowColor:'rgba(0,0,0,0.5)',
+	}]
+</v-canvas>
 <markdown>
-## CANVAS
+## CANVAS 
+
 参数 | 值 | 说明 |
 ------------ | -------------| -------|
 tag | `v-canvas`| 自定义标签 
 attribute | `width` | 画布的宽度，数值类型
 attribute | `height` | 画布的高度度，数值类型
+attribute | `css` | css样式的对象表达式
 innerHTML | 数组 | 包含了定义各种画布元素的对象字面量，具体请看下面各元素的属性与值，说明。
 function | `getBase64` | 获取画布的base64 字符串。
 
@@ -15,12 +33,12 @@ function | `getBase64` | 获取画布的base64 字符串。
 
 属性 | 值 | 说明 |
 ------------ | -------------| -------|
-rotate | `number` | 旋转角度,旋转点为{x,y}
+rotate | `number` | 旋转角度,旋转点为{ x, y }
 opacity | `number` | 不透明度
 shadowOffsetX | `number` | 投影x轴的偏移
 shadowOffsetY | `number` | 投影y轴的偏移
 shadowBlur | `number` | 投影的扩散距离
-shadowColor | 颜色值 | 投影的扩散颜色
+shadowColor | `颜色值` | 投影的扩散颜色
 
 ### 颜色值定义
 
@@ -29,8 +47,8 @@ shadowColor | 颜色值 | 投影的扩散颜色
 类型 | 值 | 说明 |
 ------------ | -------------| -------|
 纯色 | 颜色值 | `gray`,`#aaaaaa`,`rgba(0,0,0,0.7)`之类的颜色
-lineGradient | { type: `line`, start: { x: `number`, y: `number` }, end: { x: `number`, y: `number` }, colorStop: [{ offset: `float`, color: 颜色值 }] } | 线性渐变
-radialGradient | { type: `radial`, start: { x: `number`, y: `number`, r: `number` }, end: { x: `number`, y: `number`, r: `number` }, colorStop: [{offset: `float`, color :颜色值}] } | 线性渐变
+lineGradient | { type: `line`, start: { x: `number`, y: `number` }, end: { x: `number`, y: `number` }, colorStop: [{ offset: `float`, color: `颜色值` }] } | 线性渐变
+radialGradient | { type: `radial`, start: { x: `number`, y: `number`, r: `number` }, end: { x: `number`, y: `number`, r: `number` }, colorStop: [{offset: `float`, color: `颜色值`}] } | 径向/圆渐变
 
 
 
@@ -41,14 +59,14 @@ radialGradient | { type: `radial`, start: { x: `number`, y: `number`, r: `number
 属性 | 值 | 说明 |
 ------------ | -------------| -------|
 type | `image`| 定义该元素为image类型
-x | `number` | 图片距左边的宽度
-y | `number` | 图片距上边的宽度
-w | enum{`number`,'auto'} | 图处的宽度
-h | enum{`number`,'auto'} | 图处的高度
-clipX | `number` | 从原图绘制到画布上时从原图切取的位置x
-clipY | `number` | 从原图绘制到画布上时从原图切取的位置y
-clipW | `number` | 从原图绘制到画布上时从原图切取的宽度
-clipH | `number` | 从原图绘制到画布上时从原图切取的高度
+x | `number` | 图片距左边的x坐标，默认为0
+y | `number` | 图片距上边的x坐标，默认为0
+w | enum {`number`,'auto'} | 图处的宽度,宽度为auto时，宽度会适应高度，保持图片不拉伸，默认为auto
+h | enum {`number`,'auto'} | 图处的高度,高度为auto时，高度会适应高度，保持图片不拉伸，默认为auto
+clipX | `number` | 从原图绘制到画布上时从原图切取的位置x，默认为0
+clipY | `number` | 从原图绘制到画布上时从原图切取的位置y，默认为0
+clipW | `number` | 从原图绘制到画布上时从原图切取的宽度，默认为图片宽度
+clipH | `number` | 从原图绘制到画布上时从原图切取的高度，默认为图片高度度
 src | `string` | 图片链接
 
 
@@ -58,8 +76,8 @@ src | `string` | 图片链接
 属性 | 值 | 说明 |
 ------------ | -------------| -------|
 type | `text`| 定义该元素为text类型
-x | `number` | 文本距左边的宽度
-y | `number` | 文本距上边的宽度
+x | `number` | 文本距左边的x坐标
+y | `number` | 文本距上边的y坐标
 value | `string` | 文本
 color | 颜色值 | 文本颜色
 fontSize | `number` | 文本大小
@@ -72,8 +90,8 @@ strokeColor | 颜色值 | 描边颜色
 属性 | 值 | 说明 |
 ------------ | -------------| -------|
 type | `rect`| 定义该元素为rect类型
-x | `number` | 距左边的宽度
-y | `number` | 距上边的宽度
+x | `number` | 距左边的x坐标
+y | `number` | 距上边的y坐标
 w | `number` | 矩形的宽度
 h | `number` | 矩形的高度
 fillColor | `颜色值 | 填充颜色
@@ -99,12 +117,12 @@ path | `string` |路径 写法见下面说明
 strokeWidth | `number` | 描边宽度
 strokeColor | 颜色值 | 描边颜色
 fillColor | 颜色值 | 填充颜色
-- M = moveto 后面跟2个数值，路径开始的坐标
-- L = lineto 后面跟2个数值，路径连接的坐标
+- M = moveto 后面跟2个数值，路径开始的坐标。
+- L = lineto 后面跟2个数值，路径连接的坐标。
 - B = 创建三次贝塞尔曲线，后面跟6个数值。三次贝塞尔曲线需要三个点。前两个点是用于三次贝塞尔计算中的控制点，第三个点是曲线的结束点。
 - Q = 创建二次贝塞尔曲线，后面跟4个数值。二次贝塞尔曲线需要两个点。第一个点是用于二次贝塞尔计算中的控制点，第二个点是曲线的结束点。
 - A = 创建两切线之间的弧/曲线。后面跟5个数值。弧的起点的 x，y 坐标;弧的终点的 x，y 坐标;弧的半径。
-- Z = 关闭路径
+- Z = 关闭路径。
 
 
 
@@ -125,7 +143,7 @@ fillColor | 颜色值 | 填充颜色
 			type:'image',
 			x:700,y:50,
 			src:'https://p1.ssl.qhmsg.com/dr/220__/t015f80e3a498f8e748.png',
-			rotate:-10,
+			rotate:-20,
 			shadowOffsetX:5,
 			shadowOffsetY:13,
 			shadowBlur:10,
@@ -135,8 +153,7 @@ fillColor | 颜色值 | 填充颜色
 			type:'image',
 			x:700,y:50,
 			src:'https://p1.ssl.qhmsg.com/dr/220__/t010902106db62393f6.png',
-			rotate:30,
-			opacity:0.7,
+			rotate:20,
 			shadowOffsetX:5,
 			shadowOffsetY:8,
 			shadowBlur:20,
@@ -263,7 +280,7 @@ fillColor | 颜色值 | 填充颜色
 		type:'image',
 		x:700,y:50,
 		src:'https://p1.ssl.qhmsg.com/dr/220__/t015f80e3a498f8e748.png',
-		rotate:-10,
+		rotate:-20,
 		shadowOffsetX:5,
 		shadowOffsetY:13,
 		shadowBlur:10,
@@ -273,8 +290,7 @@ fillColor | 颜色值 | 填充颜色
 		type:'image',
 		x:700,y:50,
 		src:'https://p1.ssl.qhmsg.com/dr/220__/t010902106db62393f6.png',
-		rotate:30,
-		opacity:0.7,
+		rotate:20,
 		shadowOffsetX:5,
 		shadowOffsetY:8,
 		shadowBlur:20,

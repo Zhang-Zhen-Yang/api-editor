@@ -1,7 +1,7 @@
 <template>
   <div class="v-canvas">
   <div ref="contents"><slot name="default"></slot></div>
-  <canvas ref="canvas" :width="width" :height="height">
+  <canvas ref="canvas" :width="width" :height="height" :style="css">
   </canvas>
   </div>
 </template>
@@ -19,6 +19,12 @@ export default {
       type:Number,
       default:150
     },
+    css:{
+      type:[Object,String],
+      default(){
+        return {};
+      }
+    }
   },
   data () {
     return {
