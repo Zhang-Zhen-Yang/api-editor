@@ -9,6 +9,7 @@ import qrcode from './qrcode/qrcode'
 import tabs from './tabs/tabs'
 import snackbar from './snackbar/snackbar'
 import canvas from './canvas/canvas'
+import resize from './resize/resize'
 const options = {
 	MarkDown,
 	table,
@@ -20,7 +21,8 @@ const options = {
 	qrcode,
 	tabs,
 	snackbar,
-	canvas
+	canvas,
+	resize
 }
 options.install = (Vue) => {
 	for (let component in options) {
