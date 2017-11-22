@@ -1,10 +1,16 @@
 <markdown>
 ## RESIZE
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | `v-resize` | 标签名 
+attribute | `ratio`，长度为2的数组，值为0-1的数值，带px的宽度，null | 左右分隔的大小， 数组中只要一个固定值，另一个为null;默认为[0.5,null]
+attribute | `css` | 二维码的样式的对象表达式写法;`object`类型。
+slot | enum { 'first', `last` } | first 为左边第一个，last为右边; 
 
 > resize 
 </markdown>
 
-<v-resize :ratio="[null,'200px']">
+<v-resize :ratio="[null,0.5]">
 	<img slot="first" src="http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg" alt="">
-	<img slot="last" src="https://p1.ssl.qhmsg.com/dr/220__/t010902106db62393f6.png" alt="">
+	<img slot="last" src="http://pixiv-zingaro.jp/wp-content/uploads/norioikeru_main.jpg" alt="">
 </v-resize>
