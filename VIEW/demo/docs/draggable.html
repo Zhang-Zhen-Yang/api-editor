@@ -1,0 +1,26 @@
+<markdown>
+## draggable
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | `v-drabbable` | 标签名 
+attribute | `x`，可拖动组件初始left值 |数值型，默认为0
+attribute | `y` ,可拖动组件初始top值| 数值型，默认为0
+attribute | `css` ,可拖动组件样式 | 对象表达式写法;`object`类型。
+slot | html | 放在里面的元素
+attribute | `intercept`,当拖动时会调用此方法 | Function类型，形参为x,y; 表示拖动时组件应位于的left，和top值;返回值为{ x: x, y: y } 格式的对象格式;
+event | `drag-start`,当开始拖动时会调用此方法 | ;
+event | `drag-move`,当拖动中时会调用此方法 | 回调参数为{x: x, y: y};
+event | `drag-stop`,当拖动结束时会调用此方法 | ;
+
+> draggable组件 提供简单地拖动元素的操作方式
+</markdown>
+
+<div style="position:relative;height:500px;" >
+	<v-draggable :css="{border:'2px solid gold'}">
+		<img src="http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg" style="max-width:inherit;width:300px;" alt="" draggable="false">
+	</v-draggable>
+	
+	<v-draggable :x="100" :y="100" :css="{border:'2px solid red'}">
+		<img src="http://pixiv-zingaro.jp/wp-content/uploads/eromanga-sensei_main.jpg?pub" alt="" style="max-width:inherit;width:300px;" draggable="false" />
+	</v-draggable>
+</div>

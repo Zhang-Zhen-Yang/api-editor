@@ -10,6 +10,7 @@ import tabs from './tabs/tabs'
 import snackbar from './snackbar/snackbar'
 import canvas from './canvas/canvas'
 import resize from './resize/resize'
+import draggable from './draggable/draggable'
 const options = {
 	MarkDown,
 	table,
@@ -22,7 +23,8 @@ const options = {
 	tabs,
 	snackbar,
 	canvas,
-	resize
+	resize,
+	draggable
 }
 options.install = (Vue) => {
 	for (let component in options) {
