@@ -1,0 +1,43 @@
+<markdown>
+## resizable
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | `v-resizable` | 标签名 
+attribute | `css` ,可调整大小组件样式 | 对象表达式写法;`object`类型。
+slot | `html` | 放在里面的元素
+attribute | `intercept`,当拖动时会调用此方法 | Function类型，形参为x,y; 表示拖动时组件应位于的left，和top值;返回值为{ x: x, y: y } 格式的对象格式;
+attribute | `handle`,可拖动调整的调整块 | Array类型，可为`n`，`s`， `e`，`w`， `ne`， `nw`， `se`， `sw`其中的一种或多种，s为南，n为北，e为东，w为西。默认为全部。
+event | `resze-start`,当开始调整时会调用此方法 | ;
+event | `resize-move`,当调整中时会调用此方法 | 回调参数为{ w: w, h: h };
+event | `resize-stop`,当调整结束时会调用此方法 | ;
+
+> resizable组件 提供简单地调整元素大小的操作方式，通常配合 `v-draggable` 组件使用。
+</markdown>
+
+<div style="position:relative;height:500px;" >
+	<v-resizable :css="{border:'2px solid gold',width:'300px',height:'110px'}">
+		<img src="http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg" style="max-width:inherit;width:100%;height:100%;" alt="" draggable="false">
+	</v-resizable>
+
+	<v-draggable :x="400" :y="0" :css="{'z-index':1}">
+		<v-resizable :css="{border:'2px solid gold',width:'257px',height:'351px'}">
+			<img src="http://imgs.aixifan.com/o_1c1l75nnha4l1f5nfgigbt1h4b1b.jpg" style="max-width:inherit;width:100%;height:100%;" alt="" draggable="false" >
+		</v-resizable>
+	</v-draggable>
+</div>
+
+<div>
+	<v-code :templateid="'code'"></v-code>
+</div>
+
+<script type="x-template" id="code">
+<v-resizable :css="{border:'2px solid gold',width:'300px',height:'110px'}">
+	<img src="http://pixiv-zingaro.jp/wp-content/uploads/degimon756x272.jpg" style="max-width:inherit;width:100%;height:100%;" alt="" draggable="false">
+</v-resizable>
+
+<v-draggable :x="400" :y="0" :css="{'z-index':1}">
+	<v-resizable :css="{border:'2px solid gold',width:'257px',height:'351px'}">
+		<img src="http://imgs.aixifan.com/o_1c1l75nnha4l1f5nfgigbt1h4b1b.jpg" style="max-width:inherit;width:100%;height:100%;" alt="" draggable="false" >
+	</v-resizable>
+</v-draggable>
+</script>

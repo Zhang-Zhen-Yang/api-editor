@@ -55,7 +55,7 @@
 	<div id="app">
 		<struct>
 			<!--头部-->
-			<struct-header slot="header" :css="{backgroundColor:'#ffffff'}">
+			<struct-header slot="header" :css="{backgroundColor:'#ffffff','z-index':10}">
 				<!--logo-->
 				<div style="float:left;margin-left:30px;">
 					<img src="./image/api.png" slot="logo" alt="">
@@ -94,7 +94,7 @@
 			
 			<!--内容区-->
 			<!--<iframe src="" slot="article" name="remote" frameborder="0" style="position:fixed;width:100%;height:calc(100% - 72px);" ></iframe>-->
-			<struct-remote slot="article" :init="'./docs/draggable.html'" >
+			<struct-remote slot="article" :init="'./docs/resizable.html'" >
 				<div style="margin-bottom:20px;">
 					<img src="./image/api.png" alt="" style="vertical-align:-15px;">
 					<span style="font-size:16px">
@@ -135,6 +135,7 @@
 						{name:'canvas',url:'./docs/canvas.html'},
 						{name:'resize',url:'./docs/resize.html'},
 						{name:'draggable',url:'./docs/draggable.html'},
+						{name:'resizable',url:'./docs/resizable.html'},
 						//{name:'tabs',url:'./docs/tabs.html'},
 					]},
 					{
