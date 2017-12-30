@@ -1,0 +1,18 @@
+<markdown>
+## resizable
+参数 | 值 | 说明 |
+------------ | -------------| -------|
+tag | `v-drop` | 标签名 
+attribute | `css` ,可调整大小组件样式 | 对象表达式写法;`object`类型。
+slot | `html` | 放在里面的元素
+event | `dragover`,当拖动时在元素上移动时会调用此方法 | ;
+event | `drop`,当拖放到v-drop里时会调用此方法 | 回调参数为e，事件回调参数;
+
+
+> drop 提供简单地调整元素大小的操作方式。
+</markdown>
+
+<v-drop @drop="window.alert('drop');" :css="{border:'2px solid red'}">
+	<img src="http://p0.so.qhimgs1.com/bdr/_240_/t01f75c1aca3062de6a.jpg" alt="">
+</v-drop>
+

@@ -12,6 +12,7 @@ import canvas from './canvas/canvas'
 import resize from './resize/resize'
 import draggable from './draggable/draggable'
 import resizable from './resizable/resizable'
+import drop from './drop/drop'
 const options = {
 	MarkDown,
 	table,
@@ -26,7 +27,8 @@ const options = {
 	canvas,
 	resize,
 	draggable,
-	resizable
+	resizable,
+	drop
 }
 options.install = (Vue) => {
 	for (let component in options) {

@@ -16,17 +16,26 @@
 export default {
   name: 'v-resizable',
   props:{
+    // 样式
     css:{
       type:Object,
       default(){
         return {};
       }
     },
+
+    //显示的调整块
     handle:{
       type:Array,
       default(){
         return ['n','s','e','w','ne','nw','se','sw'];
       }
+    },
+
+    // 是否保持纵横比
+    aspectRatio:{
+      type:Boolean,
+      default:true
     },
     intercept:{
       type:Function,
@@ -52,14 +61,18 @@ export default {
       currentHeight:null,
       cancel:false,
       cancelX:false,
-      cancelY:false,
+      cancelY:false,      
+      ratio:1,
       resize(e){
         if(!this.started){ return; }
         
         let x = e.pageX;
         let y = e.pageY;
+        let shouldWidth,shouldHeight;
         let heightChange,widthChange,height,width;
         switch(this.type){
+
+          // 南
           case 's':
             height = this.initHeight + y - this.startY;
             if(height>0){
@@ -67,14 +80,15 @@ export default {
             }
           break;
 
+          //东
           case 'e':
             width = this.initWidth + x - this.startX;
             if(width>0){
               this.currentWidth = width;
             }
-            
           break;
 
+          // 北
           case 'n':
             heightChange = -(y - this.startY);
             let shouledHeight = this.initHeight + heightChange;
@@ -86,9 +100,11 @@ export default {
               this.cancel = true;
             }
           break;
+
+          //西
           case 'w':
            widthChange = -(x - this.startX);
-           let shouldWidth = this.initWidth + widthChange;
+           shouldWidth = this.initWidth + widthChange;
             if(shouldWidth > 0 ){
               this.cancel = false;
               let size = this.intercept(shouldWidth,this.currentHeight,'w');
@@ -98,20 +114,40 @@ export default {
             }
           break;
 
+          //东南
           case 'se':
-            this.currentHeight = this.initHeight + y - this.startY;
-            this.currentWidth = this.initWidth + x - this.startX;
+            shouldWidth = this.initWidth + x - this.startX;
+            shouldHeight = this.initHeight + y - this.startY;
+            // 如果保持长宽比
+            if(this.aspectRatio){
+              let currentRatio = shouldWidth/shouldHeight;
+              if(currentRatio>this.ratio){
+                this.currentHeight = shouldHeight;
+                this.currentWidth = this.ratio*shouldHeight;
+              }else{
+                this.currentHeight = shouldWidth/this.ratio;
+                this.currentWidth = shouldWidth;
+              }
+            }else{
+              this.currentHeight = shouldHeight;
+              this.currentWidth = shouldWidth;
+            }
           break;
+
+          //东北
           case 'ne':
             heightChange = -(y - this.startY);
+            widthChange =   x - this.startX;
             if(this.initHeight + heightChange > 0 ){
               this.cancel = false;
               this.currentHeight = this.initHeight + heightChange;
             }else{
               this.cancel = true;
             }
-            this.currentWidth = this.initWidth + x - this.startX;
+            this.currentWidth = this.initWidth + widthChange;
           break;
+
+          //西南
           case 'sw':
             widthChange = -(x - this.startX);
             if(this.initWidth + widthChange > 0 ){
@@ -122,6 +158,8 @@ export default {
             }
             this.currentHeight = this.initHeight + y - this.startY;
           break;
+
+          //西北
           case 'nw':
             widthChange = -(x - this.startX);
             if(this.initWidth + widthChange > 0 ){
@@ -158,6 +196,7 @@ export default {
       this.started = true;
       this.initWidth = this.self.clientWidth;
       this.initHeight = this.self.clientHeight;
+      this.ratio = this.initWidth/this.initHeight;
       // alert([this.initWidth,this.initHeight]);
       this.$emit('resizeStart');
       this.cancel = false;
@@ -169,7 +208,7 @@ export default {
     document.addEventListener('mousemove',(e)=>{_this.resize(e)},false);
     document.addEventListener('mouseup',(e)=>{_this.stop(e)},false);
     document.addEventListener('dragover',(e)=>{
-      console.log('dragover');
+      // console.log('dragover');
       _this.resize(e);
     },false);
     document.addEventListener('dragend',(e)=>{
